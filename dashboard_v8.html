@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Epstein Document Analysis Dashboard v8</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0d0d0d;--bg2:#141414;--bg3:#1a1a1a;--bg4:#222;--text:#e0e0e0;--text2:#999;--accent:#c0392b;--accent2:#e74c3c;--accent3:#f39c12;--accent4:#e67e22;--green:#27ae60;--blue:#2980b9;--border:#333;--sc:#e74c3c;--sh:#e67e22;--sm:#f1c40f;--sl:#3498db}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,-apple-system,sans-serif;line-height:1.6;overflow-x:hidden}
+a{color:var(--accent3);text-decoration:none}a:hover{text-decoration:underline}
+.ctr{max-width:1400px;margin:0 auto;padding:20px}
+header{background:linear-gradient(135deg,#0a0a0a 0%,#1a0a0a 50%,#0a0a0a 100%);border-bottom:2px solid var(--accent);padding:30px 0;text-align:center;position:relative}
+header h1{font-size:2.2em;color:#fff;letter-spacing:2px;text-transform:uppercase}
+header h1 span{color:var(--accent2)}
+header .sub{color:var(--text2);font-size:1em;margin-top:8px;letter-spacing:1px}
+header .ver{position:absolute;top:15px;right:30px;background:var(--accent);color:#fff;padding:4px 12px;border-radius:3px;font-size:.8em;font-weight:700}
+header .cls{background:var(--accent2);color:#fff;display:inline-block;padding:4px 20px;border-radius:3px;font-weight:700;margin-top:12px;font-size:.85em;letter-spacing:2px}
+.sbar{background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:15px 20px;margin:20px 0;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.sbar input{flex:1;min-width:250px;background:var(--bg);border:1px solid var(--border);color:var(--text);padding:10px 15px;border-radius:4px;font-size:1em}
+.sbar input:focus{outline:none;border-color:var(--accent3)}
+.sbar .ss{color:var(--text2);font-size:.85em}
+.fb{background:var(--bg3);border:1px solid var(--border);color:var(--text2);padding:6px 14px;border-radius:3px;cursor:pointer;font-size:.85em;transition:all .2s}
+.fb:hover,.fb.ac{background:var(--accent);color:#fff;border-color:var(--accent)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:15px;margin:20px 0}
+.sc{background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:18px;text-align:center;transition:transform .2s}
+.sc:hover{transform:translateY(-2px);border-color:var(--accent)}
+.sc .sn{font-size:2em;font-weight:700;color:var(--accent2)}
+.sc .sl{font-size:.8em;color:var(--text2);text-transform:uppercase;letter-spacing:1px;margin-top:4px}
+.sec{background:var(--bg2);border:1px solid var(--border);border-radius:6px;margin:15px 0;overflow:hidden}
+.sh{background:var(--bg3);padding:15px 20px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;user-select:none;transition:background .2s}
+.sh:hover{background:var(--bg4)}
+.sh h2{font-size:1.15em;display:flex;align-items:center;gap:10px}
+.sh .tg{font-size:1.2em;color:var(--text2);transition:transform .3s}
+.sh .tg.op{transform:rotate(180deg)}
+.scn{padding:20px;display:none}
+.scn.op{display:block}
+.snum{background:var(--accent);color:#fff;padding:2px 8px;border-radius:3px;font-size:.75em;font-weight:700;margin-right:5px}
+.fd{background:var(--bg);border-left:3px solid var(--border);border-radius:0 4px 4px 0;padding:15px 18px;margin:12px 0}
+.fd.cr{border-left-color:var(--sc)}
+.fd.hi{border-left-color:var(--sh)}
+.fd.me{border-left-color:var(--sm)}
+.fh{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;flex-wrap:wrap;gap:6px}
+.ft{font-weight:700;font-size:1em}
+.sb{font-size:.7em;padding:2px 10px;border-radius:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px}
+.sb.cr{background:rgba(231,76,60,.2);color:var(--sc);border:1px solid var(--sc)}
+.sb.hi{background:rgba(230,126,34,.2);color:var(--sh);border:1px solid var(--sh)}
+.sb.me{background:rgba(241,196,15,.2);color:var(--sm);border:1px solid var(--sm)}
+.sb.lo{background:rgba(52,152,219,.2);color:var(--sl);border:1px solid var(--sl)}
+.ftx{color:var(--text);font-size:.92em;line-height:1.7}
+.ftx em{color:var(--accent3);font-style:normal;font-weight:600}
+.sr{display:inline-block;background:var(--bg3);border:1px solid var(--border);padding:2px 8px;border-radius:3px;font-size:.78em;color:var(--accent3);font-family:'Courier New',monospace;margin:4px 4px 0 0}
+.qb{background:var(--bg3);border-left:3px solid var(--accent3);padding:10px 15px;margin:10px 0;font-style:italic;color:var(--text);font-size:.9em}
+.crd{background:rgba(231,76,60,.08);border:1px solid rgba(231,76,60,.3);border-radius:4px;padding:12px;margin:10px 0}
+.crd .lb{color:var(--accent2);font-weight:700;font-size:.85em;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px}
+.vs{text-align:center;color:var(--accent2);font-weight:700;padding:4px 0;font-size:.9em}
+.jb{background:linear-gradient(135deg,rgba(243,156,18,.1),rgba(231,76,60,.1));border:2px solid var(--accent3);border-radius:6px;padding:20px;margin:15px 0}
+.jb h3{color:var(--accent3);font-size:1.1em;margin-bottom:10px}
+.jb ul{list-style:none;padding:0}
+.jb li{padding:6px 0;border-bottom:1px solid rgba(243,156,18,.15);color:var(--text);font-size:.92em}
+.jb li:last-child{border-bottom:none}
+.jb li::before{content:"\25B6 ";color:var(--accent3);font-size:.7em}
+.tl{position:relative;padding:20px 0}
+.tl::before{content:'';position:absolute;left:20px;top:0;bottom:0;width:2px;background:var(--accent)}
+.ti{position:relative;padding-left:50px;margin-bottom:20px}
+.ti::before{content:'';position:absolute;left:14px;top:8px;width:14px;height:14px;border-radius:50%;background:var(--accent);border:2px solid var(--bg)}
+.ti .yr{color:var(--accent3);font-weight:700;font-size:1em}
+.ti .ev{color:var(--text);font-size:.9em;margin-top:2px}
+.np{background:var(--bg);border:2px dashed var(--border);border-radius:6px;padding:40px;text-align:center;color:var(--text2)}
+.np h3{color:var(--text);margin-bottom:10px}
+.nn{display:inline-block;background:var(--bg3);border:1px solid var(--border);padding:6px 14px;border-radius:20px;margin:4px;font-size:.85em;transition:all .2s}
+.nn:hover{border-color:var(--accent);color:var(--accent2)}
+.nn.ce{background:var(--accent);color:#fff;border-color:var(--accent);font-weight:700}
+.nn.in{border-color:#9b59b6;color:#9b59b6}
+.nn.fi{border-color:var(--accent3);color:var(--accent3)}
+.nn.vi{border-color:var(--sc);color:var(--sc)}
+.nn.po{border-color:var(--blue);color:var(--blue)}
+.nn.te{border-color:var(--green);color:var(--green)}
+.dt{width:100%;border-collapse:collapse;font-size:.88em}
+.dt th{background:var(--bg3);padding:10px 12px;text-align:left;border-bottom:2px solid var(--accent);color:var(--accent3);font-weight:600;text-transform:uppercase;font-size:.8em;letter-spacing:1px}
+.dt td{padding:8px 12px;border-bottom:1px solid var(--border)}
+.dt tr:hover{background:var(--bg3)}
+.dt .ef{font-family:'Courier New',monospace;color:var(--accent3)}
+footer{text-align:center;padding:30px;color:var(--text2);font-size:.8em;border-top:1px solid var(--border);margin-top:30px}
+@media(max-width:768px){header h1{font-size:1.4em}.stats{grid-template-columns:repeat(2,1fr)}.fd{padding:12px}.ctr{padding:10px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="ver">v8.0</div>
+  <h1>Epstein Document <span>Analysis Dashboard</span></h1>
+  <div class="sub">Comprehensive Analysis of 406 PDFs | 2,111+ Individual Findings | December 2025 Release</div>
+  <div class="cls">OPEN SOURCE INTELLIGENCE COMPILATION</div>
+</header>
+<div class="ctr">
+
+<!-- SEARCH -->
+<div class="sbar">
+  <input type="text" id="si" placeholder="Search findings, names, EFTA numbers, keywords..." oninput="doSearch()">
+  <div class="ss" id="ss">Showing all findings</div>
+  <button class="fb ac" onclick="doFilter('all',this)">All</button>
+  <button class="fb" onclick="doFilter('cr',this)">Critical</button>
+  <button class="fb" onclick="doFilter('hi',this)">High</button>
+  <button class="fb" onclick="doFilter('me',this)">Medium</button>
+</div>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="sc"><div class="sn">406</div><div class="sl">PDFs Analyzed</div></div>
+  <div class="sc"><div class="sn">2,111+</div><div class="sl">Individual Findings</div></div>
+  <div class="sc"><div class="sn">40 MB+</div><div class="sl">Full-Text Searched</div></div>
+  <div class="sc"><div class="sn">1.2M</div><div class="sl">Document URLs (Dataset 9)</div></div>
+  <div class="sc"><div class="sn">152</div><div class="sl">Dataset 12 Docs</div></div>
+  <div class="sc"><div class="sn">14</div><div class="sl">Sections of Analysis</div></div>
+</div>
+
+<!-- ===== SECTION 1: EXECUTIVE SUMMARY ===== -->
+<div class="sec">
+  <div class="sh" onclick="tog(this)">
+    <h2><span class="snum">1</span> Executive Summary</h2>
+    <span class="tg op">&#9660;</span>
+  </div>
+  <div class="scn op">
+
+    <div class="fd cr" data-s="cr">
+      <div class="fh"><span class="ft">Core Finding: Intelligence Protection</span><span class="sb cr">Critical</span></div>
+      <div class="ftx">Former US Attorney Alexander Acosta told the Trump transition team that Jeffrey Epstein <em>"belonged to intelligence"</em> and he was told to <em>"leave it alone."</em> Under formal questioning, Acosta directly contradicted this, stating <em>"No, and no"</em> when asked about intelligence connections. This is the single most important finding -- it suggests a deliberate cover-up of intelligence ties at the highest levels of government.</div>
+      <span class="sr">EFTA00030181</span><span class="sr">EFTA00009220 p.405</span>
+    </div>
+
+    <div class="fd cr" data-s="cr">
+      <div class="fh"><span class="ft">Core Finding: Wealth Origin Explained</span><span class="sb cr">Critical</span></div>
+      <div class="ftx">The Wexner proffer (86 pages) reveals that Epstein <em>stole "several hundred million dollars"</em> from Les Wexner. This theft, combined with management fees, <em>"appears to account for VIRTUALLY ALL of Epstein's wealth."</em> Epstein had power of attorney since 1991, controlled all of Wexner's personal finances with <em>"virtually no oversight,"</em> and sold himself the NYC mansion and a private plane at deeply discounted prices.</div>
+      <span class="sr">EFTA02731082 (86 pages)</span>
+    </div>
+
+    <div class="fd cr" data-s="cr">
+      <div class="fh"><span class="ft">Core Finding: Systematic Trafficking Operation</span><span class="sb cr">Critical</span></div>
+      <div class="ftx">Victims were systematically <em>"lent out"</em> to powerful men by Maxwell and Epstein. Named individuals include Prince Andrew, Alan Dershowitz, Glenn Dubin, Bill Richardson, and George Mitchell. Maxwell would direct victims to <em>"engage in sex acts with other men."</em> One victim was <em>"lent out so many times that she began using drugs."</em> Hidden cameras recorded encounters. FBI tips reference <em>"Sex Trafficking, and Murder."</em></div>
+      <span class="sr">EFTA02731082</span><span class="sr">EFTA02730741</span><span class="sr">EFTA01660679</span>
+    </div>
+
+    <div class="jb">
+      <h3>&#9888; What Journalists Are Missing</h3>
+      <ul>
+        <li><strong>The Acosta Contradiction:</strong> Under oath, Acosta denied the "belonged to intelligence" claim he reportedly made to the Trump transition team. No major outlet has reconciled these two statements side-by-side with source documents.</li>
+        <li><strong>The Wexner Proffer (EFTA02731082):</strong> This 86-page document effectively explains the origin of ALL of Epstein's wealth as theft from Wexner -- yet coverage treats Epstein's fortune as mysterious.</li>
+        <li><strong>The "Blackmail" Reversal:</strong> Epstein told Wexner HE was being blackmailed, while simultaneously telling victims THEY were blackmailing HIM. This dual-use of "blackmail" as a cover story has not been analyzed.</li>
+        <li><strong>Dalton School Records Missing:</strong> Records from Epstein's time teaching at Dalton were subpoenaed but "they do not have the records." No investigation into why these records vanished.</li>
+        <li><strong>The Video Evidence Chain:</strong> Hidden cameras, video disks extracted by Palm Beach Sheriff's Computer Crime Unit, VHS surveillance tapes -- the full evidentiary chain of recorded material has not been mapped.</li>
+        <li><strong>Technology/AI Network:</strong> Epstein's deep connections to AGI research, OpenAI circles, and his "Topics for Funding" document mentioning NSA codebreaking, quantum computing, and genius programs remain under-reported.</li>
+        <li><strong>The Russia Pipeline:</strong> Apollo/Lorber Moscow development connections via Chris Dilorio whistleblower testimony remain unexplored by mainstream outlets.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SECTION 2: INTELLIGENCE CONNECTION ===== -->
+<div class="sec">
+  <div class="sh" onclick="tog(this)">
+    <h2><span class="snum">2</span> Intelligence Connection (Strongest Evidence)</h2>
+    <span class="tg">&#9660;</span>
+  </div>
+  <div class="scn">
+
+    <div class="fd cr" data-s="cr">
+      <div class="fh"><span class="ft">Acosta: "Belonged to Intelligence"</span><span class="sb cr">Critical</span></div>
+      <div class="ftx">Alexander Acosta, the US Attorney who gave Epstein the controversial 2008 plea deal, told the Trump transition team during his vetting for Labor Secretary:
+        <div class="qb">"I was told Epstein 'belonged to intelligence' and to leave it alone."</div>
+        This statement was reported by the Daily Beast and forwarded by SDNY prosecutors in their internal communications.</div>
+      <span class="sr">EFTA00030181</span><span class="sr">Daily Beast article</span>
+    </div>
+
+    <div class="fd cr" data-s="cr">
+      <div class="fh"><span class="ft">Acosta DENIAL Under Formal Questioning -- DIRECT CONTRADICTION</span><span class="sb cr">Critical</span></div>
+      <div class="ftx">Under formal questioning (p.405), Acosta was asked directly about intelligence connections:
+        <div class="crd">
+          <div class="lb">Statement A (to Trump transition team):</div>
+          "I was told Epstein 'belonged to intelligence' and to leave it alone."
+          <div class="vs">--- VS ---</div>
+          <div class="lb">Statement B (under formal questioning):</div>
+          Asked if Epstein was connected to intelligence: <em>"I'm not aware of it"</em> and <em>"No, and no."</em>
+        </div>
+        Acosta also stated he couldn't address intelligence claims <em>"directly because of guidelines"</em> -- a statement that itself implies classified knowledge he cannot disclose.</div>
+      <span class="sr">EFTA00009220 p.405</span>
+    </div>
+
+    <div class="fd hi" data-s="hi">
+      <div class="fh"><span class="ft">Robert Maxwell -- Intelligence Asset, Ghislaine's Father</span><span class="sb hi">High</span></div>
+      <div class="ftx">Robert Maxwell, Ghislaine's father, was a known intelligence asset with connections to multiple agencies. He died in 1991 under mysterious circumstances, falling from his yacht <em>"Lady Ghislaine"</em> (named after his daughter). He had embezzled pension funds. His death occurred the same year Epstein obtained power of attorney over Wexner's finances -- a striking temporal coincidence.</div>
+      <span class="sr">Historical record</span><span class="sr">EFTA00029524</span>
+    </div>
+
+    <div class="fd hi" data-s="hi">
+      <div class="fh"><span class="ft">"Topics for Funding" -- NSA, Quantum, Genius Program</span><span class="sb hi">High</span></div>
+      <div class="ftx">An Epstein document titled "Topics for Funding" lists areas including <em>"NSA codebreaking"</em>, <em>"quantum"</em> computing, and a <em>"genius program."</em> These are not typical interests of a financial manager -- they align with intelligence community priorities and suggest Epstein was either embedded within or serving as a conduit for intelligence-adjacent research funding.</div>
+      <span class="sr">EFTA00583211</span>
+    </div>
+
+    <div class="fd me" data-s="me">
+      <div class="fh"><span class="ft">Guidelines Excuse -- Implies Classified Knowledge</span><span class="sb me">Medium</span></div>
+      <div class="ftx">Acosta's statement that he couldn't address intelligence claims <em>"directly because of guidelines"</em> is itself significant. Ordinary citizens do not have "guidelines" preventing them from denying knowledge of intelligence operations. This language is consistent with someone who received classified briefings and is constrained by classification protocols.</div>
+      <span class="sr">EFTA00009220</span>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SECTION 3: BLACKMAIL/KOMPROMAT ===== -->
+<div class="sec">
+  <div class="sh" onclick="tog(this)">
+    <h2><span class="snum">3</span> Blackmail / Kompromat Evidence</h2>
+    <span class="tg">&#9660;</span>
+  </div>
+  <div class="scn">
+
+    <div class="fd cr" data-s="cr">
+      <div class="fh"><span class="ft">Dual "Blackmail" Cover Story</span><span class="sb cr">Critical</span></div>
+      <div class="ftx">Epstein deployed the word "blackmail" in two opposite directions simultaneously:
+        <div class="crd">
+          <div class="lb">To Wexner (the money source):</div>
+          Epstein told Wexner he was being <em>"blackmailed"</em> to explain his legal troubles and the need for large cash amounts. This kept Wexner compliant and sympathetic.
+          <div class="vs">--- VS ---</div>
+          <div class="lb">To Victims:</div>
+          Epstein told victims that women were <em>"blackmailing him"</em> to maintain their silence and prevent them from coming forward. This kept victims afraid and isolated.
+        </div>
+        This dual deployment of the same narrative is a hallmark of a sophisticated manipulation operation.</div>
+      <span class="sr">EFTA02731082 p.66</span><span class="sr">EFTA02731082</span>
+    </div>
+
+    <div class="fd cr" data-s="cr">
+      <div class="fh"><span class="ft">FBI Tip: Video of High-Profile Sex Parties</span><span class="sb cr">Critical</span></div>
+      <div class="ftx">An FBI NTOC (National Threat Operations Center) tip states that a complainant <em>"claims to have video of high-profile sex parties, dealings with cartels."</em> The same tip references <em>"Sex Trafficking, and Murder."</em> This suggests the existence of video evidence of criminal activity involving prominent individuals.</div>
+      <span class="sr">EFTA01660679</span><span class="sr">EFTA02730741</span>
+    </div>
+
+    <div class="fd cr" data-s="cr">
+      <div class="fh"><span class="ft">Attorney Confirms: Victim Videotaped with 6 Men</span><span class="sb cr">Critical</span></div>
+      <div class="ftx">Attorney Jeanne Christensen stated:
+        <div class="qb">"I strongly believe that there is at least one video circulating on some disgusting sex site."</div>
+        Her client (a victim) was videotaped at a hotel with <em>6 men present</em>, had sex with 3, and one was described as a <em>"former friend of Leon Black's."</em> This directly connects the video-kompromat operation to named individuals in the financial world.</div>
+      <span class="sr">EFTA02731515</span>
+    </div>
+
+    <div class="fd hi" data-s="hi">
+      <div class="fh"><span class="ft">Trump Security Death Threat to Witness</span><span class="sb hi">High</span></div>
+      <div class="ftx">An FBI tip records that Trump security personnel threatened a witness with the statement:
+        <div class="qb">"End up as fertilizer for the back nine holes like the other cunts."</div>
+        This threat references Mar-a-Lago's golf course and implies that other witnesses may have been harmed or killed. The phrase "like the other cunts" suggests multiple prior victims of intimidation or worse.</div>
+      <span class="sr">EFTA01660679</span>
+    </div>
+
+    <div class="fd hi" data-s="hi">
+      <div class="fh"><span class="ft">Robin Leach Strangulation Witnessed</span><span class="sb hi">High</span></div>
+      <div class="ftx">An FBI NTOC tip records that a complainant witnessed the strangulation of Robin Leach (the "Lifestyles of the Rich and Famous" host). This allegation, if true, suggests that Epstein's circle included acts of extreme violence against prominent individuals.</div>
+      <span class="sr">EFTA01660679</span>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SECTION 4: VIDEO/SURVEILLANCE ===== -->
+<div class="sec">
+  <div class="sh" onclick="tog(this)">
+    <h2><span class="snum">4</span> Video / Surveillance Evidence</h2>
+    <span class="tg">&#9660;</span>
+  </div>
+  <div class="scn">
+
+    <div class="fd cr" data-s="cr">
+      <div class="fh"><span class="ft">Hidden Cameras at Palm Beach Residence</span><span class="sb cr">Critical</span></div>
+      <div class="ftx">Palm Beach police found hidden cameras at Epstein's residence. The report notes that <em>"only one hidden camera was functional at the time"</em> -- implying multiple cameras were installed but most had been disabled (possibly in anticipation of the search). The footage from the functional camera <em>showed Epstein with multiple females.</em></div>
+      <span class="sr">EFTA00007187 (via Dec 2025 text)</span>
+    </div>
+
+    <div class="fd hi" data-s="hi">
+      <div class="fh"><span class="ft">Victim Sensed Hidden Cameras</span><span class="sb hi">High</span></div>
+      <div class="ftx">A victim stated that <em>"although [she] never observed any hidden cameras at the residence, she felt like there were hidden cameras there."</em> This victim intuition, combined with the police discovery of actual hidden cameras, confirms the surveillance operation was designed to be covert even from those being recorded.</div>
+      <span class="sr">EFTA02731082</span>
+    </div>
+
+    <div class="fd hi" data-s="hi">
+      <div class="fh"><span class="ft">Video Sex During Work Release</span><span class="sb hi">High</span></div>
+      <div class="ftx">During Epstein's work-release period (the sweetheart deal), he had his lawyer bring a computer to his office. He <em>"used to have video sex with [victim]"</em> during what was supposed to be supervised release. This demonstrates that Epstein continued to exploit victims and generate digital sexual content even while nominally incarcerated.</div>
+      <span class="sr">EFTA02731082</span>
+    </div>
+
+    <div class="fd hi" data-s="hi">
+      <div class="fh"><span class="ft">Video Disks Extracted by Sheriff's Computer Crime Unit</span><span class="sb hi">High</span></div>
+      <div class="ftx">Video disks were extracted at the <em>Palm Beach County Sheriff's Computer Crime Unit.</em> The existence and current status of these disks is of critical importance -- they may contain direct evidence of crimes committed against minors.</div>
+      <span class="sr">Palm Beach evidence records</span>
+    </div>
+
+    <div class="fd me" data-s="me">
+      <div class="fh"><span class="ft">VHS Surveillance Tapes: March 31 - April 5, 2005</span><span class="sb me">Medium</span></div>
+      <div class="ftx">VHS surveillance tapes were recorded daily on El Brillo Way from March 31 through April 5, 2005. These tapes represent a specific, documented window of surveillance footage from Epstein's Palm Beach property.</div>
+      <span class="sr">Palm Beach evidence records</span>
+    </div>
+
+    <div class="fd me" data-s="me">
+      <div class="fh"><span class="ft">MCC Special Housing Unit Video Review</span><span class="sb me">Medium</span></div>
+      <div class="ftx">The FBI NTOC master log references a review of video from the MCC (Metropolitan Correctional Center) Special Housing Unit where Epstein was held before his death. The notorious camera "malfunction" near Epstein's cell remains one of the most suspicious aspects of his death.</div>
+      <span class="sr">EFTA02730741</span>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SECTION 5: WEXNER FINANCIAL PIPELINE ===== -->
+<div class="sec">
+  <div class="sh" onclick="tog(this)">
+    <h2><span class="snum">5</span> The Wexner Financial Pipeline (The Smoking Gun)</h2>
+    <span class="tg">&#9660;</span>
+  </div>
+  <div class="scn">
+
+    <div class="fd cr" data-s="cr">
+      <div class="fh"><span class="ft">EFTA02731082: Origin of ALL Epstein Wealth</span><span class="sb cr">Critical</span></div>
+      <div class="ftx">The Wexner proffer is arguably the most important single document in the entire release. It reveals:
+        <ul style="margin:10px 0 10px 20px;color:var(--text)">
+          <li>Epstein <em>stole "several hundred million dollars"</em> from Les Wexner</li>
+          <li>This theft + fees <em>"appears to account for VIRTUALLY ALL of Epstein's wealth"</em></li>
+          <li>Epstein obtained <em>power of attorney in 1991</em> (the year Robert Maxwell died)</li>
+          <li>Controlled <em>ALL</em> Wexner personal finances with <em>"virtually no oversight"</em></li>
+          <li>Epstein <em>falsely told Wexner he had other clients</em></li>
+        </ul>
+        This single document demolishes the "mystery billionaire" narrative. Epstein was a thief who exploited one man's trust.</div>
+      <span class="sr">EFTA02731082 (86 pages)</span>
+    </div>
+
+    <div class="fd cr" data-s="cr">
+      <div class="fh"><span class="ft">NYC Mansion and Private Plane -- Self-Dealing</span><span class="sb cr">Critical</span></div>
+      <div class="ftx">Epstein sold himself the now-infamous NYC mansion at <em>9 East 71st Street</em> at a <em>"deeply discounted price."</em> The mansion previously belonged to Wexner. He also acquired a <em>private plane at a "deeply discounted price"</em> through the same self-dealing arrangement. These transactions were facilitated by Epstein's unchecked power of attorney.</div>
+      <span class="sr">EFTA02731082</span>
+    </div>
+
+    <div class="fd hi" data-s="hi">
+      <div class="fh"><span class="ft">Victoria's Secret as Recruitment Tool</span><span class="sb hi">High</span></div>
+      <div class="ftx">Epstein was <em>"holding himself out as connected to Victoria's Secret"</em> to recruit models. This is a direct link between Wexner's retail empire and Epstein's trafficking operation. The Victoria's Secret brand gave Epstein a veneer of legitimacy when approaching young women with promises of modeling careers.</div>
+      <span class="sr">EFTA02731082</span>
+    </div>
+
+    <div class="fd hi" data-s="hi">
+      <div class="fh"><span class="ft">"Blackmail" Excuse and $100M Settlement</span><span class="sb hi">High</span></div>
+      <div class="ftx">When the theft was discovered, Epstein told Wexner he was being <em>"blackmailed"</em> and that it was <em>"messy."</em> In January 2008, Epstein returned <em>$100 million</em> in a settlement. The timing -- just as Epstein was facing criminal charges -- suggests Wexner was distancing himself. But the settlement amount was far less than the "several hundred million" stolen.</div>
+      <span class="sr">EFTA02731082 p.66</span>
+    </div>
+
+    <div class="fd hi" data-s="hi">
+      <div class="fh"><span class="ft">Dalton School Records -- Conveniently Missing</span><span class="sb hi">High</span></div>
+      <div class="ftx">Dalton School records were subpoenaed to investigate Epstein's early career (he taught there without a degree). The response: <em>"they do not have the records."</em> Records from Epstein's teaching period are conveniently missing, preventing investigation of whether Epstein had inappropriate contact with students at Dalton.</div>
+      <span class="sr">EFTA02731082</span>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SECTION 6: LENT OUT SYSTEM ===== -->
+<div class="sec">
+  <div class="sh" onclick="tog(this)">
+    <h2><span class="snum">6</span> "Lent Out" System -- Named Individuals</h2>
+    <span class="tg">&#9660;</span>
+  </div>
+  <div class="scn">
+
+    <div class="fd cr" data-s="cr">
+      <div class="fh"><span class="ft">Systematic Trafficking to Powerful Men</span><span class="sb cr">Critical</span></div>
+      <div class="ftx">Victims were systematically <em>"lent out"</em> to powerful men by both Maxwell and Epstein. The operation was organized:
+        <div class="qb">"Sometimes Maxwell would direct [victim] to engage in sex acts with other men, and sometimes Epstein would do so."</div>
+        One victim was <em>"lent out so many times that she began using drugs"</em> -- a direct causal link between the trafficking and substance abuse as a coping mechanism.</div>
+      <span class="sr">EFTA02731082</span>
+    </div>
+
+    <div class="fd cr" data-s="cr">
+      <div class="fh"><span class="ft">Prince Andrew -- Maxwell's Direct Instructions</span><span class="sb cr">Critical</span></div>
+      <div class="ftx">Maxwell told a victim:
+        <div class="qb">"She was going to meet a prince and should make him happy and do the exact same things for him that she did for Epstein."</div>
+        This is a direct quote establishing that Maxwell explicitly instructed victims to perform sexual acts with Prince Andrew, framing it as identical to what they did for Epstein.</div>
+      <span class="sr">EFTA02731082</span>
+    </div>
+
+    <div class="fd cr" data-s="cr">
+      <div class="fh"><span class="ft">Alan Dershowitz -- "We All Suspect Alan Is a Pedo"</span><span class="sb cr">Critical</span></div>
+      <div class="ftx">Journalist Sharon Churcher email:
+        <div class="qb">"Don't forget Alan Dershowitz. JE's buddy and lawyer. Good name for your pitch... We all suspect Alan is a pedo."</div>
+        Dershowitz has <em>"repeatedly denied the charges."</em> However, this email from a journalist embedded in the story suggests that suspicions about Dershowitz were widely shared among those close to the investigation.</div>
+      <span class="sr">Churcher email in documents</span>
+    </div>
+
+    <div class="fd hi" data-s="hi">
+      <div class="fh"><span class="ft">Other Named Individuals</span><span class="sb hi">High</span></div>
+      <div class="ftx">Additional individuals named in the trafficking network:
+        <ul style="margin:10px 0 10px 20px;color:var(--text)">
+          <li><strong>Glenn Dubin</strong> -- Named as a recipient of trafficked victims</li>
+          <li><strong>Bill Richardson</strong> -- Former Governor of New Mexico, named in victim testimony</li>
+          <li><strong>George Mitchell</strong> -- Former Senate Majority Leader, named in victim testimony</li>
+        </ul></div>
+      <span class="sr">EFTA02731082</span>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SECTION 7: RUSSIA CONNECTIONS ===== -->
+<div class="sec">
+  <div class="sh" onclick="tog(this)">
+    <h2><span class="snum">7</span> Russia Connections</h2>
+    <span class="tg">&#9660;</span>
+  </div>
+  <div class="scn">
+
+    <div class="fd hi" data-s="hi">
+      <div class="fh"><span class="ft">Masha Drokova -- Russian Blockchain Connection</span><span class="sb hi">High</span></div>
+      <div class="ftx">Masha Drokova emailed Epstein in October 2017:
+        <div class="qb">"I've found super smart and young blockchain enthusiast in Russia. He can be better than Vitalik Buterin."</div>
+        This email establishes that Epstein had active connections to Russian technology and cryptocurrency networks. Drokova was actively sourcing Russian tech talent for Epstein's network as late as 2017.</div>
+      <span class="sr">EFTA00995634 (Oct 2017)</span>
+    </div>
+
+    <div class="fd hi" data-s="hi">
+      <div class="fh"><span class="ft">Apollo/Lorber Moscow/Kremlin Development -- Dilorio Whistleblower</span><span class="sb hi">High</span></div>
+      <div class="ftx">Whistleblower Chris Dilorio provided testimony about Apollo Global Management and Howard Lorber's connections to Moscow/Kremlin development projects. The chain: <em>Calk/Lorber/Elliman &rarr; Trump &rarr; New Valley Corp</em> (shell company). This suggests financial pipelines connecting Russian real estate development to the Epstein network through intermediary companies.</div>
+      <span class="sr">EFTA00010769</span><span class="sr">EFTA00010792</span>
+    </div>
+
+    <div class="fd hi" data-s="hi">
+      <div class="fh"><span class="ft">Money Laundering Shell Companies</span><span class="sb hi">High</span></div>
+      <div class="ftx">The documents identify a network of shell entities: <em>Ladenburg/Frost/Alpha Cap Anstalt</em>. According to the Dilorio whistleblower:
+        <div class="qb">"Does ANYONE believe Frost risked BILLIONS to 'MAKE' a few million? Frost was laundering."</div>
+        This rhetorical question highlights the absurdity of the cover stories used to explain the movement of vast sums through these entities.</div>
+      <span class="sr">EFTA00010769</span><span class="sr">EFTA00010792</span>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SECTION 8: ISRAEL CONNECTIONS ===== -->
+<div class="sec">
+  <div class="sh" onclick="tog(this)">
+    <h2><span class="snum">8</span> Israel Connections</h2>
+    <span class="tg">&#9660;</span>
+  </div>
+  <div class="scn">
+
+    <div class="fd hi" data-s="hi">
+      <div class="fh"><span class="ft">Robert Maxwell -- Intelligence Nexus</span><span class="sb hi">High</span></div>
+      <div class="ftx">Robert Maxwell, Ghislaine's father, was widely reported as an intelligence asset with connections to Mossad and other agencies. He died under mysterious circumstances in 1991, falling from his yacht <em>"Lady Ghislaine"</em>. Multiple intelligence agencies reportedly attended his funeral. His death coincides with Epstein obtaining power of attorney over Wexner's finances.</div>
+      <span class="sr">EFTA00029524</span><span class="sr">Historical record</span>
+    </div>
+
+    <div class="fd hi" data-s="hi">
+      <div class="fh"><span class="ft">Netanyahu Cousin Milikowsky -- FBI Investigation</span><span class="sb hi">High</span></div>
+      <div class="ftx">Documents reference a Haaretz article about an FBI investigation involving Netanyahu's cousin Milikowsky. This connection places the Epstein network within the orbit of senior Israeli political figures.</div>
+      <span class="sr">Haaretz article in documents</span>
+    </div>
+
+    <div class="fd hi" data-s="hi">
+      <div class="fh"><span class="ft">Wexner Foundation and Mega Group</span><span class="sb hi">High</span></div>
+      <div class="ftx">The Wexner Foundation, with its financial connection to Epstein, is documented in FBI NTOC logs. Les Wexner co-founded the <em>Mega Group</em>, a collection of pro-Israel billionaires. Epstein's role managing Wexner's finances placed him at the intersection of enormous wealth and pro-Israel political influence networks.</div>
+      <span class="sr">EFTA02730741 (FBI NTOC log)</span>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SECTION 9: CONTRADICTORY STATEMENTS ===== -->
+<div class="sec">
+  <div class="sh" onclick="tog(this)">
+    <h2><span class="snum">9</span> Government Officials -- Contradictory Statements</h2>
+    <span class="tg">&#9660;</span>
+  </div>
+  <div class="scn">
+
+    <div class="fd cr" data-s="cr">
+      <div class="fh"><span class="ft">Alexander Acosta</span><span class="sb cr">Critical</span></div>
+      <div class="ftx">
+        <div class="crd">
+          <div class="lb">Public / Transition Team:</div>
+          Told Trump transition team Epstein <em>"belonged to intelligence"</em> and he was told to leave it alone.
+          <div class="vs">--- VS ---</div>
+          <div class="lb">Under Oath:</div>
+          <em>"I'm not aware of it"</em> and <em>"No, and no."</em>
+        </div></div>
+      <span class="sr">EFTA00030181</span><span class="sr">EFTA00009220 p.405</span>
+    </div>
+
+    <div class="fd cr" data-s="cr">
+      <div class="fh"><span class="ft">Prince Andrew</span><span class="sb cr">Critical</span></div>
+      <div class="ftx">
+        <div class="crd">
+          <div class="lb">Public Statement:</div>
+          Denied meeting victims; denied knowledge of trafficking.
+          <div class="vs">--- VS ---</div>
+          <div class="lb">Evidence:</div>
+          Photographed with victim and Maxwell. Maxwell quoted directing victim to <em>"make him happy and do the exact same things for him that she did for Epstein."</em>
+        </div></div>
+      <span class="sr">EFTA02731082</span>
+    </div>
+
+    <div class="fd hi" data-s="hi">
+      <div class="fh"><span class="ft">Alan Dershowitz</span><span class="sb hi">High</span></div>
+      <div class="ftx">
+        <div class="crd">
+          <div class="lb">Public Statement:</div>
+          <em>"Repeatedly denied the charges."</em>
+          <div class="vs">--- VS ---</div>
+          <div class="lb">Journalist Email:</div>
+          Sharon Churcher: <em>"We all suspect Alan is a pedo."</em>
+        </div></div>
+      <span class="sr">Churcher email</span>
+    </div>
+
+    <div class="fd hi" data-s="hi">
+      <div class="fh"><span class="ft">Donald Trump</span><span class="sb hi">High</span></div>
+      <div class="ftx">
+        <div class="crd">
+          <div class="lb">Public Statement:</div>
+          Said he <em>"wasn't a fan"</em> of Epstein.
+          <div class="vs">--- VS ---</div>
+          <div class="lb">Document Evidence:</div>
+          George Houraney describes a party at Mar-a-Lago with <em>"just him and Epstein"</em> and <em>"28 Girls."</em> Victim recruited from Mar-a-Lago at age 16. Trump listed as guest on Robert Maxwell's yacht in 1989.
+        </div></div>
+      <span class="sr">EFTA00030187 (Vanity Fair)</span><span class="sr">EFTA00029525</span><span class="sr">EFTA00029524</span>
+    </div>
+
+    <div class="fd hi" data-s="hi">
+      <div class="fh"><span class="ft">Bill Gates</span><span class="sb hi">High</span></div>
+      <div class="ftx">
+        <div class="crd">
+          <div class="lb">Public Statement:</div>
+          Denied meaningful relationship with Epstein.
+          <div class="vs">--- VS ---</div>
+          <div class="lb">Document Evidence:</div>
+          Emails show Epstein-Gates Foundation <em>"donor vehicle"</em> discussions, indicating a financial relationship beyond casual acquaintance.
+        </div></div>
+      <span class="sr">EFTA00684028</span>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SECTION 10: TRUMP CONNECTIONS ===== -->
+<div class="sec">
+  <div class="sh" onclick="tog(this)">
+    <h2><span class="snum">10</span> Trump Connections</h2>
+    <span class="tg">&#9660;</span>
+  </div>
+  <div class="scn">
+
+    <div class="fd cr" data-s="cr">
+      <div class="fh"><span class="ft">FBI Tip: 14-15 Year Old Victim</span><span class="sb cr">Critical</span></div>
+      <div class="ftx">An FBI tip alleges a complainant involving a victim who was <em>"approximately 14-15 years old."</em> This tip is filed in the context of the Trump-Epstein connection and references trafficking of a minor.</div>
+      <span class="sr">EFTA01660679</span>
+    </div>
+
+    <div class="fd cr" data-s="cr">
+      <div class="fh"><span class="ft">"Just Him and Epstein" and "28 Girls"</span><span class="sb cr">Critical</span></div>
+      <div class="ftx">George Houraney, a Florida businessman, describes organizing a party at Mar-a-Lago. When he arrived, he discovered the guests were <em>"just him and Epstein"</em> and <em>"28 Girls."</em> This account, published by Vanity Fair and referenced in the documents, describes what was effectively a private party with only Trump, Epstein, and 28 young women.</div>
+      <span class="sr">EFTA00030187 (Vanity Fair)</span>
+    </div>
+
+    <div class="fd hi" data-s="hi">
+      <div class="fh"><span class="ft">Victim Recruited from Mar-a-Lago at Age 16</span><span class="sb hi">High</span></div>
+      <div class="ftx">A victim was recruited from Mar-a-Lago at the age of 16 while working as a towel girl. This establishes Trump's property as an active recruitment site for Epstein's trafficking operation.</div>
+      <span class="sr">EFTA00029525</span>
+    </div>
+
+    <div class="fd hi" data-s="hi">
+      <div class="fh"><span class="ft">1989: Trump on Robert Maxwell's Yacht</span><span class="sb hi">High</span></div>
+      <div class="ftx">In 1989, Trump was listed as a guest on Robert Maxwell's yacht <em>"Lady Ghislaine"</em> -- the same yacht from which Robert Maxwell would later fall to his death in 1991. This connection predates Epstein's known rise and links Trump directly to the Maxwell family.</div>
+      <span class="sr">EFTA00029524</span>
+    </div>
+
+    <div class="fd hi" data-s="hi">
+      <div class="fh"><span class="ft">Security Threat Against Witness</span><span class="sb hi">High</span></div>
+      <div class="ftx">Trump security threatened a witness: <em>"end up as fertilizer for the back nine holes like the other cunts."</em> This threat was reported in an FBI tip and suggests witness intimidation connected to Trump's Mar-a-Lago property.</div>
+      <span class="sr">EFTA01660679</span>
+    </div>
+
+    <div class="fd hi" data-s="hi">
+      <div class="fh"><span class="ft">"Showed Her Off to Trump When She Was 14"</span><span class="sb hi">High</span></div>
+      <div class="ftx">The Daily Beast headline referenced in the documents: <em>"Epstein Victim Claims He Showed Her Off to Trump When She Was 14."</em> Mar-a-Lago records and flight records were subpoenaed as part of the investigation.</div>
+      <span class="sr">EFTA02731082</span><span class="sr">Daily Beast</span>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SECTION 11: CLINTON CONNECTIONS ===== -->
+<div class="sec">
+  <div class="sh" onclick="tog(this)">
+    <h2><span class="snum">11</span> Clinton Connections</h2>
+    <span class="tg">&#9660;</span>
+  </div>
+  <div class="scn">
+
+    <div class="fd hi" data-s="hi">
+      <div class="fh"><span class="ft">Flight Records and Travel</span><span class="sb hi">High</span></div>
+      <div class="ftx">Bill Clinton appeared on Epstein flight logs multiple times. The documents reference Clinton's travel on Epstein's aircraft. Flight records were among the materials subpoenaed in the investigation.</div>
+      <span class="sr">Flight logs referenced in multiple documents</span>
+    </div>
+
+    <div class="fd me" data-s="me">
+      <div class="fh"><span class="ft">Named Individuals in Clinton Orbit</span><span class="sb me">Medium</span></div>
+      <div class="ftx">Several individuals named in the "lent out" system -- including <strong>Bill Richardson</strong> (former Governor, close Clinton ally) and <strong>George Mitchell</strong> (former Senate Majority Leader, Clinton-era figure) -- were part of the broader Democratic political establishment.</div>
+      <span class="sr">EFTA02731082</span>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SECTION 12: TECHNOLOGY/AI NETWORK ===== -->
+<div class="sec">
+  <div class="sh" onclick="tog(this)">
+    <h2><span class="snum">12</span> Technology / AI Network</h2>
+    <span class="tg">&#9660;</span>
+  </div>
+  <div class="scn">
+
+    <div class="fd hi" data-s="hi">
+      <div class="fh"><span class="ft">Ben Goertzel -- AGI Research Funding</span><span class="sb hi">High</span></div>
+      <div class="ftx">Multiple emails document Epstein's relationship with Ben Goertzel regarding AGI (Artificial General Intelligence) research, Singularity Summit events, and direct funding. Epstein funded <em>$2,000 for AGI Summer School recording.</em> While the dollar amount is small, it establishes a direct funding relationship between Epstein and the AGI research community.</div>
+      <span class="sr">EFTA00770992</span><span class="sr">EFTA00774429</span>
+    </div>
+
+    <div class="fd hi" data-s="hi">
+      <div class="fh"><span class="ft">Joscha Bach -- AI Meeting Cambridge</span><span class="sb hi">High</span></div>
+      <div class="ftx">Joscha Bach was involved in an AI meeting in Cambridge in October 2015 that connected to Epstein's network. This places Epstein's AI connections within elite academic settings.</div>
+      <span class="sr">EFTA00338216</span>
+    </div>
+
+    <div class="fd hi" data-s="hi">
+      <div class="fh"><span class="ft">Edge Foundation -- 50+ Elite Scientists</span><span class="sb hi">High</span></div>
+      <div class="ftx">Epstein was on the Edge Foundation email list alongside <em>50+ elite scientists.</em> The Edge Foundation, run by literary agent John Brockman, served as a nexus connecting Epstein to the highest levels of the scientific community.</div>
+      <span class="sr">EFTA00694840</span>
+    </div>
+
+    <div class="fd hi" data-s="hi">
+      <div class="fh"><span class="ft">OpenAI Newsletter Forwarded to Epstein</span><span class="sb hi">High</span></div>
+      <div class="ftx">An OpenAI newsletter was forwarded to Epstein, placing him within the information loop of the organization that would become the most influential AI company in the world.</div>
+      <span class="sr">EFTA00671263</span>
+    </div>
+
+    <div class="fd hi" data-s="hi">
+      <div class="fh"><span class="ft">Boris Nikolic -- Gates Foundation Science Advisor</span><span class="sb hi">High</span></div>
+      <div class="ftx">Boris Nikolic, who served as a science advisor to the Gates Foundation, was introduced to contacts by Epstein. Nikolic was also named as a backup executor of Epstein's will -- a remarkable level of trust and connection.</div>
+      <span class="sr">EFTA01017710</span>
+    </div>
+
+    <div class="fd me" data-s="me">
+      <div class="fh"><span class="ft">Sam Altman -- FBI Daily Briefing Context</span><span class="sb me">Medium</span></div>
+      <div class="ftx">Sam Altman is mentioned in the context of an FBI daily briefing document. The nature and significance of this mention requires further investigation.</div>
+      <span class="sr">EFTA00160275</span>
+    </div>
+
+    <div class="fd me" data-s="me">
+      <div class="fh"><span class="ft">DNA/Genomics Project -- "YPO Cohort"</span><span class="sb me">Medium</span></div>
+      <div class="ftx">Documents reference a DNA/genomics project involving a <em>"YPO cohort"</em> (Young Presidents' Organization). This suggests Epstein was involved in collecting genetic data from elite business leaders -- a potentially significant intelligence-gathering activity.</div>
+      <span class="sr">EFTA00365058</span>
+    </div>
+
+    <div class="fd me" data-s="me">
+      <div class="fh"><span class="ft">Epstein Asked About Emma Watson, Emma Stone</span><span class="sb me">Medium</span></div>
+      <div class="ftx">In April 2017, Epstein asked publicist Peggy Siegal: <em>"emma watson, emma stone, who is coming?"</em> This shows Epstein actively seeking access to high-profile young actresses through social connections, even after his conviction.</div>
+      <span class="sr">EFTA01049951 (April 2017)</span>
+    </div>
+
+    <div class="fd me" data-s="me">
+      <div class="fh"><span class="ft">"Topics for Funding" -- Intelligence-Adjacent Research</span><span class="sb me">Medium</span></div>
+      <div class="ftx">Epstein's "Topics for Funding" document includes: <em>"NSA codebreaking"</em>, <em>"quantum"</em> computing, and <em>"genius program."</em> These topics align more with intelligence priorities than with private philanthropy.</div>
+      <span class="sr">EFTA00583211</span>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SECTION 13: DEATH INVESTIGATION ===== -->
+<div class="sec">
+  <div class="sh" onclick="tog(this)">
+    <h2><span class="snum">13</span> Death Investigation</h2>
+    <span class="tg">&#9660;</span>
+  </div>
+  <div class="scn">
+
+    <div class="fd hi" data-s="hi">
+      <div class="fh"><span class="ft">4chan Post About Death Investigation</span><span class="sb hi">High</span></div>
+      <div class="ftx">A 4chan post about the Epstein death investigation is preserved in the document set. While 4chan is not a reliable source, its inclusion in official records suggests investigators were monitoring online discussion and tips.</div>
+      <span class="sr">EFTA00133349</span>
+    </div>
+
+    <div class="fd hi" data-s="hi">
+      <div class="fh"><span class="ft">Tech Companies Subpoenaed</span><span class="sb hi">High</span></div>
+      <div class="ftx">Multiple technology companies were subpoenaed for records related to the death investigation. This suggests investigators were pursuing digital evidence -- communications, account activity, and potentially surveillance data from tech platforms.</div>
+      <span class="sr">Document references</span>
+    </div>
+
+    <div class="fd hi" data-s="hi">
+      <div class="fh"><span class="ft">MCC Video Review and BOP Incident Reports</span><span class="sb hi">High</span></div>
+      <div class="ftx">The FBI NTOC master log references a review of MCC Special Housing Unit video and Bureau of Prisons (BOP) incident reports. The notorious camera "malfunction" near Epstein's cell remains one of the most suspicious aspects of his death.</div>
+      <span class="sr">EFTA02730741</span>
+    </div>
+
+    <div class="fd hi" data-s="hi">
+      <div class="fh"><span class="ft">Maxwell Defense: Evidence Destruction</span><span class="sb hi">High</span></div>
+      <div class="ftx">The Maxwell defense team argued:
+        <div class="qb">"Potential witnesses have died, others have forgotten, and records have been lost or destroyed."</div>
+        This statement inadvertently highlights the systematic destruction of evidence and loss of witnesses that has characterized the Epstein case.</div>
+      <span class="sr">Maxwell defense filings</span>
+    </div>
+
+    <div class="fd hi" data-s="hi">
+      <div class="fh"><span class="ft">FBI NTOC Tip: "Sex Trafficking, and Murder"</span><span class="sb hi">High</span></div>
+      <div class="ftx">The FBI NTOC log includes a tip categorized under <em>"Sex Trafficking, and Murder."</em> The inclusion of "Murder" as a category in FBI tips related to Epstein is significant and underexplored.</div>
+      <span class="sr">EFTA02730741</span>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SECTION 14: DOCUMENT INDEX ===== -->
+<div class="sec">
+  <div class="sh" onclick="tog(this)">
+    <h2><span class="snum">14</span> Document Index -- Key Sources Analyzed</h2>
+    <span class="tg">&#9660;</span>
+  </div>
+  <div class="scn">
+    <table class="dt">
+      <thead><tr><th>EFTA Number</th><th>Description</th><th>Pages</th><th>Significance</th></tr></thead>
+      <tbody>
+        <tr><td class="ef">EFTA02731082</td><td>Wexner Proffer -- Origin of Epstein's Wealth</td><td>86</td><td><span class="sb cr">Critical</span></td></tr>
+        <tr><td class="ef">EFTA02730741</td><td>FBI NTOC Master Log</td><td>255</td><td><span class="sb cr">Critical</span></td></tr>
+        <tr><td class="ef">EFTA01660679</td><td>FBI Tips -- Sex Trafficking, Murder, Video Evidence</td><td>6</td><td><span class="sb cr">Critical</span></td></tr>
+        <tr><td class="ef">EFTA00030181</td><td>Acosta "Belonged to Intelligence" -- Daily Beast / SDNY</td><td>--</td><td><span class="sb cr">Critical</span></td></tr>
+        <tr><td class="ef">EFTA00009220</td><td>Acosta Formal Questioning (p.405 denial)</td><td>405+</td><td><span class="sb cr">Critical</span></td></tr>
+        <tr><td class="ef">EFTA02731515</td><td>Atty Christensen -- Video of Victim with 6 Men</td><td>--</td><td><span class="sb cr">Critical</span></td></tr>
+        <tr><td class="ef">EFTA00007187</td><td>Hidden Cameras at Palm Beach Residence</td><td>--</td><td><span class="sb cr">Critical</span></td></tr>
+        <tr><td class="ef">EFTA00030187</td><td>Vanity Fair -- Trump "28 Girls" Party</td><td>--</td><td><span class="sb hi">High</span></td></tr>
+        <tr><td class="ef">EFTA00029525</td><td>Victim Recruited from Mar-a-Lago at 16</td><td>--</td><td><span class="sb hi">High</span></td></tr>
+        <tr><td class="ef">EFTA00029524</td><td>Trump on Maxwell Yacht "Lady Ghislaine" 1989</td><td>--</td><td><span class="sb hi">High</span></td></tr>
+        <tr><td class="ef">EFTA00684028</td><td>Epstein-Gates Foundation "Donor Vehicle" Emails</td><td>--</td><td><span class="sb hi">High</span></td></tr>
+        <tr><td class="ef">EFTA00995634</td><td>Masha Drokova -- Russian Blockchain Email (Oct 2017)</td><td>--</td><td><span class="sb hi">High</span></td></tr>
+        <tr><td class="ef">EFTA00010769</td><td>Dilorio Whistleblower -- Apollo/Lorber Moscow</td><td>--</td><td><span class="sb hi">High</span></td></tr>
+        <tr><td class="ef">EFTA00010792</td><td>Dilorio Whistleblower -- Kremlin Development</td><td>--</td><td><span class="sb hi">High</span></td></tr>
+        <tr><td class="ef">EFTA00770992</td><td>Ben Goertzel -- AGI Research Emails</td><td>--</td><td><span class="sb hi">High</span></td></tr>
+        <tr><td class="ef">EFTA00774429</td><td>AGI Summer School Funding ($2K)</td><td>--</td><td><span class="sb me">Medium</span></td></tr>
+        <tr><td class="ef">EFTA00338216</td><td>Joscha Bach -- AI Meeting Cambridge Oct 2015</td><td>--</td><td><span class="sb me">Medium</span></td></tr>
+        <tr><td class="ef">EFTA00694840</td><td>Edge Foundation Email List (50+ Scientists)</td><td>--</td><td><span class="sb hi">High</span></td></tr>
+        <tr><td class="ef">EFTA00671263</td><td>OpenAI Newsletter Forwarded to Epstein</td><td>--</td><td><span class="sb hi">High</span></td></tr>
+        <tr><td class="ef">EFTA00583211</td><td>"Topics for Funding" -- NSA, Quantum, Genius</td><td>--</td><td><span class="sb hi">High</span></td></tr>
+        <tr><td class="ef">EFTA01017710</td><td>Boris Nikolic -- Gates Foundation Advisor</td><td>--</td><td><span class="sb hi">High</span></td></tr>
+        <tr><td class="ef">EFTA00160275</td><td>Sam Altman -- FBI Briefing Context</td><td>--</td><td><span class="sb me">Medium</span></td></tr>
+        <tr><td class="ef">EFTA00365058</td><td>DNA/Genomics "YPO Cohort" Project</td><td>--</td><td><span class="sb me">Medium</span></td></tr>
+        <tr><td class="ef">EFTA01049951</td><td>Peggy Siegal -- "Emma Watson, Emma Stone"</td><td>--</td><td><span class="sb me">Medium</span></td></tr>
+        <tr><td class="ef">EFTA00133349</td><td>4chan Post -- Death Investigation</td><td>--</td><td><span class="sb me">Medium</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ===== TIMELINE ===== -->
+<div class="sec">
+  <div class="sh" onclick="tog(this)">
+    <h2><span class="snum">+</span> Timeline of Key Events</h2>
+    <span class="tg">&#9660;</span>
+  </div>
+  <div class="scn">
+    <div class="tl">
+      <div class="ti"><div class="yr">1976</div><div class="ev">Epstein teaches at Dalton School (without a degree). Records later subpoenaed but "they do not have the records."</div></div>
+      <div class="ti"><div class="yr">1989</div><div class="ev">Trump listed as guest on Robert Maxwell's yacht "Lady Ghislaine." <span class="sr">EFTA00029524</span></div></div>
+      <div class="ti"><div class="yr">1991</div><div class="ev">Robert Maxwell dies -- falls from yacht "Lady Ghislaine." Same year Epstein obtains power of attorney over Wexner's finances.</div></div>
+      <div class="ti"><div class="yr">1991-2007</div><div class="ev">Epstein controls ALL Wexner finances with "virtually no oversight." Steals "several hundred million dollars." <span class="sr">EFTA02731082</span></div></div>
+      <div class="ti"><div class="yr">2005</div><div class="ev">VHS surveillance tapes recorded at El Brillo Way (March 31 - April 5). Palm Beach police investigation begins.</div></div>
+      <div class="ti"><div class="yr">2005-2006</div><div class="ev">Palm Beach police find hidden cameras. Video disks extracted by Sheriff's Computer Crime Unit. <span class="sr">EFTA00007187</span></div></div>
+      <div class="ti"><div class="yr">2007</div><div class="ev">Acosta gives Epstein controversial plea deal. Later says he was told Epstein "belonged to intelligence." <span class="sr">EFTA00030181</span></div></div>
+      <div class="ti"><div class="yr">2008 (Jan)</div><div class="ev">Epstein returns $100M to Wexner in settlement. <span class="sr">EFTA02731082</span></div></div>
+      <div class="ti"><div class="yr">2008-2009</div><div class="ev">Epstein serves 13-month sentence with work release. Uses computer for "video sex with [victim]" during release. <span class="sr">EFTA02731082</span></div></div>
+      <div class="ti"><div class="yr">Oct 2015</div><div class="ev">Joscha Bach AI meeting in Cambridge connected to Epstein's network. <span class="sr">EFTA00338216</span></div></div>
+      <div class="ti"><div class="yr">Apr 2017</div><div class="ev">Epstein asks Peggy Siegal: "emma watson, emma stone, who is coming?" <span class="sr">EFTA01049951</span></div></div>
+      <div class="ti"><div class="yr">Oct 2017</div><div class="ev">Masha Drokova emails Epstein about Russian blockchain enthusiast "better than Vitalik Buterin." <span class="sr">EFTA00995634</span></div></div>
+      <div class="ti"><div class="yr">Jul 2019</div><div class="ev">Epstein arrested by SDNY on federal sex trafficking charges.</div></div>
+      <div class="ti"><div class="yr">Aug 10, 2019</div><div class="ev">Epstein found dead in MCC cell. Camera "malfunction." FBI NTOC tip: "Sex Trafficking, and Murder." <span class="sr">EFTA02730741</span></div></div>
+      <div class="ti"><div class="yr">Dec 2025</div><div class="ev">Major document release. 406 PDFs analyzed. 2,111+ findings across all categories.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== NETWORK VISUALIZATION ===== -->
+<div class="sec">
+  <div class="sh" onclick="tog(this)">
+    <h2><span class="snum">+</span> Network Visualization</h2>
+    <span class="tg">&#9660;</span>
+  </div>
+  <div class="scn">
+    <div class="np">
+      <h3>Epstein Network Map</h3>
+      <p style="margin-bottom:20px;font-size:.9em">Key nodes in the documented network (interactive visualization placeholder)</p>
+      <div style="margin-bottom:15px">
+        <strong style="color:var(--text2);font-size:.8em">CENTRAL:</strong><br>
+        <span class="nn ce">Jeffrey Epstein</span>
+        <span class="nn ce">Ghislaine Maxwell</span>
+      </div>
+      <div style="margin-bottom:15px">
+        <strong style="color:#9b59b6;font-size:.8em">INTELLIGENCE:</strong><br>
+        <span class="nn in">Robert Maxwell (father)</span>
+        <span class="nn in">Alexander Acosta</span>
+        <span class="nn in">"Topics for Funding" (NSA/Quantum)</span>
+      </div>
+      <div style="margin-bottom:15px">
+        <strong style="color:var(--accent3);font-size:.8em">FINANCE:</strong><br>
+        <span class="nn fi">Les Wexner</span>
+        <span class="nn fi">Leon Black</span>
+        <span class="nn fi">Apollo Global</span>
+        <span class="nn fi">Howard Lorber</span>
+        <span class="nn fi">Glenn Dubin</span>
+        <span class="nn fi">Alpha Cap Anstalt</span>
+      </div>
+      <div style="margin-bottom:15px">
+        <strong style="color:var(--blue);font-size:.8em">POLITICAL:</strong><br>
+        <span class="nn po">Donald Trump</span>
+        <span class="nn po">Bill Clinton</span>
+        <span class="nn po">Prince Andrew</span>
+        <span class="nn po">Bill Richardson</span>
+        <span class="nn po">George Mitchell</span>
+        <span class="nn po">Bill Gates</span>
+      </div>
+      <div style="margin-bottom:15px">
+        <strong style="color:var(--green);font-size:.8em">TECHNOLOGY / SCIENCE:</strong><br>
+        <span class="nn te">Ben Goertzel (AGI)</span>
+        <span class="nn te">Joscha Bach (AI)</span>
+        <span class="nn te">Edge Foundation</span>
+        <span class="nn te">OpenAI (newsletter)</span>
+        <span class="nn te">Boris Nikolic (Gates Fdn)</span>
+        <span class="nn te">Masha Drokova (Russia/blockchain)</span>
+        <span class="nn te">Peggy Siegal (Hollywood)</span>
+      </div>
+      <div style="margin-bottom:15px">
+        <strong style="color:var(--sc);font-size:.8em">LEGAL / ACCUSED:</strong><br>
+        <span class="nn vi">Alan Dershowitz</span>
+        <span class="nn vi">Jeanne Christensen (attorney)</span>
+        <span class="nn vi">Sharon Churcher (journalist)</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- end container -->
+
+<footer>
+  <p>Epstein Document Analysis Dashboard v8.0 | Compiled from 406 PDFs | 2,111+ Individual Findings</p>
+  <p style="margin-top:5px">All source references are to EFTA-numbered documents from the December 2025 release</p>
+  <p style="margin-top:5px;color:#555">This dashboard is for research and journalistic purposes. All findings are sourced from publicly released documents.</p>
+</footer>
+
+<script>
+function tog(h){var c=h.nextElementSibling,t=h.querySelector('.tg');c.classList.toggle('op');t.classList.toggle('op')}
+function doSearch(){var q=document.getElementById('si').value.toLowerCase();var els=document.querySelectorAll('.fd,.jb,.ti,.dt tbody tr');var v=0,t=els.length;els.forEach(function(e){var tx=e.textContent.toLowerCase();if(!q||tx.indexOf(q)!==-1){e.style.display='';v++}else{e.style.display='none'}});if(q){document.querySelectorAll('.scn').forEach(function(s){var vis=s.querySelectorAll('.fd:not([style*="display: none"]),.jb:not([style*="display: none"]),.ti:not([style*="display: none"]),.dt tbody tr:not([style*="display: none"])');if(vis.length>0){s.classList.add('op');s.previousElementSibling.querySelector('.tg').classList.add('op')}})}document.getElementById('ss').textContent=q?'Showing '+v+' of '+t+' items for "'+q+'"':'Showing all findings'}
+function doFilter(l,btn){document.querySelectorAll('.fb').forEach(function(b){b.classList.remove('ac')});btn.classList.add('ac');var fds=document.querySelectorAll('.fd');fds.forEach(function(f){if(l==='all'){f.style.display=''}else{f.style.display=f.getAttribute('data-s')===l?'':'none'}});var vis=document.querySelectorAll('.fd:not([style*="display: none"])').length;document.getElementById('ss').textContent=l==='all'?'Showing all findings':'Showing '+vis+' of '+fds.length+' ('+l+' severity)'}
+document.addEventListener('keydown',function(e){if(e.key==='Escape'){document.getElementById('si').value='';doSearch()}});
+</script>
+</body>
+</html>
