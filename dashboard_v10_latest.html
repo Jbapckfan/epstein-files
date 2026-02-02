@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Epstein Files Investigation Dashboard v10.34 — DS1-8 + DS10 Complete + All Sources (186,027 findings)</title>
+<title>Epstein Files Investigation Dashboard v10.35 — DS1-8 + DS10 Complete + All Sources (186,027 findings)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -940,7 +940,7 @@ body {
   <div class="nav-inner">
     <div class="nav-brand">
       <span class="dot"></span>
-      <span>Epstein Files v10.34</span>
+      <span>Epstein Files v10.35</span>
     </div>
     <ul class="nav-links">
       <li><a href="#network">Network</a></li>
@@ -1513,7 +1513,7 @@ body {
 
 <!-- FOOTER -->
 <footer class="footer">
-  <div class="footer-brand">Epstein Files Investigation Dashboard v10.34 — DS1-8 + DS9 + DS10 + Local Batch Complete</div>
+  <div class="footer-brand">Epstein Files Investigation Dashboard v10.35 — DS1-8 + DS9 + DS10 + Local Batch Complete</div>
   <p>
     Generated: 2026-02-02 UTC<br>
     Methodology: Automated keyword extraction with context-aware severity scoring and composite score integration across all pipelines.<br>
@@ -1968,6 +1968,63 @@ const FINDINGS_DATA = [
             keyQuote: "Senator Mitchell, Prince Andrew, Princess Sarah Ferguson, Mr. Trump, Mr. Robert Kennedy Jr., Frederik Fekkai, Nobel prize winners",
             tags: ["affidavit", "house-manager", "palm-beach", "trump", "rfk-jr", "prince-andrew"]
         }
+        ,
+        {
+            id: "EFTA00384333",
+            dataset: "DS9",
+            severity: "critical",
+            category: "Calendar/Schedule",
+            title: "September 2013 Calendar — Confirmed Bill Gates Dinner, Joi Ito/Reid Hoffman Skype",
+            summary: "Epstein's September 2013 calendar. 'DINNER W/BILL GATES, TERJE, JAGBLAND, OTHERS' (Sept 20) — confirmed dinner, not tentative. 'SKYPE w/Joi Ito, Kevin Slavin and Reid Hoffman RE Deception' (Sept 6) — media deception research. Leon Black Family Meeting at Leon's HOUSE (Sept 5). Dinner w/Woody Allen, Jeff Koons, Neil Gershenfeld, David Blaine (Sept 4). Boris Nikolic meeting. Dinner w/Ehud Barak, 'Rothschild?' (Sept 21). John Brockman Edge event at Eastover Farm. Eva's Dubin Breast Center luncheon (Sept 30).",
+            persons: ["Bill Gates", "Reid Hoffman", "Joi Ito", "Leon Black", "Woody Allen", "Ehud Barak", "Jeff Koons", "David Blaine", "Boris Nikolic", "John Brockman"],
+            date: "2013-09-01",
+            docType: "Calendar",
+            sourceDoc: "EFTA00384333 (9 pages)",
+            keyQuote: "DINNER W/BILL GATES, TERJE, JAGBLAND, OTHERS... SKYPE w/Joi Ito, Kevin Slavin and Reid Hoffman RE Deception... Leon Black Family Meeting at Leon's HOUSE",
+            tags: ["calendar", "bill-gates", "reid-hoffman", "joi-ito", "leon-black", "jeff-koons"]
+        },
+        {
+            id: "EFTA00395264",
+            dataset: "DS9",
+            severity: "critical",
+            category: "Calendar/Schedule",
+            title: "Feb 2013 Calendar UPDATE — Elon Musk Lunch at SpaceX Headquarters",
+            summary: "Updated version of Feb-March 2013 calendar revealing new detail: '1:00 Lunch w/Elon Musk at Space X, 1 Rocket Road, Hawthorne CA 90250' (Feb 25) — Epstein had a scheduled lunch meeting with Elon Musk at SpaceX headquarters during TED conference week. Reminder list includes 'Elon Musk' alongside Bobby Slayton, Phillipe Rosedale, Mark Andreasson. Also 'Reminder: Bill Gates in NY' on three consecutive days (Feb 27-March 1). 'Possible Dinner w/Bill Gates' and 'Possible Lunch w/Bill Gates (maybe Senator Mitchell?)'.",
+            persons: ["Elon Musk", "Bill Gates", "George Mitchell", "Leon Black", "Woody Allen", "Ehud Barak"],
+            date: "2013-02-25",
+            docType: "Calendar",
+            sourceDoc: "EFTA00395264 (7 pages)",
+            keyQuote: "1:00 Lunch w/Elon Musk at Space X, 1 Rocket Road, Hawthorne CA 90250... Reminder: Bill Gates in NY",
+            tags: ["calendar", "elon-musk", "spacex", "bill-gates", "ted-conference"]
+        },
+        {
+            id: "EFTA00376567",
+            dataset: "DS9",
+            severity: "high",
+            category: "Calendar/Schedule",
+            title: "January 2014 Calendar — Gates Sweatshirts, Barak to Epstein's Island",
+            summary: "Epstein's January 2014 calendar (early month). 'Follow up re sweatshirts for Boris, Reid, Joi and Bill Gates' — casual personal relationship with Gates receiving gifts from Epstein. Ariane de Rothschild (CEO, Edmond de Rothschild Group) meetings spanning multiple days. Jes Staley joining Rothschild meetings. Leon Black x2. Larry Summers + Ariane de Rothschild. 'Ehud Barak wants to go to the island' (Jan 22-23) — Barak requesting to visit Epstein's private island. Fly Barak PB to Tampa.",
+            persons: ["Bill Gates", "Ehud Barak", "Ariane de Rothschild", "Jes Staley", "Leon Black", "Larry Summers", "Boris Nikolic", "Reid Hoffman", "Joi Ito"],
+            date: "2014-01-07",
+            docType: "Calendar",
+            sourceDoc: "EFTA00376567 (5 pages)",
+            keyQuote: "Follow up re sweatshirts for Boris, Reid, Joi and Bill Gates... Ehud Barak wants to go to the island",
+            tags: ["calendar", "bill-gates", "ehud-barak", "island", "rothschild", "personal-gifts"]
+        },
+        {
+            id: "EFTA00378544",
+            dataset: "DS9",
+            severity: "high",
+            category: "Calendar/Schedule",
+            title: "December 2013 Calendar — Bill Gates DC Meeting, Woody Allen Birthday Party",
+            summary: "Epstein's December 2013 calendar. 'TBD Appt w/Bill Gates' in Washington DC (Dec 3), same trip as Reid Weingarten meeting at Steptoe & Johnson. Meeting at Leon Black's office at 9 West 57th Street (Dec 5). 'Screening of Woody Allen's Movie' + 'Dinner Birthday Party for Woody Allen' with Joel Klein and wife, Nicole Seligman as guests (Dec 5). Ehud Barak meeting (Dec 4). Lunch at MIT with Neil Gershenfeld for 'Neum/Deception' project (Dec 6).",
+            persons: ["Bill Gates", "Leon Black", "Woody Allen", "Ehud Barak", "Joel Klein", "Nicole Seligman", "Neil Gershenfeld", "Reid Weingarten"],
+            date: "2013-12-01",
+            docType: "Calendar",
+            sourceDoc: "EFTA00378544 (4 pages)",
+            keyQuote: "TBD Appt w/Bill Gates... Dinner Birthday Party for Woody Allen... Leon Black's office",
+            tags: ["calendar", "bill-gates", "woody-allen", "leon-black", "washington-dc"]
+        }
         ];
   {id:'EFTA00153703',dataset:'DS9',pages:26,severity:10,keywords:['ghislaine','maxwell','trump','brunel','blackmail','russia'],summary:'MAJOR: Complete FBI FD-302 victim interview - 14yo Interlochen recruit. Maxwell directed group abuse. Brunel brought 15yo to island and brought Russian women on tourist visas. Crystal Walsh blackmailed Epstein for $50K then tipped him off. Shredding papers in NY office. Met Weinstein at Golden Globes. TRUMP ALLEGATION DENIED by victim. Immigration fraud via Parda Beskardes.',date:'2019-10-25',type:'fbi-interview'},
   {id:'EFTA00152619',dataset:'DS9',pages:6,severity:4,keywords:['maxwell'],summary:'SDNY processing Maxwell discovery evidence - Reiter 15 VHS + 39 cassette tapes, Maxwell cell phone GPS data, 4 Blu-Ray discs',date:'2020-10-06',type:'fbi-operational'},
@@ -2005,7 +2062,7 @@ const TIMELINE_DATA = [
   { date: "2019-08-09", title: "FBI Status Update: ~60 Victims Identified", desc: "Day before Epstein death. FBI reports ~60 victims, potentially hundreds more. All co-conspirators served except Maxwell in London. [v10.8]" },
   { date: "2019-08-06", title: "FBI Planning Little St James Island Raid", desc: "SDNY drafting search warrant affidavit for island. 845 photos already taken in 13-hour NY residence search. [v10.8]" },
   { date: "2019-10-29", title: "FBI PRTT Active on Maxwell Phone", desc: "Pen Register/Trap and Trace surveillance activated on Ghislaine Maxwell. IP tracked to Pawtucket, Rhode Island. [v10.8]" },
-  { date: "2020-06-08", title: "FBI Maxwell Pre-Arrest: 6 Counts Planned, Active Surveillance", desc: "FBI email reveals exact Maxwell indictment charges planned, mail cover on her address, pen register on phone, physical surveillance coming. Prince Andrew MLAT response coordinated with SDNY. [v10.34]" }
+  { date: "2020-06-08", title: "FBI Maxwell Pre-Arrest: 6 Counts Planned, Active Surveillance", desc: "FBI email reveals exact Maxwell indictment charges planned, mail cover on her address, pen register on phone, physical surveillance coming. Prince Andrew MLAT response coordinated with SDNY. [v10.35]" }
   {date:'2018-12-13',event:'FBI/NYPD discover Epstein SORNA registration phone linked to Wexner/The Limited, begin MC2 model housing investigation',source:'EFTA00152144'},
   {date:'2019-07-24',event:'FBI/NYPD task force tracking down former Epstein employees for interviews about NY residence activities',source:'EFTA00150941'},
   {date:'2020-06-23',event:'FBI CAST analyzing Maxwell phone records and IP addresses one week before arrest, detecting VPN masking',source:'EFTA00150943'},
@@ -2120,6 +2177,35 @@ const TIMELINE_DATA = [
             type: "legal",
             severity: "high",
             docId: "EFTA00105921"
+        }
+        ,
+        {
+            date: "2013-09-20",
+            event: "Calendar: CONFIRMED dinner with Bill Gates, Joi Ito/Reid Hoffman Skype on Deception",
+            type: "calendar",
+            severity: "critical",
+            docId: "EFTA00384333"
+        },
+        {
+            date: "2013-02-25",
+            event: "Calendar: Elon Musk lunch at SpaceX HQ during TED week, Bill Gates in NY for 3 days",
+            type: "calendar",
+            severity: "critical",
+            docId: "EFTA00395264"
+        },
+        {
+            date: "2014-01-07",
+            event: "Calendar: Gates receiving sweatshirts from Epstein, Barak wants to go to Epstein's island",
+            type: "calendar",
+            severity: "high",
+            docId: "EFTA00376567"
+        },
+        {
+            date: "2013-12-03",
+            event: "Calendar: Bill Gates meeting in DC, Woody Allen birthday party, Leon Black's office",
+            type: "calendar",
+            severity: "high",
+            docId: "EFTA00378544"
         }
         ];
 
