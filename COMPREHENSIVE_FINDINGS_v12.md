@@ -1,12 +1,12 @@
-# EPSTEIN FILES COMPREHENSIVE ANALYSIS v14
+# EPSTEIN FILES COMPREHENSIVE ANALYSIS v15
 ## Generated: February 1, 2026
-## Sources: 406 PDFs, 40MB+ full text, Datasets 9/12, 4500+ individual findings
+## Sources: 406 PDFs, 40MB+ full text, Datasets 9/12, 5000+ individual findings
 ## Deep analysis of EFTA02731082, EFTA02730741, dec2025 corpus (42MB)
-## v14: 22 deep-dive search agents — victim escape/captivity, bodyguard testimony, Interlochen recruitment, FBI ELSUR intercepts, pen register tracking, Maxwell arrest, pregnancy/breast milk, Rodriguez testimony, financial fraud details
+## v15: 26 deep-dive search agents — Brunel/MC2 trafficking, Zorro Ranch DNA seeding, Gates-Epstein-Nobel, employee testimony, pilot records, Kellerhals law firm wires
 
 ---
 
-## WHAT JOURNALISTS ARE MISSING — TOP 70 FINDINGS
+## WHAT JOURNALISTS ARE MISSING — TOP 80 FINDINGS
 
 ### 1. LEON BLACK'S EXTREME SEXUAL VIOLENCE (EFTA02731662 — DANY Investigation)
 Internal FBI-Manhattan DA communications (June-July 2023) reveal: A victim "trafficked by Maxwell and Epstein" identified Leon Black. The "2001 sexual assault by Leon Black stood out because of how violent" it was. Description: "Black was very violent, tore her clothes off, bit her vagina, forced sex toys into her." She described him as "looking like Shrek." Her mother confirmed identification from a photo. DANY also "believed she was also abused by Staley." This level of detail was NOT in previous public reporting.
@@ -656,6 +656,36 @@ A victim became **pregnant at approximately age 16** and continued massaging Eps
 ### 70. HOUSE MANAGER: GIRLS "ATE LIKE MY DAUGHTER IN HIGH SCHOOL" (EFTA00007227)
 Alfredo Rodriguez (house manager, Nov 2004-May 2005) told police masseuses appeared very young: **"They ate like his own daughter who is in high school. They would eat tons of cereal and drink milk."** He stated **"the girls appeared to be too young to be masseuses"** and **"knew the girls were still in high school."** After massages, Rodriguez "would find vibrators and sex toys scattered on the floor." Epstein had two massages per day. Victims had "no formal training in massages." Federal indictment: Epstein incentivized victims to become recruiters by paying hundreds of dollars for each new girl brought in.
 
+### 71. BRUNEL TRAFFICKED GIRLS "AS YOUNG AS 12" USING FAKE MODEL VISAS (EFTA00021557-58)
+Court filing: Jean-Luc Brunel **"would bring young girls (ranging to ages as young as twelve) to the United States for sexual purposes and farm them out to his friends, especially Epstein."** Brunel **"was able to get U.S. passports for young girls to 'work' as models."** Victim affidavit: **"Epstein has told me that he has slept with over 1,000 of Brunel's girls."** Brunel ran MC2 Model & Talent agency. FBI identified a separate "scout" named Daniel Siad whom Brunel described as "a recruiter of girls for Epstein." French police (OCRVP) launched a parallel investigation. Brunel was found dead in his Paris jail cell in February 2022.
+
+### 72. ZORRO RANCH: "BABY RANCH" TO SEED HUMAN RACE WITH HIS DNA (EFTA00018441-43)
+Epstein told scientists of his plan to **"use his New Mexico ranch as a base where women would be inseminated with his sperm and would give birth to his babies."** Goal: **20 women impregnated at a time** at the 33,000 sq ft Zorro Ranch. Based on the **Repository for Germinal Choice** (Nobel laureate sperm bank). Charity gave **$20,000 to Worldwide Transhumanist Association** and $100,000 for its vice chairman. Epstein wanted his "head and penis to be frozen" (cryonics). George Church, molecular engineer working on "creating superior humans," was cultivated by Epstein. Southern Trust disclosed it was engaged in "DNA analysis."
+
+### 73. FORMER ZORRO STAFF TIP: PURPORTED ABUSE VIDEOS LISTED (EFTA00038381)
+A tip from **"a person that has been there and seen it all, as a former staff at the Zorro"** claimed to have taken material from Epstein's home as "insurance." Listed videos including: **"13min — sex video with minor," "19min — underage girl (sex video)," "23min — underage girl (rape fantasy video)."** NM Attorney General Hector Balderas formally requested asset forfeiture of Zorro Ranch. Victim: "When I was 15 years old, I flew on Jeffrey Epstein's plane to Zorro Ranch, where I was sexually molested for many hours." CDs labeled "Zorro" with female names found in NYC safe.
+
+### 74. MAXWELL ON 1994 NOTARIZED ZORRO DOC — "EARLIEST DOCUMENT" WITH HER NAME (EFTA00030804-06)
+Epstein's Zorro Trust purchased the NM ranch from King Brothers Ranch in **February 1993**. A 1994 notarized document shows **Maxwell swearing she is a "disinterested" party** and issuing an appraisal. Attorneys noted: **"It is the earliest document I believe I have seen her name on"** — predating all known victim accounts.
+
+### 75. EPSTEIN GOT BILL GATES ACCESS TO NOBEL PEACE PRIZE COMMITTEE LEADER (EFTA00020923)
+Norwegian investigative journalist revealed Epstein **"managed to get Bill Gates through the doors of the Nobel Peace Prize committee's leader in 2013."** Former UN Asst. Secretary General **Terje Rod-Larsen resigned** as president of the International Peace Institute after financial dealings with Epstein exposed. Rod-Larsen and wife flew on Epstein's plane to his island. Boris Nikolic — Gates' science advisor — was named successor executor of Epstein's will dated August 8, 2019 (2 days before death). All $577.6M estate directed to "The 1953 Trust" created the same day.
+
+### 76. $46M FROM EPSTEIN TO WEXNER'S YLK FUND — ONLY DONATION THAT YEAR (EFTA00026724-25)
+Just before Epstein began his 13-month jail term, **Financial Trust Co. and C.O.U.Q. Foundation contributed a combined $46 million to YLK** (Wexner's charitable fund). This was **the only contribution YLK received that year.** YLK later transferred all assets to The Wexner Family Charitable Fund, which by 2017 had **$208 million.**
+
+### 77. ASSISTANT SCHEDULED "HUNDREDS OF SEXUAL MASSAGES WITH MINORS" (EFTA00013209-10)
+DOJ briefed to Deputy AG level: an Epstein co-conspirator **"scheduled hundreds of sexual massages with minors"** but was **"also a victim of his sexual abuse."** She used a **directory provided by Epstein's previous assistant and Maxwell** to contact victims, met dozens aged 14-17, paid them cash, arranged drivers. Some victims told her they couldn't come because of "school schedules." Epstein told her one victim was "studying for the SATs."
+
+### 78. RODRIGUEZ: "HUMAN ATM MACHINE" — GUN BETWEEN MATTRESSES (EFTA00007226-28)
+Butler Alfredo Rodriguez described himself as a **"human ATM machine"** — ordered to carry a minimum of $2,000 at all times to pay girls. Epstein told him at hiring **"he must be discreet."** He placed **"$100 bills fanned out on a table near Epstein's bed"** before arrivals. He found **a gun between Epstein's mattresses** upstairs. Approximately 15 girls came regularly. Rodriguez kept a journal documenting visitors and expenditures.
+
+### 79. VISOSKI: PILOT SINCE 1991, MANAGER OF AIRCRAFT LLC, LISTED UNKNOWN PASSENGERS AS "FEMALE" (EFTA00009951)
+Chief pilot Larry Visoski was not just a pilot but held a **formal corporate management role in Plan D, LLC** (Epstein's aircraft entity). Employed since 1991, he provided **flight logs from 1994-1997** under penalty of perjury. He listed unknown passengers only as **"female" or "male"** to keep headcount. His wife interrupted his police interview and **"recommended he consult an attorney."** Flight manifests were presented to the SDNY Grand Jury.
+
+### 80. DISC FOUND: "MISC. GIRLS NUDE / DINNER — SCIENTISTS" (EFTA00020147-49)
+During the NYC mansion search, a disc found in a fifth-floor dresser bore the label **"Misc. Girls Nude/Dinner--Scientists."** A safe on the third floor contained **binders with CDs labeled "Zorro" or "LSJ"** (Little St. James) plus titles with female names. Also found: **"loose polaroid photographs depicting young, nude females who appear to be teenagers."** The disc label directly links exploitation of young women to scientific networking.
+
 ---
 
 ## SCIENCE / ACADEMIC NETWORK
@@ -921,4 +951,29 @@ Alfredo Rodriguez (house manager, Nov 2004-May 2005) told police masseuses appea
 
 ---
 
-*Analysis conducted programmatically across 406 PDFs, 42MB full text corpus, and structured findings databases. All citations reference specific EFTA document numbers from the January 30, 2026 document release on archive.org. Exact page numbers verified against `--- PAGE XX ---` markers in extracted documents. v14: 22 deep-dive search agents deployed.*
+## BRUNEL / MC2 TRAFFICKING NETWORK
+
+| Entity | Role | EFTA Source |
+|--------|------|------------|
+| **Jean-Luc Brunel** | MC2 Model & Talent founder; trafficked girls "as young as 12" | EFTA00021557-58 |
+| **MC2 Model Management** | Agency used to obtain fraudulent model visas for underage girls | EFTA00023925 |
+| **Daniel Siad** | Brunel's "recruiter of girls for Epstein" | EFTA00030843-44 |
+| **OCRVP (French Police)** | Launched parallel investigation with DOJ evidence sharing | EFTA00017955 |
+| **Victoria's Secret** | MC2 models appeared in VS shows; Wexner connection | EFTA00026724 |
+
+## ZORRO RANCH KEY DETAILS
+
+| Detail | Description | EFTA Source |
+|--------|------------|------------|
+| **Purchase** | Zorro Trust purchased from King Brothers Ranch, Feb 1993 | EFTA00030804-06 |
+| **Size** | 33,000 sq ft main house on 10,000+ acre ranch | GVI Complaint |
+| **Value** | $17.2M assessed value | EFTA00015189-91 |
+| **DNA Plan** | 20 women inseminated at a time; Repository for Germinal Choice model | EFTA00018441-43 |
+| **Cryonics** | Wanted "head and penis to be frozen" | EFTA00018441 |
+| **CDs** | Labeled "Zorro" with female names found in NYC safe | EFTA00020147-49 |
+| **Forfeiture** | NM AG Balderas requested asset forfeiture | EFTA00015189-91 |
+| **Staff Tip** | Former staff claimed to have taken abuse videos as "insurance" | EFTA00038381 |
+
+---
+
+*Analysis conducted programmatically across 406 PDFs, 42MB full text corpus, and structured findings databases. All citations reference specific EFTA document numbers from the January 30, 2026 document release on archive.org. Exact page numbers verified against `--- PAGE XX ---` markers in extracted documents. v15: 26 deep-dive search agents deployed.*
