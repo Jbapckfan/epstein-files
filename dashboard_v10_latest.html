@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Epstein Files Investigation Dashboard v10.37 — DS1-8 + DS10 Complete + All Sources (186,027 findings)</title>
+<title>Epstein Files Investigation Dashboard v10.38 — DS1-8 + DS10 Complete + All Sources (186,027 findings)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -940,7 +940,7 @@ body {
   <div class="nav-inner">
     <div class="nav-brand">
       <span class="dot"></span>
-      <span>Epstein Files v10.37</span>
+      <span>Epstein Files v10.38</span>
     </div>
     <ul class="nav-links">
       <li><a href="#network">Network</a></li>
@@ -1513,7 +1513,7 @@ body {
 
 <!-- FOOTER -->
 <footer class="footer">
-  <div class="footer-brand">Epstein Files Investigation Dashboard v10.37 — DS1-8 + DS9 + DS10 + Local Batch Complete</div>
+  <div class="footer-brand">Epstein Files Investigation Dashboard v10.38 — DS1-8 + DS9 + DS10 + Local Batch Complete</div>
   <p>
     Generated: 2026-02-02 UTC<br>
     Methodology: Automated keyword extraction with context-aware severity scoring and composite score integration across all pipelines.<br>
@@ -2072,7 +2072,63 @@ const FINDINGS_DATA = [
         {id: 'EFTA00090339', dataset: 'DS9-Wayback', severity: 'critical', page_count: 9, category: 'FBI FD-302 Interview', title: 'FD-302: Victim Recruited at 15 — Clinton/Trump Phone Calls, Naomi Campbell', summary: 'Nov 2020 FBI victim interview. Victim recruited at 15/16, describes massage/sexual abuse scheme. Lesley Groff handled logistics/payments. Met Chris Tucker and Naomi Campbell at residence. Epstein always on phone with BILL CLINTON and DONALD TRUMP. Describes victim-recruiter network paying girls $200-$300 per visit.', persons: ['Bill Clinton', 'Donald Trump', 'Naomi Campbell', 'Chris Tucker', 'Lesley Groff'], date_range: 'Nov 2020 interview (events mid-2000s)', source_url: ''},
         {id: 'EFTA00079370', dataset: 'DS9-Wayback', severity: 'critical', page_count: 2, category: 'FBI FD-302 Interview', title: 'FD-302: Leon Black Accused — Sex Trafficking Ring, $10M Transfer to Epstein', summary: 'April 2020 FBI victim interview. Leon Black accused of sex trafficking ring involvement. BLACK flew victim to Epstein FL home. BLACK transferred $10 million to Epstein circa 2015. Victim introduced to Maxwell and Prince Andrew. BLACK claimed friendship with police, Epstein and Harvey Weinstein.', persons: ['Leon Black', 'Prince Andrew', 'Harvey Weinstein', 'Ghislaine Maxwell'], date_range: 'April 2020 interview (events ~2015)', source_url: ''},
         {id: 'EFTA00086861', dataset: 'DS9-Wayback', severity: 'high', page_count: 5, category: 'FBI FD-302 Interview', title: 'FD-302: David Blaine Introduction, Naomi Campbell Dinner, David Copperfield', summary: 'Sept 2019 FBI victim interview. Met Epstein through David Blaine, attended dinner with Naomi Campbell at Manhattan mansion. Visited island, Palm Beach, New Mexico, New York. Maxwell encouraged sexual behavior at NM ranch. Friend claimed Epstein earned money from sex with Les Wexner. Met David Copperfield in Las Vegas.', persons: ['David Blaine', 'Naomi Campbell', 'David Copperfield', 'Les Wexner', 'Ghislaine Maxwell'], date_range: 'Sept 2019 interview (events ~2000s)', source_url: ''}
-        ];
+        ,
+        {
+            id: 'fd302-maxwell-arrest',
+            severity: 'critical',
+            category: 'FBI Investigation',
+            title: 'FD-302: Arrest of Ghislaine Maxwell',
+            description: 'FBI arrest report: Maxwell at Bradford, NH. Cell phone wrapped in tin foil found. Maxwell asked "What about Sarah Kellen?" during transport.',
+            documents: ['EFTA00094621'],
+            persons: ['Ghislaine Maxwell', 'Sarah Kellen', 'Martin Jackson'],
+            date: '2020-07-02',
+            source: 'FBI FD-302, Case 50D-NY-3027571'
+        },
+        {
+            id: 'fd302-stockholm-mother',
+            severity: 'high',
+            category: 'Victim Testimony',
+            title: 'FD-302: Mother Interview in Stockholm — Trump/Prince at Epstein House',
+            description: 'Mother of victim groomed from age 15 at Interlochen. Told "a prince and DONALD TRUMP visited EPSTEIN house" as normalization. Maxwell: "She is a wolf. She picks the girls."',
+            documents: ['EFTA00089603', 'EFTA00091910'],
+            persons: ['Donald Trump', 'Ghislaine Maxwell', 'Jeffrey Epstein'],
+            date: '2020-02-05',
+            source: 'FBI FD-302, Swedish Police Authority interview'
+        },
+        {
+            id: 'fd302-polish-model-mega',
+            severity: 'critical',
+            category: 'Victim Testimony',
+            title: 'FD-302: Epstein Introduced Melania Trump to Donald Trump; Dershowitz Massage Contradicted',
+            description: '"EPSTEIN introduced MELANIA TRUMP to DONALD TRUMP" via Zempoli. DERSHOWITZ received massage "alone with no wife and no kids." Brunel message about 2x6yo girl. Maxwell: "funny message." Evidence destruction: shred girl lists. COPPERFIELD at Palm Beach. SUMMERS meetings.',
+            documents: ['EFTA00090773'],
+            persons: ['Donald Trump', 'Melania Trump', 'Alan Dershowitz', 'Jean Luc Brunel', 'Ghislaine Maxwell', 'David Copperfield', 'Larry Summers', 'Paolo Zempoli', 'Leslie Groff'],
+            date: '2019-07-12',
+            source: 'FBI FD-302 Proffer Interviews'
+        },
+        {
+            id: 'fbi-tir-healy-witness',
+            severity: 'moderate',
+            category: 'FBI Investigation',
+            title: 'FBI Intelligence Report: Maxwell Trial Defense Witness Research',
+            description: 'FBI TIR researching Michelle Healy as Maxwell trial defense witness. Receptionist at Epstein 457 Madison Ave office.',
+            documents: ['EFTA00174203'],
+            persons: ['Ghislaine Maxwell', 'Michelle Healy'],
+            date: '2022-03-16',
+            source: 'FBI TIR (FOUO)'
+        },
+        {
+            id: 'fd302-louthan-maxwell-investigating',
+            severity: 'high',
+            category: 'Obstruction',
+            title: 'FD-302: Maxwell Investigating Potential Cooperating Witnesses (2016)',
+            description: 'Maxwell called Louthan in 2016 asking if his girlfriend was involved with Epstein investigation. Shows Maxwell probing for cooperating witnesses.',
+            documents: ['EFTA00083810'],
+            persons: ['Ghislaine Maxwell', 'Guy Louthan'],
+            date: '2021-01-14',
+            source: 'FBI FD-302'
+        }
+    ];
   {id:'EFTA00153703',dataset:'DS9',pages:26,severity:10,keywords:['ghislaine','maxwell','trump','brunel','blackmail','russia'],summary:'MAJOR: Complete FBI FD-302 victim interview - 14yo Interlochen recruit. Maxwell directed group abuse. Brunel brought 15yo to island and brought Russian women on tourist visas. Crystal Walsh blackmailed Epstein for $50K then tipped him off. Shredding papers in NY office. Met Weinstein at Golden Globes. TRUMP ALLEGATION DENIED by victim. Immigration fraud via Parda Beskardes.',date:'2019-10-25',type:'fbi-interview'},
   {id:'EFTA00152619',dataset:'DS9',pages:6,severity:4,keywords:['maxwell'],summary:'SDNY processing Maxwell discovery evidence - Reiter 15 VHS + 39 cassette tapes, Maxwell cell phone GPS data, 4 Blu-Ray discs',date:'2020-10-06',type:'fbi-operational'},
 
@@ -2109,7 +2165,7 @@ const TIMELINE_DATA = [
   { date: "2019-08-09", title: "FBI Status Update: ~60 Victims Identified", desc: "Day before Epstein death. FBI reports ~60 victims, potentially hundreds more. All co-conspirators served except Maxwell in London. [v10.8]" },
   { date: "2019-08-06", title: "FBI Planning Little St James Island Raid", desc: "SDNY drafting search warrant affidavit for island. 845 photos already taken in 13-hour NY residence search. [v10.8]" },
   { date: "2019-10-29", title: "FBI PRTT Active on Maxwell Phone", desc: "Pen Register/Trap and Trace surveillance activated on Ghislaine Maxwell. IP tracked to Pawtucket, Rhode Island. [v10.8]" },
-  { date: "2020-06-08", title: "FBI Maxwell Pre-Arrest: 6 Counts Planned, Active Surveillance", desc: "FBI email reveals exact Maxwell indictment charges planned, mail cover on her address, pen register on phone, physical surveillance coming. Prince Andrew MLAT response coordinated with SDNY. [v10.37]" }
+  { date: "2020-06-08", title: "FBI Maxwell Pre-Arrest: 6 Counts Planned, Active Surveillance", desc: "FBI email reveals exact Maxwell indictment charges planned, mail cover on her address, pen register on phone, physical surveillance coming. Prince Andrew MLAT response coordinated with SDNY. [v10.38]" }
   {date:'2018-12-13',event:'FBI/NYPD discover Epstein SORNA registration phone linked to Wexner/The Limited, begin MC2 model housing investigation',source:'EFTA00152144'},
   {date:'2019-07-24',event:'FBI/NYPD task force tracking down former Epstein employees for interviews about NY residence activities',source:'EFTA00150941'},
   {date:'2020-06-23',event:'FBI CAST analyzing Maxwell phone records and IP addresses one week before arrest, detecting VPN masking',source:'EFTA00150943'},
@@ -2280,7 +2336,32 @@ const TIMELINE_DATA = [
         {date: '2020-11', event: 'FBI interviews victim recruited at 15/16 — describes Epstein phone calls with Clinton and Trump, meeting Chris Tucker and Naomi Campbell', doc_id: 'EFTA00090339', severity: 'critical'},
         {date: '2020-04', event: 'FBI interviews victim accusing Leon Black of sex trafficking ring involvement — $10M transferred to Epstein, victim introduced to Maxwell and Prince Andrew', doc_id: 'EFTA00079370', severity: 'critical'},
         {date: '2019-09', event: 'FBI interviews victim who met Epstein through David Blaine — Naomi Campbell dinner, David Copperfield meeting, Wexner claims', doc_id: 'EFTA00086861', severity: 'high'}
-        ];
+        ,
+        {
+            date: '2020-07-02',
+            event: 'Maxwell arrested at Bradford, NH. Cell phone in tin foil found. Asked "What about Sarah Kellen?" re charges.',
+            category: 'arrest',
+            source: 'EFTA00094621'
+        },
+        {
+            date: '2020-02-05',
+            event: 'FBI interviews victim mother in Stockholm. Victim groomed from 15 at Interlochen. Trump/prince used as normalization.',
+            category: 'investigation',
+            source: 'EFTA00089603'
+        },
+        {
+            date: '2019-07-12',
+            event: 'Proffer: Polish model reveals Epstein introduced Melania to Trump. Dershowitz massage contradicted. Evidence destruction ordered.',
+            category: 'investigation',
+            source: 'EFTA00090773'
+        },
+        {
+            date: '2016-06-01',
+            event: 'Maxwell probes Louthan about whether his girlfriend cooperating with Epstein investigation.',
+            category: 'obstruction',
+            source: 'EFTA00083810'
+        }
+    ];
 
 const DATASETS_DATA = [
   { name: "Dataset 1 (DS1)", status: "complete", desc: "Court-released documents batch 1. Civil litigation materials, depositions, correspondence.", stat: "3,156 PDFs // COMPLETE" },
