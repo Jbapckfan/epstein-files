@@ -84,6 +84,13 @@ body::after{
   animation:pulseDot 2s ease-in-out infinite;
   box-shadow:0 0 8px rgba(255,59,92,0.6);
 }
+.ds9-badge{
+  display:inline-flex;align-items:center;gap:8px;margin-top:12px;
+  padding:6px 16px;border-radius:20px;font-size:11px;font-weight:700;letter-spacing:1px;
+  text-transform:uppercase;color:#10b981;
+  background:rgba(16,185,129,0.08);border:1px solid rgba(16,185,129,0.25);
+  opacity:0;animation:heroFadeIn 1s ease 0.65s forwards;
+}
 @keyframes pulseDot{
   0%,100%{opacity:1;transform:scale(1)}
   50%{opacity:0.5;transform:scale(0.8)}
@@ -616,11 +623,12 @@ body::after{
 <!-- HERO -->
 <div class="hero">
   <h1>Epstein Files &mdash; Red Flag Deep Dive</h1>
-  <p class="subtitle">17 categories of analysis across 75,000+ findings from 800,000+ FOIA documents. Four composite scores measure criminal conduct, blackmail vulnerability, direct involvement, and obstruction/cover-up.</p>
+  <p class="subtitle">17 categories of analysis across 57,488 findings from 892,639+ documents (incl. DS9 pipeline). Four composite scores measure criminal conduct, blackmail vulnerability, direct involvement, and obstruction/cover-up.</p>
   <div class="live-badge"><span class="pulse-dot"></span>FOIA Document Analysis</div>
+  <div class="ds9-badge">DS9 Pipeline Complete &mdash; 92,639 docs, 57,488 findings across 218,766 pages</div>
   <div class="hero-stats">
-    <div class="hero-stat"><div class="stat-num" data-count="75000">0</div><div class="stat-label">Findings</div></div>
-    <div class="hero-stat"><div class="stat-num" data-count="800000">0</div><div class="stat-label">Documents</div></div>
+    <div class="hero-stat"><div class="stat-num" data-count="57488">0</div><div class="stat-label">Findings</div></div>
+    <div class="hero-stat"><div class="stat-num" data-count="892639">0</div><div class="stat-label">Documents</div></div>
     <div class="hero-stat"><div class="stat-num" data-count="17">0</div><div class="stat-label">Categories</div></div>
     <div class="hero-stat"><div class="stat-num" data-count="4">0</div><div class="stat-label">Scores</div></div>
   </div>
@@ -645,7 +653,7 @@ body::after{
 
   <div id="severityBars"></div>
 
-  <div class="note">Note: Ghislaine Maxwell (63,004) and Maxwell [combined references] (16,030) are excluded from all charts as core case figures &mdash; their scores dwarf all associates by orders of magnitude.</div>
+  <div class="note">Note: Ghislaine Maxwell (484,187 composite) is excluded from all charts as a core case figure &mdash; her score dwarfs all associates by orders of magnitude.</div>
 </div>
 
 <!-- ============================================================ -->
@@ -767,10 +775,10 @@ body::after{
     <div class="context-grid">
       <div class="context-card">
         <h4>Barack Obama</h4>
-        <div class="score-big" data-count="11">0</div>
+        <div class="score-big" data-count="10">0</div>
         <div style="font-size:11px;color:var(--text3)">Overall Severity &mdash; 517 raw mentions in corpus</div>
         <div style="margin-top:12px;font-size:12px;color:var(--text2)">
-          Criminal: <strong>6</strong> &bull; Blackmail: <strong>2</strong> &bull; Involvement: <strong>0</strong> &bull; Obstruction: <strong>3</strong>
+          Criminal: <strong>6</strong> &bull; Blackmail: <strong>0</strong> &bull; Involvement: <strong>2</strong> &bull; Obstruction: <strong>2</strong>
         </div>
         <div class="context-cats">
           <span class="cat-item">1 minors</span>
@@ -786,7 +794,7 @@ body::after{
       </div>
       <div class="context-card">
         <h4>Joe Biden</h4>
-        <div class="score-big" data-count="7">0</div>
+        <div class="score-big" data-count="2">0</div>
         <div style="font-size:11px;color:var(--text3)">Overall Severity &mdash; 496 raw mentions in corpus</div>
         <div style="margin-top:12px;font-size:12px;color:var(--text2)">
           Criminal: <strong>3</strong> &bull; Blackmail: <strong>0</strong> &bull; Involvement: <strong>4</strong> &bull; Obstruction: <strong>0</strong>
@@ -809,7 +817,7 @@ body::after{
 
 <!-- FOOTER -->
 <div class="footer">
-  Data: 75,000+ findings from 800,000+ FOIA documents released under the Epstein Files Transparency Act | 17 analytical categories | 4 composite severity scores | Maxwell (63,004) and Ghislaine (16,030) excluded from charts as core case figures
+  Data: 57,488 findings from 892,639+ documents (incl. DS9 pipeline) | 17 analytical categories | 4 composite severity scores | Maxwell (484,187 composite) excluded from charts as core case figure | DS9: 92,639 docs, 218,766 pages
 </div>
 
 </div><!-- /.container -->
@@ -819,47 +827,61 @@ body::after{
 // DATA
 // ============================================================
 var people = [
-  { name:"Acosta", overall:1357, crim:449, blkml:210, invlv:32, obstr:666,
-    cats:{rape:20,minors:84,trafficking:33,grooming:6,blackmail:0,surveillance:0,murder:7,threats:2,witness:2,victim_named:0,flight:2,locations:0,black_book:1,legal_cover:209,financial:11,intel:82} },
-  { name:"Trump", overall:1291, crim:588, blkml:290, invlv:123, obstr:290,
-    cats:{rape:36,minors:95,trafficking:44,grooming:9,blackmail:1,surveillance:0,murder:40,threats:3,witness:1,victim_named:0,flight:23,locations:0,black_book:9,legal_cover:51,financial:119,intel:95} },
-  { name:"Prince Andrew", overall:1239, crim:710, blkml:244, invlv:174, obstr:111,
-    cats:{rape:38,minors:81,trafficking:69,grooming:36,blackmail:0,surveillance:0,murder:6,threats:3,witness:9,victim_named:0,flight:6,locations:0,black_book:6,legal_cover:12,financial:9,intel:161} },
-  { name:"Brunel", overall:1214, crim:686, blkml:292, invlv:185, obstr:51,
+  { name:"Trump", overall:28179, crim:609, blkml:69, invlv:375, obstr:314,
+    cats:{rape:58,minors:95,trafficking:44,grooming:9,blackmail:1,surveillance:0,murder:40,threats:3,witness:3,victim_named:0,flight:23,locations:0,black_book:9,legal_cover:71,financial:119,intel:95} },
+  { name:"Acosta", overall:20630, crim:1157, blkml:162, invlv:598, obstr:5629,
+    cats:{rape:92,minors:204,trafficking:79,grooming:16,blackmail:12,surveillance:24,murder:7,threats:10,witness:116,victim_named:0,flight:2,locations:0,black_book:1,legal_cover:1707,financial:11,intel:94} },
+  { name:"Prince Andrew", overall:19048, crim:645, blkml:24, invlv:262, obstr:132,
+    cats:{rape:38,minors:84,trafficking:69,grooming:36,blackmail:0,surveillance:0,murder:6,threats:3,witness:9,victim_named:0,flight:6,locations:0,black_book:6,legal_cover:25,financial:9,intel:161} },
+  { name:"Dershowitz", overall:14993, crim:408, blkml:174, invlv:225, obstr:145,
+    cats:{rape:30,minors:60,trafficking:42,grooming:6,blackmail:28,surveillance:0,murder:4,threats:9,witness:8,victim_named:0,flight:15,locations:0,black_book:2,legal_cover:26,financial:13,intel:39} },
+  { name:"Brunel", overall:13434, crim:604, blkml:16, invlv:339, obstr:40,
     cats:{rape:50,minors:93,trafficking:37,grooming:32,blackmail:0,surveillance:0,murder:5,threats:6,witness:0,victim_named:7,flight:6,locations:0,black_book:2,legal_cover:4,financial:8,intel:40} },
-  { name:"Dershowitz", overall:882, crim:410, blkml:315, invlv:73, obstr:84,
-    cats:{rape:26,minors:54,trafficking:42,grooming:6,blackmail:28,surveillance:0,murder:4,threats:3,witness:0,victim_named:0,flight:15,locations:0,black_book:2,legal_cover:20,financial:13,intel:39} },
-  { name:"Clinton", overall:659, crim:341, blkml:195, invlv:70, obstr:53,
-    cats:{rape:20,minors:68,trafficking:15,grooming:4,blackmail:1,surveillance:0,murder:8,threats:0,witness:1,victim_named:0,flight:14,locations:0,black_book:6,legal_cover:8,financial:1,intel:51} },
-  { name:"Sarah Kellen", overall:602, crim:326, blkml:129, invlv:103, obstr:44,
+  { name:"Sarah Kellen", overall:11324, crim:281, blkml:2, invlv:131, obstr:38,
     cats:{rape:20,minors:44,trafficking:13,grooming:25,blackmail:0,surveillance:0,murder:0,threats:4,witness:2,victim_named:0,flight:1,locations:0,black_book:0,legal_cover:6,financial:2,intel:19} },
-  { name:"Wexner", overall:247, crim:132, blkml:73, invlv:24, obstr:18,
+  { name:"Clinton", overall:10839, crim:317, blkml:45, invlv:218, obstr:76,
+    cats:{rape:20,minors:68,trafficking:15,grooming:4,blackmail:1,surveillance:0,murder:8,threats:0,witness:3,victim_named:0,flight:14,locations:0,black_book:6,legal_cover:16,financial:1,intel:51} },
+  { name:"Wexner", overall:217, crim:122, blkml:13, invlv:68, obstr:14,
     cats:{rape:6,minors:28,trafficking:4,grooming:4,blackmail:1,surveillance:0,murder:1,threats:3,witness:0,victim_named:0,flight:0,locations:0,black_book:4,legal_cover:1,financial:0,intel:31} },
-  { name:"Jes Staley", overall:179, crim:70, blkml:81, invlv:10, obstr:18,
+  { name:"Jes Staley", overall:172, crim:69, blkml:55, invlv:36, obstr:12,
     cats:{rape:1,minors:17,trafficking:5,grooming:0,blackmail:9,surveillance:0,murder:6,threats:0,witness:0,victim_named:0,flight:0,locations:0,black_book:5,legal_cover:0,financial:0,intel:17} },
-  { name:"Bill Richardson", overall:159, crim:76, blkml:50, invlv:24, obstr:9,
+  { name:"Bill Richardson", overall:152, crim:74, blkml:18, invlv:54, obstr:6,
     cats:{rape:1,minors:23,trafficking:0,grooming:1,blackmail:0,surveillance:0,murder:3,threats:0,witness:0,victim_named:0,flight:2,locations:0,black_book:7,legal_cover:0,financial:49,intel:8} },
-  { name:"Gates", overall:136, crim:50, blkml:26, invlv:24, obstr:36,
-    cats:{rape:2,minors:9,trafficking:3,grooming:2,blackmail:0,surveillance:0,murder:0,threats:0,witness:6,victim_named:0,flight:4,locations:0,black_book:2,legal_cover:2,financial:2,intel:16} },
-  { name:"Leon Black", overall:104, crim:26, blkml:64, invlv:14, obstr:0,
+  { name:"Gates", overall:142, crim:58, blkml:12, invlv:42, obstr:30,
+    cats:{rape:6,minors:9,trafficking:3,grooming:2,blackmail:0,surveillance:0,murder:0,threats:0,witness:6,victim_named:0,flight:4,locations:0,black_book:2,legal_cover:2,financial:2,intel:16} },
+  { name:"Leon Black", overall:102, crim:24, blkml:64, invlv:14, obstr:0,
     cats:{rape:2,minors:5,trafficking:1,grooming:0,blackmail:10,surveillance:0,murder:0,threats:0,witness:0,victim_named:0,flight:0,locations:0,black_book:7,legal_cover:0,financial:29,intel:18} },
-  { name:"Spacey", overall:55, crim:28, blkml:15, invlv:9, obstr:3,
-    cats:{rape:1,minors:6,trafficking:1,grooming:1,blackmail:0,surveillance:0,murder:0,threats:0,witness:0,victim_named:0,flight:1,locations:0,black_book:1,legal_cover:1,financial:0,intel:6} },
-  { name:"George Mitchell", overall:51, crim:23, blkml:12, invlv:16, obstr:0,
+  { name:"Spacey", overall:58, crim:26, blkml:4, invlv:17, obstr:11,
+    cats:{rape:1,minors:6,trafficking:1,grooming:1,blackmail:0,surveillance:0,murder:0,threats:0,witness:2,victim_named:0,flight:1,locations:0,black_book:1,legal_cover:1,financial:0,intel:6} },
+  { name:"George Mitchell", overall:44, crim:20, blkml:12, invlv:12, obstr:0,
     cats:{rape:2,minors:4,trafficking:0,grooming:1,blackmail:0,surveillance:0,murder:0,threats:0,witness:0,victim_named:0,flight:0,locations:0,black_book:6,legal_cover:0,financial:0,intel:7} },
-  { name:"Woody Allen", overall:50, crim:28, blkml:16, invlv:6, obstr:0,
+  { name:"Woody Allen", overall:44, crim:26, blkml:2, invlv:16, obstr:0,
     cats:{rape:1,minors:7,trafficking:0,grooming:1,blackmail:0,surveillance:0,murder:0,threats:0,witness:0,victim_named:0,flight:0,locations:0,black_book:1,legal_cover:0,financial:0,intel:3} },
-  { name:"Kushner", overall:40, crim:12, blkml:0, invlv:0, obstr:28,
-    cats:{rape:0,minors:0,trafficking:4,grooming:0,blackmail:0,surveillance:0,murder:0,threats:7,witness:0,victim_named:0,flight:0,locations:0,black_book:0,legal_cover:0,financial:97,intel:6} },
-  { name:"Ehud Barak", overall:34, crim:15, blkml:13, invlv:6, obstr:0,
+  { name:"Ehud Barak", overall:36, crim:15, blkml:9, invlv:12, obstr:0,
     cats:{rape:0,minors:3,trafficking:2,grooming:0,blackmail:1,surveillance:0,murder:0,threats:0,witness:0,victim_named:0,flight:2,locations:0,black_book:0,legal_cover:0,financial:0,intel:25} },
-  { name:"Obama", overall:11, crim:6, blkml:2, invlv:0, obstr:3,
+  { name:"Kushner", overall:33, crim:12, blkml:0, invlv:0, obstr:21,
+    cats:{rape:0,minors:0,trafficking:4,grooming:0,blackmail:0,surveillance:0,murder:0,threats:7,witness:0,victim_named:0,flight:0,locations:0,black_book:0,legal_cover:0,financial:97,intel:6} },
+  { name:"Bush", overall:30, crim:12, blkml:0, invlv:6, obstr:12,
+    cats:{rape:0,minors:3,trafficking:1,grooming:0,blackmail:0,surveillance:0,murder:0,threats:0,witness:0,victim_named:0,flight:0,locations:0,black_book:0,legal_cover:4,financial:2,intel:0} },
+  { name:"Obama", overall:10, crim:6, blkml:0, invlv:2, obstr:2,
     cats:{rape:0,minors:1,trafficking:1,grooming:0,blackmail:0,surveillance:0,murder:1,threats:0,witness:0,victim_named:0,flight:0,locations:0,black_book:0,legal_cover:0,financial:0,intel:2} },
-  { name:"Biden", overall:7, crim:3, blkml:0, invlv:4, obstr:0,
-    cats:{rape:0,minors:0,trafficking:0,grooming:1,blackmail:0,surveillance:0,murder:0,threats:0,witness:0,victim_named:0,flight:0,locations:0,black_book:0,legal_cover:0,financial:2,intel:3} }
+  { name:"Musk", overall:10, crim:6, blkml:0, invlv:4, obstr:0,
+    cats:{rape:0,minors:2,trafficking:0,grooming:0,blackmail:0,surveillance:0,murder:0,threats:0,witness:0,victim_named:0,flight:0,locations:0,black_book:0,legal_cover:0,financial:0,intel:1} },
+  { name:"Chris Tucker", overall:5, crim:0, blkml:2, invlv:3, obstr:0,
+    cats:{rape:0,minors:0,trafficking:0,grooming:0,blackmail:0,surveillance:0,murder:0,threats:0,witness:0,victim_named:0,flight:1,locations:0,black_book:0,legal_cover:0,financial:0,intel:4} },
+  { name:"Pence", overall:3, crim:0, blkml:0, invlv:0, obstr:3,
+    cats:{rape:0,minors:0,trafficking:0,grooming:0,blackmail:0,surveillance:0,murder:0,threats:0,witness:0,victim_named:0,flight:0,locations:0,black_book:0,legal_cover:1,financial:0,intel:0} },
+  { name:"Biden", overall:2, crim:2, blkml:0, invlv:0, obstr:0,
+    cats:{rape:0,minors:0,trafficking:0,grooming:1,blackmail:0,surveillance:0,murder:0,threats:0,witness:0,victim_named:0,flight:0,locations:0,black_book:0,legal_cover:0,financial:2,intel:3} },
+  { name:"Naomi Campbell", overall:0, crim:0, blkml:0, invlv:0, obstr:0,
+    cats:{rape:0,minors:0,trafficking:0,grooming:0,blackmail:0,surveillance:0,murder:0,threats:0,witness:0,victim_named:0,flight:0,locations:0,black_book:0,legal_cover:0,financial:0,intel:0} },
+  { name:"Tom Hanks", overall:0, crim:0, blkml:0, invlv:0, obstr:0,
+    cats:{rape:0,minors:0,trafficking:0,grooming:0,blackmail:0,surveillance:0,murder:0,threats:0,witness:0,victim_named:0,flight:0,locations:0,black_book:0,legal_cover:0,financial:0,intel:0} },
+  { name:"Spielberg", overall:0, crim:0, blkml:0, invlv:0, obstr:0,
+    cats:{rape:0,minors:0,trafficking:0,grooming:0,blackmail:0,surveillance:0,murder:0,threats:0,witness:0,victim_named:0,flight:0,locations:0,black_book:0,legal_cover:0,financial:0,intel:0} }
 ];
 
-var maxOverall = 1357;
+var maxOverall = 28179;
 
 // ============================================================
 // TOOLTIP SYSTEM
@@ -1105,65 +1127,65 @@ function positionTooltip(e) {
   var el = document.getElementById('excerptCards');
 
   var excerpts = {
+    "Acosta": [
+      { doc:"EFTA00091417", page:"1", sev:13, cat:"Rape / Sexual Assault",
+        text:"When Krischer, then Palm Beach state attorney, found out the target was Epstein, a big Democratic donor, he refused to  prosecute. It was only because of Krischer's active obstruction of the case that the Palm Beach chief of police, Michael  Reiter, begged the FBI to intervene.  Acosta may have buck" },
+      { doc:"EFTA00095462", page:"2", sev:13, cat:"Rape / Sexual Assault",
+        text:"When Krischer, then Palm Beach state attorney, found out the target was Epstein, a big Democratic donor, he refused to  prosecute. It was only because of Krischer's active obstruction of the case that the Palm Beach chief of police, Michael  Reiter, begged the FBI to intervene.  Acosta may have buck" },
+      { doc:"EFTA00091417", page:"1", sev:13, cat:"Minors / Underage",
+        text:"When Krischer, then Palm Beach state attorney, found out the target was Epstein, a big Democratic donor, he refused to  prosecute. It was only because of Krischer's active obstruction of the case that the Palm Beach chief of police, Michael  Reiter, begged the FBI to intervene.  Acosta may have buck" },
+      { doc:"EFTA00095462", page:"2", sev:13, cat:"Minors / Underage",
+        text:"When Krischer, then Palm Beach state attorney, found out the target was Epstein, a big Democratic donor, he refused to  prosecute. It was only because of Krischer's active obstruction of the case that the Palm Beach chief of police, Michael  Reiter, begged the FBI to intervene.  Acosta may have buck" }
+    ],
     "Trump": [
+      { doc:"EFTA00018174", page:"?", sev:12, cat:"Rape / Sexual Assault",
+        text:"“The Palm Beach state attorney’s office was ready to let Epstein walk free,” Acosta said in his calm, sort of toneless voice. “Our prosecutors ... presented the ultimatum.” Which was that Epstein, who had molested a parade of teenagers, some only 14, had to serve at least a little jail time. The pun" },
+      { doc:"EFTA00026934", page:"?", sev:12, cat:"Rape / Sexual Assault",
+        text:"o Abuse with multiple perpetrators occurs, not unusual © Multiple perpetrators don’t have to engage in physical sexual abuse (e.g., fraternity house, alcohol spiked, number of people get a drunk girl to a particular bedroom; someone else assaults her) © Sometimes individuals use other people as a wa" },
       { doc:"EFTA00069870", page:"10", sev:15, cat:"Minors / Underage",
-        text:"Barr has said that the criminal investigation into any possible co-conspirators of Epstein would continue. Earlier this month, French gender equality minister Marlene Schiappa had called on authorities to investigate Epstein\u2019s links to France..." },
-      { doc:"EFTA00032348", page:"1", sev:15, cat:"Trafficking",
-        text:"Federal investigators will examine the death of Jeffrey Epstein, the financier charged with sex trafficking underage girls, after officials said he was found dead in his Manhattan federal jail cell on Saturday..." },
-      { doc:"EFTA00086370", page:"2", sev:6, cat:"Blackmail / Kompromat",
-        text:"Besides your (superb) defense work for Epstein and all enjoyers (Clinton, Barak, Wexner, Maxwell, Andrew, Trump, Dersh, etc) of his hospitality, did you have any operational role in the enterprise?" },
-      { doc:"EFTA00018174", page:"1", sev:12, cat:"Rape / Sexual Assault",
-        text:"\u201CThe Palm Beach state attorney\u2019s office was ready to let Epstein walk free,\u201D Acosta said in his calm, sort of toneless voice. \u201COur prosecutors ... presented the ultimatum.\u201D Which was that Epstein, who was facing far more serious charges..." }
+        text:"Barr has said that the criminal investigation into any possible co-conspirators of Epstein would continue.  Earlier this month, French gender equality minister Marlene Schiappa had called on authorities to open an  investigation.  Epstein, a registered sex offender who once socialized with President" },
+      { doc:"EFTA00019088", page:"?", sev:15, cat:"Minors / Underage",
+        text:"time on Monday in a new indictment alleging that she recruited and paid a 14-year-old victim. 2 documents attached | Read full article » Parnas Bail Relaxed As Court Eyes Selective Prosecution Row A Manhattan federal judge on Friday loosened bail conditions for Lev Parnas, the Florida associate of f" }
     ],
     "Prince Andrew": [
+      { doc:"EFTA00024034", page:"?", sev:14, cat:"Rape / Sexual Assault",
+        text:"Background Jeffrey Epstein is a billionaire financier, philanthropist, and sex offender. In 2005, Epstein became the subject of an undercover sex trafficking investigation by Palm Beach, Florida police and the FBI. Dozens of underage women claimed that they had been trafficked by Epstein to perform " },
+      { doc:"EFTA00067620", page:"9", sev:12, cat:"Rape / Sexual Assault",
+        text:"The Sun  By Mark Hodge  2/26/2020  Prince Andrew's playboy pal Peter Nygard may have hundreds of sex trafficking victims, lawyers say.  Millionaire fashion tycoon Nygard, 77, is \"cooperating\" with the FBI after being hit by numerous sexual assault  and harassment allegations — claims he denies.  Thi" },
       { doc:"EFTA00084366", page:"15", sev:15, cat:"Minors / Underage",
-        text:"Ghislaine Maxwell felt no guilt in procuring girls for Jeffrey Epstein to satisfy his \u2018incredible sex drive,\u2019 Prince Andrew\u2019s distant cousin has claimed \u2014 adding that \u2018if anything, she was proud.\u2019" },
-      { doc:"EFTA00024034", page:"1", sev:14, cat:"Rape / Sexual Assault",
-        text:"Jeffrey Epstein is a billionaire financier, philanthropist, and sex offender. In 2005, Epstein became the subject of an undercover sex trafficking investigation by Palm Beach, Florida police..." },
-      { doc:"EFTA00084366", page:"45", sev:14, cat:"Recruitment / Grooming",
-        text:"Maxwell, who is a long-time friend of Prince Andrew and who saw him most recently in June 2019, was arrested at a luxury home in New Hampshire. She applied for release on \u00a34 million bail, arguing that her life is in danger..." },
-      { doc:"EFTA00021556", page:"4", sev:16, cat:"Blackmail / Kompromat",
-        text:"...business, personal, political, and financial gain, as well as to obtain potential blackmail information. One such powerful individual that Epstein forced then-minor Jane Doe #3 to have sexual relations with was former..." }
+        text:"•  592 shares  Ghislaine Maxwell felt no guilt in procuring girls for ,Jeffrey Rpsteia to satisfy his  'incredible sex drive,' Prince Andrew's distant cousin has claimed - adding that 'if anything,  she was proud.'  In Quest Red's new true crime documentary special Who Killed Jeffrey Epstein? it is " },
+      { doc:"EFTA00016127", page:"?", sev:14, cat:"Minors / Underage",
+        text:"Quoting unnamed law enforcement officials, The New York Times said prison officials were treating the incident, which left Epstein with “bruising around the neck,” as a possible suicide attempt. The jet-setting financier was denied bail last week after a federal judge said he posed a danger to young" }
+    ],
+    "Brunel": [
+      { doc:"EFTA00021558", page:"?", sev:14, cat:"Rape / Sexual Assault",
+        text:"Case 9:08-cv-80736-KAM Document 280 Entered on FLSD Docket 01/02/2015 Page 6 of 14 young as twelve) to the United States for sexual purposes and farm them out to his friends, especially Epstein. Brunel would offer the girls “modeling” jobs. Many of the girls came from poor countries or impoverished " },
+      { doc:"EFTA00108666", page:"2", sev:10, cat:"Rape / Sexual Assault",
+        text:"(ph) ANDRENO (ph) would contact girls whose names were listed in the black  bound book on behalf of EPSTEIN. RODRIGUEZ advised he received the black  bound book sometime in 2004 when the books were shipped from New York.  RODRIGUEZ explained that JEAN LUC BRUNEL(ph)would also bring  girls to the hou" },
+      { doc:"EFTA00021558", page:"?", sev:14, cat:"Minors / Underage",
+        text:"Case 9:08-cv-80736-KAM Document 280 Entered on FLSD Docket 01/02/2015 Page 6 of 14 young as twelve) to the United States for sexual purposes and farm them out to his friends, especially Epstein. Brunel would offer the girls “modeling” jobs. Many of the girls came from poor countries or impoverished " },
+      { doc:"EFTA00078198", page:"7", sev:10, cat:"Minors / Underage",
+        text:"did not believe that would be nice at all.  While media stories have stated that Epstein and Maxwell's victims were mostly  teenagers, there is evidence that suggests that they also abused younger girls. Jean-Luc  Brunel reportedly provided Epstein a birthday gift of 12 year old triplets; Epstein vi" }
     ],
     "Dershowitz": [
-      { doc:"EFTA00021556", page:"4", sev:16, cat:"Blackmail / Kompromat",
-        text:"...business, personal, political, and financial gain, as well as to obtain potential blackmail information. One such powerful individual that Epstein forced then-minor Jane Doe #3 to have sexual relations with was former Harvard Law Professor Alan Dershowitz..." },
-      { doc:"EFTA00021556", page:"4", sev:16, cat:"Minors / Underage",
-        text:"...to obtain potential blackmail information. One such powerful individual that Epstein forced then-minor Jane Doe #3 to have sexual relations with was former Harvard Law Professor Alan Dershowitz..." },
       { doc:"EFTA00081180", page:"29", sev:9, cat:"Rape / Sexual Assault",
-        text:"...during the years 2002\u20132005 Alan Dershowitz was on Epstein\u2019s plane on several occasions according to the flight logs produced by Epstein\u2019s pilot and information suggested that sexual assaults may have taken place on the plane..." },
-      { doc:"EFTA00022133", page:"1", sev:10, cat:"Trafficking",
-        text:"Epstein\u2019s sex trafficking scheme. In June 2019, only two months before his death, Epstein sent an e-mail asking her to send him nude photographs. Recruited by a woman named Rena in the fall of 2002..." }
+        text:"acquaintances of Dershowitz fall into; (g) during the years 2002-2005 Alan Dershowitz was on  Epstein's plane on several occasions according to the flight logs produced by Epstein's pilot and  information (described above) suggested that sexual assaults may have taken place on the plane; (h)  Epstei" },
+      { doc:"EFTA00021556", page:"?", sev:16, cat:"Minors / Underage",
+        text:"Case 9:08-cv-80736-KAM Document 280 Entered on FLSD Docket 01/02/2015 Page 4 of 14 business, personal, political, and financial gain, as well as to obtain potential blackmail information. One such powerful individual that Epstein forced then-minor Jane Doe #3 to have sexual relations with was former" },
+      { doc:"EFTA00007236", page:"?", sev:10, cat:"Minors / Underage",
+        text:"KKEKKEKKKRKKAKKRKKAKKAKEKEEEKEE NARRATIVE NA Reported By: Entered By.: # AY BERK KKEREKKEEEKEEEEKREKKEKKE 4/10/06 E 4/10/06 A Grand Jury Session was requested during the month of February 2006, in which all the girls that had been interviewed would have been called to testify before the Grand Jury t" },
+      { doc:"EFTA00022133", page:"?", sev:10, cat:"Trafficking",
+        text:"Epstein’s sex trafficking scheme. In June 2019, only two months before his death, Epstein sent {J an e-mail asking her to send him nude photographs. e Recruited by a woman named Rena in the fall of 2000 New York e Shown into a room with Alan Dershowitz and Epstein. Deshowitz left the room. Rena and " }
     ],
     "Clinton": [
       { doc:"EFTA00076133", page:"2", sev:17, cat:"Rape / Sexual Assault",
-        text:"Bill Clinton is in jeopardy of serious lawsuits, possible civil and even criminal charges by his association and claims of sexual abuse of underage girls on many occasions. I have copies of hundreds of photographs..." },
+        text:"Bill Clinton is in jeopardy of serious lawsuits, possible civil and even criminal charges by his association and  claims of sexual abuse of underage girls on many occasions.  I have copies of hundreds of emails to prove that Bill and Hillary Clinton, the Clinton foundation, Hillary  campaign, everyt" },
+      { doc:"EFTA00095919", page:"2", sev:17, cat:"Rape / Sexual Assault",
+        text:"Bill Clinton is in jeopardy of serious lawsuits, possible civil and even criminal charges by his association and  claims of sexual abuse of underage girls on many occasions.  I have copies of hundreds of emails to prove that Bill and Hillary Clinton, the Clinton foundation, Hillary  campaign, everyt" },
       { doc:"EFTA00076133", page:"2", sev:17, cat:"Minors / Underage",
-        text:"Bill Clinton is in jeopardy of serious lawsuits, possible civil and even criminal charges by his association and claims of sexual abuse of underage girls on many occasions..." },
-      { doc:"EFTA00024034", page:"1", sev:14, cat:"Trafficking",
-        text:"The Enquirer seeks all documents relating to the FBI\u2019s investigation and prosecution of financier Jeffrey Edward Epstein, who pled guilty to one count of felony solicitation of prostitution in August 2008..." },
-      { doc:"EFTA00086370", page:"2", sev:6, cat:"Blackmail / Kompromat",
-        text:"Besides your (superb) defense work for Epstein and all enjoyers (Clinton, Barak, Wexner, Maxwell, Andrew, Trump, Dersh, etc) of his hospitality, did you have any operational role in the enterprise?" }
-    ],
-    "Brunel": [
-      { doc:"EFTA00021558", page:"6", sev:14, cat:"Rape / Sexual Assault",
-        text:"...young as twelve) to the United States for sexual purposes and farm them out to his friends, especially Epstein. Brunel would bring girls as young as twelve from countries such as France..." },
-      { doc:"EFTA00021558", page:"6", sev:14, cat:"Minors / Underage",
-        text:"Brunel would bring girls (some as young as twelve) to the United States for sexual purposes and farm them out to his friends, especially Epstein..." },
-      { doc:"EFTA00078198", page:"7", sev:10, cat:"Victim Named Them",
-        text:"While media stories have stated that Epstein and Maxwell\u2019s victims were mostly teenagers, there is evidence that suggests that they also abused younger girls. Jean-Luc Brunel..." },
-      { doc:"EFTA00436099", page:"3", sev:10, cat:"Trafficking",
-        text:"Federal investigators continue to investigate Epstein\u2019s activities, to see whether there is evidence of child trafficking \u2014 a far more serious charge than the two in his non-prosecution agreement..." }
-    ],
-    "Acosta": [
-      { doc:"EFTA00091417", page:"1", sev:13, cat:"Minors / Underage",
-        text:"When Krischer, then Palm Beach state attorney, found out the target was Epstein, a big Democratic donor, he refused to prosecute. It was only because of Krischer\u2019s active obstruction of the case that..." },
-      { doc:"EFTA00029470", page:"1", sev:10, cat:"Trafficking",
-        text:"The U.S. Department of Justice is reviewing a deal that a Trump administration official cut as a federal prosecutor, and the case has added fuel to a bid to expand crime victims\u2019 rights..." },
-      { doc:"EFTA00018449", page:"1", sev:7, cat:"Recruitment / Grooming",
-        text:"The girls were paid additional money if they would recruit others girls, police and court records allege. Epstein had assistants schedule as many as three visits a day. Rather than face federal charges..." },
-      { doc:"EFTA00040358", page:"21", sev:8, cat:"Legal / Political Cover",
-        text:"The investigation revealed that Epstein had engaged in similar behavior with multiple underage girls and had organized a sex ring where minor girls allegedly were \u2018lent\u2019 to other individuals..." }
+        text:"Bill Clinton is in jeopardy of serious lawsuits, possible civil and even criminal charges by his association and  claims of sexual abuse of underage girls on many occasions.  I have copies of hundreds of emails to prove that Bill and Hillary Clinton, the Clinton foundation, Hillary  campaign, everyt" },
+      { doc:"EFTA00095919", page:"2", sev:17, cat:"Minors / Underage",
+        text:"Bill Clinton is in jeopardy of serious lawsuits, possible civil and even criminal charges by his association and  claims of sexual abuse of underage girls on many occasions.  I have copies of hundreds of emails to prove that Bill and Hillary Clinton, the Clinton foundation, Hillary  campaign, everyt" }
     ]
   };
 
