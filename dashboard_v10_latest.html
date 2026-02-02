@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Epstein Files Investigation Dashboard v10.38 — DS1-8 + DS10 Complete + All Sources (186,027 findings)</title>
+<title>Epstein Files Investigation Dashboard v10.39 — DS1-8 + DS10 Complete + All Sources (186,027 findings)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -940,7 +940,7 @@ body {
   <div class="nav-inner">
     <div class="nav-brand">
       <span class="dot"></span>
-      <span>Epstein Files v10.38</span>
+      <span>Epstein Files v10.39</span>
     </div>
     <ul class="nav-links">
       <li><a href="#network">Network</a></li>
@@ -1513,7 +1513,7 @@ body {
 
 <!-- FOOTER -->
 <footer class="footer">
-  <div class="footer-brand">Epstein Files Investigation Dashboard v10.38 — DS1-8 + DS9 + DS10 + Local Batch Complete</div>
+  <div class="footer-brand">Epstein Files Investigation Dashboard v10.39 — DS1-8 + DS9 + DS10 + Local Batch Complete</div>
   <p>
     Generated: 2026-02-02 UTC<br>
     Methodology: Automated keyword extraction with context-aware severity scoring and composite score integration across all pipelines.<br>
@@ -2128,7 +2128,59 @@ const FINDINGS_DATA = [
             date: '2021-01-14',
             source: 'FBI FD-302'
         }
-    ];
+    ,
+        {
+            id: 'fd302-weinstein-epstein-connection',
+            severity: 'critical',
+            category: 'Associates',
+            title: 'HARVEY WEINSTEIN in Epstein Message Pads — Directed Victim to Weinstein\'s Own Attorney',
+            description: 'FD-302 proffer interview: Witness recognized Harvey Weinstein\'s name in Epstein message pads and cried. Epstein encouraged a Weinstein victim to talk to an attorney — but the attorney turned out to be Weinstein\'s own attorney. Witness stated Epstein "would bring these pretty model girls around these business men to further his business."',
+            source: 'EFTA00090773 (FD-302 Serial 640, 08/20/2021)',
+            docId: 'EFTA00090773',
+            dataset: 'DS9',
+            persons: ['Harvey Weinstein', 'Jeffrey Epstein'],
+            date: '2021-08-20',
+            tags: ['fbi-fd302', 'proffer', 'associates', 'weinstein', 'obstruction']
+        },
+        {
+            id: 'fd302-state-dept-wolf-on-plane',
+            severity: 'high',
+            category: 'Government',
+            title: 'Dept of State Agent BEN WOLF Flew on Epstein Plane — Asked Who Girls Were',
+            description: 'FD-302 proffer: A Department of State Agent named Ben Wolf flew on Epstein\'s plane and asked who all the girls were. Epstein told victim to ask Wolf about her immigration status, suggesting Wolf may have been leveraged for immigration favors.',
+            source: 'EFTA00090773 (FD-302 Serial 574, 09/10/2019)',
+            docId: 'EFTA00090773',
+            dataset: 'DS9',
+            persons: ['Ben Wolf', 'Jeffrey Epstein'],
+            date: '2019-09-10',
+            tags: ['fbi-fd302', 'proffer', 'government', 'state-department', 'flight']
+        },
+        {
+            id: 'fd302-photo-binders-maxwell-house',
+            severity: 'high',
+            category: 'Evidence',
+            title: 'Photo Binders at Maxwell House: "PB GIRLS," "BOOBS," "727" Labels — Nude/Topless Women',
+            description: 'FD-302 proffer: 8-10 binders at Maxwell\'s NY house containing CDs with thumbnails of nude/topless women in model poses. Binder labels included "PB GIRLS" (Palm Beach), "BOOBS," "727" (his plane), "LSJ" (Little St. James), "ZORO" (ranch). Large commercial printer used to produce images. Photos taken at Epstein\'s request, some of victim told "Epstein said it was ok."',
+            source: 'EFTA00090773 (FD-302 Serials 637 & 640)',
+            docId: 'EFTA00090773',
+            dataset: 'DS9',
+            persons: ['Ghislaine Maxwell', 'Jeffrey Epstein'],
+            date: '2021-08-20',
+            tags: ['fbi-fd302', 'proffer', 'evidence', 'photographs', 'exploitation']
+        },
+        {
+            id: 'fd302-epstein-gun-bed-coercion',
+            severity: 'high',
+            category: 'Abuse Pattern',
+            title: 'Epstein Gun By Bed — Victim Trapped on Island, Could Not Say No',
+            description: 'FD-302 proffer: Victim described Epstein keeping a gun by the bed. She felt she could not scream or say no because she was trapped on the island. Epstein gave victim a gun once "for safety purposes." Also used tape recorder hidden in bathrobe to secretly record. Epstein acknowledged underage risk, saying "if someone lied about their age it wouldn\'t matter because he would still be in trouble."',
+            source: 'EFTA00090773 (FD-302 Serial 574, 09/10/2019)',
+            docId: 'EFTA00090773',
+            dataset: 'DS9',
+            persons: ['Jeffrey Epstein'],
+            date: '2019-09-10',
+            tags: ['fbi-fd302', 'proffer', 'coercion', 'weapons', 'recording', 'underage-acknowledgment']
+        }];
   {id:'EFTA00153703',dataset:'DS9',pages:26,severity:10,keywords:['ghislaine','maxwell','trump','brunel','blackmail','russia'],summary:'MAJOR: Complete FBI FD-302 victim interview - 14yo Interlochen recruit. Maxwell directed group abuse. Brunel brought 15yo to island and brought Russian women on tourist visas. Crystal Walsh blackmailed Epstein for $50K then tipped him off. Shredding papers in NY office. Met Weinstein at Golden Globes. TRUMP ALLEGATION DENIED by victim. Immigration fraud via Parda Beskardes.',date:'2019-10-25',type:'fbi-interview'},
   {id:'EFTA00152619',dataset:'DS9',pages:6,severity:4,keywords:['maxwell'],summary:'SDNY processing Maxwell discovery evidence - Reiter 15 VHS + 39 cassette tapes, Maxwell cell phone GPS data, 4 Blu-Ray discs',date:'2020-10-06',type:'fbi-operational'},
 
@@ -2165,7 +2217,7 @@ const TIMELINE_DATA = [
   { date: "2019-08-09", title: "FBI Status Update: ~60 Victims Identified", desc: "Day before Epstein death. FBI reports ~60 victims, potentially hundreds more. All co-conspirators served except Maxwell in London. [v10.8]" },
   { date: "2019-08-06", title: "FBI Planning Little St James Island Raid", desc: "SDNY drafting search warrant affidavit for island. 845 photos already taken in 13-hour NY residence search. [v10.8]" },
   { date: "2019-10-29", title: "FBI PRTT Active on Maxwell Phone", desc: "Pen Register/Trap and Trace surveillance activated on Ghislaine Maxwell. IP tracked to Pawtucket, Rhode Island. [v10.8]" },
-  { date: "2020-06-08", title: "FBI Maxwell Pre-Arrest: 6 Counts Planned, Active Surveillance", desc: "FBI email reveals exact Maxwell indictment charges planned, mail cover on her address, pen register on phone, physical surveillance coming. Prince Andrew MLAT response coordinated with SDNY. [v10.38]" }
+  { date: "2020-06-08", title: "FBI Maxwell Pre-Arrest: 6 Counts Planned, Active Surveillance", desc: "FBI email reveals exact Maxwell indictment charges planned, mail cover on her address, pen register on phone, physical surveillance coming. Prince Andrew MLAT response coordinated with SDNY. [v10.39]" }
   {date:'2018-12-13',event:'FBI/NYPD discover Epstein SORNA registration phone linked to Wexner/The Limited, begin MC2 model housing investigation',source:'EFTA00152144'},
   {date:'2019-07-24',event:'FBI/NYPD task force tracking down former Epstein employees for interviews about NY residence activities',source:'EFTA00150941'},
   {date:'2020-06-23',event:'FBI CAST analyzing Maxwell phone records and IP addresses one week before arrest, detecting VPN masking',source:'EFTA00150943'},
@@ -2361,7 +2413,28 @@ const TIMELINE_DATA = [
             category: 'obstruction',
             source: 'EFTA00083810'
         }
-    ];
+    ,
+        {
+            date: '2004-2006',
+            event: 'Witness worked for Epstein/Maxwell — Photo binders with nude images, "PB GIRLS" and "BOOBS" labels maintained at Maxwell house',
+            category: 'evidence',
+            source: 'EFTA00090773',
+            severity: 'high'
+        },
+        {
+            date: '2005-2006',
+            event: 'Evidence destruction: Computers removed from Palm Beach, contact books gathered from island, printouts shredded. Epstein told victim "something happened to his detriment"',
+            category: 'obstruction',
+            source: 'EFTA00090773',
+            severity: 'critical'
+        },
+        {
+            date: '2021-08-20',
+            event: 'FBI shows witness Epstein message pads — recognizes HARVEY WEINSTEIN name, cries. Epstein directed Weinstein victim to Weinstein\'s own attorney.',
+            category: 'legal',
+            source: 'EFTA00090773',
+            severity: 'critical'
+        }];
 
 const DATASETS_DATA = [
   { name: "Dataset 1 (DS1)", status: "complete", desc: "Court-released documents batch 1. Civil litigation materials, depositions, correspondence.", stat: "3,156 PDFs // COMPLETE" },
