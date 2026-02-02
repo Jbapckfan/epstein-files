@@ -1,0 +1,1129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Epstein Files: Hidden Connections</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#08090d;--card:rgba(255,255,255,0.03);--card-border:rgba(255,255,255,0.06);
+  --red:#ff3b5c;--purple:#a855f7;--orange:#f59e0b;--blue:#60a5fa;--green:#34d399;
+  --cyan:#22d3ee;--text:#e2e8f0;--text-dim:#64748b;--text-bright:#f8fafc;
+  --glow-red:0 0 30px rgba(255,59,92,0.3);--glow-purple:0 0 30px rgba(168,85,247,0.3);
+}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);
+  overflow-x:hidden;line-height:1.6;
+}
+/* Scrollbar */
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.1);border-radius:3px}
+::-webkit-scrollbar-thumb:hover{background:rgba(255,255,255,0.2)}
+
+/* Background grid & particles */
+.bg-grid{
+  position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;
+  background-image:
+    linear-gradient(rgba(255,59,92,0.03) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,59,92,0.03) 1px,transparent 1px);
+  background-size:60px 60px;
+  pointer-events:none;
+}
+.bg-gradient{
+  position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;
+  background:
+    radial-gradient(ellipse 800px 600px at 20% 10%,rgba(255,59,92,0.06),transparent),
+    radial-gradient(ellipse 600px 500px at 80% 20%,rgba(168,85,247,0.05),transparent),
+    radial-gradient(ellipse 700px 400px at 50% 80%,rgba(96,165,250,0.04),transparent);
+  pointer-events:none;
+}
+#bg-particles{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none}
+
+/* Layout */
+.container{max-width:1440px;margin:0 auto;padding:0 24px;position:relative;z-index:1}
+header{padding:32px 0 16px;position:relative;z-index:10}
+.top-bar{display:flex;align-items:center;justify-content:space-between;margin-bottom:40px}
+.home-btn{
+  display:inline-flex;align-items:center;gap:8px;padding:10px 20px;
+  background:rgba(255,255,255,0.04);border:1px solid var(--card-border);
+  border-radius:12px;color:var(--text-dim);text-decoration:none;font-size:14px;
+  font-weight:500;transition:all 0.3s;backdrop-filter:blur(10px);
+}
+.home-btn:hover{background:rgba(255,59,92,0.1);color:var(--red);border-color:rgba(255,59,92,0.3)}
+.home-btn svg{width:16px;height:16px}
+.badge{
+  font-family:'JetBrains Mono',monospace;font-size:11px;padding:6px 14px;
+  background:rgba(255,59,92,0.1);border:1px solid rgba(255,59,92,0.2);
+  border-radius:100px;color:var(--red);letter-spacing:1px;text-transform:uppercase;
+}
+.hero-title{
+  font-size:clamp(2.5rem,6vw,4.5rem);font-weight:900;letter-spacing:-0.03em;
+  line-height:1.05;margin-bottom:16px;
+  background:linear-gradient(135deg,var(--text-bright) 0%,var(--red) 50%,var(--purple) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.hero-sub{font-size:clamp(1rem,2vw,1.25rem);color:var(--text-dim);max-width:700px;font-weight:300}
+.hero-sub strong{color:var(--text);font-weight:600}
+
+/* Cards */
+.glass-card{
+  background:var(--card);border:1px solid var(--card-border);
+  border-radius:20px;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  overflow:hidden;position:relative;transition:border-color 0.4s,box-shadow 0.4s;
+}
+.glass-card:hover{border-color:rgba(255,255,255,0.1);box-shadow:0 8px 40px rgba(0,0,0,0.3)}
+.glass-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,0.1),transparent);
+}
+.card-header{
+  padding:24px 28px 20px;border-bottom:1px solid var(--card-border);
+  display:flex;align-items:center;justify-content:space-between;
+}
+.card-title{font-size:18px;font-weight:700;letter-spacing:-0.02em}
+.card-subtitle{font-size:12px;color:var(--text-dim);font-family:'JetBrains Mono',monospace}
+.card-body{padding:24px 28px}
+
+/* Section */
+.section{margin:60px 0}
+.section-label{
+  font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--red);
+  letter-spacing:2px;text-transform:uppercase;margin-bottom:12px;
+  display:flex;align-items:center;gap:10px;
+}
+.section-label::before{content:'';width:20px;height:1px;background:var(--red)}
+.section-title{font-size:clamp(1.5rem,3vw,2.2rem);font-weight:800;letter-spacing:-0.03em;margin-bottom:8px}
+.section-desc{color:var(--text-dim);font-size:15px;max-width:600px;margin-bottom:32px}
+
+/* Force Graph */
+#force-graph-container{position:relative;width:100%;height:700px;border-radius:20px;overflow:hidden}
+#force-canvas{width:100%;height:100%;cursor:grab;display:block}
+#force-canvas:active{cursor:grabbing}
+.graph-controls{
+  position:absolute;top:16px;right:16px;display:flex;flex-direction:column;gap:8px;z-index:5;
+}
+.graph-btn{
+  width:40px;height:40px;border-radius:12px;border:1px solid var(--card-border);
+  background:rgba(8,9,13,0.8);backdrop-filter:blur(10px);color:var(--text);
+  cursor:pointer;display:flex;align-items:center;justify-content:center;
+  font-size:18px;transition:all 0.2s;
+}
+.graph-btn:hover{background:rgba(255,59,92,0.15);border-color:rgba(255,59,92,0.3);color:var(--red)}
+.graph-legend{
+  position:absolute;bottom:16px;left:16px;display:flex;flex-wrap:wrap;gap:12px;z-index:5;
+  background:rgba(8,9,13,0.85);backdrop-filter:blur(10px);padding:12px 16px;
+  border-radius:12px;border:1px solid var(--card-border);
+}
+.legend-item{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--text-dim)}
+.legend-dot{width:10px;height:10px;border-radius:50%}
+.graph-tooltip{
+  position:absolute;pointer-events:none;opacity:0;transition:opacity 0.2s;
+  background:rgba(8,9,13,0.95);backdrop-filter:blur(20px);border:1px solid var(--card-border);
+  border-radius:12px;padding:14px 18px;z-index:10;min-width:200px;
+  box-shadow:0 10px 40px rgba(0,0,0,0.5);
+}
+.graph-tooltip.visible{opacity:1}
+.tooltip-name{font-weight:700;font-size:15px;margin-bottom:4px}
+.tooltip-cat{font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px}
+.tooltip-score{font-size:13px;color:var(--text-dim)}
+.tooltip-score span{color:var(--text-bright);font-weight:600;font-family:'JetBrains Mono',monospace}
+
+/* Stats row */
+.stats-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-bottom:40px}
+.stat-card{
+  background:var(--card);border:1px solid var(--card-border);border-radius:16px;
+  padding:20px 24px;backdrop-filter:blur(10px);position:relative;overflow:hidden;
+}
+.stat-card::after{
+  content:'';position:absolute;top:0;left:0;width:100%;height:2px;
+}
+.stat-card:nth-child(1)::after{background:linear-gradient(90deg,var(--red),transparent)}
+.stat-card:nth-child(2)::after{background:linear-gradient(90deg,var(--purple),transparent)}
+.stat-card:nth-child(3)::after{background:linear-gradient(90deg,var(--blue),transparent)}
+.stat-card:nth-child(4)::after{background:linear-gradient(90deg,var(--orange),transparent)}
+.stat-card:nth-child(5)::after{background:linear-gradient(90deg,var(--green),transparent)}
+.stat-value{
+  font-size:clamp(1.8rem,3vw,2.5rem);font-weight:800;letter-spacing:-0.03em;
+  font-family:'JetBrains Mono',monospace;
+}
+.stat-card:nth-child(1) .stat-value{color:var(--red)}
+.stat-card:nth-child(2) .stat-value{color:var(--purple)}
+.stat-card:nth-child(3) .stat-value{color:var(--blue)}
+.stat-card:nth-child(4) .stat-value{color:var(--orange)}
+.stat-card:nth-child(5) .stat-value{color:var(--green)}
+.stat-label{font-size:13px;color:var(--text-dim);margin-top:4px}
+
+/* Heatmap */
+#heatmap-container{width:100%;overflow-x:auto;padding:4px}
+#heatmap-svg{display:block;margin:0 auto}
+
+/* Chord */
+#chord-container{width:100%;display:flex;justify-content:center;padding:20px 0}
+#chord-svg{display:block}
+
+/* Sankey */
+#sankey-container{width:100%;overflow-x:auto;padding:4px}
+#sankey-svg{display:block;margin:0 auto}
+
+/* Timeline */
+.timeline-track{position:relative;padding:40px 0 40px 40px}
+.timeline-line{
+  position:absolute;left:19px;top:0;bottom:0;width:2px;
+  background:linear-gradient(180deg,transparent,var(--red),var(--purple),var(--blue),transparent);
+}
+.tl-event{
+  position:relative;margin-bottom:32px;padding-left:32px;opacity:0;
+  transform:translateX(-20px);animation:tlSlide 0.6s ease forwards;
+}
+@keyframes tlSlide{to{opacity:1;transform:translateX(0)}}
+.tl-event::before{
+  content:'';position:absolute;left:-12px;top:6px;width:12px;height:12px;
+  border-radius:50%;border:2px solid var(--red);background:var(--bg);z-index:1;
+}
+.tl-event:nth-child(even)::before{border-color:var(--purple)}
+.tl-event:nth-child(3n)::before{border-color:var(--blue)}
+.tl-year{
+  font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--red);
+  font-weight:700;margin-bottom:4px;
+}
+.tl-event:nth-child(even) .tl-year{color:var(--purple)}
+.tl-event:nth-child(3n) .tl-year{color:var(--blue)}
+.tl-text{font-size:14px;color:var(--text-dim);max-width:600px}
+.tl-text strong{color:var(--text);font-weight:600}
+
+/* Grid layouts */
+.viz-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+@media(max-width:1024px){.viz-grid{grid-template-columns:1fr}}
+@media(max-width:768px){
+  .stats-row{grid-template-columns:1fr 1fr}
+  .graph-legend{flex-direction:column;gap:6px}
+  #force-graph-container{height:500px}
+}
+@media(max-width:480px){
+  .stats-row{grid-template-columns:1fr}
+  .container{padding:0 12px}
+}
+
+/* Animations */
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse{0%,100%{opacity:0.4}50%{opacity:1}}
+@keyframes scanline{0%{top:-100%}100%{top:200%}}
+.fade-up{animation:fadeUp 0.8s ease forwards}
+.delay-1{animation-delay:0.1s;opacity:0}
+.delay-2{animation-delay:0.2s;opacity:0}
+.delay-3{animation-delay:0.3s;opacity:0}
+.delay-4{animation-delay:0.4s;opacity:0}
+
+/* Scanline effect on cards */
+.glass-card .scanline{
+  position:absolute;top:-100%;left:0;width:100%;height:50%;
+  background:linear-gradient(180deg,transparent,rgba(255,59,92,0.02),transparent);
+  animation:scanline 8s linear infinite;pointer-events:none;z-index:0;
+}
+
+/* Footer */
+footer{
+  text-align:center;padding:60px 0 40px;color:var(--text-dim);font-size:13px;
+  border-top:1px solid var(--card-border);margin-top:80px;
+}
+footer a{color:var(--red);text-decoration:none}
+footer a:hover{text-decoration:underline}
+</style>
+</head>
+<body>
+<div class="bg-grid"></div>
+<div class="bg-gradient"></div>
+<canvas id="bg-particles"></canvas>
+
+<div class="container">
+<!-- Header -->
+<header>
+  <div class="top-bar fade-up">
+    <a href="index.html" class="home-btn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      Home
+    </a>
+    <span class="badge">Network Analysis</span>
+  </div>
+  <h1 class="hero-title fade-up delay-1">Hidden Connections</h1>
+  <p class="hero-sub fade-up delay-2">
+    Interactive network analysis revealing <strong>co-occurrence patterns</strong>, institutional links,
+    and the flow of power across <strong>thousands of unsealed documents</strong>.
+  </p>
+</header>
+
+<!-- Stats -->
+<div class="stats-row fade-up delay-3">
+  <div class="stat-card"><div class="stat-value" data-count="19">0</div><div class="stat-label">Named Persons</div></div>
+  <div class="stat-card"><div class="stat-value" data-count="4">0</div><div class="stat-label">Financial Institutions</div></div>
+  <div class="stat-card"><div class="stat-value" data-count="3">0</div><div class="stat-label">Key Locations</div></div>
+  <div class="stat-card"><div class="stat-value" data-count="5">0</div><div class="stat-label">Surveillance Concepts</div></div>
+  <div class="stat-card"><div class="stat-value" data-count="484187">0</div><div class="stat-label">Max Composite Score</div></div>
+</div>
+
+<!-- Force Graph -->
+<section class="section">
+  <div class="section-label fade-up">01 &mdash; Network Graph</div>
+  <h2 class="section-title fade-up delay-1">Force-Directed Relationship Map</h2>
+  <p class="section-desc fade-up delay-2">Nodes sized by composite document score. Edges weighted by co-occurrence in shared documents. Drag nodes to explore. Click to isolate connections.</p>
+  <div class="glass-card fade-up delay-3">
+    <div class="scanline"></div>
+    <div id="force-graph-container">
+      <canvas id="force-canvas"></canvas>
+      <div class="graph-controls">
+        <button class="graph-btn" id="btn-zoom-in" title="Zoom in">+</button>
+        <button class="graph-btn" id="btn-zoom-out" title="Zoom out">&minus;</button>
+        <button class="graph-btn" id="btn-reset" title="Reset view">&#8634;</button>
+      </div>
+      <div class="graph-legend">
+        <div class="legend-item"><div class="legend-dot" style="background:#ff3b5c"></div>Conspirator</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#60a5fa"></div>Politician</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#34d399"></div>Finance</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#a855f7"></div>Tech / Celebrity</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#f59e0b"></div>Intelligence</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#38bdf8"></div>Legal / Royal</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#fbbf24"></div>Institution</div>
+      </div>
+      <div class="graph-tooltip" id="graph-tooltip">
+        <div class="tooltip-name" id="tt-name"></div>
+        <div class="tooltip-cat" id="tt-cat"></div>
+        <div class="tooltip-score" id="tt-score"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Heatmap + Chord -->
+<section class="section">
+  <div class="viz-grid">
+    <div>
+      <div class="section-label fade-up">02 &mdash; Co-occurrence Matrix</div>
+      <h2 class="section-title fade-up delay-1">Document Heatmap</h2>
+      <p class="section-desc fade-up delay-2">How often do these individuals appear together across unsealed documents?</p>
+      <div class="glass-card fade-up delay-3">
+        <div class="scanline"></div>
+        <div class="card-body" id="heatmap-container">
+          <svg id="heatmap-svg"></svg>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="section-label fade-up">03 &mdash; Financial Web</div>
+      <h2 class="section-title fade-up delay-1">Chord Diagram</h2>
+      <p class="section-desc fade-up delay-2">Financial connections between persons and institutions, weighted by transaction evidence.</p>
+      <div class="glass-card fade-up delay-3">
+        <div class="scanline"></div>
+        <div class="card-body" id="chord-container">
+          <svg id="chord-svg"></svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Sankey -->
+<section class="section">
+  <div class="section-label fade-up">04 &mdash; Power Flow</div>
+  <h2 class="section-title fade-up delay-1">Network Flow Diagram</h2>
+  <p class="section-desc fade-up delay-2">Tracing the flow from recruiters through locations to enablers and institutions.</p>
+  <div class="glass-card fade-up delay-3">
+    <div class="scanline"></div>
+    <div class="card-body" id="sankey-container">
+      <svg id="sankey-svg"></svg>
+    </div>
+  </div>
+</section>
+
+<!-- Timeline -->
+<section class="section">
+  <div class="section-label fade-up">05 &mdash; Chronology</div>
+  <h2 class="section-title fade-up delay-1">Key Events Timeline</h2>
+  <p class="section-desc fade-up delay-2">Critical milestones in the Epstein case from initial allegations to document unsealing.</p>
+  <div class="glass-card fade-up delay-3">
+    <div class="scanline"></div>
+    <div class="card-body">
+      <div class="timeline-track" id="timeline">
+        <div class="timeline-line"></div>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+<footer>
+  <p>Data visualization for research and public accountability purposes.<br>
+  Built with vanilla JavaScript, Canvas &amp; SVG. <a href="index.html">Return to Index</a></p>
+</footer>
+
+<script>
+// =============================================
+// DATA
+// =============================================
+const PERSONS = [
+  {id:'maxwell',name:'Ghislaine Maxwell',score:484187,cat:'conspirator'},
+  {id:'trump',name:'Donald Trump',score:28179,cat:'politician'},
+  {id:'acosta',name:'Alexander Acosta',score:20630,cat:'legal'},
+  {id:'andrew',name:'Prince Andrew',score:19048,cat:'royal'},
+  {id:'dershowitz',name:'Alan Dershowitz',score:14993,cat:'legal'},
+  {id:'brunel',name:'Jean-Luc Brunel',score:13434,cat:'conspirator'},
+  {id:'kellen',name:'Sarah Kellen',score:11324,cat:'conspirator'},
+  {id:'clinton',name:'Bill Clinton',score:10839,cat:'politician'},
+  {id:'kushner',name:'Jared Kushner',score:10023,cat:'politician'},
+  {id:'richardson',name:'Bill Richardson',score:8319,cat:'politician'},
+  {id:'black',name:'Leon Black',score:8307,cat:'finance'},
+  {id:'wexner',name:'Les Wexner',score:7736,cat:'finance'},
+  {id:'staley',name:'Jes Staley',score:7458,cat:'finance'},
+  {id:'allen',name:'Woody Allen',score:6789,cat:'celebrity'},
+  {id:'gates',name:'Bill Gates',score:6260,cat:'tech'},
+  {id:'barak',name:'Ehud Barak',score:1203,cat:'intelligence'},
+  {id:'obama',name:'Barack Obama',score:498,cat:'politician'},
+  {id:'biden',name:'Joe Biden',score:427,cat:'politician'},
+  {id:'bush',name:'George Bush',score:140,cat:'politician'},
+];
+
+const INSTITUTIONS = [
+  {id:'jpmorgan',name:'JP Morgan',score:1689,cat:'institution'},
+  {id:'deutsche',name:'Deutsche Bank',score:1177,cat:'institution'},
+  {id:'hapoalim',name:'Bank Hapoalim',score:151,cat:'institution'},
+  {id:'signature',name:'Signature Bank',score:89,cat:'institution'},
+];
+
+const LOCATIONS = [
+  {id:'stj',name:'Little St James',score:418},
+  {id:'zorro',name:'Zorro Ranch',score:511},
+  {id:'maralago',name:'Mar-a-Lago',score:86},
+];
+
+const CONCEPTS = [
+  {id:'surveillance',name:'Recording / Surveillance',score:1879},
+  {id:'blackmail',name:'Blackmail',score:38},
+  {id:'mossad',name:'Mossad',score:7},
+  {id:'russia',name:'Russia',score:1082},
+  {id:'israel',name:'Israel',score:745},
+];
+
+const EDGES = [
+  ['maxwell','trump',800],['maxwell','andrew',500],['maxwell','dershowitz',400],
+  ['maxwell','clinton',300],['maxwell','brunel',350],['maxwell','kellen',200],
+  ['maxwell','allen',120],['maxwell','gates',100],['maxwell','richardson',150],
+  ['maxwell','black',130],['maxwell','wexner',110],['maxwell','staley',90],
+  ['maxwell','acosta',180],['maxwell','barak',80],['maxwell','kushner',140],
+  ['trump','dershowitz',300],['trump','acosta',250],['trump','clinton',200],
+  ['trump','kushner',400],['trump','andrew',160],['trump','allen',70],
+  ['andrew','dershowitz',250],['andrew','clinton',150],['andrew','brunel',180],
+  ['andrew','kellen',120],['andrew','allen',60],
+  ['acosta','richardson',100],['acosta','dershowitz',140],
+  ['gates','staley',80],['gates','black',50],
+  ['black','wexner',90],['black','staley',70],['black','barak',60],
+  ['barak','wexner',40],['brunel','kellen',100],
+  ['clinton','richardson',110],['clinton','gates',50],
+  ['kushner','acosta',80],['obama','clinton',40],['biden','obama',30],
+  ['bush','clinton',25],
+  // Person-to-institution
+  ['black','jpmorgan',100],['staley','jpmorgan',150],['staley','deutsche',120],
+  ['wexner','jpmorgan',60],['gates','jpmorgan',40],['gates','deutsche',35],
+  ['barak','hapoalim',50],['maxwell','deutsche',70],['trump','deutsche',80],
+  ['kushner','deutsche',55],['black','signature',30],
+];
+
+const CAT_COLORS = {
+  conspirator:'#ff3b5c',politician:'#60a5fa',legal:'#38bdf8',royal:'#38bdf8',
+  finance:'#34d399',tech:'#a855f7',celebrity:'#a855f7',intelligence:'#f59e0b',
+  institution:'#fbbf24',location:'#22d3ee',concept:'#f472b6'
+};
+
+const TIMELINE_DATA = [
+  {year:'1999',text:'<strong>FBI</strong> begins investigating Epstein after victims come forward in Palm Beach.'},
+  {year:'2005',text:'Palm Beach Police build case. Victims describe recruitment network involving <strong>Maxwell</strong> and <strong>Sarah Kellen</strong>.'},
+  {year:'2006',text:'FBI takes over investigation. Identifies <strong>36+ victims</strong>. Grand jury convened.'},
+  {year:'2007',text:'<strong>Alexander Acosta</strong> negotiates controversial non-prosecution agreement (NPA). Epstein pleads to state charges.'},
+  {year:'2008',text:'Epstein serves 13 months with work release. <strong>Dershowitz</strong> helps draft NPA.'},
+  {year:'2010',text:'<strong>Prince Andrew</strong> photographed with Virginia Giuffre. Epstein resumes socialite life.'},
+  {year:'2015',text:'Giuffre files lawsuit against <strong>Maxwell</strong>. Depositions reveal network details.'},
+  {year:'2018',text:'Miami Herald "Perversion of Justice" series exposes NPA. <strong>JP Morgan</strong> and <strong>Deutsche Bank</strong> ties scrutinized.'},
+  {year:'2019 Jul',text:'Epstein arrested at Teterboro. Charged with sex trafficking. <strong>Acosta</strong> resigns as Labor Secretary.'},
+  {year:'2019 Aug',text:'Epstein found dead in Manhattan MCC cell. <strong>Surveillance cameras malfunction</strong>. Guards falsify records.'},
+  {year:'2020',text:'<strong>Maxwell</strong> arrested in New Hampshire. <strong>Brunel</strong> found dead in Paris cell.'},
+  {year:'2021',text:'Maxwell trial. Convicted on 5 of 6 counts. Sentenced to 20 years.'},
+  {year:'2023',text:'<strong>JP Morgan</strong> settles for $290M with victims. <strong>Leon Black</strong> pays $62.5M settlement.'},
+  {year:'2024 Jan',text:'Federal judge orders <strong>unsealing of documents</strong>. Over 900 pages released. Names become public.'},
+  {year:'2024-25',text:'Additional document batches released. <strong>484,187+ references</strong> to Maxwell catalogued across filings.'},
+];
+
+// =============================================
+// UTILITY
+// =============================================
+function lerp(a,b,t){return a+(b-a)*t}
+function clamp(v,mn,mx){return Math.max(mn,Math.min(mx,v))}
+function dist(a,b){return Math.hypot(a.x-b.x,a.y-b.y)}
+
+// =============================================
+// BACKGROUND PARTICLES
+// =============================================
+(function(){
+  const c=document.getElementById('bg-particles');
+  const ctx=c.getContext('2d');
+  let W,H;
+  const particles=[];
+  function resize(){W=c.width=window.innerWidth;H=c.height=window.innerHeight}
+  window.addEventListener('resize',resize);resize();
+  for(let i=0;i<60;i++){
+    particles.push({
+      x:Math.random()*W,y:Math.random()*H,
+      vx:(Math.random()-0.5)*0.3,vy:(Math.random()-0.5)*0.3,
+      r:Math.random()*1.5+0.5,
+      a:Math.random()*0.3+0.05
+    });
+  }
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    for(const p of particles){
+      p.x+=p.vx;p.y+=p.vy;
+      if(p.x<0)p.x=W;if(p.x>W)p.x=0;
+      if(p.y<0)p.y=H;if(p.y>H)p.y=0;
+      ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx.fillStyle=`rgba(255,59,92,${p.a})`;ctx.fill();
+    }
+    // Connect nearby
+    for(let i=0;i<particles.length;i++){
+      for(let j=i+1;j<particles.length;j++){
+        const d=Math.hypot(particles[i].x-particles[j].x,particles[i].y-particles[j].y);
+        if(d<150){
+          ctx.beginPath();ctx.moveTo(particles[i].x,particles[i].y);
+          ctx.lineTo(particles[j].x,particles[j].y);
+          ctx.strokeStyle=`rgba(255,59,92,${0.06*(1-d/150)})`;
+          ctx.lineWidth=0.5;ctx.stroke();
+        }
+      }
+    }
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+// =============================================
+// COUNTER ANIMATION
+// =============================================
+document.querySelectorAll('[data-count]').forEach(el=>{
+  const target=parseInt(el.dataset.count);
+  let current=0;
+  const dur=2000;
+  const start=performance.now();
+  function tick(now){
+    const t=Math.min((now-start)/dur,1);
+    const ease=1-Math.pow(1-t,3);
+    current=Math.round(target*ease);
+    el.textContent=current.toLocaleString();
+    if(t<1)requestAnimationFrame(tick);
+  }
+  // Start when visible
+  const obs=new IntersectionObserver(entries=>{
+    if(entries[0].isIntersecting){requestAnimationFrame(tick);obs.disconnect()}
+  });
+  obs.observe(el);
+});
+
+// =============================================
+// FORCE-DIRECTED GRAPH (Canvas)
+// =============================================
+(function(){
+  const container=document.getElementById('force-graph-container');
+  const canvas=document.getElementById('force-canvas');
+  const ctx=canvas.getContext('2d');
+  const tooltip=document.getElementById('graph-tooltip');
+  let W,H,dpr;
+
+  function resize(){
+    const rect=container.getBoundingClientRect();
+    dpr=window.devicePixelRatio||1;
+    W=rect.width;H=rect.height;
+    canvas.width=W*dpr;canvas.height=H*dpr;
+    canvas.style.width=W+'px';canvas.style.height=H+'px';
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+  }
+  window.addEventListener('resize',resize);resize();
+
+  // Build nodes
+  const allEntities=[...PERSONS,...INSTITUTIONS];
+  const maxScore=484187;
+  const nodes=allEntities.map((e,i)=>{
+    const s=Math.sqrt(e.score/maxScore);
+    const r=clamp(s*45,6,50);
+    return{
+      ...e,
+      x:W/2+(Math.random()-0.5)*W*0.6,
+      y:H/2+(Math.random()-0.5)*H*0.6,
+      vx:0,vy:0,r,
+      color:CAT_COLORS[e.cat]||'#888',
+      pinned:false
+    };
+  });
+  const nodeMap={};
+  nodes.forEach(n=>nodeMap[n.id]=n);
+
+  // Build edges
+  const edges=EDGES.filter(e=>nodeMap[e[0]]&&nodeMap[e[1]]).map(e=>({
+    source:nodeMap[e[0]],target:nodeMap[e[1]],weight:e[2]
+  }));
+  const maxEdge=800;
+
+  let zoom=1,panX=0,panY=0;
+  let dragNode=null,hoverNode=null,selectedNode=null;
+  let mouseX=0,mouseY=0;
+  let animTime=0;
+
+  // Transform helpers
+  function screenToWorld(sx,sy){return{x:(sx-panX)/zoom,y:(sy-panY)/zoom}}
+  function worldToScreen(wx,wy){return{x:wx*zoom+panX,y:wy*zoom+panY}}
+
+  // Physics
+  function simulate(){
+    const alpha=0.15;
+    // Center gravity
+    for(const n of nodes){
+      if(n.pinned)continue;
+      n.vx+=(W/2-n.x)*0.0005;
+      n.vy+=(H/2-n.y)*0.0005;
+    }
+    // Repulsion
+    for(let i=0;i<nodes.length;i++){
+      for(let j=i+1;j<nodes.length;j++){
+        const a=nodes[i],b=nodes[j];
+        let dx=a.x-b.x,dy=a.y-b.y;
+        let d=Math.sqrt(dx*dx+dy*dy)||1;
+        const minD=a.r+b.r+30;
+        const force=Math.min(800/(d*d),5);
+        const fx=dx/d*force,fy=dy/d*force;
+        if(!a.pinned){a.vx+=fx;a.vy+=fy}
+        if(!b.pinned){b.vx-=fx;b.vy-=fy}
+      }
+    }
+    // Attraction (edges)
+    for(const e of edges){
+      const dx=e.target.x-e.source.x,dy=e.target.y-e.source.y;
+      const d=Math.sqrt(dx*dx+dy*dy)||1;
+      const strength=0.0003*(e.weight/maxEdge);
+      const targetDist=100+e.source.r+e.target.r;
+      const force=(d-targetDist)*strength;
+      const fx=dx/d*force,fy=dy/d*force;
+      if(!e.source.pinned){e.source.vx+=fx;e.source.vy+=fy}
+      if(!e.target.pinned){e.target.vx-=fx;e.target.vy-=fy}
+    }
+    // Apply velocity
+    for(const n of nodes){
+      if(n.pinned)continue;
+      n.vx*=0.85;n.vy*=0.85;
+      n.x+=n.vx;n.y+=n.vy;
+      // Bounds
+      n.x=clamp(n.x,n.r,W-n.r);
+      n.y=clamp(n.y,n.r,H-n.r);
+    }
+  }
+
+  // Particle effects along edges
+  const edgeParticles=[];
+  function spawnEdgeParticle(){
+    if(edges.length===0)return;
+    const e=edges[Math.floor(Math.random()*edges.length)];
+    edgeParticles.push({
+      edge:e,t:0,speed:0.003+Math.random()*0.005,
+      color:e.source.color
+    });
+  }
+
+  // Draw
+  function draw(){
+    animTime+=0.016;
+    simulate();
+    if(Math.random()<0.15)spawnEdgeParticle();
+
+    ctx.clearRect(0,0,W,H);
+    ctx.save();
+    ctx.translate(panX,panY);
+    ctx.scale(zoom,zoom);
+
+    // Edges
+    for(const e of edges){
+      const alpha=selectedNode?
+        (selectedNode===e.source||selectedNode===e.target?0.6:0.04):
+        0.08+0.25*(e.weight/maxEdge);
+      const w=clamp(e.weight/maxEdge*4,0.5,4);
+      ctx.beginPath();
+      ctx.moveTo(e.source.x,e.source.y);
+      ctx.lineTo(e.target.x,e.target.y);
+      ctx.strokeStyle=`rgba(255,255,255,${alpha})`;
+      ctx.lineWidth=w/zoom;
+      ctx.stroke();
+    }
+
+    // Edge particles
+    for(let i=edgeParticles.length-1;i>=0;i--){
+      const p=edgeParticles[i];
+      p.t+=p.speed;
+      if(p.t>1){edgeParticles.splice(i,1);continue}
+      const x=lerp(p.edge.source.x,p.edge.target.x,p.t);
+      const y=lerp(p.edge.source.y,p.edge.target.y,p.t);
+      const a=Math.sin(p.t*Math.PI)*0.6;
+      ctx.beginPath();ctx.arc(x,y,2/zoom,0,Math.PI*2);
+      ctx.fillStyle=p.color.replace(')',`,${a})`).replace('rgb','rgba');
+      ctx.fill();
+    }
+
+    // Nodes
+    for(const n of nodes){
+      const isSelected=selectedNode===n;
+      const isConnected=selectedNode&&edges.some(e=>(e.source===selectedNode&&e.target===n)||(e.target===selectedNode&&e.source===n));
+      const isHovered=hoverNode===n;
+      const dimmed=selectedNode&&!isSelected&&!isConnected;
+
+      // Glow
+      if(isHovered||isSelected){
+        const grd=ctx.createRadialGradient(n.x,n.y,n.r,n.x,n.y,n.r*3);
+        grd.addColorStop(0,n.color.replace(')',',0.3)').replace('rgb','rgba'));
+        grd.addColorStop(1,'transparent');
+        ctx.beginPath();ctx.arc(n.x,n.y,n.r*3,0,Math.PI*2);
+        ctx.fillStyle=grd;ctx.fill();
+      }
+
+      // Pulse ring
+      if(isSelected){
+        const pulseR=n.r+5+Math.sin(animTime*3)*4;
+        ctx.beginPath();ctx.arc(n.x,n.y,pulseR,0,Math.PI*2);
+        ctx.strokeStyle=n.color.replace(')',',0.4)').replace('rgb','rgba');
+        ctx.lineWidth=1.5/zoom;ctx.stroke();
+      }
+
+      // Node circle
+      const alpha=dimmed?0.15:1;
+      ctx.beginPath();ctx.arc(n.x,n.y,n.r,0,Math.PI*2);
+      const grad=ctx.createRadialGradient(n.x-n.r*0.3,n.y-n.r*0.3,0,n.x,n.y,n.r);
+      grad.addColorStop(0,n.color);
+      grad.addColorStop(1,n.color.replace(')',',0.6)').replace('rgb','rgba'));
+      ctx.fillStyle=grad;
+      ctx.globalAlpha=alpha;
+      ctx.fill();
+      ctx.strokeStyle='rgba(255,255,255,0.2)';
+      ctx.lineWidth=1/zoom;
+      ctx.stroke();
+      ctx.globalAlpha=1;
+
+      // Label
+      if(n.r*zoom>8||isHovered||isSelected){
+        const fontSize=clamp(10/zoom,8,14);
+        ctx.font=`600 ${fontSize}px Inter,sans-serif`;
+        ctx.textAlign='center';
+        ctx.textBaseline='top';
+        ctx.fillStyle=dimmed?'rgba(255,255,255,0.15)':'rgba(255,255,255,0.9)';
+        const shortName=n.name.split(' ').pop();
+        ctx.fillText(shortName,n.x,n.y+n.r+4/zoom);
+      }
+    }
+
+    ctx.restore();
+    requestAnimationFrame(draw);
+  }
+
+  // Interaction
+  function getNodeAt(sx,sy){
+    const w=screenToWorld(sx,sy);
+    for(let i=nodes.length-1;i>=0;i--){
+      if(Math.hypot(w.x-nodes[i].x,w.y-nodes[i].y)<=nodes[i].r)return nodes[i];
+    }
+    return null;
+  }
+
+  canvas.addEventListener('mousemove',e=>{
+    const rect=canvas.getBoundingClientRect();
+    mouseX=e.clientX-rect.left;mouseY=e.clientY-rect.top;
+    const n=getNodeAt(mouseX,mouseY);
+    hoverNode=n;
+    canvas.style.cursor=n?'pointer':'grab';
+    if(dragNode){
+      const w=screenToWorld(mouseX,mouseY);
+      dragNode.x=w.x;dragNode.y=w.y;
+      dragNode.vx=0;dragNode.vy=0;
+    }
+    // Tooltip
+    if(n&&!dragNode){
+      tooltip.classList.add('visible');
+      tooltip.style.left=Math.min(mouseX+16,W-220)+'px';
+      tooltip.style.top=Math.min(mouseY+16,H-100)+'px';
+      document.getElementById('tt-name').textContent=n.name;
+      document.getElementById('tt-cat').textContent=n.cat;
+      document.getElementById('tt-cat').style.color=n.color;
+      const connCount=edges.filter(e=>e.source===n||e.target===n).length;
+      document.getElementById('tt-score').innerHTML=
+        `Composite Score: <span>${n.score.toLocaleString()}</span><br>Connections: <span>${connCount}</span>`;
+    } else {
+      tooltip.classList.remove('visible');
+    }
+  });
+
+  canvas.addEventListener('mousedown',e=>{
+    const rect=canvas.getBoundingClientRect();
+    const sx=e.clientX-rect.left,sy=e.clientY-rect.top;
+    const n=getNodeAt(sx,sy);
+    if(n){dragNode=n;n.pinned=true;canvas.style.cursor='grabbing'}
+  });
+
+  canvas.addEventListener('mouseup',()=>{
+    if(dragNode){
+      dragNode.pinned=false;
+      dragNode=null;
+    }
+  });
+
+  canvas.addEventListener('click',e=>{
+    const rect=canvas.getBoundingClientRect();
+    const n=getNodeAt(e.clientX-rect.left,e.clientY-rect.top);
+    selectedNode=selectedNode===n?null:n;
+  });
+
+  canvas.addEventListener('wheel',e=>{
+    e.preventDefault();
+    const rect=canvas.getBoundingClientRect();
+    const mx=e.clientX-rect.left,my=e.clientY-rect.top;
+    const oldZoom=zoom;
+    zoom*=e.deltaY<0?1.1:0.9;
+    zoom=clamp(zoom,0.2,5);
+    panX=mx-(mx-panX)*(zoom/oldZoom);
+    panY=my-(my-panY)*(zoom/oldZoom);
+  },{passive:false});
+
+  document.getElementById('btn-zoom-in').onclick=()=>{zoom=clamp(zoom*1.3,0.2,5)};
+  document.getElementById('btn-zoom-out').onclick=()=>{zoom=clamp(zoom*0.7,0.2,5)};
+  document.getElementById('btn-reset').onclick=()=>{zoom=1;panX=0;panY=0;selectedNode=null};
+
+  // Touch support
+  let touchId=null;
+  canvas.addEventListener('touchstart',e=>{
+    e.preventDefault();
+    const t=e.touches[0];
+    const rect=canvas.getBoundingClientRect();
+    const sx=t.clientX-rect.left,sy=t.clientY-rect.top;
+    mouseX=sx;mouseY=sy;
+    const n=getNodeAt(sx,sy);
+    if(n){dragNode=n;n.pinned=true;touchId=t.identifier}
+  },{passive:false});
+  canvas.addEventListener('touchmove',e=>{
+    e.preventDefault();
+    const t=Array.from(e.touches).find(x=>x.identifier===touchId)||e.touches[0];
+    const rect=canvas.getBoundingClientRect();
+    mouseX=t.clientX-rect.left;mouseY=t.clientY-rect.top;
+    if(dragNode){
+      const w=screenToWorld(mouseX,mouseY);
+      dragNode.x=w.x;dragNode.y=w.y;dragNode.vx=0;dragNode.vy=0;
+    }
+  },{passive:false});
+  canvas.addEventListener('touchend',()=>{if(dragNode){dragNode.pinned=false;dragNode=null}touchId=null});
+
+  draw();
+})();
+
+// =============================================
+// HEATMAP (SVG)
+// =============================================
+(function(){
+  const top15=PERSONS.slice(0,15);
+  const n=top15.length;
+  const cellSize=36;
+  const labelW=110;
+  const margin={top:120,left:labelW,right:20,bottom:20};
+  const svgW=margin.left+n*cellSize+margin.right;
+  const svgH=margin.top+n*cellSize+margin.bottom;
+
+  const svg=document.getElementById('heatmap-svg');
+  svg.setAttribute('viewBox',`0 0 ${svgW} ${svgH}`);
+  svg.setAttribute('width',Math.min(svgW,700));
+  svg.setAttribute('height',Math.min(svgH,700));
+  svg.style.maxWidth='100%';svg.style.height='auto';
+
+  // Build co-occurrence matrix
+  const edgeMap={};
+  EDGES.forEach(([a,b,w])=>{edgeMap[a+'|'+b]=w;edgeMap[b+'|'+a]=w});
+  const matrix=[];
+  for(let i=0;i<n;i++){
+    matrix[i]=[];
+    for(let j=0;j<n;j++){
+      if(i===j)matrix[i][j]=top15[i].score/1000;
+      else matrix[i][j]=edgeMap[top15[i].id+'|'+top15[j].id]||0;
+    }
+  }
+  const maxVal=800;
+
+  // Color scale
+  function heatColor(v){
+    const t=clamp(v/maxVal,0,1);
+    if(t<0.01)return'rgba(255,255,255,0.02)';
+    const r=Math.round(lerp(30,255,t));
+    const g=Math.round(lerp(15,59,t*0.5));
+    const b=Math.round(lerp(40,92,t));
+    return`rgb(${r},${g},${b})`;
+  }
+
+  let svgHTML='<defs><filter id="glow-h"><feGaussianBlur stdDeviation="2" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>';
+
+  // Column labels (rotated)
+  for(let j=0;j<n;j++){
+    const x=margin.left+j*cellSize+cellSize/2;
+    const y=margin.top-8;
+    const shortName=top15[j].name.split(' ').pop();
+    svgHTML+=`<text x="${x}" y="${y}" fill="${CAT_COLORS[top15[j].cat]||'#888'}" font-size="10" font-family="Inter,sans-serif" font-weight="600" text-anchor="end" transform="rotate(-50,${x},${y})">${shortName}</text>`;
+  }
+
+  // Row labels
+  for(let i=0;i<n;i++){
+    const y=margin.top+i*cellSize+cellSize/2+4;
+    const shortName=top15[i].name.split(' ').pop();
+    svgHTML+=`<text x="${margin.left-8}" y="${y}" fill="${CAT_COLORS[top15[i].cat]||'#888'}" font-size="10" font-family="Inter,sans-serif" font-weight="600" text-anchor="end">${shortName}</text>`;
+  }
+
+  // Cells
+  for(let i=0;i<n;i++){
+    for(let j=0;j<n;j++){
+      const x=margin.left+j*cellSize;
+      const y=margin.top+i*cellSize;
+      const v=matrix[i][j];
+      const color=i===j?CAT_COLORS[top15[i].cat]||'#444':heatColor(v);
+      const opacity=i===j?0.3:1;
+      svgHTML+=`<rect x="${x+1}" y="${y+1}" width="${cellSize-2}" height="${cellSize-2}" rx="4" fill="${color}" opacity="${opacity}"><title>${top15[i].name.split(' ').pop()} × ${top15[j].name.split(' ').pop()}: ${i===j?'self':v}</title></rect>`;
+      if(v>100&&i!==j){
+        svgHTML+=`<text x="${x+cellSize/2}" y="${y+cellSize/2+3}" fill="white" font-size="8" font-family="JetBrains Mono,monospace" text-anchor="middle" opacity="0.8">${v}</text>`;
+      }
+    }
+  }
+
+  svg.innerHTML=svgHTML;
+})();
+
+// =============================================
+// CHORD DIAGRAM (SVG)
+// =============================================
+(function(){
+  const svg=document.getElementById('chord-svg');
+  const size=480;const cx=size/2;const cy=size/2;const outerR=size/2-50;const innerR=outerR-18;
+  svg.setAttribute('viewBox',`0 0 ${size} ${size}`);
+  svg.setAttribute('width',size);svg.setAttribute('height',size);
+  svg.style.maxWidth='100%';svg.style.height='auto';
+
+  // Financial nodes: persons with finance connections + institutions
+  const finPersons=['black','staley','wexner','gates','barak','maxwell','trump','kushner'];
+  const finInst=['jpmorgan','deutsche','hapoalim','signature'];
+  const chordNodes=[...finPersons,...finInst];
+  const n=chordNodes.length;
+
+  // Lookup
+  const allEntities=[...PERSONS,...INSTITUTIONS];
+  const entityMap={};allEntities.forEach(e=>entityMap[e.id]=e);
+
+  // Build matrix
+  const edgeMap={};
+  EDGES.forEach(([a,b,w])=>{
+    if(chordNodes.includes(a)&&chordNodes.includes(b)){
+      edgeMap[a+'|'+b]=(edgeMap[a+'|'+b]||0)+w;
+      edgeMap[b+'|'+a]=(edgeMap[b+'|'+a]||0)+w;
+    }
+  });
+  const mat=[];
+  for(let i=0;i<n;i++){
+    mat[i]=[];
+    for(let j=0;j<n;j++){
+      mat[i][j]=edgeMap[chordNodes[i]+'|'+chordNodes[j]]||0;
+    }
+  }
+
+  // Compute arc sizes proportional to total connections
+  const totals=mat.map(row=>row.reduce((s,v)=>s+v,0));
+  const grandTotal=totals.reduce((s,v)=>s+v,0)||1;
+  const gap=0.03;
+  const totalGap=gap*n;
+  const available=Math.PI*2-totalGap;
+
+  const arcs=[];
+  let angle=0;
+  for(let i=0;i<n;i++){
+    const span=Math.max(available*(totals[i]/grandTotal),0.02);
+    arcs.push({start:angle,end:angle+span,id:chordNodes[i]});
+    angle+=span+gap;
+  }
+
+  function arcPath(startA,endA,r){
+    const x1=cx+Math.cos(startA)*r,y1=cy+Math.sin(startA)*r;
+    const x2=cx+Math.cos(endA)*r,y2=cy+Math.sin(endA)*r;
+    const large=endA-startA>Math.PI?1:0;
+    return`M${x1},${y1} A${r},${r} 0 ${large} 1 ${x2},${y2}`;
+  }
+
+  let html='<defs><filter id="glow-c"><feGaussianBlur stdDeviation="3" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>';
+
+  // Outer arcs
+  for(let i=0;i<n;i++){
+    const e=entityMap[chordNodes[i]];
+    const col=CAT_COLORS[e?.cat]||'#888';
+    html+=`<path d="${arcPath(arcs[i].start,arcs[i].end,outerR)} L${cx+Math.cos(arcs[i].end)*innerR},${cy+Math.sin(arcs[i].end)*innerR} ${arcPath(arcs[i].end,arcs[i].start,innerR).replace('M','L')} Z" fill="${col}" opacity="0.7"/>`;
+    // Label
+    const midA=(arcs[i].start+arcs[i].end)/2;
+    const lR=outerR+16;
+    const lx=cx+Math.cos(midA)*lR,ly=cy+Math.sin(midA)*lR;
+    const rot=midA*180/Math.PI+(midA>Math.PI/2&&midA<Math.PI*1.5?180:0);
+    const anchor=midA>Math.PI/2&&midA<Math.PI*1.5?'end':'start';
+    const shortName=e?e.name.split(' ').pop():chordNodes[i];
+    html+=`<text x="${lx}" y="${ly}" fill="${col}" font-size="9" font-family="Inter,sans-serif" font-weight="600" text-anchor="${anchor}" transform="rotate(${rot},${lx},${ly})">${shortName}</text>`;
+  }
+
+  // Chords
+  for(let i=0;i<n;i++){
+    for(let j=i+1;j<n;j++){
+      if(mat[i][j]===0)continue;
+      const w=mat[i][j];
+      const aFrac=totals[i]>0?w/totals[i]:0;
+      const bFrac=totals[j]>0?w/totals[j]:0;
+      const a1=arcs[i].start,a2=arcs[i].start+(arcs[i].end-arcs[i].start)*aFrac;
+      const b1=arcs[j].start,b2=arcs[j].start+(arcs[j].end-arcs[j].start)*bFrac;
+      const ax1=cx+Math.cos(a1)*innerR,ay1=cy+Math.sin(a1)*innerR;
+      const ax2=cx+Math.cos(a2)*innerR,ay2=cy+Math.sin(a2)*innerR;
+      const bx1=cx+Math.cos(b1)*innerR,by1=cy+Math.sin(b1)*innerR;
+      const bx2=cx+Math.cos(b2)*innerR,by2=cy+Math.sin(b2)*innerR;
+      const la=a2-a1>Math.PI?1:0;
+      const lb=b2-b1>Math.PI?1:0;
+      const col=CAT_COLORS[entityMap[chordNodes[i]]?.cat]||'#888';
+      html+=`<path d="M${ax1},${ay1} A${innerR},${innerR} 0 ${la} 1 ${ax2},${ay2} Q${cx},${cy} ${bx1},${by1} A${innerR},${innerR} 0 ${lb} 1 ${bx2},${by2} Q${cx},${cy} ${ax1},${ay1}" fill="${col}" opacity="0.15" stroke="${col}" stroke-width="0.5" stroke-opacity="0.3" filter="url(#glow-c)"><title>${entityMap[chordNodes[i]]?.name} — ${entityMap[chordNodes[j]]?.name}: ${w}</title></path>`;
+    }
+  }
+
+  svg.innerHTML=html;
+})();
+
+// =============================================
+// SANKEY / FLOW DIAGRAM (SVG)
+// =============================================
+(function(){
+  const svg=document.getElementById('sankey-svg');
+  const W=1000,H=500;
+  svg.setAttribute('viewBox',`0 0 ${W} ${H}`);
+  svg.setAttribute('width',W);svg.setAttribute('height',H);
+  svg.style.maxWidth='100%';svg.style.height='auto';
+
+  // Columns: Recruiters | Victims/Process | Locations | Enablers | Institutions
+  const cols=[
+    {x:40,label:'Recruiters',items:[
+      {name:'Maxwell',val:500,color:'#ff3b5c'},
+      {name:'Brunel',val:200,color:'#ff3b5c'},
+      {name:'Kellen',val:150,color:'#ff3b5c'},
+    ]},
+    {x:240,label:'Operations',items:[
+      {name:'Recruitment',val:400,color:'#f472b6'},
+      {name:'Transportation',val:300,color:'#c084fc'},
+      {name:'Surveillance',val:200,color:'#f59e0b'},
+    ]},
+    {x:460,label:'Locations',items:[
+      {name:'Little St James',val:418,color:'#22d3ee'},
+      {name:'Zorro Ranch',val:350,color:'#22d3ee'},
+      {name:'Mar-a-Lago',val:86,color:'#22d3ee'},
+    ]},
+    {x:680,label:'Enablers',items:[
+      {name:'Dershowitz',val:280,color:'#38bdf8'},
+      {name:'Acosta',val:200,color:'#38bdf8'},
+      {name:'Pr. Andrew',val:160,color:'#38bdf8'},
+      {name:'Clinton',val:120,color:'#60a5fa'},
+    ]},
+    {x:880,label:'Finance',items:[
+      {name:'JP Morgan',val:300,color:'#34d399'},
+      {name:'Deutsche Bank',val:200,color:'#34d399'},
+      {name:'Leon Black',val:150,color:'#34d399'},
+    ]},
+  ];
+
+  let html='<defs><linearGradient id="sg1" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#ff3b5c" stop-opacity="0.25"/><stop offset="100%" stop-color="#f472b6" stop-opacity="0.15"/></linearGradient><linearGradient id="sg2" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#f472b6" stop-opacity="0.25"/><stop offset="100%" stop-color="#22d3ee" stop-opacity="0.15"/></linearGradient><linearGradient id="sg3" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#22d3ee" stop-opacity="0.25"/><stop offset="100%" stop-color="#38bdf8" stop-opacity="0.15"/></linearGradient><linearGradient id="sg4" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#38bdf8" stop-opacity="0.25"/><stop offset="100%" stop-color="#34d399" stop-opacity="0.15"/></linearGradient><filter id="glow-s"><feGaussianBlur stdDeviation="4" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>';
+
+  // Layout nodes
+  const nodeW=80;
+  const colData=cols.map(col=>{
+    const totalVal=col.items.reduce((s,i)=>s+i.val,0);
+    const availH=H-80;
+    const gap=12;
+    const totalGap=(col.items.length-1)*gap;
+    const scale=(availH-totalGap)/totalVal;
+    let y=50;
+    const laid=col.items.map(item=>{
+      const h=Math.max(item.val*scale,14);
+      const node={...item,x:col.x,y,h,w:nodeW};
+      y+=h+gap;
+      return node;
+    });
+    return{...col,nodes:laid};
+  });
+
+  // Column headers
+  for(const col of colData){
+    html+=`<text x="${col.x+nodeW/2}" y="28" fill="rgba(255,255,255,0.5)" font-size="11" font-family="JetBrains Mono,monospace" text-anchor="middle" letter-spacing="1">${col.label.toUpperCase()}</text>`;
+  }
+
+  // Links between columns
+  const gradIds=['sg1','sg2','sg3','sg4'];
+  for(let c=0;c<colData.length-1;c++){
+    const left=colData[c].nodes;
+    const right=colData[c+1].nodes;
+    const gradId=gradIds[c];
+    // Connect each left to each right proportionally
+    for(const ln of left){
+      for(const rn of right){
+        const flow=Math.min(ln.val,rn.val)*0.4;
+        const thickness=Math.max(flow/50,1.5);
+        const ly=ln.y+ln.h/2;
+        const ry=rn.y+rn.h/2;
+        const cpx1=ln.x+nodeW+(colData[c+1].x-ln.x-nodeW)*0.4;
+        const cpx2=ln.x+nodeW+(colData[c+1].x-ln.x-nodeW)*0.6;
+        html+=`<path d="M${ln.x+nodeW},${ly} C${cpx1},${ly} ${cpx2},${ry} ${rn.x},${ry}" fill="none" stroke="url(#${gradId})" stroke-width="${thickness}" filter="url(#glow-s)"/>`;
+      }
+    }
+  }
+
+  // Node rectangles
+  for(const col of colData){
+    for(const n of col.nodes){
+      html+=`<rect x="${n.x}" y="${n.y}" width="${n.w}" height="${n.h}" rx="6" fill="${n.color}" opacity="0.2" stroke="${n.color}" stroke-width="1" stroke-opacity="0.5"/>`;
+      html+=`<rect x="${n.x}" y="${n.y}" width="3" height="${n.h}" rx="1.5" fill="${n.color}" opacity="0.8"/>`;
+      const fontSize=n.h<20?8:10;
+      html+=`<text x="${n.x+12}" y="${n.y+n.h/2+3}" fill="white" font-size="${fontSize}" font-family="Inter,sans-serif" font-weight="600" opacity="0.9">${n.name}</text>`;
+    }
+  }
+
+  svg.innerHTML=html;
+})();
+
+// =============================================
+// TIMELINE
+// =============================================
+(function(){
+  const container=document.getElementById('timeline');
+  TIMELINE_DATA.forEach((ev,i)=>{
+    const div=document.createElement('div');
+    div.className='tl-event';
+    div.style.animationDelay=(i*0.12)+'s';
+    div.innerHTML=`<div class="tl-year">${ev.year}</div><div class="tl-text">${ev.text}</div>`;
+    container.appendChild(div);
+  });
+})();
+
+// =============================================
+// SCROLL REVEAL
+// =============================================
+(function(){
+  const els=document.querySelectorAll('.fade-up,.glass-card');
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){e.target.style.opacity='1';e.target.style.transform='translateY(0)'}
+    });
+  },{threshold:0.1,rootMargin:'0px 0px -50px 0px'});
+  els.forEach(el=>obs.observe(el));
+})();
+</script>
+</body>
+</html>
