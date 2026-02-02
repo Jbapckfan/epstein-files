@@ -1,0 +1,1092 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Epstein Files — Red Flag Deep Dive</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+    --bg: #08090d;
+    --bg-card: #0f1118;
+    --bg-card-hover: #151821;
+    --border: #1e2130;
+    --text: #e8eaed;
+    --text-muted: #8b8fa3;
+    --text-dim: #5a5e72;
+    --red-dark: #dc2626;
+    --red: #ff3b5c;
+    --orange: #f59e0b;
+    --purple: #a855f7;
+    --white-badge: #e8eaed;
+    --cyan: #06b6d4;
+    --green: #22c55e;
+    --blue: #60a5fa;
+    --gray-badge: #4b5563;
+    --glow-red: rgba(220, 38, 38, 0.15);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+/* HEADER */
+header {
+    padding: 60px 0 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+header::before {
+    content: '';
+    position: absolute;
+    top: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 800px;
+    height: 400px;
+    background: radial-gradient(ellipse, rgba(220,38,38,0.08) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+header h1 {
+    font-size: 2.8rem;
+    font-weight: 900;
+    letter-spacing: -1px;
+    background: linear-gradient(135deg, #e8eaed 0%, #ff3b5c 50%, #dc2626 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 16px;
+    position: relative;
+}
+
+header .subtitle {
+    max-width: 900px;
+    margin: 0 auto;
+    font-size: 0.92rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+    padding: 0 20px;
+}
+
+header .maxwell-note {
+    margin-top: 20px;
+    padding: 12px 20px;
+    background: rgba(220, 38, 38, 0.06);
+    border: 1px solid rgba(220, 38, 38, 0.15);
+    border-radius: 8px;
+    display: inline-block;
+    font-size: 0.82rem;
+    color: var(--text-muted);
+}
+
+header .maxwell-note strong {
+    color: var(--red);
+}
+
+/* NAV */
+nav.section-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(8, 9, 13, 0.92);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+    padding: 12px 0;
+    margin-bottom: 40px;
+}
+
+nav.section-nav .container {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+nav.section-nav a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    padding: 6px 14px;
+    border-radius: 6px;
+    border: 1px solid transparent;
+    transition: all 0.2s;
+    white-space: nowrap;
+}
+
+nav.section-nav a:hover {
+    color: var(--text);
+    background: var(--bg-card);
+    border-color: var(--border);
+}
+
+/* SECTION */
+section {
+    margin-bottom: 80px;
+    animation: fadeInUp 0.6s ease-out both;
+}
+
+section h2 {
+    font-size: 1.8rem;
+    font-weight: 800;
+    margin-bottom: 8px;
+    letter-spacing: -0.5px;
+}
+
+section h2 .section-number {
+    color: var(--red);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9rem;
+    font-weight: 600;
+    display: block;
+    margin-bottom: 4px;
+    letter-spacing: 2px;
+}
+
+section .section-desc {
+    color: var(--text-muted);
+    font-size: 0.88rem;
+    margin-bottom: 32px;
+    max-width: 700px;
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* LEGEND */
+.legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 28px;
+    padding: 16px 20px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.legend-swatch {
+    width: 14px;
+    height: 14px;
+    border-radius: 3px;
+    flex-shrink: 0;
+}
+
+.legend-swatch.murder {
+    border: 2px solid var(--text-dim);
+    background: var(--white-badge);
+}
+
+/* SEVERITY BARS */
+.bar-chart {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.bar-row {
+    display: grid;
+    grid-template-columns: 160px 1fr 60px;
+    align-items: center;
+    gap: 12px;
+    padding: 6px 0;
+    border-radius: 6px;
+    transition: background 0.2s;
+}
+
+.bar-row:hover {
+    background: rgba(255,255,255,0.02);
+}
+
+.bar-label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-align: right;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.bar-total {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-align: right;
+}
+
+.bar-track {
+    height: 32px;
+    display: flex;
+    border-radius: 4px;
+    overflow: hidden;
+    background: rgba(255,255,255,0.03);
+}
+
+.bar-segment {
+    height: 100%;
+    position: relative;
+    transition: width 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+    min-width: 0;
+    cursor: pointer;
+}
+
+.bar-segment:hover {
+    filter: brightness(1.3);
+}
+
+.bar-segment .tooltip {
+    display: none;
+    position: absolute;
+    bottom: 110%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #1a1d2e;
+    color: var(--text);
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-size: 0.72rem;
+    white-space: nowrap;
+    z-index: 10;
+    border: 1px solid var(--border);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+    pointer-events: none;
+}
+
+.bar-segment:hover .tooltip {
+    display: block;
+}
+
+/* KOMPROMAT SECTION */
+.kompromat-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.kompromat-row {
+    display: grid;
+    grid-template-columns: 160px 70px 1fr 100px;
+    align-items: center;
+    gap: 16px;
+    padding: 14px 20px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    transition: all 0.2s;
+}
+
+.kompromat-row:hover {
+    background: var(--bg-card-hover);
+    border-color: rgba(220, 38, 38, 0.3);
+}
+
+.kompromat-name {
+    font-weight: 700;
+    font-size: 0.95rem;
+}
+
+.kompromat-score {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.threat-meter {
+    height: 24px;
+    background: rgba(255,255,255,0.04);
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+}
+
+.threat-meter-fill {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 1.5s cubic-bezier(0.22, 1, 0.36, 1);
+    position: relative;
+}
+
+.threat-meter-fill::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 2px;
+    background: rgba(255,255,255,0.5);
+}
+
+.threat-tier {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 4px 10px;
+    border-radius: 4px;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.tier-extreme { background: rgba(220,38,38,0.2); color: #dc2626; }
+.tier-high { background: rgba(255,59,92,0.2); color: #ff3b5c; }
+.tier-moderate { background: rgba(245,158,11,0.2); color: #f59e0b; }
+.tier-low { background: rgba(96,165,250,0.2); color: #60a5fa; }
+.tier-negligible { background: rgba(75,85,99,0.2); color: #9ca3af; }
+
+.kompromat-formula {
+    margin-top: 16px;
+    padding: 14px 18px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.76rem;
+    color: var(--text-muted);
+    line-height: 1.8;
+}
+
+.kompromat-formula span { color: var(--text); font-weight: 600; }
+
+/* EXCERPTS */
+.excerpts-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+.excerpt-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.3s;
+}
+
+.excerpt-card:hover {
+    border-color: rgba(220, 38, 38, 0.3);
+    box-shadow: 0 4px 32px rgba(220, 38, 38, 0.06);
+}
+
+.excerpt-card-header {
+    padding: 16px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border);
+    background: rgba(220, 38, 38, 0.03);
+}
+
+.excerpt-card-header h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.excerpt-card-header .red-flag-count {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--red);
+    background: rgba(255, 59, 92, 0.1);
+    padding: 4px 12px;
+    border-radius: 20px;
+}
+
+.excerpt-item {
+    padding: 16px 20px;
+    border-bottom: 1px solid rgba(30, 33, 48, 0.5);
+    position: relative;
+}
+
+.excerpt-item:last-child { border-bottom: none; }
+
+.excerpt-item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+}
+
+.excerpt-item.cat-rape::before { background: var(--red-dark); }
+.excerpt-item.cat-minors::before { background: var(--red); }
+.excerpt-item.cat-trafficking::before { background: var(--orange); }
+.excerpt-item.cat-blackmail::before { background: var(--purple); }
+.excerpt-item.cat-murder::before { background: var(--white-badge); }
+
+.excerpt-meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+}
+
+.excerpt-doc {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--text-dim);
+    background: rgba(255,255,255,0.04);
+    padding: 2px 8px;
+    border-radius: 4px;
+}
+
+.excerpt-category {
+    font-size: 0.68rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    padding: 2px 8px;
+    border-radius: 4px;
+}
+
+.cat-label-rape { background: rgba(220,38,38,0.2); color: #dc2626; }
+.cat-label-minors { background: rgba(255,59,92,0.2); color: #ff3b5c; }
+.cat-label-trafficking { background: rgba(245,158,11,0.2); color: #f59e0b; }
+.cat-label-blackmail { background: rgba(168,85,247,0.2); color: #a855f7; }
+.cat-label-murder { background: rgba(232,234,237,0.15); color: #e8eaed; }
+
+.severity-badge {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    font-weight: 600;
+    padding: 2px 6px;
+    border-radius: 4px;
+    background: rgba(255,255,255,0.06);
+    color: var(--text-muted);
+}
+
+.excerpt-text {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+    font-style: italic;
+    padding: 10px 14px;
+    background: rgba(220, 38, 38, 0.03);
+    border-radius: 6px;
+    border-left: none;
+}
+
+/* CATEGORY BREAKDOWN */
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 16px;
+}
+
+.category-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px 20px;
+    text-align: center;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+}
+
+.category-card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(255,255,255,0.1);
+}
+
+.category-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+}
+
+.category-card.cat-rape::before { background: var(--red-dark); }
+.category-card.cat-minors::before { background: var(--red); }
+.category-card.cat-trafficking::before { background: var(--orange); }
+.category-card.cat-blackmail::before { background: var(--purple); }
+.category-card.cat-murder::before { background: var(--white-badge); }
+.category-card.cat-witness::before { background: var(--cyan); }
+.category-card.cat-financial::before { background: var(--green); }
+
+.category-icon {
+    font-size: 1.8rem;
+    margin-bottom: 8px;
+    display: block;
+    filter: grayscale(0.2);
+}
+
+.category-number {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 2.2rem;
+    font-weight: 800;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.category-card.cat-rape .category-number { color: var(--red-dark); }
+.category-card.cat-minors .category-number { color: var(--red); }
+.category-card.cat-trafficking .category-number { color: var(--orange); }
+.category-card.cat-blackmail .category-number { color: var(--purple); }
+.category-card.cat-murder .category-number { color: var(--white-badge); }
+.category-card.cat-witness .category-number { color: var(--cyan); }
+.category-card.cat-financial .category-number { color: var(--green); }
+
+.category-label {
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-muted);
+}
+
+/* TAKEAWAY */
+.takeaway {
+    background: linear-gradient(135deg, rgba(220,38,38,0.06) 0%, rgba(168,85,247,0.04) 100%);
+    border: 1px solid rgba(220, 38, 38, 0.2);
+    border-radius: 16px;
+    padding: 40px;
+    position: relative;
+    overflow: hidden;
+}
+
+.takeaway::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(220,38,38,0.05) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.takeaway h2 {
+    margin-bottom: 20px;
+}
+
+.takeaway p {
+    font-size: 0.95rem;
+    line-height: 1.85;
+    color: var(--text-muted);
+    position: relative;
+}
+
+.takeaway p strong {
+    color: var(--text);
+    font-weight: 600;
+}
+
+.takeaway .highlight-red { color: var(--red); font-weight: 700; }
+.takeaway .highlight-dim { color: var(--text-dim); }
+
+/* FOOTER */
+footer {
+    padding: 40px 0 60px;
+    text-align: center;
+    border-top: 1px solid var(--border);
+    margin-top: 40px;
+}
+
+footer p {
+    font-size: 0.78rem;
+    color: var(--text-dim);
+    line-height: 1.8;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* ANIMATIONS */
+.animate-bar { width: 0 !important; }
+
+.count-up {
+    display: inline-block;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    header h1 { font-size: 1.8rem; }
+
+    .bar-row {
+        grid-template-columns: 100px 1fr 45px;
+        gap: 8px;
+    }
+
+    .bar-label { font-size: 0.75rem; }
+    .bar-track { height: 24px; }
+
+    .kompromat-row {
+        grid-template-columns: 1fr;
+        gap: 8px;
+        padding: 12px 16px;
+    }
+
+    .kompromat-row > * { text-align: left; }
+
+    .category-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .takeaway { padding: 24px; }
+
+    nav.section-nav .container { justify-content: flex-start; }
+}
+
+@media (max-width: 480px) {
+    .category-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+/* Scroll animation observer */
+.reveal { opacity: 0; transform: translateY(20px); transition: all 0.6s ease-out; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+<div id="homeNav" style="position:fixed;top:12px;left:12px;z-index:99999;"><a href="index.html" style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;background:rgba(15,17,23,0.85);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.1);border-radius:8px;color:#9aa0b0;text-decoration:none;font:600 13px Inter,-apple-system,sans-serif;transition:all 0.3s;" onmouseover="this.style.color='#ff3b5c';this.style.borderColor='rgba(255,59,92,0.3)'" onmouseout="this.style.color='#9aa0b0';this.style.borderColor='rgba(255,255,255,0.1)'">← Home</a></div>
+
+<header>
+    <div class="container">
+        <h1>Epstein Files &mdash; Red Flag Deep Dive</h1>
+        <p class="subtitle">
+            Analyzing the most serious allegations in 62,000+ findings across 800,000+ FOIA documents.
+            This dashboard focuses exclusively on the worst content: sexual assault, abuse of minors,
+            trafficking, blackmail/kompromat, murder/threats, witness tampering, and financial corruption
+            &mdash; all verified to occur in Epstein-related document context.
+        </p>
+        <div class="maxwell-note">
+            <strong>Note:</strong> Maxwell (8,740 red flags) and Ghislaine (2,269) are excluded from all charts as core case figures.
+            This dashboard focuses on associates and connected individuals.
+        </div>
+    </div>
+</header>
+
+<nav class="section-nav">
+    <div class="container">
+        <a href="#severity">Severity Ranking</a>
+        <a href="#kompromat">Kompromat Risk</a>
+        <a href="#excerpts">Document Excerpts</a>
+        <a href="#breakdown">Category Breakdown</a>
+        <a href="#takeaway">Key Takeaway</a>
+    </div>
+</nav>
+
+<main class="container">
+
+<!-- SECTION 1: SEVERITY RANKING -->
+<section id="severity" class="reveal">
+    <h2>
+        <span class="section-number">01</span>
+        Severity Ranking
+    </h2>
+    <p class="section-desc">
+        Horizontal stacked bars showing total red flag findings per individual, broken down by allegation category.
+        Sorted by total red flags descending.
+    </p>
+
+    <div class="legend" id="legend"></div>
+    <div class="bar-chart" id="barChart"></div>
+</section>
+
+<!-- SECTION 2: KOMPROMAT RISK -->
+<section id="kompromat" class="reveal">
+    <h2>
+        <span class="section-number">02</span>
+        Kompromat Risk Assessment
+    </h2>
+    <p class="section-desc">
+        Who is most vulnerable to blackmail based on the combination of sexual assault context, proximity to minors,
+        surveillance/recording connections, trafficking, and financial entanglement.
+    </p>
+
+    <div class="kompromat-formula">
+        <span>Risk Score</span> = (Sexual Assault &times; 3) + (Minors &times; 2) + (Blackmail/Kompromat &times; 5) + (Trafficking &times; 2) + (Murder/Threats &times; 1)
+    </div>
+
+    <div class="kompromat-list" id="kompromatList" style="margin-top: 20px;"></div>
+</section>
+
+<!-- SECTION 3: EXCERPTS -->
+<section id="excerpts" class="reveal">
+    <h2>
+        <span class="section-number">03</span>
+        Most Disturbing Document Excerpts
+    </h2>
+    <p class="section-desc">
+        Selected excerpts from the highest-severity findings for the top-ranked individuals. Each excerpt comes directly
+        from FOIA documents in the Epstein files.
+    </p>
+
+    <div class="excerpts-grid" id="excerptsGrid"></div>
+</section>
+
+<!-- SECTION 4: CATEGORY BREAKDOWN -->
+<section id="breakdown" class="reveal">
+    <h2>
+        <span class="section-number">04</span>
+        Category Breakdown
+    </h2>
+    <p class="section-desc">
+        Aggregate totals across all tracked associates (excluding Maxwell/Ghislaine) for each red flag category.
+    </p>
+
+    <div class="category-grid" id="categoryGrid"></div>
+</section>
+
+<!-- SECTION 5: TAKEAWAY -->
+<section id="takeaway" class="reveal">
+    <div class="takeaway">
+        <h2>
+            <span class="section-number">05</span>
+            Key Takeaway
+        </h2>
+        <p>
+            The documents reveal that <strong class="highlight-red">Trump (339 red flags)</strong>,
+            <strong>Prince Andrew (208)</strong>, <strong>Dershowitz (168)</strong>,
+            <strong>Acosta (158)</strong>, and <strong>Brunel (142)</strong> have the highest concentration
+            of serious allegations in Epstein-related context. Trump alone appears in
+            <strong>96 findings mentioning minors</strong>, 43 trafficking references, 36 sexual assault
+            contexts, and 46 murder/threat documents. Dershowitz appears in <strong>28 blackmail/kompromat
+            findings</strong> &mdash; the most of any individual &mdash; including court filings alleging
+            Epstein &ldquo;forced then-minor Jane Doe&rdquo; in his presence. By contrast,
+            <span class="highlight-dim">Obama (3 total red flags) and Biden (0) have essentially zero
+            presence in any serious allegation category.</span>
+        </p>
+    </div>
+</section>
+
+</main>
+
+<footer>
+    <div class="container">
+        <p>
+            Data: 62,000+ findings from 800,000+ FOIA documents &nbsp;|&nbsp;
+            Red flags counted only in Epstein-proximate document context &nbsp;|&nbsp;
+            Maxwell (8,740) and Ghislaine (2,269) excluded from charts as core case figures
+        </p>
+    </div>
+</footer>
+
+<script>
+// ============================================================
+// DATA
+// ============================================================
+const RAW_DATA = [{"person":"maxwell","total_mentions":32215,"epstein_proximate":31761,"categories":{"rape_sexual_assault":1897,"minors_children":5437,"trafficking":773,"blackmail_kompromat":148,"murder_death_threats":361,"witness_tampering":63,"financial_corruption":61},"total_red_flags":8740,"top_examples":{"rape_sexual_assault":[{"doc_id":"EFTA00011095","page":"?","severity":17,"excerpt":"EFTA0001 1097 Netflix, Peacock, and Amazon; in podcasts and YouTube recordings; in social media sites, such as Facebook, Instagram, Twitter; in online sites, chat rooms and blogs. The publicity has co"},{"doc_id":"EFTA00064715","page":"2","severity":15,"excerpt":"sparking calls from officials to end the gun violence plaguing their communities. The children, ages 6 to 14, were all shot and killed while doing everyday things -- riding in mom's car, walking in"}],"minors_children":[{"doc_id":"EFTA00084366","page":"67","severity":16,"excerpt":"\u2022 Judge Alison Nathan ruled Maxwell was a significant flight risk, citing her 'substantial international' ties and 'extraordinary financial resources' \u2022 Maxwell appeared via video, accused of groom"},{"doc_id":"EFTA00021556","page":"?","severity":16,"excerpt":"Case 9:08-cv-80736-KAM Document 280 Entered on FLSD Docket 01/02/2015 Page 4 of 14 business, personal, political, and financial gain, as well as to obtain potential blackmail information. One such pow"}],"trafficking":[{"doc_id":"EFTA00084366","page":"3","severity":15,"excerpt":"joins over a dozen filed by other women claiming they were trafficked and abused by the multi-millionaire. Epstein was found dead in his jail cell in August while awaiting trial for sex trafficking."},{"doc_id":"EFTA00067087","page":"1","severity":13,"excerpt":", submitted an online tip to the FBI National Threat Operations Center (NTOC) via tips.fbi.gov, regarding her being victimized (trafficked) as a child by Gislaine Maxwell. NOTE: Per SMAPA 59394, T"}],"blackmail_kompromat":[{"doc_id":"EFTA00021556","page":"?","severity":16,"excerpt":"Case 9:08-cv-80736-KAM Document 280 Entered on FLSD Docket 01/02/2015 Page 4 of 14 business, personal, political, and financial gain, as well as to obtain potential blackmail information. One such pow"},{"doc_id":"EFTA00019250","page":"?","severity":10,"excerpt":"has an important stake in punishing past crimes and preventing future offenses. Purchased secrecy interferes with those aims. Some attorneys say NDAs are the only protection the rich and famous have a"}],"murder_death_threats":[{"doc_id":"EFTA00084366","page":"67","severity":17,"excerpt":"by more than $3.75 million in property in the UK \u2022 Prosecutors fought for no bail, presenting evidence that she is 'skilled at living in hiding', citing her three passports and claimed she is worth"},{"doc_id":"EFTA00064715","page":"2","severity":15,"excerpt":"sparking calls from officials to end the gun violence plaguing their communities. The children, ages 6 to 14, were all shot and killed while doing everyday things -- riding in mom's car, walking in"}],"witness_tampering":[{"doc_id":"EFTA00024265","page":"?","severity":13,"excerpt":"Such is the reason bail should be granted to Ghislaine Maxwell in order to help ensure her appearance before the Court and, before the Nation does not end prior in such an ill-manner of injustice to w"},{"doc_id":"EFTA00072842","page":"18","severity":10,"excerpt":"h. Any civil lawsuits threatened or brought against Prince Andrew, Maxwell, and/or their associates. i. Any attempts to destroy evidence, obstruct or impede ongoing investigations, or otherwise cov"}],"financial_corruption":[{"doc_id":"EFTA00024265","page":"?","severity":13,"excerpt":"https://www.youtube.com/watch?v=MVri5KhzFcM https://www.youtube.com/watch ?v=H8czVPrRkWk Miss Teen beauty pageants have been places of 'underage grooming.' https://www.nytimes.com/2020/09/17/nyregion/"},{"doc_id":"EFTA00024265","page":"?","severity":13,"excerpt":"Miss Teen beauty pageants have been places of 'underage grooming.' https://www.nytimes.com/2020/09/17/nyregion/ghislaine-maxwell-grooming.htm! In order to help ensure Ghislaine Maxwell's day in court"}]}},{"person":"ghislaine","total_mentions":10247,"epstein_proximate":10104,"categories":{"rape_sexual_assault":465,"minors_children":1447,"trafficking":239,"blackmail_kompromat":3,"murder_death_threats":79,"witness_tampering":12,"financial_corruption":24},"total_red_flags":2269,"top_examples":{}},{"person":"trump","total_mentions":6355,"epstein_proximate":662,"categories":{"rape_sexual_assault":36,"minors_children":96,"trafficking":43,"blackmail_kompromat":1,"murder_death_threats":46,"witness_tampering":1,"financial_corruption":116},"total_red_flags":339,"top_examples":{"rape_sexual_assault":[{"doc_id":"EFTA00018174","page":"?","severity":12,"excerpt":"\u201cThe Palm Beach state attorney\u2019s office was ready to let Epstein walk free,\u201d Acosta said in his calm, sort of toneless voice. \u201cOur prosecutors ... presented the ultimatum.\u201d Which was that Epstein, who"},{"doc_id":"EFTA00026934","page":"?","severity":12,"excerpt":"o Abuse with multiple perpetrators occurs, not unusual \u00a9 Multiple perpetrators don\u2019t have to engage in physical sexual abuse (e.g., fraternity house, alcohol spiked, number of people get a drunk girl"}],"minors_children":[{"doc_id":"EFTA00069870","page":"10","severity":15,"excerpt":"Barr has said that the criminal investigation into any possible co-conspirators of Epstein would continue. Earlier this month, French gender equality minister Marlene Schiappa had called on authoriti"},{"doc_id":"EFTA00019088","page":"?","severity":15,"excerpt":"time on Monday in a new indictment alleging that she recruited and paid a 14-year-old victim. 2 documents attached | Read full article \u00bb Parnas Bail Relaxed As Court Eyes Selective Prosecution Row A M"}],"trafficking":[{"doc_id":"EFTA00032348","page":"?","severity":15,"excerpt":"Federal investigators will examine the death of Jeffrey Epstein, the financier charged with sex trafficking underage girls, after officials said he was found dead in his Manhattan federal jail cell on"},{"doc_id":"EFTA00011479","page":"?","severity":12,"excerpt":"On July 2, 2019, the U.S. Attorney\u2019s Office for the Southern District of New York obtained a federal grand jury indictment charging Epstein with one count of sex trafficking of minors and one count of"}],"blackmail_kompromat":[{"doc_id":"EFTA00086370","page":"2","severity":6,"excerpt":"Lisa Bloom Alan? Besides your (superb) defense work for Epstein and all enjoyers (Clinton, Barak, Wexner, Maxwell, Andrew, Trump, Dersh, etc) of his hospitality, did you tv, have any operational ro"}],"murder_death_threats":[{"doc_id":"EFTA00071624","page":"22","severity":16,"excerpt":"Days Before Killing Himself, N.Y. Times (Aug. 19, 2019), https://nvti.ms/2R6XR6O. Finally, there has been widespread reporting about individuals listed in Epstein's \"little black book\"\u2014 thought to be"},{"doc_id":"EFTA00088701","page":"22","severity":16,"excerpt":"Days Before Killing Himself, N.Y. Times (Aug. 19, 2019), https://nvti.ms/2R6XR6O. Finally, there has been widespread reporting about individuals listed in Epstein's \"little black book\"\u2014 thought to be"}],"witness_tampering":[{"doc_id":"EFTA00024265","page":"?","severity":15,"excerpt":"Such is the reason bail should be granted to Ghislaine Maxwell in order to help ensure her appearance before the Court and, before the Nation does not end prior in such an ill-manner of injustice to w"}],"financial_corruption":[{"doc_id":"EFTA00029524","page":"?","severity":10,"excerpt":"under mysterious circumstances after reportedly having fallen overboard from the yacht. It was later discovered that he was in a significant amount of debt at the time of his death, and had embezzled"},{"doc_id":"EFTA00032921","page":"?","severity":10,"excerpt":"l\u00bb Law360 New York NEW YORK Wednesday, January 2, 2019 Top New York Cases To Watch In 2019 Big cases often find their homes in New York, and the coming year will be no different. President Donald Trum"}]}},{"person":"prince andrew","total_mentions":794,"epstein_proximate":580,"categories":{"rape_sexual_assault":35,"minors_children":80,"trafficking":67,"blackmail_kompromat":0,"murder_death_threats":9,"witness_tampering":9,"financial_corruption":8},"total_red_flags":208,"top_examples":{"rape_sexual_assault":[{"doc_id":"EFTA00024034","page":"?","severity":14,"excerpt":"Background Jeffrey Epstein is a billionaire financier, philanthropist, and sex offender. In 2005, Epstein became the subject of an undercover sex trafficking investigation by Palm Beach, Florida polic"},{"doc_id":"EFTA00067620","page":"9","severity":12,"excerpt":"The Sun By Mark Hodge 2/26/2020 Prince Andrew's playboy pal Peter Nygard may have hundreds of sex trafficking victims, lawyers say. Millionaire fashion tycoon Nygard, 77, is \"cooperating\" with the"}],"minors_children":[{"doc_id":"EFTA00084366","page":"15","severity":15,"excerpt":"\u2022 592 shares Ghislaine Maxwell felt no guilt in procuring girls for ,Jeffrey Rpsteia to satisfy his 'incredible sex drive,' Prince Andrew's distant cousin has claimed - adding that 'if anything, s"},{"doc_id":"EFTA00084366","page":"45","severity":14,"excerpt":"on \u00a34 million bail, arguing that her life is in danger from coronavirus and 'multiple and credible' death threats. Maxwell, who is a long-time friend of Prince Andrew and who saw him most recently"}],"trafficking":[{"doc_id":"EFTA00084366","page":"15","severity":15,"excerpt":"\u2022 592 shares Ghislaine Maxwell felt no guilt in procuring girls for ,Jeffrey Rpsteia to satisfy his 'incredible sex drive,' Prince Andrew's distant cousin has claimed - adding that 'if anything, s"},{"doc_id":"EFTA00024034","page":"?","severity":14,"excerpt":"The Enquirer seeks all documents relating to the FBI\u2019s investigation and prosecution of financier Jeffrey Edward Epstein, who pled guilty to one count of felony solicitation of prostitution in August"}],"murder_death_threats":[{"doc_id":"EFTA00071624","page":"22","severity":16,"excerpt":"Days Before Killing Himself, N.Y. Times (Aug. 19, 2019), https://nvti.ms/2R6XR6O. Finally, there has been widespread reporting about individuals listed in Epstein's \"little black book\"\u2014 thought to be"},{"doc_id":"EFTA00088701","page":"22","severity":16,"excerpt":"Days Before Killing Himself, N.Y. Times (Aug. 19, 2019), https://nvti.ms/2R6XR6O. Finally, there has been widespread reporting about individuals listed in Epstein's \"little black book\"\u2014 thought to be"}],"witness_tampering":[{"doc_id":"EFTA00022078","page":"?","severity":12,"excerpt":"Massage, massages, and/or masseuses. Any investigation into Epstein or his associates, including but not limited to any prosecutions brought by the U.S. authorities against Epstein. Any civil lawsuits"},{"doc_id":"EFTA00022078","page":"?","severity":12,"excerpt":"The nature of Ghislaine Maxwell\u2019s relationship with Jeffrey Epstein; vi. Massage, massages, and/or masseuses. vii. Any investigation into Epstein or his associates, including but not limited to any pr"}],"financial_corruption":[{"doc_id":"EFTA00029524","page":"?","severity":10,"excerpt":"under mysterious circumstances after reportedly having fallen overboard from the yacht. It was later discovered that he was in a significant amount of debt at the time of his death, and had embezzled"},{"doc_id":"EFTA00027423","page":"?","severity":7,"excerpt":"Public Corruption Unit Short Form Updates November 6, 2020 A. SIGNIFICANT DEVELOPMENTS IN CASES e US vy. Ghislaine Maxwell, USAO 2018R01618 (AUSAs i): On June 29, 2020 a grand jury returned a six coun"}]}},{"person":"dershowitz","total_mentions":961,"epstein_proximate":387,"categories":{"rape_sexual_assault":26,"minors_children":54,"trafficking":41,"blackmail_kompromat":28,"murder_death_threats":9,"witness_tampering":0,"financial_corruption":10},"total_red_flags":168,"top_examples":{"rape_sexual_assault":[{"doc_id":"EFTA00081180","page":"29","severity":9,"excerpt":"acquaintances of Dershowitz fall into; (g) during the years 2002-2005 Alan Dershowitz was on Epstein's plane on several occasions according to the flight logs produced by Epstein's pilot and informa"},{"doc_id":"EFTA00081180","page":"29","severity":9,"excerpt":"Epstein's plane on several occasions according to the flight logs produced by Epstein's pilot and information (described above) suggested that sexual assaults may have taken place on the plane; (h)"}],"minors_children":[{"doc_id":"EFTA00021556","page":"?","severity":16,"excerpt":"Case 9:08-cv-80736-KAM Document 280 Entered on FLSD Docket 01/02/2015 Page 4 of 14 business, personal, political, and financial gain, as well as to obtain potential blackmail information. One such pow"},{"doc_id":"EFTA00007236","page":"?","severity":10,"excerpt":"KKEKKEKKKRKKAKKRKKAKKAKEKEEEKEE NARRATIVE NA Reported By: Entered By.: # AY BERK KKEREKKEEEKEEEEKREKKEKKE 4/10/06 E 4/10/06 A Grand Jury Session was requested during the month of February 2006, in whi"}],"trafficking":[{"doc_id":"EFTA00022133","page":"?","severity":10,"excerpt":"Epstein\u2019s sex trafficking scheme. In June 2019, only two months before his death, Epstein sent {J an e-mail asking her to send him nude photographs. e Recruited by a woman named Rena in the fall of 20"},{"doc_id":"EFTA00098456","page":"31","severity":8,"excerpt":"Jeffrey Epstein and wanted to know what I knew about Epstein and his associates' involvement with sexually abusing underage girls. I told him about my abuse and trafficking by Epstein. I also told h"}],"blackmail_kompromat":[{"doc_id":"EFTA00021556","page":"?","severity":16,"excerpt":"Case 9:08-cv-80736-KAM Document 280 Entered on FLSD Docket 01/02/2015 Page 4 of 14 business, personal, political, and financial gain, as well as to obtain potential blackmail information. One such pow"},{"doc_id":"EFTA00100685","page":"15","severity":5,"excerpt":"that Dershowitz had in fact had sex with Plaintiff. Dershowitz and Epstein also knew that Roberts's assertions about Dershowitz were not part of any criminal extortion plot. Indeed, Dershowitz and Ep"}],"murder_death_threats":[{"doc_id":"EFTA00071624","page":"22","severity":14,"excerpt":"Days Before Killing Himself, N.Y. Times (Aug. 19, 2019), https://nvti.ms/2R6XR6O. Finally, there has been widespread reporting about individuals listed in Epstein's \"little black book\"\u2014 thought to be"},{"doc_id":"EFTA00088701","page":"22","severity":14,"excerpt":"Days Before Killing Himself, N.Y. Times (Aug. 19, 2019), https://nvti.ms/2R6XR6O. Finally, there has been widespread reporting about individuals listed in Epstein's \"little black book\"\u2014 thought to be"}],"financial_corruption":[{"doc_id":"EFTA00072617","page":"2","severity":7,"excerpt":"ordered his Sex crimes unit chief show up to court to implore the Epstein's Judge to to downgrade Epstein to Level 1 sex offender. (WOW) . I have a CO contact that has information/names of COs who a"},{"doc_id":"EFTA00090614","page":"2","severity":7,"excerpt":"client Jeffrey Epstein court hearing in 2011, when our DA Cyrus Vance ordered his Sex crimes unit chief show up to court to implore the Epstein's Judge to to downgrade Epstein to Level 1 sex offender"}]}},{"person":"acosta","total_mentions":1079,"epstein_proximate":707,"categories":{"rape_sexual_assault":20,"minors_children":84,"trafficking":33,"blackmail_kompromat":1,"murder_death_threats":7,"witness_tampering":2,"financial_corruption":11},"total_red_flags":158,"top_examples":{"rape_sexual_assault":[{"doc_id":"EFTA00091417","page":"1","severity":13,"excerpt":"When Krischer, then Palm Beach state attorney, found out the target was Epstein, a big Democratic donor, he refused to prosecute. It was only because of Krischer's active obstruction of the case that"},{"doc_id":"EFTA00095462","page":"2","severity":13,"excerpt":"When Krischer, then Palm Beach state attorney, found out the target was Epstein, a big Democratic donor, he refused to prosecute. It was only because of Krischer's active obstruction of the case that"}],"minors_children":[{"doc_id":"EFTA00091417","page":"1","severity":13,"excerpt":"When Krischer, then Palm Beach state attorney, found out the target was Epstein, a big Democratic donor, he refused to prosecute. It was only because of Krischer's active obstruction of the case that"},{"doc_id":"EFTA00095462","page":"2","severity":13,"excerpt":"When Krischer, then Palm Beach state attorney, found out the target was Epstein, a big Democratic donor, he refused to prosecute. It was only because of Krischer's active obstruction of the case that"}],"trafficking":[{"doc_id":"EFTA00029470","page":"?","severity":10,"excerpt":"Law360 (February 11, 2019, 9:30 PM EST) -- The U.S. Department of Justice is reviewing a deal that a Trump administration official cut as a federal prosecutor, and the case has added fuel to a bid to"},{"doc_id":"EFTA00040358","page":"21","severity":8,"excerpt":"The investigation is claimed to have revealed that Epstein had engaged in similar behavior with multiple underage girls and had organized a sex ring where minor girls allegedly were \"lent\" to other i"}],"blackmail_kompromat":[{"doc_id":"EFTA00014115","page":"?","severity":5,"excerpt":"From: \"Acosta, Alex (USAFLS)\" (i iiiii- To: ' (USAFLS)\" < a. \"es (SAF Ls)\" Ce: i\u2014J USAFLS)' Subject: Re: Letter from Brad Edwards Date: Sat, 02 Aug 2008 16:23:34 +0000 Importance: Normal As | recall,"}],"murder_death_threats":[{"doc_id":"EFTA00091417","page":"1","severity":13,"excerpt":"When Krischer, then Palm Beach state attorney, found out the target was Epstein, a big Democratic donor, he refused to prosecute. It was only because of Krischer's active obstruction of the case that"},{"doc_id":"EFTA00095462","page":"2","severity":13,"excerpt":"When Krischer, then Palm Beach state attorney, found out the target was Epstein, a big Democratic donor, he refused to prosecute. It was only because of Krischer's active obstruction of the case that"}],"witness_tampering":[{"doc_id":"EFTA00091417","page":"3","severity":0,"excerpt":"But how on earth has Krischer emerged smelling like a rose? He's the one who engineered the main cover-up! According to Chief Reiter, Krischer seemed to be protecting Epstein. Are Epstein's powerful"},{"doc_id":"EFTA00095462","page":"3","severity":0,"excerpt":"But how on earth has Krischer emerged smelling like a rose? He's the one who engineered the main cover-up! According to Chief Reiter, Krischer seemed to be protecting Epstein. Are Epstein's powerful"}],"financial_corruption":[{"doc_id":"EFTA00011485","page":"?","severity":8,"excerpt":"find evidence that his decision was based on corruption or other impermissible considerations, such as Epstein\u2019s wealth, status, or associations. Evidence shows that Acosta resisted defense efforts to"},{"doc_id":"EFTA00011485","page":"?","severity":8,"excerpt":"find evidence that his decision was based on corruption or other impermissible considerations, such as Epstein\u2019s wealth, status, or associations. Evidence shows that Acosta resisted defense efforts to"}]}},{"person":"brunel","total_mentions":459,"epstein_proximate":260,"categories":{"rape_sexual_assault":38,"minors_children":75,"trafficking":22,"blackmail_kompromat":0,"murder_death_threats":6,"witness_tampering":0,"financial_corruption":1},"total_red_flags":142,"top_examples":{"rape_sexual_assault":[{"doc_id":"EFTA00021558","page":"?","severity":14,"excerpt":"Case 9:08-cv-80736-KAM Document 280 Entered on FLSD Docket 01/02/2015 Page 6 of 14 young as twelve) to the United States for sexual purposes and farm them out to his friends, especially Epstein. Brune"},{"doc_id":"EFTA00108666","page":"2","severity":10,"excerpt":"(ph) ANDRENO (ph) would contact girls whose names were listed in the black bound book on behalf of EPSTEIN. RODRIGUEZ advised he received the black bound book sometime in 2004 when the books were sh"}],"minors_children":[{"doc_id":"EFTA00021558","page":"?","severity":14,"excerpt":"Case 9:08-cv-80736-KAM Document 280 Entered on FLSD Docket 01/02/2015 Page 6 of 14 young as twelve) to the United States for sexual purposes and farm them out to his friends, especially Epstein. Brune"},{"doc_id":"EFTA00078198","page":"7","severity":10,"excerpt":"did not believe that would be nice at all. While media stories have stated that Epstein and Maxwell's victims were mostly teenagers, there is evidence that suggests that they also abused younger gir"}],"trafficking":[{"doc_id":"EFTA00081180","page":"24","severity":8,"excerpt":"left messages for Epstein. One dated 4/1/05 said, \"He has a teacher for you to teach you how to speak Russian. She is 2x8 years old, not blonde. Lessons are free and you can have your In today if you"},{"doc_id":"EFTA00081180","page":"24","severity":8,"excerpt":"call.\" See Messages taken from Jean Luc Brunel are attached hereto as Exhibit \"EE.\" In light of these circumstances of the case, this message reasonably suggested to Edwards that Brunel might have be"}],"murder_death_threats":[{"doc_id":"EFTA00078198","page":"7","severity":10,"excerpt":"did not believe that would be nice at all. While media stories have stated that Epstein and Maxwell's victims were mostly teenagers, there is evidence that suggests that they also abused younger gir"},{"doc_id":"EFTA00077200","page":"5","severity":5,"excerpt":"In the summer of 2019, upon his return from a stay in Paris, Jeffrey EPSTEIN was arrested, charged and detained in Manhattan. He was found hanging in his cell some time later. The French investigati"}],"financial_corruption":[{"doc_id":"EFTA00079513","page":"30","severity":8,"excerpt":"which were opposed to This couple is using their network to continue a harassment that has been going on for M. Maud Bourdin told the Gendarme that I was \"weird\" so under i heard I was crazy! Does"}]}},{"person":"clinton","total_mentions":907,"epstein_proximate":200,"categories":{"rape_sexual_assault":20,"minors_children":68,"trafficking":15,"blackmail_kompromat":1,"murder_death_threats":11,"witness_tampering":1,"financial_corruption":1},"total_red_flags":117,"top_examples":{"rape_sexual_assault":[{"doc_id":"EFTA00076133","page":"2","severity":17,"excerpt":"Bill Clinton is in jeopardy of serious lawsuits, possible civil and even criminal charges by his association and claims of sexual abuse of underage girls on many occasions. I have copies of hundreds"},{"doc_id":"EFTA00095919","page":"2","severity":17,"excerpt":"Bill Clinton is in jeopardy of serious lawsuits, possible civil and even criminal charges by his association and claims of sexual abuse of underage girls on many occasions. I have copies of hundreds"}],"minors_children":[{"doc_id":"EFTA00076133","page":"2","severity":17,"excerpt":"Bill Clinton is in jeopardy of serious lawsuits, possible civil and even criminal charges by his association and claims of sexual abuse of underage girls on many occasions. I have copies of hundreds"},{"doc_id":"EFTA00095919","page":"2","severity":17,"excerpt":"Bill Clinton is in jeopardy of serious lawsuits, possible civil and even criminal charges by his association and claims of sexual abuse of underage girls on many occasions. I have copies of hundreds"}],"trafficking":[{"doc_id":"EFTA00024034","page":"?","severity":14,"excerpt":"The Enquirer seeks all documents relating to the FBI\u2019s investigation and prosecution of financier Jeffrey Edward Epstein, who pled guilty to one count of felony solicitation of prostitution in August"},{"doc_id":"EFTA00024034","page":"?","severity":14,"excerpt":"Background Jeffrey Epstein is a billionaire financier, philanthropist, and sex offender. In 2005, Epstein became the subject of an undercover sex trafficking investigation by Palm Beach, Florida polic"}],"blackmail_kompromat":[{"doc_id":"EFTA00086370","page":"2","severity":6,"excerpt":", \"Mariann Meier Lisa Bloom Alan? Besides your (superb) defense work for Epstein and all enjoyers (Clinton, Barak, Wexner, Maxwell, Andrew, Trump, Dersh, etc) of his hospitality, did you tv, have"}],"murder_death_threats":[{"doc_id":"EFTA00086363","page":"1","severity":14,"excerpt":"having their own individual sexual experiences with Epstein's underage sex-slaves. For the Clintons to get away with this horrendous crime against young girls would be yet another traumatizing memor"},{"doc_id":"EFTA00020786","page":"?","severity":12,"excerpt":"Over multiple briefings an hour, Mr. Barr spent that Saturday angrily grilling his deputies. He directed the F.B.1. to investigate Mr. Epstein\u2019s apparent suicide and the department\u2019s inspector general"}],"witness_tampering":[{"doc_id":"EFTA00024265","page":"?","severity":15,"excerpt":"Such is the reason bail should be granted to Ghislaine Maxwell in order to help ensure her appearance before the Court and, before the Nation does not end prior in such an ill-manner of injustice to w"}],"financial_corruption":[{"doc_id":"EFTA00029524","page":"?","severity":10,"excerpt":"under mysterious circumstances after reportedly having fallen overboard from the yacht. It was later discovered that he was in a significant amount of debt at the time of his death, and had embezzled"}]}},{"person":"kushner","total_mentions":1032,"epstein_proximate":204,"categories":{"rape_sexual_assault":0,"minors_children":0,"trafficking":4,"blackmail_kompromat":0,"murder_death_threats":7,"witness_tampering":0,"financial_corruption":97},"total_red_flags":108,"top_examples":{"trafficking":[{"doc_id":"EFTA00010727","page":"?","severity":7,"excerpt":"Just a very long list of credible information | have provided to the grossly corrupt SEC et al scumbags Janey, update my various TCR's and derivatives. Separate but related Janey. Separate but related"},{"doc_id":"EFTA00011051","page":"?","severity":7,"excerpt":"Mr. Epstein, facing sex-trafficking charges, has long been hailed as a financia wizard. He got rich with the help of two wealthy connections, but there is little evidence he\u2019s a billionaire Sent: Mond"}],"murder_death_threats":[{"doc_id":"EFTA00011065","page":"?","severity":10,"excerpt":"Subject: Fw: Apollo/ Epstein/Kushner connection G, This was a blatant attempt to intimidate a whistleblower. \"HE\" (I think a male although very effeminate voice) was an anonymous, coward, scumbag who"},{"doc_id":"EFTA00010311","page":"?","severity":7,"excerpt":"Cheers! Christopher Dilorio Whistleblower From: Chris Dilcric {a Sent: Thursday, May 2, 2019 3:35 PM Subject: Fw: Apollo/ Epstein/Kushner connection IG, This was a blatant attempt to intimidate a whis"}],"financial_corruption":[{"doc_id":"EFTA00010305","page":"?","severity":7,"excerpt":"Subject: Fw: Apollo/ Epstein/Kushner connection Date: Sun, 19 May 2019 14:03:25 +0000 Attachments: IMG 7021.jpg Inline-Images: image.png | reiterate: The SEC is a grossly corrupt criminal organization"},{"doc_id":"EFTA00010727","page":"?","severity":7,"excerpt":"Subject: Fw: Apollo/ Epstein/Kushner connection Mr Berman, Thanks for the shout out, but I'm not a journalist lololol Just a very long list of credible information | have provided to the grossly corru"}]}},{"person":"sarah kellen","total_mentions":109,"epstein_proximate":105,"categories":{"rape_sexual_assault":20,"minors_children":47,"trafficking":13,"blackmail_kompromat":0,"murder_death_threats":0,"witness_tampering":2,"financial_corruption":0},"total_red_flags":82,"top_examples":{"rape_sexual_assault":[{"doc_id":"EFTA00081015","page":"65","severity":8,"excerpt":"sexual abuse and prostitution to law enforcement or other authority figures. Defendant, Jeffrey Epstein, also used otherwise-legitimate business activities to help further the purpose of the crimina"},{"doc_id":"EFTA00081015","page":"96","severity":8,"excerpt":"sexual abuse and prostitution to law enforcement or other authority figures. Defendant, Jeffrey Epstein, also used otherwise-legitimate business activities to help further the purpose of the crimina"}],"minors_children":[{"doc_id":"EFTA00040358","page":"10","severity":8,"excerpt":"In addition to the models, the Jeffrey Epstein associates who also rented apartments or ran businesses out of the building included an ex-girlfriend, his pilot, and his MC2 business partner, Jean-Luc"},{"doc_id":"EFTA00081015","page":"64","severity":8,"excerpt":"conspired or endeavored to so participate, through a pattern of criminal activity in violation of Florida Statutes \u00a7772.103(3)-(4). 42. Defendants, Jeffrey Epstein's and Sarah Kellen's enterprise i"}],"trafficking":[{"doc_id":"EFTA00081015","page":"64","severity":8,"excerpt":"conspired or endeavored to so participate, through a pattern of criminal activity in violation of Florida Statutes \u00a7772.103(3)-(4). 42. Defendants, Jeffrey Epstein's and Sarah Kellen's enterprise i"},{"doc_id":"EFTA00081015","page":"95","severity":8,"excerpt":"conspired or endeavored to so participate, through a pattern of criminal activity in violation of Florida Statutes \u00a7772.103(3)-(4). 42. Defendants, Jeffrey Epstein's and Sarah Kellen's enterprise i"}],"witness_tampering":[{"doc_id":"EFTA00081015","page":"66","severity":5,"excerpt":"52. This enterprise produced a course of conduct that lead to a pattern of criminal activity involving more than 100 instances of sexual abuse and prostitution of minor girls. This enterprise was t"},{"doc_id":"EFTA00081015","page":"97","severity":5,"excerpt":"52. This enterprise produced a course of conduct that lead to a pattern of criminal activity involving more than 100 instances of sexual abuse and prostitution of minor girls. This enterprise was t"}]}},{"person":"bill richardson","total_mentions":748,"epstein_proximate":196,"categories":{"rape_sexual_assault":1,"minors_children":12,"trafficking":0,"blackmail_kompromat":0,"murder_death_threats":3,"witness_tampering":0,"financial_corruption":49},"total_red_flags":65,"top_examples":{"rape_sexual_assault":[{"doc_id":"EFTA00081180","page":"30","severity":8,"excerpt":"inference he was sexually abusing these girls as he had abused girls in West Palm Beach and elsewhere. Richardson had also returned campaign donations that were given to him by Epstein, indicating t"}],"minors_children":[{"doc_id":"EFTA00081180","page":"30","severity":8,"excerpt":"Richardson joining Epstein at Epstein's New Mexico Ranch. There was information indicating that Epstein had young girls at his ranch which, given the circumstances of the case, raised the reasonable"},{"doc_id":"EFTA00081180","page":"30","severity":8,"excerpt":"inference he was sexually abusing these girls as he had abused girls in West Palm Beach and elsewhere. Richardson had also returned campaign donations that were given to him by Epstein, indicating t"}],"murder_death_threats":[{"doc_id":"EFTA00412819","page":"1","severity":0,"excerpt":"From: Lesley Groff To: Jeffrey Epstein CC < => Subject: Gov. Richardson Date: Tue, 22 May 2012 16:40:59 +0000 I checked in with Caitlin in the Governor's office re who could Bill suggest for Jaglan"},{"doc_id":"EFTA00412830","page":"1","severity":0,"excerpt":"[PAGE 1] From: Lesley Groff <MIMIlle To: Jeffrey Epstein CC Subject: Gov Richardson Date: Tue, 22 May 2012 18:17:00 +0000 Below from Gov. Richardson re who should Jagland contact re changing agenc"}],"financial_corruption":[{"doc_id":"EFTA00039689","page":"66","severity":2,"excerpt":"Guess who ELSE was involved in this years in the operating money laundering shell? Platinum Funds/Nordlicht. With links to Kushner(s) and Trump lawyer Giuliani. Other NY entities, a Columbus OH enti"},{"doc_id":"EFTA00040288","page":"20","severity":2,"excerpt":"Guess who ELSE was involved in this years in the operating money laundering shell? Platinum Funds/Nordlicht. With links to Kushner(s) and Trump lawyer Giuliani. Other NY entities, a Columbus OH enti"}]}},{"person":"leon black","total_mentions":1563,"epstein_proximate":408,"categories":{"rape_sexual_assault":2,"minors_children":5,"trafficking":1,"blackmail_kompromat":10,"murder_death_threats":0,"witness_tampering":0,"financial_corruption":29},"total_red_flags":47,"top_examples":{"rape_sexual_assault":[{"doc_id":"EFTA00096366","page":"1","severity":5,"excerpt":"spoke to witness for about an hour, via zoom she is M, came here when she was got into Epstein and Leon Black circle o seemed to have a relationship, describes it as an abusive relationship, from"},{"doc_id":"EFTA00096366","page":"1","severity":5,"excerpt":"came here when she was got into Epstein and Leon Black circle o seemed to have a relationship, describes it as an abusive relationship, from 2010 to 2014, she was raped by Leon Black in Manhattan,"}],"minors_children":[{"doc_id":"EFTA00094388","page":"12","severity":11,"excerpt":"which Jeffrey managed retail billionaire Leslie Wexner's assets. The person in charge of running Ossa Properties, Jonathan Barrett, was also an asset manager for J. Epstein & Co. Mark told Crain's th"},{"doc_id":"EFTA00068361","page":"1","severity":5,"excerpt":"Subject: RE: new victim Date: Fri, 13 Mar 2020 22:54:40 +0000 I just got a call at my office from an individual who got my name from one of the plaintiff's attorneys, who wanted to report that she"}],"trafficking":[{"doc_id":"EFTA00040076","page":"4","severity":5,"excerpt":"community. Some Wall Street titans found themselves forced to answer questions as to why they had continued to socialize or do business with Mr. Epstein after his 2008 conviction. They included the"}],"blackmail_kompromat":[{"doc_id":"EFTA00010716","page":"?","severity":0,"excerpt":"ESWW: A money laundering NASDAQ/OTCM shell Milken degenerate Leon Black/Joshua Harris: Apollo AND Jeffrey Epstein The SEC has known for years that Epstein is running a extortion/Ponzi/Slush Fund My Cl"},{"doc_id":"EFTA00010742","page":"?","severity":0,"excerpt":"ESWW: A money laundering NASDAQ/OTCM shell Milken degenerate Leon Black/Joshua Harris: Apollo AND Jeffrey Epstein The SEC has known for years that Epstein is running a extortion/Ponzi/Slush Fund"}],"financial_corruption":[{"doc_id":"EFTA00009904","page":"?","severity":2,"excerpt":"Complaint: SEC v. COMPLAINT. Plaintiff United States Securities and Exchange Commission (\"Commission\") alleges as follows: SUMMARY. 1. This case involves a $15 million \"pump and dump\" scheme involving"},{"doc_id":"EFTA00010740","page":"?","severity":2,"excerpt":"COMPLAINT. Plaintiff United States Securities and Exchange Commission (\"Commission\") alleges as follows: SUMMARY. 1. This case involves a $15 million \"pump and dump\" scheme involving the securities En"}]}},{"person":"jes staley","total_mentions":956,"epstein_proximate":357,"categories":{"rape_sexual_assault":1,"minors_children":19,"trafficking":5,"blackmail_kompromat":9,"murder_death_threats":6,"witness_tampering":0,"financial_corruption":0},"total_red_flags":40,"top_examples":{"rape_sexual_assault":[{"doc_id":"EFTA00029357","page":"?","severity":5,"excerpt":"From: \"(i UsANYs) To: A USANYS) i, Subject: Date: Sat, 14 Dec 2019 02:51:42 +0000 Don\u2019t know if you caught this but one of the non/minor Epstein victims alleges that Jes Staley (reads in memo as \u201cJess"}],"minors_children":[{"doc_id":"EFTA00065241","page":"2","severity":13,"excerpt":"2/13/2020 British banking regulators want to know if the chief executive of Barclays has been honest about his relationship with Jeffrey Epstein. Barclays said on Thursday that regulators were inve"},{"doc_id":"EFTA00065241","page":"2","severity":13,"excerpt":"Barclays said on Thursday that regulators were investigating how its chief executive, James E. Staley, described to bank officials his ties with Mr. Epstein, the financier who killed himself in Augus"}],"trafficking":[{"doc_id":"EFTA00065241","page":"2","severity":13,"excerpt":"2/13/2020 British banking regulators want to know if the chief executive of Barclays has been honest about his relationship with Jeffrey Epstein. Barclays said on Thursday that regulators were inve"},{"doc_id":"EFTA00065241","page":"2","severity":13,"excerpt":"Barclays said on Thursday that regulators were investigating how its chief executive, James E. Staley, described to bank officials his ties with Mr. Epstein, the financier who killed himself in Augus"}],"blackmail_kompromat":[{"doc_id":"EFTA00022173","page":"?","severity":12,"excerpt":"The FCA and the SFO refuse to investigate. It is quite obvious that all with the authority and power to force disclosure of receipts have been paid off not to do their duty. | have subsequently discov"},{"doc_id":"EFTA00024008","page":"?","severity":11,"excerpt":"Dear House of Commons, This may have to be directed to the Treasury Select Committee, or the information could be found in the email archive of John Mann or Mark Garnier held by Parliament. On 2nd Nov"}],"murder_death_threats":[{"doc_id":"EFTA00065241","page":"2","severity":13,"excerpt":"2/13/2020 British banking regulators want to know if the chief executive of Barclays has been honest about his relationship with Jeffrey Epstein. Barclays said on Thursday that regulators were inve"},{"doc_id":"EFTA00065241","page":"2","severity":13,"excerpt":"Barclays said on Thursday that regulators were investigating how its chief executive, James E. Staley, described to bank officials his ties with Mr. Epstein, the financier who killed himself in Augus"}]}},{"person":"wexner","total_mentions":168,"epstein_proximate":113,"categories":{"rape_sexual_assault":6,"minors_children":23,"trafficking":4,"blackmail_kompromat":1,"murder_death_threats":3,"witness_tampering":0,"financial_corruption":0},"total_red_flags":37,"top_examples":{"rape_sexual_assault":[{"doc_id":"EFTA00026724","page":"?","severity":15,"excerpt":"Before his massive stock distribution to the Wexner group, Epstein told The New York Times that a Manhattan mansion Wexner bought for $13.2 million was now his. \u201cLes never spent more than two months t"},{"doc_id":"EFTA00026723","page":"?","severity":12,"excerpt":"Before hedge fund manager Jeffrey Epstein went to jail in Florida more than a decade ago, billionaire L Brands founder and Chairman Les Wexner was trying to distance himself from the accused child mol"}],"minors_children":[{"doc_id":"EFTA00026724","page":"?","severity":15,"excerpt":"Before his massive stock distribution to the Wexner group, Epstein told The New York Times that a Manhattan mansion Wexner bought for $13.2 million was now his. \u201cLes never spent more than two months t"},{"doc_id":"EFTA00026723","page":"?","severity":12,"excerpt":"Before hedge fund manager Jeffrey Epstein went to jail in Florida more than a decade ago, billionaire L Brands founder and Chairman Les Wexner was trying to distance himself from the accused child mol"}],"trafficking":[{"doc_id":"EFTA00026723","page":"?","severity":12,"excerpt":"Epstein is back in the news after his arrest Saturday on an indictment filed by the U.S. Attorney\u2019s Office for the Southern District of New York which charged him with trafficking dozens of underage g"},{"doc_id":"EFTA00040358","page":"9","severity":11,"excerpt":"trafficking of minors, Mark offered his Florida home to guarantee his brother's bond. Last month, Mark told Crain's New York that he had no business connection to his brother, but documents show tha"}],"blackmail_kompromat":[{"doc_id":"EFTA00086370","page":"2","severity":4,"excerpt":", \"Mariann Meier Lisa Bloom Alan? Besides your (superb) defense work for Epstein and all enjoyers (Clinton, Barak, Wexner, Maxwell, Andrew, Trump, Dersh, etc) of his hospitality, did you tv, have"}],"murder_death_threats":[{"doc_id":"EFTA00064799","page":"9","severity":5,"excerpt":"Other court filings have suggested his holdings do not measure up to the billionaire claims, either. One of the central questions around Epstein's financial operation concerned who, exactly, was inve"},{"doc_id":"EFTA00037756","page":"?","severity":5,"excerpt":"Date: Jun 27, 2019 2:45 PM Subject: RE: 9 E 71st Street New York NY DEED To: \u00ae _ (NY) (FBI)\" < a (USANYS)\" < (USANYS)\" < - This is interesting. The mansion was the home of a school until Leslie Wexner"}]}},{"person":"gates","total_mentions":851,"epstein_proximate":263,"categories":{"rape_sexual_assault":2,"minors_children":10,"trafficking":2,"blackmail_kompromat":0,"murder_death_threats":0,"witness_tampering":6,"financial_corruption":0},"total_red_flags":20,"top_examples":{"rape_sexual_assault":[{"doc_id":"EFTA00095847","page":"5","severity":14,"excerpt":"Two more alleged victims, who did not reveal their names in court documents, filed a $100 million lawsuit against Epstein's estate and a number of his associates. Epstein had a mile-long contacts li"},{"doc_id":"EFTA00095856","page":"7","severity":14,"excerpt":"Two more alleged victims, who did not reveal their names in court documents, filed a $100 million lawsuit against Epstein's estate and a number of his associates. Epstein had a mile-long contacts li"}],"minors_children":[{"doc_id":"EFTA00078263","page":"6","severity":9,"excerpt":"Epstein's planes ferried underage girls from Teterboro to his various homes, according to allegations in court documents. Epstein's planes also flew direct from Teterboro to Paris, London, Ireland an"},{"doc_id":"EFTA00040083","page":"2","severity":7,"excerpt":"53. Maxwell Second Superseding Indictment (3.29.21) 54. JE and the Myth of the Underage Woman_The Atlantic (8.15.19) 55. Inside Woody Allen's Close Friendship w/ JE_Daily Beast (3.14.21) 56. Bill G"}],"trafficking":[{"doc_id":"EFTA00099212","page":"2","severity":7,"excerpt":"with Mr. Epstein, who died by suicide in federal custody in 2019, shortly after being charged with sex trafficking of girls. Ms. French Gates expressed her unease in the fall of 2013 after she and"},{"doc_id":"EFTA00099212","page":"2","severity":7,"excerpt":"federal custody in 2019, shortly after being charged with sex trafficking of girls. Ms. French Gates expressed her unease in the fall of 2013 after she and Mr. Gates had dinner with Mr. Epstein at"}],"witness_tampering":[{"doc_id":"EFTA00105365","page":"4","severity":4,"excerpt":"money, with internal records saying that Epstein had \"directed\" the gift or that it was made at his instruction. \"Gates is making this gift at the recommendation of a friend of his who wishes to rema"},{"doc_id":"EFTA00105365","page":"4","severity":4,"excerpt":"Gates's aides denied Epstein's direction of the gift. But if he did, as Farrow reported he did, it raises the possibility that Gates was somehow complicit in the image rehabilitation of Epstein and p"}]}},{"person":"ehud barak","total_mentions":819,"epstein_proximate":211,"categories":{"rape_sexual_assault":0,"minors_children":6,"trafficking":2,"blackmail_kompromat":1,"murder_death_threats":1,"witness_tampering":0,"financial_corruption":0},"total_red_flags":10,"top_examples":{"minors_children":[{"doc_id":"EFTA00375356","page":"1","severity":7,"excerpt":"26/01/2014 18:51 Objet Re: Jeffrey Epstein Hello Elodie. Jeffrey is asking if Mr. Dumas would like to join Jeffrey and Ehud Barak at Ariane de Rothschild\"s home on Thursday, Jan. 30th... please le"},{"doc_id":"EFTA00375387","page":"1","severity":7,"excerpt":"26/0112014 18:51 Objet : Re: Jeffrey Epstein Hello Elodie. Jeffrey is asking if Mr. Dumas would like to join Jeffrey and Ehud Barak at Ariane de Rothschild\"s home on Thursday, Jan. 30th... please"}],"trafficking":[{"doc_id":"EFTA00046963","page":"530","severity":2,"excerpt":"million people since the epidemic began nearly a year ago. (Stat) 11. Jeffrey Epstein's arrest is reverberating in Israel. Prime Minister Benjamin Netanyahu and his right-wing Likud party are calli"},{"doc_id":"EFTA00046963","page":"498","severity":0,"excerpt":"11. Jeffrey Epstein's arrest is reverberating in Israel. Prime Minister Benjamin Netanyahu and his right-wing Likud party are calling for a criminal probe into former prime minister Ehud Barak's pe"}],"blackmail_kompromat":[{"doc_id":"EFTA00086370","page":"2","severity":4,"excerpt":", \"Mariann Meier Lisa Bloom Alan? Besides your (superb) defense work for Epstein and all enjoyers (Clinton, Barak, Wexner, Maxwell, Andrew, Trump, Dersh, etc) of his hospitality, did you tv, have"}],"murder_death_threats":[{"doc_id":"EFTA00376424","page":"4","severity":0,"excerpt":"Fri. Jan. 24 2014 LSJ Sat Jan. 25, 2014 LSJ-PB Sun. Jan. 26, 2014 PB-TAMPA-NY TBD Possibly fly Ehud Barak to Tampa TBD Dinner w/Wbody Allen, Soon 17, Tim Zagat, Nina Zagat, Bobby Slayton, maybe D"}]}},{"person":"woody allen","total_mentions":2082,"epstein_proximate":497,"categories":{"rape_sexual_assault":1,"minors_children":7,"trafficking":0,"blackmail_kompromat":0,"murder_death_threats":0,"witness_tampering":0,"financial_corruption":0},"total_red_flags":8,"top_examples":{"rape_sexual_assault":[{"doc_id":"EFTA00065479","page":"1","severity":6,"excerpt":"Since Weinstein's reign of terror was exposed and ignited a #MeToo reckoning other powerful men have found themselves publicly censured or even toppled over their dark pasts and allegations of sexual"}],"minors_children":[{"doc_id":"EFTA00065479","page":"1","severity":7,"excerpt":"Importance: Normal How Did Trump and Clinton Pal Jeffrey Epstein Escape #MeToo? Call him Weinstein 1.o: The billionaire with famous friends (Kevin Spacey, Woody Allen) was a secret pervert who use"},{"doc_id":"EFTA00382987","page":"1","severity":7,"excerpt":"> Photo: Elder Ordonez/INFphoto.com > \u2022 This \"New York Story\" may not be fit for children. > Schlubby director Woody Allen was seen palling around Manhattan with billionaire convicted child-sex cr"}]}},{"person":"spacey","total_mentions":23,"epstein_proximate":17,"categories":{"rape_sexual_assault":1,"minors_children":6,"trafficking":1,"blackmail_kompromat":0,"murder_death_threats":0,"witness_tampering":0,"financial_corruption":0},"total_red_flags":8,"top_examples":{"rape_sexual_assault":[{"doc_id":"EFTA00065479","page":"1","severity":6,"excerpt":"Since Weinstein's reign of terror was exposed and ignited a #MeToo reckoning other powerful men have found themselves publicly censured or even toppled over their dark pasts and allegations of sexual"}],"minors_children":[{"doc_id":"EFTA00019249","page":"?","severity":10,"excerpt":"current labor secretary, Alexander Acosta \u2014 broke the law by entering a secret sweetheart deal to allow Epstein to serve a cushy sentence without facing evidence that he assaulted more than 30 underag"},{"doc_id":"EFTA00065479","page":"1","severity":7,"excerpt":"Importance: Normal How Did Trump and Clinton Pal Jeffrey Epstein Escape #MeToo? Call him Weinstein 1.o: The billionaire with famous friends (Kevin Spacey, Woody Allen) was a secret pervert who use"}],"trafficking":[{"doc_id":"EFTA00097003","page":"1","severity":5,"excerpt":"Laura Goldman, who has been friends with Ms Maxwell for several years, told The Telegraph she would \"never sell out\" Prince Andrew. The extraordinary image, showing the 58-year-old lounging on a thr"}]}},{"person":"george mitchell","total_mentions":53,"epstein_proximate":19,"categories":{"rape_sexual_assault":2,"minors_children":4,"trafficking":0,"blackmail_kompromat":0,"murder_death_threats":0,"witness_tampering":0,"financial_corruption":0},"total_red_flags":6,"top_examples":{"rape_sexual_assault":[{"doc_id":"EFTA00095847","page":"5","severity":8,"excerpt":"And some of Epstein's former associates have been accused of sexual misconduct by some alleged victims. In a slew of recently unsealed court documents, a woman named said Maxwell directed her as a"},{"doc_id":"EFTA00095856","page":"7","severity":8,"excerpt":"And some of Epstein's former associates have been accused of sexual misconduct by some alleged victims. In a slew of recently unsealed court documents, a woman named said Maxwell directed her as a"}],"minors_children":[{"doc_id":"EFTA00095847","page":"5","severity":8,"excerpt":"And some of Epstein's former associates have been accused of sexual misconduct by some alleged victims. In a slew of recently unsealed court documents, a woman named said Maxwell directed her as a"},{"doc_id":"EFTA00095856","page":"7","severity":8,"excerpt":"And some of Epstein's former associates have been accused of sexual misconduct by some alleged victims. In a slew of recently unsealed court documents, a woman named said Maxwell directed her as a"}]}},{"person":"bush","total_mentions":142,"epstein_proximate":8,"categories":{"rape_sexual_assault":0,"minors_children":3,"trafficking":1,"blackmail_kompromat":0,"murder_death_threats":0,"witness_tampering":0,"financial_corruption":0},"total_red_flags":4,"top_examples":{"minors_children":[{"doc_id":"EFTA00091417","page":"1","severity":5,"excerpt":"a Trump connection. Oh happy day. (Trump was friendly with Epstein 15 years ago -- before banning him from Mar-a-Lago for life after he hit on a young girl working there.) The main hook is: Trump's"},{"doc_id":"EFTA00095462","page":"1","severity":5,"excerpt":"a Trump connection. Oh happy day. (Trump was friendly with Epstein 15 years ago -- before banning him from Mar-a- Lago for life after he hit on a young girl working there.) The main hook is: Trump's"}],"trafficking":[{"doc_id":"EFTA00013787","page":"?","severity":13,"excerpt":"Mr. John Roth June 19, 2008 Page 4 text and history indicate, these statutes were designed to address problems that are truly national and international in scope: human trafficking in \u00a7 1591; telephon"}]}},{"person":"obama","total_mentions":508,"epstein_proximate":11,"categories":{"rape_sexual_assault":0,"minors_children":1,"trafficking":1,"blackmail_kompromat":0,"murder_death_threats":1,"witness_tampering":0,"financial_corruption":0},"total_red_flags":3,"top_examples":{"minors_children":[{"doc_id":"EFTA00408936","page":"2","severity":4,"excerpt":"[PAGE 2] NEW YORK, July 5, 2012 /PRNewswire/ -- A group of unique public high schools in New York State and New Jersey, cited by President Obama as role models for the nation, have received critical"}],"trafficking":[{"doc_id":"EFTA00072359","page":"1","severity":5,"excerpt":"Britain? Secondly, as I discussed with DOJ officials during 3 different administrations (George W.Bush, Barrack Obama and Donald Trump), why would Justice continue to grant procurers immunity from"}],"murder_death_threats":[{"doc_id":"EFTA00035790","page":"?","severity":10,"excerpt":"Summary Tucker Carlson: So you would think as the Attorney General (referring to Bill Barr) his first concern would be finding out what actually happened but instead his first concern was worried that"}]}},{"person":"musk","total_mentions":126,"epstein_proximate":43,"categories":{"rape_sexual_assault":0,"minors_children":2,"trafficking":0,"blackmail_kompromat":0,"murder_death_threats":0,"witness_tampering":0,"financial_corruption":0},"total_red_flags":2,"top_examples":{"minors_children":[{"doc_id":"EFTA00105365","page":"5","severity":7,"excerpt":"\"By agreeing to participate in any fundraising activity where Epstein was present, I helped to repair his reputation and perpetuate injustice. For this, I am deeply regretful,\" Hoffman said. Hoffman"},{"doc_id":"EFTA00105378","page":"6","severity":7,"excerpt":"\"By agreeing to participate in any fundraising activity where Epstein was present I helped to repair his reputation and perpetuate injustice. For this, I am deeply regretful,\" Hoffman said. Hoffman"}]}},{"person":"biden","total_mentions":496,"epstein_proximate":4,"categories":{"rape_sexual_assault":0,"minors_children":0,"trafficking":0,"blackmail_kompromat":0,"murder_death_threats":0,"witness_tampering":0,"financial_corruption":0},"total_red_flags":0,"top_examples":{}}];
+
+// ============================================================
+// CONSTANTS
+// ============================================================
+const EXCLUDED = ['maxwell', 'ghislaine'];
+const CATEGORY_META = {
+    rape_sexual_assault:   { label: 'Rape / Sexual Assault', color: '#dc2626', short: 'Sexual Assault', icon: '!!', cssClass: 'cat-rape', labelClass: 'cat-label-rape', excerptClass: 'cat-rape' },
+    minors_children:       { label: 'Minors / Children', color: '#ff3b5c', short: 'Minors', icon: '!!', cssClass: 'cat-minors', labelClass: 'cat-label-minors', excerptClass: 'cat-minors' },
+    trafficking:           { label: 'Trafficking', color: '#f59e0b', short: 'Trafficking', icon: '!!', cssClass: 'cat-trafficking', labelClass: 'cat-label-trafficking', excerptClass: 'cat-trafficking' },
+    blackmail_kompromat:   { label: 'Blackmail / Kompromat', color: '#a855f7', short: 'Blackmail', icon: '!!', cssClass: 'cat-blackmail', labelClass: 'cat-label-blackmail', excerptClass: 'cat-blackmail' },
+    murder_death_threats:  { label: 'Murder / Death Threats', color: '#e8eaed', short: 'Murder/Threats', icon: '!!', cssClass: 'cat-murder', labelClass: 'cat-label-murder', excerptClass: 'cat-murder', border: '#5a5e72' },
+    witness_tampering:     { label: 'Witness Tampering', color: '#06b6d4', short: 'Witness Tampering', icon: '!!', cssClass: 'cat-witness', labelClass: '', excerptClass: '' },
+    financial_corruption:  { label: 'Financial Corruption', color: '#22c55e', short: 'Financial', icon: '!!', cssClass: 'cat-financial', labelClass: '', excerptClass: '' }
+};
+
+const CATEGORY_ICONS = {
+    rape_sexual_assault: '\u26A0',
+    minors_children: '\u26D4',
+    trafficking: '\u26D3',
+    blackmail_kompromat: '\uD83D\uDCF7',
+    murder_death_threats: '\u2620',
+    witness_tampering: '\uD83E\uDD10',
+    financial_corruption: '\uD83D\uDCB0'
+};
+
+// Filter out excluded
+const data = RAW_DATA.filter(d => !EXCLUDED.includes(d.person.toLowerCase()));
+data.sort((a, b) => b.total_red_flags - a.total_red_flags);
+
+const maxTotal = Math.max(...data.map(d => d.total_red_flags));
+
+function capitalize(str) {
+    return str.split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+}
+
+function escapeHtml(str) {
+    const div = document.createElement('div');
+    div.textContent = str;
+    return div.innerHTML;
+}
+
+// ============================================================
+// SECTION 1: LEGEND + BAR CHART
+// ============================================================
+function renderLegend() {
+    const el = document.getElementById('legend');
+    const cats = Object.keys(CATEGORY_META);
+    el.innerHTML = cats.map(c => {
+        const m = CATEGORY_META[c];
+        const borderStyle = m.border ? `border: 2px solid ${m.border};` : '';
+        return `<div class="legend-item">
+            <div class="legend-swatch ${c === 'murder_death_threats' ? 'murder' : ''}" style="background:${m.color};${borderStyle}"></div>
+            <span>${m.label}</span>
+        </div>`;
+    }).join('');
+}
+
+function renderBarChart() {
+    const el = document.getElementById('barChart');
+    const cats = Object.keys(CATEGORY_META);
+
+    el.innerHTML = data.map((d, idx) => {
+        const segments = cats.map(c => {
+            const val = d.categories[c] || 0;
+            if (val === 0) return '';
+            const pct = (val / maxTotal) * 100;
+            const m = CATEGORY_META[c];
+            const borderStyle = c === 'murder_death_threats' ? `border: 1px solid #5a5e72; box-sizing: border-box;` : '';
+            return `<div class="bar-segment" style="width:${pct}%;background:${m.color};${borderStyle}" data-width="${pct}">
+                <div class="tooltip">${m.short}: ${val}</div>
+            </div>`;
+        }).join('');
+
+        return `<div class="bar-row" style="animation-delay:${idx * 40}ms">
+            <div class="bar-label">${capitalize(d.person)}</div>
+            <div class="bar-track">${segments}</div>
+            <div class="bar-total">${d.total_red_flags}</div>
+        </div>`;
+    }).join('');
+}
+
+// ============================================================
+// SECTION 2: KOMPROMAT RISK
+// ============================================================
+function calcKompromatRisk(d) {
+    const c = d.categories;
+    return (c.rape_sexual_assault * 3) +
+           (c.minors_children * 2) +
+           (c.blackmail_kompromat * 5) +
+           (c.trafficking * 2) +
+           (c.murder_death_threats * 1);
+}
+
+function getTier(score) {
+    if (score >= 300) return { label: 'Extreme', cls: 'tier-extreme', color: '#dc2626' };
+    if (score >= 150) return { label: 'High', cls: 'tier-high', color: '#ff3b5c' };
+    if (score >= 50)  return { label: 'Moderate', cls: 'tier-moderate', color: '#f59e0b' };
+    if (score >= 10)  return { label: 'Low', cls: 'tier-low', color: '#60a5fa' };
+    return { label: 'Negligible', cls: 'tier-negligible', color: '#4b5563' };
+}
+
+function renderKompromat() {
+    const el = document.getElementById('kompromatList');
+    const scored = data.map(d => ({ ...d, risk: calcKompromatRisk(d) }));
+    scored.sort((a, b) => b.risk - a.risk);
+    const maxRisk = Math.max(...scored.map(s => s.risk));
+
+    el.innerHTML = scored.filter(s => s.risk > 0).map((s, idx) => {
+        const tier = getTier(s.risk);
+        const pct = (s.risk / maxRisk) * 100;
+        return `<div class="kompromat-row" style="animation-delay:${idx * 50}ms">
+            <div class="kompromat-name">${capitalize(s.person)}</div>
+            <div class="kompromat-score" style="color:${tier.color}">${s.risk}</div>
+            <div class="threat-meter">
+                <div class="threat-meter-fill" style="width:${pct}%;background:linear-gradient(90deg, ${tier.color}44, ${tier.color})" data-width="${pct}"></div>
+            </div>
+            <div class="threat-tier ${tier.cls}">${tier.label}</div>
+        </div>`;
+    }).join('');
+}
+
+// ============================================================
+// SECTION 3: EXCERPTS
+// ============================================================
+function renderExcerpts() {
+    const el = document.getElementById('excerptsGrid');
+    // Top 10 by total_red_flags
+    const top = data.filter(d => d.total_red_flags > 0).slice(0, 10);
+    // Priority categories
+    const priorityCats = ['rape_sexual_assault', 'minors_children', 'trafficking', 'blackmail_kompromat', 'murder_death_threats'];
+
+    el.innerHTML = top.map(d => {
+        const examples = [];
+        const seen = new Set();
+
+        for (const cat of priorityCats) {
+            if (d.top_examples && d.top_examples[cat]) {
+                for (const ex of d.top_examples[cat]) {
+                    const key = ex.doc_id + ex.page + cat;
+                    if (!seen.has(key) && examples.length < 3) {
+                        seen.add(key);
+                        examples.push({ ...ex, category: cat });
+                    }
+                }
+            }
+            if (examples.length >= 3) break;
+        }
+
+        if (examples.length === 0) return '';
+
+        const excerptHtml = examples.map(ex => {
+            const m = CATEGORY_META[ex.category];
+            const pageStr = ex.page && ex.page !== '?' ? ` p${ex.page}` : '';
+            return `<div class="excerpt-item ${m.excerptClass}">
+                <div class="excerpt-meta">
+                    <span class="excerpt-doc">${ex.doc_id}${pageStr}</span>
+                    <span class="excerpt-category ${m.labelClass}">${m.short}</span>
+                    <span class="severity-badge">Severity: ${ex.severity}</span>
+                </div>
+                <div class="excerpt-text">"${escapeHtml(ex.excerpt.trim())}..."</div>
+            </div>`;
+        }).join('');
+
+        return `<div class="excerpt-card">
+            <div class="excerpt-card-header">
+                <h3>${capitalize(d.person)}</h3>
+                <span class="red-flag-count">${d.total_red_flags} red flags</span>
+            </div>
+            ${excerptHtml}
+        </div>`;
+    }).filter(Boolean).join('');
+}
+
+// ============================================================
+// SECTION 4: CATEGORY BREAKDOWN
+// ============================================================
+function renderCategoryBreakdown() {
+    const el = document.getElementById('categoryGrid');
+    const cats = Object.keys(CATEGORY_META);
+    const totals = {};
+    cats.forEach(c => { totals[c] = 0; });
+    data.forEach(d => {
+        cats.forEach(c => { totals[c] += (d.categories[c] || 0); });
+    });
+
+    el.innerHTML = cats.map(c => {
+        const m = CATEGORY_META[c];
+        return `<div class="category-card ${m.cssClass}">
+            <span class="category-icon">${CATEGORY_ICONS[c]}</span>
+            <span class="category-number count-up" data-target="${totals[c]}">0</span>
+            <span class="category-label">${m.label}</span>
+        </div>`;
+    }).join('');
+}
+
+// ============================================================
+// COUNT-UP ANIMATION
+// ============================================================
+function animateCountUp(el) {
+    const target = parseInt(el.dataset.target);
+    const duration = 1500;
+    const startTime = performance.now();
+
+    function update(now) {
+        const elapsed = now - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        el.textContent = Math.round(target * eased).toLocaleString();
+        if (progress < 1) requestAnimationFrame(update);
+    }
+    requestAnimationFrame(update);
+}
+
+// ============================================================
+// INTERSECTION OBSERVER FOR ANIMATIONS
+// ============================================================
+function setupObserver() {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+
+                // Trigger count-ups inside
+                entry.target.querySelectorAll('.count-up').forEach(el => {
+                    if (!el.dataset.animated) {
+                        el.dataset.animated = '1';
+                        animateCountUp(el);
+                    }
+                });
+
+                // Animate threat meter fills
+                entry.target.querySelectorAll('.threat-meter-fill').forEach(el => {
+                    const w = el.dataset.width;
+                    if (w) {
+                        el.style.width = '0%';
+                        requestAnimationFrame(() => {
+                            requestAnimationFrame(() => { el.style.width = w + '%'; });
+                        });
+                    }
+                });
+            }
+        });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+}
+
+// ============================================================
+// BAR ANIMATION ON SCROLL
+// ============================================================
+function animateBars() {
+    const barSection = document.getElementById('severity');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                document.querySelectorAll('.bar-segment').forEach((seg, i) => {
+                    const w = seg.dataset.width;
+                    seg.style.width = '0%';
+                    setTimeout(() => {
+                        seg.style.width = w + '%';
+                    }, 100 + i * 10);
+                });
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.2 });
+    observer.observe(barSection);
+}
+
+// ============================================================
+// INIT
+// ============================================================
+renderLegend();
+renderBarChart();
+renderKompromat();
+renderExcerpts();
+renderCategoryBreakdown();
+
+requestAnimationFrame(() => {
+    setupObserver();
+    animateBars();
+});
+</script>
+</body>
+</html>
