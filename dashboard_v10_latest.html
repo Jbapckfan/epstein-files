@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Epstein Files Investigation Dashboard v10.17 — DS1-8 + DS10 Complete + All Sources (186,027 findings)</title>
+<title>Epstein Files Investigation Dashboard v10.18 — DS1-8 + DS10 Complete + All Sources (186,027 findings)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -940,7 +940,7 @@ body {
   <div class="nav-inner">
     <div class="nav-brand">
       <span class="dot"></span>
-      <span>Epstein Files v10.17</span>
+      <span>Epstein Files v10.18</span>
     </div>
     <ul class="nav-links">
       <li><a href="#network">Network</a></li>
@@ -1513,7 +1513,7 @@ body {
 
 <!-- FOOTER -->
 <footer class="footer">
-  <div class="footer-brand">Epstein Files Investigation Dashboard v10.17 — DS1-8 + DS9 + DS10 + Local Batch Complete</div>
+  <div class="footer-brand">Epstein Files Investigation Dashboard v10.18 — DS1-8 + DS9 + DS10 + Local Batch Complete</div>
   <p>
     Generated: 2026-02-02 UTC<br>
     Methodology: Automated keyword extraction with context-aware severity scoring and composite score integration across all pipelines.<br>
@@ -1695,6 +1695,10 @@ const FINDINGS_DATA = [
   {id:"EFTA00164920",dataset:"DS9",pages:6,severity:7,title:"FBI C19 Video Access — Extracting Discovery-of-Epstein Camera Footage for Deputy Director",summary:"FBI email chain (May-Jul 2025). Seeking MCC camera CH0080 footage from 08/10/2019 between 0620-0640 showing moments before during and after BOP staff response to discovery of Epstein in his cell. Deputy Director requested video for PowerPoint. OTD Multimedia Exploitation Unit providing technical support via screen capture and DCAP file sharing.",keywords:["recording"],persons:[]},
   {id:"EFTA00164567",dataset:"DS9",pages:1,severity:7,title:"FBI CID Case Summary — Serial Index 1-240 for Epstein Case 50D-NY-3027571",summary:"FBI Criminal Investigative Division case summary dated 03/16/2025. Case pending inactive. Summary of Serials 1-240 (Dec 2018-Aug 2019): opening EC, admin travel requests, victim interviews, Miami-to-NY case transfer, admin subpoenas, search warrants of NY residence, NTOC citizen reports, arrest Jul 6 2019, victim case opening, source reporting. Index of Serials 1-240 attached.",keywords:["maxwell"],persons:["Ghislaine Maxwell"]},
 
+  {id:"EFTA00172145",dataset:"DS9",pages:1,severity:9,title:"FBI: No Client List Found — Three Key Evidence Items Explained",summary:"FBI CEHTTF email (Feb 19, 2025): 'While media coverage references a client list, investigators did not locate such a list.' Three items found: (1) Flight logs from pilot David Rodgers (Apr 1991-Jan 2006), obtained Feb 2020 interview (Serial 398, 50D-NY-3027571); (2) Masseuse list from Epstein Manhattan device seized Jul 2019 — names of women/girls, some identified minors; (3) Little black book seized by FBI Miami 2009 from former employee selling documents (case 72-MM-113327). Attachments included unredacted black book PDF.",keywords:["maxwell"],persons:["Ghislaine Maxwell","David Rodgers"]},
+  {id:"EFTA00166775",dataset:"DS9",pages:24,severity:8,title:"Deutsche Bank KYC File — Butterfly Trust, Maxwell Beneficiary, Wexner Sole Known Client",summary:"Deutsche Bank PWM Global KYC onboarding file for Epstein (case 01133113). RM Paul Morris brought Epstein from JP Morgan to Deutsche Bank. Butterfly Trust accounts opened 10/9/2013. Darren Indyke primary contact. Richard Kahn and Indyke as trustees. GHISLAINE MAXWELL listed as Beneficiary #9. Source of Wealth: 'All clients anonymous except Leslie Wexner.' Net worth $100M-$500M. JPM held $120M. Produced under grand jury subpoena (Rule 6e).",keywords:["maxwell","wexner","jp morgan","deutsche bank"],persons:["Ghislaine Maxwell","Les Wexner","Darren Indyke","Richard Kahn"]},
+  {id:"EFTA00172546",dataset:"DS9",pages:111,severity:8,title:"OIG DRAFT Report — Epstein Death at MCC (Limited Official Use, Not For Public Release)",summary:"DOJ Office of Inspector General draft investigation (March 202x). 111 pages marked LIMITED OFFICIAL USE ONLY and DRAFT. DVR system failure July 29, discovered Aug 8, not repaired until after death. Only ONE SHU camera recording. No one seen entering Epstein cell tier from 10:40 PM Aug 9 to 6:30 AM Aug 10. Staff failed to assign cellmate. Unmonitored phone call allowed evening before death. Staff falsified BOP records. Draft version may contain details not in final public report.",keywords:["maxwell","recording"],persons:["Ghislaine Maxwell"]},
+
 ];
   {id:'EFTA00153703',dataset:'DS9',pages:26,severity:10,keywords:['ghislaine','maxwell','trump','brunel','blackmail','russia'],summary:'MAJOR: Complete FBI FD-302 victim interview - 14yo Interlochen recruit. Maxwell directed group abuse. Brunel brought 15yo to island and brought Russian women on tourist visas. Crystal Walsh blackmailed Epstein for $50K then tipped him off. Shredding papers in NY office. Met Weinstein at Golden Globes. TRUMP ALLEGATION DENIED by victim. Immigration fraud via Parda Beskardes.',date:'2019-10-25',type:'fbi-interview'},
   {id:'EFTA00152619',dataset:'DS9',pages:6,severity:4,keywords:['maxwell'],summary:'SDNY processing Maxwell discovery evidence - Reiter 15 VHS + 39 cassette tapes, Maxwell cell phone GPS data, 4 Blu-Ray discs',date:'2020-10-06',type:'fbi-operational'},
@@ -1732,7 +1736,7 @@ const TIMELINE_DATA = [
   { date: "2019-08-09", title: "FBI Status Update: ~60 Victims Identified", desc: "Day before Epstein death. FBI reports ~60 victims, potentially hundreds more. All co-conspirators served except Maxwell in London. [v10.8]" },
   { date: "2019-08-06", title: "FBI Planning Little St James Island Raid", desc: "SDNY drafting search warrant affidavit for island. 845 photos already taken in 13-hour NY residence search. [v10.8]" },
   { date: "2019-10-29", title: "FBI PRTT Active on Maxwell Phone", desc: "Pen Register/Trap and Trace surveillance activated on Ghislaine Maxwell. IP tracked to Pawtucket, Rhode Island. [v10.8]" },
-  { date: "2020-06-08", title: "FBI Maxwell Pre-Arrest: 6 Counts Planned, Active Surveillance", desc: "FBI email reveals exact Maxwell indictment charges planned, mail cover on her address, pen register on phone, physical surveillance coming. Prince Andrew MLAT response coordinated with SDNY. [v10.17]" }
+  { date: "2020-06-08", title: "FBI Maxwell Pre-Arrest: 6 Counts Planned, Active Surveillance", desc: "FBI email reveals exact Maxwell indictment charges planned, mail cover on her address, pen register on phone, physical surveillance coming. Prince Andrew MLAT response coordinated with SDNY. [v10.18]" }
   {date:'2018-12-13',event:'FBI/NYPD discover Epstein SORNA registration phone linked to Wexner/The Limited, begin MC2 model housing investigation',source:'EFTA00152144'},
   {date:'2019-07-24',event:'FBI/NYPD task force tracking down former Epstein employees for interviews about NY residence activities',source:'EFTA00150941'},
   {date:'2020-06-23',event:'FBI CAST analyzing Maxwell phone records and IP addresses one week before arrest, detecting VPN masking',source:'EFTA00150943'},
@@ -1756,6 +1760,9 @@ const TIMELINE_DATA = [
   {date:"2019-08-12",event:"FBI interviews BOP staff — guard admits unrecorded Shuliak phone call on Aug 9, guards Thomas and Noel lawyer up",doc:"EFTA00164415"},
   {date:"2019-10-08",event:"Maxwell attorney proffer scheduled — FBI briefing deck shows 80 victims identified and 5 co-conspirators",doc:"EFTA00164480"},
   {date:"2025-05-21",event:"FBI extracts MCC camera CH0080 footage of Epstein cell discovery (0620-0640 on Aug 10 2019) for Deputy Director",doc:"EFTA00164920"},
+
+  {date:"2025-02-19",event:"FBI definitively states no client list found — explains flight logs, masseuse list, and little black book as three key evidence items",doc:"EFTA00172145"},
+  {date:"2013-10-09",event:"Deutsche Bank opens Butterfly Trust accounts for Epstein — Maxwell listed as Beneficiary #9, Indyke/Kahn as trustees",doc:"EFTA00166775"},
 
 ];
 
