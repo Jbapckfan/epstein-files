@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Epstein Files Investigation Dashboard v10.39 — DS1-8 + DS10 Complete + All Sources (186,027 findings)</title>
+<title>Epstein Files Investigation Dashboard v10.40 — DS1-8 + DS10 Complete + All Sources (186,027 findings)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -940,7 +940,7 @@ body {
   <div class="nav-inner">
     <div class="nav-brand">
       <span class="dot"></span>
-      <span>Epstein Files v10.39</span>
+      <span>Epstein Files v10.40</span>
     </div>
     <ul class="nav-links">
       <li><a href="#network">Network</a></li>
@@ -1513,7 +1513,7 @@ body {
 
 <!-- FOOTER -->
 <footer class="footer">
-  <div class="footer-brand">Epstein Files Investigation Dashboard v10.39 — DS1-8 + DS9 + DS10 + Local Batch Complete</div>
+  <div class="footer-brand">Epstein Files Investigation Dashboard v10.40 — DS1-8 + DS9 + DS10 + Local Batch Complete</div>
   <p>
     Generated: 2026-02-02 UTC<br>
     Methodology: Automated keyword extraction with context-aware severity scoring and composite score integration across all pipelines.<br>
@@ -2180,7 +2180,73 @@ const FINDINGS_DATA = [
             persons: ['Jeffrey Epstein'],
             date: '2019-09-10',
             tags: ['fbi-fd302', 'proffer', 'coercion', 'weapons', 'recording', 'underage-acknowledgment']
-        }];
+        },
+        {
+            id: 'fd302-brother-trump-maralago-clinton-slave',
+            severity: 'critical',
+            category: 'Associates',
+            title: 'Victim Met TRUMP at Mar-a-Lago ~1996; MAXWELL Told CLINTON Victim Was "Her Slave"',
+            description: 'FD-302 of victim\'s brother: Sister told him she met DONALD TRUMP at MAR-A-LAGO ~1996. Separately, with BILL CLINTON and MAXWELL present, Clinton asked victim "What do you do?" and MAXWELL told Clinton the victim "was her slave." Maxwell told 16-year-old brother "Oh I would teach your brother a thing or two." Sister later admitted being "raped by a pedophile for years."',
+            source: 'EFTA00091904 (FD-302, 01/14/2020)',
+            docId: 'EFTA00091904',
+            dataset: 'DS9',
+            persons: ['Donald Trump', 'Bill Clinton', 'Ghislaine Maxwell'],
+            date: '2020-01-14',
+            tags: ['fbi-fd302', 'trump', 'clinton', 'maxwell', 'mar-a-lago', 'interlochen']
+        },
+        {
+            id: 'fd302-driver-trump-andrew-kennedy-senators',
+            severity: 'critical',
+            category: 'Associates',
+            title: 'Driver Saw TRUMP, PRINCE ANDREW, ROBERT KENNEDY, Senators at Epstein Home',
+            description: 'FD-302 of Epstein\'s driver/employee: "Recalled seeing many different people at EPSTEIN\'s home, including senators, PRINCE ANDREW, DONALD TRUMP, ROBERT KENNEDY, mathematicians, and many others." Employee drove girls and Prince Andrew — Andrew was on Epstein\'s plane. Black costume and "all kinds of toys in a basket" found in Maxwell\'s closet. Employee said when Maxwell arrived, "everything went to hell."',
+            source: 'EFTA00091924 (FD-302, 02/19/2020)',
+            docId: 'EFTA00091924',
+            dataset: 'DS9',
+            persons: ['Donald Trump', 'Prince Andrew', 'Robert Kennedy', 'Ghislaine Maxwell'],
+            date: '2020-02-19',
+            tags: ['fbi-fd302', 'trump', 'prince-andrew', 'kennedy', 'senators', 'toys']
+        },
+        {
+            id: 'fd302-victim-trump-function-underage',
+            severity: 'critical',
+            category: 'Associates',
+            title: 'Epstein Told 16yo Victim He\'d Have Taken Her to TRUMP Function "If She Was 18"',
+            description: 'FD-302 victim interview: 16-year-old victim knew Epstein knew DONALD TRUMP "because he went to a function that TRUMP was holding and told her that he would have taken her if she was 18." Epstein told her to bring "girls that looked like me" (her age/blonde). Recruited at 16, brought two 16-year-old friends. Missed school to go to Epstein\'s house.',
+            source: 'EFTA00096192 (FD-302, 04/11/2019)',
+            docId: 'EFTA00096192',
+            dataset: 'DS9',
+            persons: ['Donald Trump', 'Jeffrey Epstein'],
+            date: '2019-04-11',
+            tags: ['fbi-fd302', 'trump', 'underage', 'recruiting']
+        },
+        {
+            id: 'fd302-chef-al-gore-israel-pm',
+            severity: 'high',
+            category: 'Associates',
+            title: 'Chef Made Lunch for AL GORE; Flew with Former PM of Israel on Epstein Plane',
+            description: 'FD-302 of chef David Mullen: Made lunch for AL GORE at Epstein\'s residence. Also cooked for former Prime Minister of Israel and flew with him and his wife on Epstein\'s plane. Confronted about inconsistencies with prior FBI interview — requested counsel and interview ended.',
+            source: 'EFTA00090348 (FD-302, 10/29/2020)',
+            docId: 'EFTA00090348',
+            dataset: 'DS9',
+            persons: ['Al Gore', 'David Mullen'],
+            date: '2020-10-29',
+            tags: ['fbi-fd302', 'al-gore', 'israel', 'chef', 'inconsistencies']
+        },
+        {
+            id: 'fd302-maxwell-maralago-recruiting-sexual',
+            severity: 'high',
+            category: 'Recruiting',
+            title: 'MAXWELL Recruited at MAR-A-LAGO — "Sexually Active" with Girlfriend Who Procured Girls',
+            description: 'FD-302 of Anthony Figueroa: His girlfriend met MAXWELL at MAR-A-LAGO, where Maxwell approached her. Girlfriend told Figueroa that she and MAXWELL "were sexually active with each other and would go out and get girls together for EPSTEIN." Figueroa recruited girls at girlfriend\'s request, paid $200 per girl. Epstein said "make sure they are 18" and "make sure they are not fat."',
+            source: 'EFTA00097816 (FD-302, 08/19/2020)',
+            docId: 'EFTA00097816',
+            dataset: 'DS9',
+            persons: ['Ghislaine Maxwell', 'Anthony Figueroa'],
+            date: '2020-08-19',
+            tags: ['fbi-fd302', 'maxwell', 'mar-a-lago', 'recruiting', 'sexual']
+        }
+    ];
   {id:'EFTA00153703',dataset:'DS9',pages:26,severity:10,keywords:['ghislaine','maxwell','trump','brunel','blackmail','russia'],summary:'MAJOR: Complete FBI FD-302 victim interview - 14yo Interlochen recruit. Maxwell directed group abuse. Brunel brought 15yo to island and brought Russian women on tourist visas. Crystal Walsh blackmailed Epstein for $50K then tipped him off. Shredding papers in NY office. Met Weinstein at Golden Globes. TRUMP ALLEGATION DENIED by victim. Immigration fraud via Parda Beskardes.',date:'2019-10-25',type:'fbi-interview'},
   {id:'EFTA00152619',dataset:'DS9',pages:6,severity:4,keywords:['maxwell'],summary:'SDNY processing Maxwell discovery evidence - Reiter 15 VHS + 39 cassette tapes, Maxwell cell phone GPS data, 4 Blu-Ray discs',date:'2020-10-06',type:'fbi-operational'},
 
@@ -2217,7 +2283,7 @@ const TIMELINE_DATA = [
   { date: "2019-08-09", title: "FBI Status Update: ~60 Victims Identified", desc: "Day before Epstein death. FBI reports ~60 victims, potentially hundreds more. All co-conspirators served except Maxwell in London. [v10.8]" },
   { date: "2019-08-06", title: "FBI Planning Little St James Island Raid", desc: "SDNY drafting search warrant affidavit for island. 845 photos already taken in 13-hour NY residence search. [v10.8]" },
   { date: "2019-10-29", title: "FBI PRTT Active on Maxwell Phone", desc: "Pen Register/Trap and Trace surveillance activated on Ghislaine Maxwell. IP tracked to Pawtucket, Rhode Island. [v10.8]" },
-  { date: "2020-06-08", title: "FBI Maxwell Pre-Arrest: 6 Counts Planned, Active Surveillance", desc: "FBI email reveals exact Maxwell indictment charges planned, mail cover on her address, pen register on phone, physical surveillance coming. Prince Andrew MLAT response coordinated with SDNY. [v10.39]" }
+  { date: "2020-06-08", title: "FBI Maxwell Pre-Arrest: 6 Counts Planned, Active Surveillance", desc: "FBI email reveals exact Maxwell indictment charges planned, mail cover on her address, pen register on phone, physical surveillance coming. Prince Andrew MLAT response coordinated with SDNY. [v10.40]" }
   {date:'2018-12-13',event:'FBI/NYPD discover Epstein SORNA registration phone linked to Wexner/The Limited, begin MC2 model housing investigation',source:'EFTA00152144'},
   {date:'2019-07-24',event:'FBI/NYPD task force tracking down former Epstein employees for interviews about NY residence activities',source:'EFTA00150941'},
   {date:'2020-06-23',event:'FBI CAST analyzing Maxwell phone records and IP addresses one week before arrest, detecting VPN masking',source:'EFTA00150943'},
@@ -2434,7 +2500,36 @@ const TIMELINE_DATA = [
             category: 'legal',
             source: 'EFTA00090773',
             severity: 'critical'
-        }];
+        },
+        {
+            date: '1996',
+            event: 'Victim met DONALD TRUMP at MAR-A-LAGO per FD-302. MAXWELL told BILL CLINTON that victim "was her slave" when he asked what she did.',
+            category: 'associates',
+            source: 'EFTA00091904',
+            severity: 'critical'
+        },
+        {
+            date: '2002-2004',
+            event: 'Driver saw TRUMP, PRINCE ANDREW, ROBERT KENNEDY, senators at Epstein home. Drove girls and Prince Andrew. Andrew on Epstein plane.',
+            category: 'associates',
+            source: 'EFTA00091924',
+            severity: 'critical'
+        },
+        {
+            date: '2002-2004',
+            event: 'Epstein told 16yo victim he would have taken her to TRUMP function "if she was 18." Victim recruited 14-16 year old girls for $200 each.',
+            category: 'abuse',
+            source: 'EFTA00096192',
+            severity: 'critical'
+        },
+        {
+            date: '2004-2006',
+            event: 'Chef David Mullen made lunch for AL GORE and cooked for former PM of Israel at Epstein residence. FBI confronted Mullen about inconsistencies.',
+            category: 'associates',
+            source: 'EFTA00090348',
+            severity: 'high'
+        }
+    ];
 
 const DATASETS_DATA = [
   { name: "Dataset 1 (DS1)", status: "complete", desc: "Court-released documents batch 1. Civil litigation materials, depositions, correspondence.", stat: "3,156 PDFs // COMPLETE" },
