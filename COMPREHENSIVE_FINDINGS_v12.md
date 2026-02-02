@@ -1,12 +1,12 @@
-# EPSTEIN FILES COMPREHENSIVE ANALYSIS v15
+# EPSTEIN FILES COMPREHENSIVE ANALYSIS v16
 ## Generated: February 1, 2026
-## Sources: 406 PDFs, 40MB+ full text, Datasets 9/12, 5000+ individual findings
+## Sources: 406 PDFs, 40MB+ full text, Datasets 9/12, 5500+ individual findings
 ## Deep analysis of EFTA02731082, EFTA02730741, dec2025 corpus (42MB)
-## v15: 26 deep-dive search agents — Brunel/MC2 trafficking, Zorro Ranch DNA seeding, Gates-Epstein-Nobel, employee testimony, pilot records, Kellerhals law firm wires
+## v16: 30 deep-dive search agents — Deutsche Bank compliance, Mark Epstein/66th St, Ehud Barak/Israel intelligence, civil lawsuits/EVCP, CVRA violations
 
 ---
 
-## WHAT JOURNALISTS ARE MISSING — TOP 80 FINDINGS
+## WHAT JOURNALISTS ARE MISSING — TOP 90 FINDINGS
 
 ### 1. LEON BLACK'S EXTREME SEXUAL VIOLENCE (EFTA02731662 — DANY Investigation)
 Internal FBI-Manhattan DA communications (June-July 2023) reveal: A victim "trafficked by Maxwell and Epstein" identified Leon Black. The "2001 sexual assault by Leon Black stood out because of how violent" it was. Description: "Black was very violent, tore her clothes off, bit her vagina, forced sex toys into her." She described him as "looking like Shrek." Her mother confirmed identification from a photo. DANY also "believed she was also abused by Staley." This level of detail was NOT in previous public reporting.
@@ -686,6 +686,74 @@ Chief pilot Larry Visoski was not just a pilot but held a **formal corporate man
 ### 80. DISC FOUND: "MISC. GIRLS NUDE / DINNER — SCIENTISTS" (EFTA00020147-49)
 During the NYC mansion search, a disc found in a fifth-floor dresser bore the label **"Misc. Girls Nude/Dinner--Scientists."** A safe on the third floor contained **binders with CDs labeled "Zorro" or "LSJ"** (Little St. James) plus titles with female names. Also found: **"loose polaroid photographs depicting young, nude females who appear to be teenagers."** The disc label directly links exploitation of young women to scientific networking.
 
+### 81. FBI: DEUTSCHE BANK "ADMITTED" KNOWING EPSTEIN WAS PAYING WOMEN (EFTA00037187)
+FBI internal email (March 2020): **"They should not have let Epstein bank with them, in that it was clear he was moving money for the payment of women. They as much admit that, but seem to justify it, in that they did not believe the women to be under age (i.e., complete disregard for the trafficking aspect, or witness tampering)."** The FBI had opened an investigation into Deutsche Bank for "transaction monitoring, or the lack thereof." Paul Morris identified as Epstein's relationship manager.
+
+### 82. SDNY PROSECUTORS PRIVATELY: "NO MALFEASANCE AT ALL" AT DEUTSCHE BANK (EFTA00027017)
+Internal SDNY email (July 7, 2020), day after DFS fined DB $150 million: **"I share your view that despite the press coverage, there doesn't appear to have been any malfeasance at all in connection with the Epstein accounts."** The other prosecutor noted the fine was likely about **"a massive money laundering scheme and other improper activity"** — not Epstein. This directly contradicts the public narrative of Deutsche Bank compliance failure.
+
+### 83. BUTTERFLY TRUST: FBI CALLED IT "CONDUIT FOR MONEY PAID TO FEMALE VICTIMS" (EFTA00037690)
+FBI Squad C-40 email (Oct 2019): **"Butterfly Trust SARs" — "This entity seems to be a conduit for money paid to female victims."** Attached: Flow_of_Funds Butterfly Trust.pptx and Butterfly Fund FinCEN List.xlsx. Deutsche Bank SARs traced $250K from the 2013 Butterfly Trust to Bank of America and Wells Fargo accounts.
+
+### 84. MARK EPSTEIN'S 66TH ST BUILDING: "APT. FOR MODELS" WHERE VICTIMS HOUSED (EFTA00030824)
+FBI confirmed: **301 East 66th Street was "the building owned by Mark Epstein (Jeffrey's brother)."** Epstein's address book listed units as **"Apt. for models."** MC2 models housed there. Victims brought from abroad to the building. Nine East 71st Street Corporation (holding the mansion deed) was registered at 301 E 66th, Apt 10F. Mark's net worth "exceeds $100 million." DAS search returned over 2,000 records for the building.
+
+### 85. NYC MANSION TRANSFERRED FOR $10 VIA SHELL AT MARK'S BUILDING (EFTA00022151)
+**"NINE EAST 71ST STREET CORPORATION, a New York corporation, with an address of 301 East 66th Street, 10F"** transferred the $77M mansion to **"MAPLE, INC., a U.S. Virgin Islands corporation"** for **"TEN DOLLARS ($10.00)."** An AUSA raised the question: "So did he own it that entire time, rather than Wexner, as had been advertised?"
+
+### 86. MELVYN KOHN LETTER: "CUTOUTS TO DO INTEL WORK — NON-JEWS USED JEFFREY" (EFTA00037219-22)
+Days after Epstein's death, Melvyn Kohn wrote to Mark Epstein claiming former US military intelligence background: **"This is in fact part of what some foreign intel agencies want to happen, masking their own presence... using cutouts to do intel work and then letting others take the blame. In this case, non-Jews used Jeffrey."** He referenced "North Korean/Chinese agents," arms dealer Gerald Bull, and "PRC Chinese execs at Humpty" (Humpty Dumpty Institute involving 29 Congressmen). Forwarded to FBI.
+
+### 87. EPSTEIN TOURED ISRAELI MILITARY BASES WHILE UNDER INVESTIGATION (EFTA00013729-30)
+April 2008: Epstein **"spotted at the Tel Aviv Hilton... meeting with Israeli scientists about medical research he's funding and taking a tour of military bases with [Friends of Israel chairman] Benny Shabtai."** Staff messages confirm: **"The Tel Aviv ticket was not a fraud. It was to get a renewal for your 2nd valid passport."** Trump was listed as a guest on Robert Maxwell's yacht in 1989. Robert Maxwell was found dead in 1991 after "reportedly having fallen overboard" — had "embezzled from his employees' pension fund."
+
+### 88. ROTHSTEIN USED EPSTEIN LAWSUITS FOR $1B PONZI — CLAIMED $200M SETTLEMENT (EFTA00014178-79)
+Epstein's attorney Roy Black: **"Rothstein told investors that Epstein had offered to settle the cases for $200 million, when there have been no such discussions about any settlement at any price."** The Rothstein firm **"used the litigation against Mr. Epstein to lure investors into its billion-dollar ponzi scheme."** They "sought discovery of Epstein's plane logs to fish for celebrities to extort."
+
+### 89. EVCP RELEASE: VICTIMS WAIVED ALL CLAIMS — ONE PARTY "EXPRESSLY PRESERVED" (EFTA00010010-14)
+EVCP General Release (Oct 2020): victims required to **"fully, finally and forever settle and release all of the Claims, whether known or unknown."** But: **"This General Release specifically does not include [REDACTED] as a Releasee... all claims that Releasor has or may have against [REDACTED] are expressly preserved."** At least one individual remained legally exposed.
+
+### 90. ACOSTA DELAYED VICTIM NOTIFICATION TO GIVE DEFENSE TIME (EFTA00010519)
+U.S. Attorney Acosta to Epstein's defense counsel Kenneth Starr: **"I am directing our prosecutors not to issue victim notification letters until this Friday at 5 p.m., to provide you with time to review these options."** Defense counsel Lefkowitz objected that **"it is inappropriate for any letter to be sent to the victims."** Court later ruled SDNY violated the Crime Victims' Rights Act.
+
+---
+
+## DEUTSCHE BANK — COMPLETE FINANCIAL NEXUS
+
+### Key Findings from FBI/SDNY Internal Communications
+
+| Document | Finding |
+|----------|---------|
+| **EFTA00037187** | FBI: DB "should not have let Epstein bank with them... moving money for the payment of women... complete disregard for the trafficking aspect" |
+| **EFTA00037188** | FBI: "investigation into Deutsche Bank... transaction monitoring, or the lack thereof... Paul Morris" |
+| **EFTA00027017** | SDNY: "no malfeasance at all" — DFS $150M fine driven by unrelated money laundering |
+| **EFTA00037690** | Butterfly Trust SARs: "conduit for money paid to female victims" |
+| **EFTA00037696** | "Deutsche Bank SARs show the BoA account" — Butterfly Trust fund flows traced |
+| **EFTA00029885** | Previously unknown JP Morgan bankers Ted Serure and Laurie Cameron managed Epstein accounts |
+| **EFTA00015937** | Revenue-sharing accounts opened "in connection with the Epstein relationship" |
+| **EFTA00027018-19** | Exhibit A: Leon Black/Rothschild wire transfers totaling $100M+ through Southern Trust |
+
+### BV70 LLC Transactions (Leon Black)
+
+| Date | From | To | Amount |
+|------|------|----|--------|
+| 10/14/2015 | BV70 LLC | Gratitude America, Ltd. | $10,000,000 |
+| 3/31/2017 | BV70 LLC | Plan D, LLC (aircraft) | $22,500,000 |
+| 4/17/2017 | BV70 LLC | Plan D, LLC (aircraft) | $8,000,000 |
+
+## MARK EPSTEIN / 301 EAST 66TH STREET
+
+| Detail | Finding | EFTA Source |
+|--------|---------|------------|
+| **Building ownership** | FBI: "That's the building owned by Mark Epstein (Jeffrey's brother)" | EFTA00030824 |
+| **"Apt. for models"** | Units listed in address book as "Apt. for models" | EFTA00019513 |
+| **MC2 housing** | MC2 models put up in Epstein-owned 66th St apartment | Public depositions |
+| **Victim housing** | Brought from abroad "to an apartment building on 66th Street" | EFTA00022133 |
+| **Corporate address** | Nine East 71st Street Corp registered at 301 E 66th, 10F | EFTA00022151 |
+| **Document shredding** | "Old files" shredded by "office helper" from 301 E 66th storage | EFTA00025092 |
+| **Net worth** | Mark's net worth "exceeds $100 million" | EFTA00014486 |
+| **Sole beneficiary** | "They have identified the sole beneficiary as Mr. Epstein's brother" | EFTA00027910 |
+
 ---
 
 ## SCIENCE / ACADEMIC NETWORK
@@ -976,4 +1044,4 @@ During the NYC mansion search, a disc found in a fifth-floor dresser bore the la
 
 ---
 
-*Analysis conducted programmatically across 406 PDFs, 42MB full text corpus, and structured findings databases. All citations reference specific EFTA document numbers from the January 30, 2026 document release on archive.org. Exact page numbers verified against `--- PAGE XX ---` markers in extracted documents. v15: 26 deep-dive search agents deployed.*
+*Analysis conducted programmatically across 406 PDFs, 42MB full text corpus, and structured findings databases. All citations reference specific EFTA document numbers from the January 30, 2026 document release on archive.org. Exact page numbers verified against `--- PAGE XX ---` markers in extracted documents. v16: 30 deep-dive search agents deployed.*
