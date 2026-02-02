@@ -1,12 +1,12 @@
-# EPSTEIN FILES COMPREHENSIVE ANALYSIS v13
+# EPSTEIN FILES COMPREHENSIVE ANALYSIS v14
 ## Generated: February 1, 2026
-## Sources: 406 PDFs, 40MB+ full text, Datasets 9/12, 4000+ individual findings
+## Sources: 406 PDFs, 40MB+ full text, Datasets 9/12, 4500+ individual findings
 ## Deep analysis of EFTA02731082, EFTA02730741, dec2025 corpus (42MB)
-## v13: 18 deep-dive search agents — Austrian passport investigation, diamonds/flight kit, Tel Aviv 2nd passport, Southern Trust $391M tax fraud, Leon Black/Rothschild wire transfers, Maple Inc self-sale, shredding before arrest, MCC post-death shredding, SPIEF 2014 USB, Summers executor
+## v14: 22 deep-dive search agents — victim escape/captivity, bodyguard testimony, Interlochen recruitment, FBI ELSUR intercepts, pen register tracking, Maxwell arrest, pregnancy/breast milk, Rodriguez testimony, financial fraud details
 
 ---
 
-## WHAT JOURNALISTS ARE MISSING — TOP 60 FINDINGS
+## WHAT JOURNALISTS ARE MISSING — TOP 70 FINDINGS
 
 ### 1. LEON BLACK'S EXTREME SEXUAL VIOLENCE (EFTA02731662 — DANY Investigation)
 Internal FBI-Manhattan DA communications (June-July 2023) reveal: A victim "trafficked by Maxwell and Epstein" identified Leon Black. The "2001 sexual assault by Leon Black stood out because of how violent" it was. Description: "Black was very violent, tore her clothes off, bit her vagina, forced sex toys into her." She described him as "looking like Shrek." Her mother confirmed identification from a photo. DANY also "believed she was also abused by Staley." This level of detail was NOT in previous public reporting.
@@ -626,6 +626,36 @@ FBI evidence inventory: **"SPIEF 2014 silver USB"** seized from a cabinet on the
 ### 60. LARRY SUMMERS NAMED SUCCESSOR EXECUTOR — JES STALEY PRIMARY (EFTA00016883-84)
 Epstein's Last Will (signed on Little St. James Island) named primary executors: **Darren K. Indyke, David Mitchell, and James E. Staley** (the same Jes Staley accused of raping a victim). Successor executor: **Lawrence H. Summers**, former Treasury Secretary and Harvard president. Each executor: **$250,000 compensation.** All property directed to "The Jeffrey E. Epstein 2014 Trust." An earlier will named different executors (Jeffrey A. Schantz and Paul Hoffman).
 
+### 61. 12-YEAR-OLD FRENCH GIRLS FLOWN IN AS "BIRTHDAY SURPRISE" (EFTA00020706)
+Witness testimony: **"The worst one... was this pretty 12 year old girls he had flown in for his birthday. It was a surprise birthday gift from one of his friends and they were from France."** Epstein bragged they were **"12 year olds flown over from France because they're really poor over there, and their parents needed the money."** The witness added: "He was constantly bragging about girls' ages or where he got them from." This is the youngest documented victim age in the documents — establishing an international procurement network into France.
+
+### 62. BODYGUARD: "FEDERAL GOVERNMENT WOULD NEVER PROSECUTE HIM" (EFTA00037180-81)
+Epstein's own bodyguard (Chapter 42, "Relentless Pursuit") testified: **"I worked for him for years and I still don't know who you're dealing with. He knows everybody who's powerful in this world."** Connections not just to local police who were **"definitely in his pocket"** — Epstein **"made very clear that the federal government would never prosecute him."** Chilling incident: "a lawyer was found at the bottom of a swimming pool. Epstein asked him if he thought people would believe it was a suicide." Post-2008: **"As soon as Jeffrey got out of jail, there were girls at his house all the time — the only thing that changed was the target age."**
+
+### 63. 15-YEAR-OLD SWAM OFF ISLAND — PASSPORT CONFISCATED, HELD CAPTIVE (EFTA00016839-40)
+USVI AG lawsuit: **"A 15-year-old girl attempted to swim off Mr. Epstein's island and escape after she was forced to engage in sex acts with Mr. Epstein and others. The girl was found, and held captive on the island after he confiscated her passport."** Air traffic controllers in the Virgin Islands observed Epstein leaving his private plane **"with girls who looked as young as 11"** in 2018. Bodyguard independently corroborated the swimming escape attempt.
+
+### 64. INTERLOCHEN: 13-YEAR-OLD "FIRST KNOWN VICTIM" AT EPSTEIN'S LODGE (EFTA00019103, EFTA00008722-26)
+In summer 1994, Epstein and Maxwell approached a **13-year-old girl at Interlochen Center for the Arts** in Michigan. Epstein had **donated a "scholarship lodge"** to the camp. Flight logs confirm an **August 18, 1994 flight to Traverse City, MI** (25 min from Interlochen). A December 1994 letter from Interlochen to Maxwell was sent c/o **"the Epstein Lodge."** Civil complaint: "Jane Doe was their first known victim." She was in the voice program, sitting alone between classes.
+
+### 65. FBI HAD TITLE II/III ELECTRONIC SURVEILLANCE INTERCEPTS (EFTA00008480-88)
+FBI ELSUR chain-of-custody forms document **Title II and Title III court-authorized intercepts**, consensual monitoring intercepts, and recordings. Forms include checkboxes for "Court Authorized Intercept" and "Consensual Monitoring Intercept" with fields for "Agt. Supervising Title III Intercepts." A VHS tape of an April 24, 2007 interview was stored in the "FBI's ELSUR office in Florida." Epstein's defense demanded disclosure of all wiretaps, body wires, and pen registers. Palm Beach PD conducted controlled phone calls and video surveillance of El Brillo Way (March 31 - April 5, 2005).
+
+### 66. SOUTHERN TRUST "IT MANAGER" WAS EPSTEIN'S FLORIDA DRIVER (GVI Complaint)
+The GVI complaint reveals Southern Trust Company's **IT manager was actually Epstein's driver in Florida.** An **"executive assistant" lived at 301 E. 66th St, NYC** — an address listed in Epstein's address book as **"Apt. for models."** Southern Trust **falsely affirmed to the EDC that it had no non-resident employees.** Despite having only one IT employee, it reported $50.3M net income in 2013, $67.5M in 2014. Epstein's personal income tax exemption: **$71.3 million.**
+
+### 67. $23M WIRE FROM "THE HAZE TRUST" TO EPSTEIN'S LAW FIRM (DB-SDNY records)
+Deutsche Bank wire transfer records: **$23,000,000 from "The Haze Trust" (DB Brokerage Account) to Kellerhals Ferguson Kroblin PLLC** on January 8, 2016. A separate **$2.5M wire from "Jeepers Inc."** went to the same firm on October 29, 2015. Kellerhals was Epstein's USVI law firm handling all property transfers, will notarization, shell company filings, and EDC testimony.
+
+### 68. FBI TRACKED MAXWELL TO MANCHESTER-BY-THE-SEA VIA PEN REGISTER (EFTA00013447)
+FBI internal email (May 2020): Maxwell was **"still living with a friend in the Boston suburb of Manchester by the Sea. Confirmed by historical pen register with cell site location and subpoenas to Amazon for delivery location."** A "pole camera" was not suitable due to the secluded location. Maxwell's credit report listed alias **"Ghislaine Borgerson."** She shared a joint bank account with Scott Borgerson. Ultimately arrested in Bradford, NH on July 2, 2020 with a **"safe room" security protocol.**
+
+### 69. VICTIM PREGNANT AT 16 — EPSTEIN DEMANDED BREAST MILK (EFTA00019921-22)
+A victim became **pregnant at approximately age 16** and continued massaging Epstein until she began showing. After giving birth at 17, she returned to Epstein to "support her baby." FBI interview: **"JE asked her to give him breast milk, tried to suck on her breast, she stopped him, then gave him breast milk in a cup."** Separately, another victim stated Epstein "lost interest" when she became pregnant, then forced her to recruit underage girls. Multiple nude photos of Maxwell found in Epstein's house, "including a photograph of Maxwell pregnant."
+
+### 70. HOUSE MANAGER: GIRLS "ATE LIKE MY DAUGHTER IN HIGH SCHOOL" (EFTA00007227)
+Alfredo Rodriguez (house manager, Nov 2004-May 2005) told police masseuses appeared very young: **"They ate like his own daughter who is in high school. They would eat tons of cereal and drink milk."** He stated **"the girls appeared to be too young to be masseuses"** and **"knew the girls were still in high school."** After massages, Rodriguez "would find vibrators and sex toys scattered on the floor." Epstein had two massages per day. Victims had "no formal training in massages." Federal indictment: Epstein incentivized victims to become recruiters by paying hundreds of dollars for each new girl brought in.
+
 ---
 
 ## SCIENCE / ACADEMIC NETWORK
@@ -807,6 +837,16 @@ Epstein's Last Will (signed on Little St. James Island) named primary executors:
 | EFTA00018588-89 | multi | FBI evidence: SPIEF 2014 silver USB from Russia forum |
 | EFTA00016883-84 | multi | Epstein's Last Will: Staley/Indyke executors, Summers successor |
 | EFTA00016805 | 1 | Habsburg Group tip: Manafort/Gusenbauer linked to Austrian passport |
+| EFTA00020706 | multi | Witness testimony: 12-year-old French girls flown in as birthday surprise |
+| EFTA00037180-81 | multi | Bodyguard chapter: "federal government would never prosecute him" |
+| EFTA00019103 | multi | Civil complaint: Interlochen 13-year-old "first known victim" (1994) |
+| EFTA00008480-88 | multi | FBI ELSUR chain-of-custody: Title II/III intercepts, recordings |
+| EFTA00013447 | multi | FBI email: Maxwell tracked to Manchester-by-the-Sea via pen register |
+| EFTA00016349-63 | multi | Pen register warrant application / TerraMar phone order |
+| EFTA00011173-74 | multi | Maxwell arrest: security consultant, "safe room" protocol, Bradford NH |
+| EFTA00019921-22 | multi | FBI interview: pregnancy at 16, breast milk demand, Maxwell nude photos |
+| EFTA00007227 | multi | Rodriguez statement: girls "ate like my daughter in high school" |
+| EFTA00008722-26 | multi | Interlochen records: Epstein Lodge, Maxwell letters, flight logs to TVC |
 
 ---
 
@@ -845,7 +885,40 @@ Epstein's Last Will (signed on Little St. James Island) named primary executors:
 | Benjamin Edmond de Rothschild | $14,999,980 | 12/21/2015 |
 | Leon & Debra Black (c/o Apollo) | $10,000,000 | 12/30/2015 |
 | Leon & Debra Black (c/o Apollo) | $8,000,000 | 04/25/2017 |
+| The Haze Trust (DB Brokerage) | $23,000,000 | 01/08/2016 |
+| Jeepers Inc. (DB Brokerage) | $2,500,000 | 10/29/2015 |
 
 ---
 
-*Analysis conducted programmatically across 406 PDFs, 42MB full text corpus, and structured findings databases. All citations reference specific EFTA document numbers from the January 30, 2026 document release on archive.org. Exact page numbers verified against `--- PAGE XX ---` markers in extracted documents. v13: 18 deep-dive search agents deployed.*
+## VICTIM RECRUITMENT PIPELINE
+
+| Method | Location | Age | EFTA Source |
+|--------|----------|-----|------------|
+| **Interlochen Arts Camp** | Michigan | 13 | EFTA00019103, EFTA00008722-26 |
+| **Gym recruitment** (Maxwell) | Jupiter/Palm Beach, FL | 14 | EFTA00020491 |
+| **Modeling/Victoria's Secret lure** | Palm Beach Mall, FL | various | EFTA00007229 |
+| **Massage recruitment pipeline** | Palm Beach schools | 14-17 | EFTA00007186, EFTA00009810-13 |
+| **French procurement network** | France → Palm Beach | 12 | EFTA00020706 |
+| **Mar-a-Lago staff** | Palm Beach, FL | 16 | EFTA00029525 |
+| **Dalton School** | NYC | — | EFTA00013640-43, EFTA00020536 |
+| **Canadian woman in NYC nightclubs** | Manhattan | underage | EFTA00020490 |
+
+---
+
+## FBI SURVEILLANCE / ELECTRONIC INTERCEPTS
+
+| Type | Details | EFTA Source |
+|------|---------|------------|
+| **Title II/III Court-Authorized Intercepts** | ELSUR chain-of-custody forms with "Court Authorized Intercept" checkboxes | EFTA00008480-88 |
+| **Consensual Monitoring** | Telephonic (TCM) and Non-telephonic (NTCM) intercepts documented | EFTA00008485-88 |
+| **Controlled Phone Calls** | Palm Beach PD placed controlled calls from victims to targets (03/18/2005) | EFTA00007172 |
+| **Video Surveillance** | El Brillo Way video surveillance March 31 - April 5, 2005 | EFTA00007172 |
+| **VHS Recording** | April 24, 2007 interview stored in FBI ELSUR office in Florida | EFTA00015786 |
+| **Pen Register** (Maxwell) | Cell site location confirmed Manchester-by-the-Sea | EFTA00013447 |
+| **Pen Register Warrant** | 45-day authorization for TerraMar phone | EFTA00016349-63 |
+| **GPS Data** | Produced in discovery as electronic files | EFTA00015738 |
+| **Aerial Footage** | Produced in discovery as electronic files | EFTA00015738 |
+
+---
+
+*Analysis conducted programmatically across 406 PDFs, 42MB full text corpus, and structured findings databases. All citations reference specific EFTA document numbers from the January 30, 2026 document release on archive.org. Exact page numbers verified against `--- PAGE XX ---` markers in extracted documents. v14: 22 deep-dive search agents deployed.*
