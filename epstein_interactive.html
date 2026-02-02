@@ -1,0 +1,1314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Epstein Files — Interactive Investigation Dashboard</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+:root {
+  --bg-primary: #08090d;
+  --bg-secondary: #0f1117;
+  --bg-card: #151720;
+  --bg-card-hover: #1a1d2a;
+  --bg-glass: rgba(15,17,23,0.85);
+  --border: rgba(255,255,255,0.06);
+  --border-active: rgba(255,255,255,0.12);
+  --text-primary: #e8eaed;
+  --text-secondary: #9aa0b0;
+  --text-dim: #5a6070;
+  --red: #ff3b5c;
+  --red-glow: rgba(255,59,92,0.15);
+  --orange: #ff7b42;
+  --orange-glow: rgba(255,123,66,0.15);
+  --yellow: #ffc53d;
+  --yellow-glow: rgba(255,197,61,0.15);
+  --green: #34d399;
+  --green-glow: rgba(52,211,153,0.15);
+  --blue: #60a5fa;
+  --blue-glow: rgba(96,165,250,0.15);
+  --purple: #a78bfa;
+  --purple-glow: rgba(167,139,250,0.15);
+  --pink: #f472b6;
+  --pink-glow: rgba(244,114,182,0.15);
+  --cyan: #22d3ee;
+  --radius: 16px;
+  --radius-sm: 10px;
+  --radius-xs: 6px;
+  --shadow: 0 4px 24px rgba(0,0,0,0.4);
+  --shadow-lg: 0 8px 48px rgba(0,0,0,0.6);
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--bg-primary); }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.2); }
+
+/* ======= HERO ======= */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 24px;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(ellipse at 30% 50%, rgba(255,59,92,0.06) 0%, transparent 50%),
+              radial-gradient(ellipse at 70% 30%, rgba(96,165,250,0.04) 0%, transparent 50%),
+              radial-gradient(ellipse at 50% 80%, rgba(167,139,250,0.04) 0%, transparent 50%);
+  animation: heroBg 20s ease-in-out infinite alternate;
+}
+@keyframes heroBg { 0% { transform: rotate(0deg); } 100% { transform: rotate(3deg); } }
+
+.hero-content { position: relative; z-index: 2; text-align: center; max-width: 900px; }
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  background: rgba(255,59,92,0.1);
+  border: 1px solid rgba(255,59,92,0.2);
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--red);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+.hero-badge .pulse {
+  width: 8px; height: 8px;
+  background: var(--red);
+  border-radius: 50%;
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse { 0%,100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(1.5); } }
+
+.hero h1 {
+  font-size: clamp(36px, 6vw, 72px);
+  font-weight: 900;
+  letter-spacing: -2px;
+  line-height: 1.05;
+  margin-bottom: 16px;
+  background: linear-gradient(135deg, #fff 0%, #9aa0b0 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.hero .subtitle {
+  font-size: 18px;
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin: 0 auto 40px;
+  font-weight: 300;
+}
+.hero .meta-line {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--text-dim);
+  letter-spacing: 0.5px;
+}
+
+/* Stats Row */
+.stats-row {
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 48px 0;
+}
+.stat-pill {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 32px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  min-width: 140px;
+  transition: var(--transition);
+}
+.stat-pill:hover { border-color: var(--border-active); transform: translateY(-2px); }
+.stat-pill .num {
+  font-size: 36px;
+  font-weight: 800;
+  font-family: 'JetBrains Mono', monospace;
+  line-height: 1;
+}
+.stat-pill .lbl {
+  font-size: 11px;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-top: 6px;
+}
+.stat-pill:nth-child(1) .num { color: var(--red); }
+.stat-pill:nth-child(2) .num { color: var(--orange); }
+.stat-pill:nth-child(3) .num { color: var(--yellow); }
+.stat-pill:nth-child(4) .num { color: var(--green); }
+.stat-pill:nth-child(5) .num { color: var(--blue); }
+.stat-pill:nth-child(6) .num { color: var(--purple); }
+
+/* ======= NAV ======= */
+.nav-bar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: var(--bg-glass);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 24px;
+}
+.nav-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  height: 56px;
+  overflow-x: auto;
+}
+.nav-btn {
+  flex-shrink: 0;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  background: transparent;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: var(--transition);
+  white-space: nowrap;
+  font-family: inherit;
+}
+.nav-btn:hover { color: var(--text-primary); background: rgba(255,255,255,0.05); }
+.nav-btn.active { color: var(--red); background: var(--red-glow); border-color: rgba(255,59,92,0.2); }
+
+.search-box {
+  margin-left: auto;
+  position: relative;
+  flex-shrink: 0;
+}
+.search-box input {
+  width: 220px;
+  padding: 8px 16px 8px 36px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  color: var(--text-primary);
+  font-family: inherit;
+  font-size: 13px;
+  outline: none;
+  transition: var(--transition);
+}
+.search-box input:focus { width: 300px; border-color: var(--red); background: rgba(255,59,92,0.05); }
+.search-box::before {
+  content: '⌕';
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 16px;
+  color: var(--text-dim);
+}
+.search-box .kbd {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--text-dim);
+  border: 1px solid var(--border);
+  padding: 1px 6px;
+  border-radius: 4px;
+}
+
+/* ======= MAIN ======= */
+.main { max-width: 1400px; margin: 0 auto; padding: 32px 24px; }
+
+/* Section */
+.section-block {
+  margin-bottom: 48px;
+  scroll-margin-top: 72px;
+}
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+.section-title .icon {
+  width: 40px; height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+  font-size: 20px;
+}
+.section-title h2 {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+.section-title .count-badge {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-weight: 600;
+}
+
+/* Cards Grid */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
+  gap: 16px;
+}
+@media (max-width: 900px) { .cards-grid { grid-template-columns: 1fr; } }
+
+/* Finding Card */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: var(--transition);
+  cursor: pointer;
+}
+.card:hover {
+  border-color: var(--border-active);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+}
+.card.expanded {
+  grid-column: 1 / -1;
+}
+.card-header {
+  padding: 20px 20px 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+.card-num {
+  flex-shrink: 0;
+  width: 32px; height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  font-weight: 700;
+}
+.card-header h3 {
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.4;
+  flex: 1;
+}
+.new-tag {
+  flex-shrink: 0;
+  padding: 2px 8px;
+  background: var(--red);
+  color: white;
+  font-size: 9px;
+  font-weight: 700;
+  border-radius: 6px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.card-body {
+  padding: 12px 20px 16px;
+}
+.card-body p {
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
+.card-body strong { color: var(--red); font-weight: 600; }
+.card-body em.name { color: var(--yellow); font-style: normal; font-weight: 600; }
+
+.card-cite {
+  padding: 10px 20px;
+  background: rgba(0,0,0,0.2);
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.cite-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 10px;
+  background: rgba(96,165,250,0.1);
+  border: 1px solid rgba(96,165,250,0.15);
+  border-radius: 6px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--blue);
+  cursor: pointer;
+  transition: var(--transition);
+}
+.cite-tag:hover { background: rgba(96,165,250,0.2); }
+.cite-tag .page { color: var(--cyan); }
+
+.card-expand {
+  display: none;
+  padding: 0 20px 20px;
+}
+.card.expanded .card-expand { display: block; }
+.card-expand p {
+  font-size: 13px;
+  line-height: 1.8;
+  color: var(--text-secondary);
+  margin-top: 12px;
+}
+.card-expand ul {
+  padding-left: 20px;
+  margin-top: 8px;
+}
+.card-expand li {
+  font-size: 13px;
+  line-height: 1.8;
+  color: var(--text-secondary);
+  margin-bottom: 4px;
+}
+.card-expand strong { color: var(--red); }
+
+/* Color variations */
+.c-red .card-num { background: var(--red-glow); color: var(--red); }
+.c-orange .card-num { background: var(--orange-glow); color: var(--orange); }
+.c-yellow .card-num { background: var(--yellow-glow); color: var(--yellow); }
+.c-green .card-num { background: var(--green-glow); color: var(--green); }
+.c-blue .card-num { background: var(--blue-glow); color: var(--blue); }
+.c-purple .card-num { background: var(--purple-glow); color: var(--purple); }
+.c-pink .card-num { background: var(--pink-glow); color: var(--pink); }
+
+/* ======= NETWORK GRAPH ======= */
+.network-container {
+  position: relative;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin-bottom: 32px;
+}
+.network-container canvas {
+  width: 100%;
+  display: block;
+}
+.network-legend {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: var(--text-dim);
+}
+.legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+.network-tooltip {
+  display: none;
+  position: absolute;
+  padding: 8px 14px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-active);
+  border-radius: var(--radius-xs);
+  font-size: 12px;
+  color: var(--text-primary);
+  pointer-events: none;
+  z-index: 10;
+  box-shadow: var(--shadow);
+}
+
+/* ======= TIMELINE ======= */
+.timeline-wrapper {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 32px 24px;
+  margin-bottom: 32px;
+  overflow-x: auto;
+}
+.timeline {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 0;
+  min-width: max-content;
+  padding: 24px 0 60px;
+}
+.timeline::before {
+  content: '';
+  position: absolute;
+  top: 45px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--red) 0%, var(--orange) 25%, var(--yellow) 50%, var(--blue) 75%, var(--purple) 100%);
+  opacity: 0.3;
+}
+.tl-item {
+  flex-shrink: 0;
+  width: 160px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+}
+.tl-dot {
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  border: 3px solid;
+  background: var(--bg-primary);
+  margin-bottom: 12px;
+  position: relative;
+  z-index: 2;
+  transition: var(--transition);
+}
+.tl-item:hover .tl-dot { transform: scale(1.5); }
+.tl-date {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+.tl-text {
+  font-size: 11px;
+  color: var(--text-dim);
+  line-height: 1.4;
+  max-width: 140px;
+}
+.tl-cite {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  color: var(--blue);
+  margin-top: 4px;
+  opacity: 0.7;
+}
+
+/* ======= TABLE ======= */
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+.data-table th {
+  text-align: left;
+  padding: 12px 16px;
+  color: var(--text-dim);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-bottom: 1px solid var(--border);
+  background: rgba(0,0,0,0.2);
+  position: sticky;
+  top: 56px;
+  z-index: 5;
+}
+.data-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+  transition: var(--transition);
+}
+.data-table tr:hover td { background: rgba(255,255,255,0.02); }
+.data-table .name-cell { color: var(--yellow); font-weight: 600; white-space: nowrap; }
+.data-table .cite-cell { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--blue); }
+
+/* Filter pills */
+.filter-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+.filter-pill {
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: var(--transition);
+  font-family: inherit;
+}
+.filter-pill:hover { border-color: var(--border-active); color: var(--text-primary); }
+.filter-pill.active { background: var(--red-glow); border-color: rgba(255,59,92,0.3); color: var(--red); }
+
+/* Highlight */
+mark { background: rgba(255,197,61,0.3); color: var(--text-primary); padding: 1px 3px; border-radius: 2px; }
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 60px 24px;
+  color: var(--text-dim);
+  font-size: 12px;
+  border-top: 1px solid var(--border);
+}
+footer a { color: var(--blue); text-decoration: none; }
+
+/* Animations */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate { animation: fadeInUp 0.6s ease forwards; opacity: 0; }
+.animate.d1 { animation-delay: 0.1s; }
+.animate.d2 { animation-delay: 0.2s; }
+.animate.d3 { animation-delay: 0.3s; }
+.animate.d4 { animation-delay: 0.4s; }
+.animate.d5 { animation-delay: 0.5s; }
+</style>
+</head>
+<body>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+<div class="hero-content">
+  <div class="hero-badge animate"><span class="pulse"></span> ACTIVE INVESTIGATION</div>
+  <h1 class="animate d1">Epstein Files</h1>
+  <p class="subtitle animate d2">Comprehensive analysis of the January 30, 2026 document release. Every finding cited to specific document numbers and pages.</p>
+  <p class="meta-line animate d3">406 PDFs &bull; 42MB Full Text &bull; 8 Deep-Dive Agents &bull; 2,500+ Findings</p>
+
+  <div class="stats-row animate d4">
+    <div class="stat-pill"><span class="num" data-count="30">0</span><span class="lbl">Key Findings</span></div>
+    <div class="stat-pill"><span class="num" data-count="24">0</span><span class="lbl">Victims Mapped</span></div>
+    <div class="stat-pill"><span class="num" data-count="16">0</span><span class="lbl">Named Abusers</span></div>
+    <div class="stat-pill"><span class="num" data-count="150">0</span><span class="lbl">Shell Companies</span></div>
+    <div class="stat-pill"><span class="num" data-count="60">0</span><span class="lbl">Devices Seized</span></div>
+    <div class="stat-pill"><span class="num" data-count="4800">0</span><span class="lbl">Flights Logged</span></div>
+  </div>
+
+  <p class="meta-line animate d5">Scroll to explore &darr;</p>
+</div>
+</section>
+
+<!-- ===== NAV ===== -->
+<nav class="nav-bar" id="navbar">
+<div class="nav-inner">
+  <button class="nav-btn active" data-target="top30">Top 30</button>
+  <button class="nav-btn" data-target="network">Network</button>
+  <button class="nav-btn" data-target="timeline">Timeline</button>
+  <button class="nav-btn" data-target="lentout">Lent Out</button>
+  <button class="nav-btn" data-target="financial">Financial</button>
+  <button class="nav-btn" data-target="evidence">Evidence</button>
+  <button class="nav-btn" data-target="victims">Victims</button>
+  <button class="nav-btn" data-target="death">Death</button>
+  <button class="nav-btn" data-target="intel">Intelligence</button>
+  <button class="nav-btn" data-target="political">Political</button>
+  <button class="nav-btn" data-target="docs">Documents</button>
+  <div class="search-box">
+    <input type="text" id="globalSearch" placeholder="Search all findings...">
+    <span class="kbd">⌘K</span>
+  </div>
+</div>
+</nav>
+
+<!-- ===== MAIN ===== -->
+<div class="main">
+
+<!-- === RELATIONSHIP NETWORK === -->
+<div class="section-block" id="network">
+  <div class="section-title">
+    <div class="icon" style="background:var(--purple-glow);font-size:22px;">&#9784;</div>
+    <h2>Relationship Network</h2>
+    <span class="count-badge" style="background:var(--purple-glow);color:var(--purple);">Interactive</span>
+  </div>
+  <div class="network-container">
+    <canvas id="networkCanvas" height="500"></canvas>
+    <div class="network-tooltip" id="netTooltip"></div>
+    <div class="network-legend">
+      <div class="legend-item"><div class="legend-dot" style="background:var(--red)"></div>Epstein/Maxwell</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--yellow)"></div>Named Abusers</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--blue)"></div>Financial</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--green)"></div>Political</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--purple)"></div>Intelligence</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--orange)"></div>Science/Tech</div>
+    </div>
+  </div>
+</div>
+
+<!-- === TIMELINE === -->
+<div class="section-block" id="timeline">
+  <div class="section-title">
+    <div class="icon" style="background:var(--green-glow);font-size:20px;">&#9201;</div>
+    <h2>Investigation Timeline</h2>
+  </div>
+  <div class="timeline-wrapper">
+    <div class="timeline">
+      <div class="tl-item"><div class="tl-dot" style="border-color:var(--blue)"></div><div class="tl-date" style="color:var(--blue)">1980s</div><div class="tl-text">Wexner gives Epstein power of attorney</div><div class="tl-cite">02731082 p.53</div></div>
+      <div class="tl-item"><div class="tl-dot" style="border-color:var(--blue)"></div><div class="tl-date" style="color:var(--blue)">1991</div><div class="tl-text">Robert Maxwell dies. Epstein gets POA.</div><div class="tl-cite">02731082 p.54</div></div>
+      <div class="tl-item"><div class="tl-dot" style="border-color:var(--yellow)"></div><div class="tl-date" style="color:var(--yellow)">1998</div><div class="tl-text">Epstein sells himself NYC mansion from Wexner</div><div class="tl-cite">02731082 p.55</div></div>
+      <div class="tl-item"><div class="tl-dot" style="border-color:var(--red)"></div><div class="tl-date" style="color:var(--red)">2001</div><div class="tl-text">Leon Black sexual assault (per DANY)</div><div class="tl-cite">02731662</div></div>
+      <div class="tl-item"><div class="tl-dot" style="border-color:var(--orange)"></div><div class="tl-date" style="color:var(--orange)">Mar 2004</div><div class="tl-text">Palm Beach PD intelligence report filed</div><div class="tl-cite">02730741</div></div>
+      <div class="tl-item"><div class="tl-dot" style="border-color:var(--orange)"></div><div class="tl-date" style="color:var(--orange)">Oct 2005</div><div class="tl-text">Palm Beach search — CPUs already removed</div><div class="tl-cite">PB PD report</div></div>
+      <div class="tl-item"><div class="tl-dot" style="border-color:var(--yellow)"></div><div class="tl-date" style="color:var(--yellow)">Sep 2007</div><div class="tl-text">NPA signed — blanket immunity for co-conspirators</div><div class="tl-cite">00009075</div></div>
+      <div class="tl-item"><div class="tl-dot" style="border-color:var(--blue)"></div><div class="tl-date" style="color:var(--blue)">Jan 2008</div><div class="tl-text">Wexner: Epstein returns $100M settlement</div><div class="tl-cite">02731082 p.57</div></div>
+      <div class="tl-item"><div class="tl-dot" style="border-color:var(--purple)"></div><div class="tl-date" style="color:var(--purple)">Nov 2009</div><div class="tl-text">Rodriguez arrested (obstruction) — black book</div><div class="tl-cite">02730741</div></div>
+      <div class="tl-item"><div class="tl-dot" style="border-color:var(--blue)"></div><div class="tl-date" style="color:var(--blue)">2012-17</div><div class="tl-text">Black pays $158M to Epstein ($1B tax scheme)</div><div class="tl-cite">02731023</div></div>
+      <div class="tl-item"><div class="tl-dot" style="border-color:var(--green)"></div><div class="tl-date" style="color:var(--green)">2013</div><div class="tl-text">Epstein gets Gates to Nobel Committee</div><div class="tl-cite">Norwegian press</div></div>
+      <div class="tl-item"><div class="tl-dot" style="border-color:var(--purple)"></div><div class="tl-date" style="color:var(--purple)">2014</div><div class="tl-text">SPIEF Silver USB — Russian forum</div><div class="tl-cite">02730741 p.10</div></div>
+      <div class="tl-item"><div class="tl-dot" style="border-color:var(--blue)"></div><div class="tl-date" style="color:var(--blue)">Jan 2016</div><div class="tl-text">Great St James purchased via GREAT ST JIM LLC</div><div class="tl-cite">Property records</div></div>
+      <div class="tl-item"><div class="tl-dot" style="border-color:var(--red)"></div><div class="tl-date" style="color:var(--red)">Nov 28, 2018</div><div class="tl-text">Miami Herald publishes. $350K wired in days.</div><div class="tl-cite">SDNY bail memo</div></div>
+      <div class="tl-item"><div class="tl-dot" style="border-color:var(--red)"></div><div class="tl-date" style="color:var(--red)">Jul 6, 2019</div><div class="tl-text">Epstein arrested at Teterboro Airport</div><div class="tl-cite">02730741</div></div>
+      <div class="tl-item"><div class="tl-dot" style="border-color:var(--orange)"></div><div class="tl-date" style="color:var(--orange)">Jul 23, 2019</div><div class="tl-text">First incident — found with noose at 1:27 AM</div><div class="tl-cite">90A-NY-3151227</div></div>
+      <div class="tl-item"><div class="tl-dot" style="border-color:var(--red)"></div><div class="tl-date" style="color:var(--red)">Aug 8, 2019</div><div class="tl-text">Indyke at MCC. New will signed. 1953 Trust.</div><div class="tl-cite">Will records</div></div>
+      <div class="tl-item"><div class="tl-dot" style="border-color:var(--red)"></div><div class="tl-date" style="color:var(--red)">Aug 10, 2019</div><div class="tl-text">Epstein found dead at 6:33 AM</div><div class="tl-cite">90A-NY-3151227</div></div>
+      <div class="tl-item"><div class="tl-dot" style="border-color:var(--green)"></div><div class="tl-date" style="color:var(--green)">Aug 12, 2019</div><div class="tl-text">FBI executes USVI search warrant — island raid</div><div class="tl-cite">02730741</div></div>
+      <div class="tl-item"><div class="tl-dot" style="border-color:var(--purple)"></div><div class="tl-date" style="color:var(--purple)">Jul 2, 2020</div><div class="tl-text">Maxwell arrested in New Hampshire</div><div class="tl-cite">02730741</div></div>
+      <div class="tl-item"><div class="tl-dot" style="border-color:var(--purple)"></div><div class="tl-date" style="color:var(--purple)">Dec 29, 2021</div><div class="tl-text">Maxwell convicted on 5 of 6 counts</div><div class="tl-cite">02730741</div></div>
+      <div class="tl-item"><div class="tl-dot" style="border-color:var(--yellow)"></div><div class="tl-date" style="color:var(--yellow)">Jan 30, 2026</div><div class="tl-text">MASSIVE document release on archive.org</div><div class="tl-cite">This analysis</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- === TOP 30 FINDINGS === -->
+<div class="section-block" id="top30">
+  <div class="section-title">
+    <div class="icon" style="background:var(--red-glow);font-size:20px;">&#9888;</div>
+    <h2>Top 30: What Journalists Are Missing</h2>
+    <span class="count-badge" style="background:var(--red-glow);color:var(--red);">30</span>
+  </div>
+  <div class="filter-row">
+    <button class="filter-pill active" data-filter="all">All</button>
+    <button class="filter-pill" data-filter="new">New in v10</button>
+    <button class="filter-pill" data-filter="violence">Sexual Violence</button>
+    <button class="filter-pill" data-filter="financial">Financial</button>
+    <button class="filter-pill" data-filter="evidence">Evidence</button>
+    <button class="filter-pill" data-filter="intel">Intelligence</button>
+    <button class="filter-pill" data-filter="obstruction">Obstruction</button>
+  </div>
+  <div class="cards-grid" id="findingsGrid">
+  </div>
+</div>
+
+<!-- === LENT OUT === -->
+<div class="section-block" id="lentout">
+  <div class="section-title">
+    <div class="icon" style="background:var(--orange-glow);font-size:20px;">&#9762;</div>
+    <h2>The "Lent Out" System — Named Individuals</h2>
+    <span class="count-badge" style="background:var(--orange-glow);color:var(--orange);">16</span>
+  </div>
+  <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;">
+  <table class="data-table">
+    <tr><th>Name</th><th>Allegation</th><th>Citation</th></tr>
+    <tr><td class="name-cell">Prince Andrew</td><td>Maxwell told victim to "make him happy and do the exact same things"</td><td class="cite-cell">EFTA02731082, p.73</td></tr>
+    <tr><td class="name-cell">Jes Staley</td><td>"Forced [victim] to touch his genitals and then raped [victim]"</td><td class="cite-cell">EFTA02731082, p.68</td></tr>
+    <tr><td class="name-cell">Leon Black</td><td>"Very violent, tore clothes off, bit vagina, forced sex toys" (DANY)</td><td class="cite-cell">EFTA02731662; EFTA02731082, p.74</td></tr>
+    <tr><td class="name-cell">Glenn Dubin</td><td>Maxwell "explicitly told [victim] she had to do to Glen what she did for Epstein"</td><td class="cite-cell">EFTA02731082, p.73</td></tr>
+    <tr><td class="name-cell">Harvey Weinstein</td><td>"Directed [victim] to remove her shirt" during massage (Paris)</td><td class="cite-cell">EFTA02731082, p.14</td></tr>
+    <tr><td class="name-cell">Alan Dershowitz</td><td>"Had sex with Dershowitz at least 6 times, aged 16-19"</td><td class="cite-cell">EFTA02731082, p.73</td></tr>
+    <tr><td class="name-cell">Bill Richardson</td><td>Victim alleges directed to have sex with him</td><td class="cite-cell">Victim testimony</td></tr>
+    <tr><td class="name-cell">George Mitchell</td><td>"Who you think would be good like a grandpa are bad"</td><td class="cite-cell">EFTA02731420</td></tr>
+    <tr><td class="name-cell">Marvin Minsky</td><td>Victim alleges directed to have sex with him</td><td class="cite-cell">Victim testimony</td></tr>
+    <tr><td class="name-cell">Jean-Luc Brunel</td><td>"Disgusting pig with bad breath" (victim diary)</td><td class="cite-cell">EFTA02731361</td></tr>
+    <tr><td class="name-cell">Dan Snyder <span class="new-tag">NEW</span></td><td>"Is a pig! A red skin hoggett!"</td><td class="cite-cell">EFTA02731420</td></tr>
+    <tr><td class="name-cell">Jim Kimsey <span class="new-tag">NEW</span></td><td>"Is deranged" (AOL co-founder)</td><td class="cite-cell">EFTA02731420</td></tr>
+    <tr><td class="name-cell">"Mr. Colgan" <span class="new-tag">NEW</span></td><td>Referenced in victim account</td><td class="cite-cell">EFTA02731420</td></tr>
+    <tr><td class="name-cell">Unnamed "prince"</td><td>Victim alleges directed to have sex</td><td class="cite-cell">Victim testimony</td></tr>
+    <tr><td class="name-cell">Unnamed "foreign president"</td><td>Victim alleges directed to have sex</td><td class="cite-cell">Victim testimony</td></tr>
+    <tr><td class="name-cell">Owner of "French hotel chain"</td><td>Victim alleges directed to have sex</td><td class="cite-cell">Victim testimony</td></tr>
+  </table>
+  </div>
+</div>
+
+<!-- === FINANCIAL === -->
+<div class="section-block" id="financial">
+  <div class="section-title">
+    <div class="icon" style="background:var(--yellow-glow);font-size:20px;">&#36;</div>
+    <h2>Financial Network</h2>
+    <span class="count-badge" style="background:var(--yellow-glow);color:var(--yellow);">$1B+</span>
+  </div>
+  <div class="cards-grid">
+    <div class="card c-yellow">
+      <div class="card-header"><div class="card-num">$</div><h3>Leon Black — $1B Tax Scheme</h3><span class="new-tag">NEW</span></div>
+      <div class="card-body"><p>$158M paid to Epstein (2012-2017). 2006 GRAT: Apollo Europe ($98.8M), Apollo Alternative Assets ($80.5M), Apollo Advisors VI ($10.5M). Estate tax savings: <strong>exceeding $1 billion</strong>. Family office: Elysium Management LLC.</p></div>
+      <div class="card-cite"><span class="cite-tag">EFTA02731023 <span class="page">Senate Finance</span></span><span class="cite-tag">EFTA02730996 <span class="page">Apollo Conflicts</span></span></div>
+    </div>
+    <div class="card c-yellow">
+      <div class="card-header"><div class="card-num">$</div><h3>Wexner — Source of All Wealth</h3></div>
+      <div class="card-body"><p>"Virtually ALL of Epstein's wealth" from Wexner. Power of attorney 1991. Sold himself NYC mansion. Stole "several hundred million." Returned $100M in 2008.</p></div>
+      <div class="card-cite"><span class="cite-tag">EFTA02731082 <span class="page">pp.53-58</span></span></div>
+    </div>
+    <div class="card c-yellow">
+      <div class="card-header"><div class="card-num">$</div><h3>150+ Shell Companies (Grumbridge)</h3><span class="new-tag">NEW</span></div>
+      <div class="card-body"><p>Malcolm Grumbridge set up 150+ companies for Maxwell family. Custodian of 44 Kinnerton St, Belgravia. Hogarth Group (Kevin Maxwell). Quit law after "rule breaches" in 2020.</p></div>
+      <div class="card-cite"><span class="cite-tag">EFTA02730267 <span class="page">FBI TIR</span></span></div>
+    </div>
+    <div class="card c-yellow">
+      <div class="card-header"><div class="card-num">$</div><h3>Corporate Shell Triangle</h3><span class="new-tag">NEW</span></div>
+      <div class="card-body"><p>457 Madison Ave (J. Epstein & Co) → 301 E 66th St (Southern Trust employee as "model") → 9 E 71st St (mansion). Southern Trust: $656M income, ~13 employees. Cash-in-envelopes from Villard House.</p></div>
+      <div class="card-cite"><span class="cite-tag">Corporate records <span class="page">cross-ref</span></span></div>
+    </div>
+    <div class="card c-yellow">
+      <div class="card-header"><div class="card-num">$</div><h3>Banking Red Flags</h3></div>
+      <div class="card-body"><p><strong>JP Morgan:</strong> Kept Epstein despite warnings. <strong>Deutsche Bank:</strong> 78 mentions. <strong>Colonial Bank:</strong> Joint "EPSTEIN OR MAXWELL OR RODRIGUEZ" account. <strong>Wells Fargo/BofA:</strong> Butterfly Trust witness payments. <strong>Rothschild:</strong> ~$25M to Epstein.</p></div>
+      <div class="card-cite"><span class="cite-tag">EFTA00019064 <span class="page">JPM</span></span><span class="cite-tag">EFTA00007913 <span class="page">Colonial</span></span></div>
+    </div>
+    <div class="card c-yellow">
+      <div class="card-header"><div class="card-num">$</div><h3>Lutnick/Cantor Fitzgerald</h3><span class="new-tag">NEW</span></div>
+      <div class="card-body"><p>"Alleged Money Laundering by <strong>Howard Lutnick</strong> via BGC Financial and Cantor Fitzgerald." Now Trump's Secretary of Commerce. Never publicly reported.</p></div>
+      <div class="card-cite"><span class="cite-tag">EFTA02730741 <span class="page">p.108</span></span></div>
+    </div>
+  </div>
+</div>
+
+<!-- === EVIDENCE === -->
+<div class="section-block" id="evidence">
+  <div class="section-title">
+    <div class="icon" style="background:var(--green-glow);font-size:20px;">&#128270;</div>
+    <h2>Evidence Inventory</h2>
+    <span class="count-badge" style="background:var(--green-glow);color:var(--green);">60+ devices</span>
+  </div>
+  <div class="cards-grid">
+    <div class="card c-green">
+      <div class="card-header"><div class="card-num">&#128274;</div><h3>The NYC Safe — Escape Kit</h3></div>
+      <div class="card-body"><p>$72,083 cash &bull; 48 loose diamonds (1-2.38ct, individually appraised) &bull; Austrian passport ("Marius Fortelni") &bull; US passport &bull; Foreign currency &bull; AMEX traveler's check. <strong>A ready-made international escape kit.</strong></p></div>
+      <div class="card-cite"><span class="cite-tag">Bail hearing <span class="page">Jul 2019</span></span><span class="cite-tag">EFTA00037551</span></div>
+    </div>
+    <div class="card c-green">
+      <div class="card-header"><div class="card-num">&#128187;</div><h3>40+ Devices — NYC Mansion</h3></div>
+      <div class="card-body"><p>Dell towers, Apple desktops, Sony Vaios, <strong>"Woody Allen Archive" drive</strong>, 16GB SD cards, thumb drives, 3 Seagate drives ("Florida case evidence"), iPhone, <strong>folder with 600,000+ items</strong>.</p></div>
+      <div class="card-cite"><span class="cite-tag">NYC024321-362 <span class="page">Evidence log</span></span></div>
+    </div>
+    <div class="card c-green">
+      <div class="card-header"><div class="card-num">&#127860;</div><h3>25+ Devices — Little St. James</h3></div>
+      <div class="card-body"><p>Unifi Cloud Key, Unifi Server, Unifi Video NVR-2TB, HP Server (4x500GB), 6-bay server (146GB), HP Laptop, Red Nikon Camera, Dell tower, Panasonic phone system.</p></div>
+      <div class="card-cite"><span class="cite-tag">VI SW_item list <span class="page">Aug 12, 2019</span></span></div>
+    </div>
+    <div class="card c-green">
+      <div class="card-header"><div class="card-num">&#128191;</div><h3>CDs: "Nudes 00-24"</h3><span class="new-tag">NEW</span></div>
+      <div class="card-body"><p>Fifth-floor closet: box "women/old photos" — 7 CDs: <strong>"nudes 00-24"</strong>, "Photographer-- J 03", rest labeled with female names. Plus "carved" (recovered deleted) images from 14+ devices. Files labeled "LSJ."</p></div>
+      <div class="card-cite"><span class="cite-tag">NYC search warrant <span class="page">5th floor</span></span></div>
+    </div>
+    <div class="card c-green">
+      <div class="card-header"><div class="card-num">&#128465;</div><h3>Evidence Destruction</h3></div>
+      <div class="card-body"><p>CPUs removed from PB. Shredded paper recovered. "Matchmaker" database reconstructed from shreds. FBI: <strong>71,000 zero-byte files, broken linking, 400 TB deleted.</strong> Prosecutors: "basically impossible to keep track."</p></div>
+      <div class="card-cite"><span class="cite-tag">FBI internal emails <span class="page">Feb 2020</span></span><span class="cite-tag">PB PD report</span></div>
+    </div>
+    <div class="card c-green">
+      <div class="card-header"><div class="card-num">&#128247;</div><h3>Multi-Decade Recordings</h3></div>
+      <div class="card-body"><p>Playback required: "a VCR, a cassette player, a CD player, an adapter for a micro VHS tape, and a microcassette player" — <strong>recordings spanning from the 1980s to 2019.</strong></p></div>
+      <div class="card-cite"><span class="cite-tag">Gov't disclosure <span class="page">discovery</span></span></div>
+    </div>
+  </div>
+</div>
+
+<!-- === VICTIMS === -->
+<div class="section-block" id="victims">
+  <div class="section-title">
+    <div class="icon" style="background:var(--pink-glow);font-size:20px;">&#9829;</div>
+    <h2>Victim Analysis (EFTA02731082)</h2>
+    <span class="count-badge" style="background:var(--pink-glow);color:var(--pink);">24+ mapped</span>
+  </div>
+  <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);overflow:auto;">
+  <table class="data-table">
+    <tr><th>#</th><th>Age</th><th>Location</th><th>Key Detail</th><th>Citation</th></tr>
+    <tr><td>1</td><td>~14</td><td>NYC</td><td>Told Epstein she was 14; brought "dozens of girls"; $300/visit</td><td class="cite-cell">02731082, p.2</td></tr>
+    <tr><td>2</td><td>~14</td><td>Palm Beach</td><td>Recruited ~20-30 girls, most minors</td><td class="cite-cell">02731082, p.3</td></tr>
+    <tr><td>4</td><td>~13</td><td>Palm Beach</td><td>Maxwell approached at picnic; met Prince Andrew</td><td class="cite-cell">02731082, p.6</td></tr>
+    <tr><td>5</td><td>~17</td><td>Multiple</td><td>Maxwell gave 18th birthday gift; raped multiple times</td><td class="cite-cell">02731082, p.10</td></tr>
+    <tr><td>7</td><td>17</td><td>NM/NYC/FL/Paris</td><td>Introduced by "Gypsy"; massaged Weinstein in Paris</td><td class="cite-cell">02731082, p.14</td></tr>
+    <tr><td>9</td><td>~13-14</td><td>Palm Beach</td><td><strong>~100 underage girls recruited; pregnant at 15</strong></td><td class="cite-cell">02731082, p.22</td></tr>
+    <tr><td>10</td><td>16-18</td><td>Palm Beach</td><td>Called assistant "sex slave"; "bought" by Epstein</td><td class="cite-cell">02731082, p.23</td></tr>
+    <tr><td>19</td><td>~14</td><td>NYC</td><td>Befriended outside school; FBI never ID'd recruiter</td><td class="cite-cell">02731082, p.30</td></tr>
+    <tr><td>22</td><td>16</td><td>NYC</td><td>Model; called "best little cocksucker"; Maxwell booked flights</td><td class="cite-cell">02731082, p.34</td></tr>
+    <tr><td>24</td><td>~15</td><td>NM</td><td>School field trip; Victoria's Secret underwear; $5K check</td><td class="cite-cell">02731082, p.35</td></tr>
+    <tr><td>E</td><td>Minor</td><td>Multiple</td><td><strong>"Lent out" to Prince Andrew, Black, Staley, Dubin, Dershowitz, Weinstein</strong></td><td class="cite-cell">02731082, pp.69-77</td></tr>
+  </table>
+  </div>
+  <div style="margin-top:16px;padding:16px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);">
+    <h3 style="font-size:14px;color:var(--pink);margin-bottom:12px;">FBI Still-Unidentified Individuals</h3>
+    <p style="font-size:13px;color:var(--text-secondary);line-height:1.8;">
+      Woman who befriended Victim 19 outside school &bull;
+      Redheaded woman on NM trip who performed "massage" &bull;
+      "Mastermind at finding girls" &bull;
+      Woman Epstein dated ~1999-2000 &bull;
+      Kimberly Galindo (named but not located) &bull;
+      Woman at Virgin Islands property
+    </p>
+    <p style="font-size:11px;color:var(--text-dim);margin-top:8px;font-family:'JetBrains Mono',monospace;">Source: EFTA02731082, various FBI identification footnotes</p>
+  </div>
+</div>
+
+<!-- === DEATH === -->
+<div class="section-block" id="death">
+  <div class="section-title">
+    <div class="icon" style="background:var(--red-glow);font-size:20px;">&#9760;</div>
+    <h2>Death Investigation</h2>
+  </div>
+  <div class="cards-grid">
+    <div class="card c-red" style="grid-column:1/-1;">
+      <div class="card-header"><div class="card-num">!</div><h3>MCC Surveillance: 18 Components, One Download FAILED</h3><span class="new-tag">NEW</span></div>
+      <div class="card-body">
+        <p>Nice Vision DVR system had <strong>18 hard drive components</strong>. FBI seized all. <strong>"THIS DOWNLOAD FAILED"</strong> on one component. Camera "not functioning since Thursday." Video covered SHU floor 9 and attorney visit area floor 3, July 23 to August 10, 2019. FBI also canvassed for surveillance cameras in the vicinity of MCC.</p>
+        <p style="margin-top:12px;">Guards Noel and Thomas falsified <strong>75+ round entries</strong>. Shopping for furniture/motorcycles online. Sleeping. "No one else entered the SHU, no one conducted any counts or rounds throughout the night." Cellmate transferred out Aug 9 despite staff direction to keep one assigned. Indyke at MCC Aug 8 for will signing.</p>
+      </div>
+      <div class="card-cite">
+        <span class="cite-tag">Case 90A-NY-3151227 <span class="page">Death Inv.</span></span>
+        <span class="cite-tag">EFTA02730741 <span class="page">pp.212-252</span></span>
+        <span class="cite-tag">Dec 2025 text <span class="page">Guard indictment</span></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- === INTELLIGENCE === -->
+<div class="section-block" id="intel">
+  <div class="section-title">
+    <div class="icon" style="background:var(--purple-glow);font-size:20px;">&#128373;</div>
+    <h2>Intelligence Connections</h2>
+  </div>
+  <div class="cards-grid">
+    <div class="card c-purple">
+      <div class="card-header"><div class="card-num">&#8505;</div><h3>Acosta: "Belonged to Intelligence"</h3></div>
+      <div class="card-body"><p>To Trump transition: "I was told Epstein 'belonged to intelligence' and to leave it alone." Under oath: <strong>"No, and no."</strong></p></div>
+      <div class="card-cite"><span class="cite-tag">EFTA00030181</span><span class="cite-tag">EFTA00009220 <span class="page">p.405</span></span></div>
+    </div>
+    <div class="card c-purple">
+      <div class="card-header"><div class="card-num">&#8505;</div><h3>Chabad / Russia / Israel Nexus</h3><span class="new-tag">NEW</span></div>
+      <div class="card-body"><p>"Chabad's involvement in U.S. Presidential pardon petitions and influences from Russia and Israel on [President]." SPIEF 2014 USB seized (St. Petersburg Economic Forum).</p></div>
+      <div class="card-cite"><span class="cite-tag">EFTA02730486 <span class="page">p.21</span></span><span class="cite-tag">EFTA02730741 <span class="page">p.57</span></span></div>
+    </div>
+    <div class="card c-purple">
+      <div class="card-header"><div class="card-num">&#8505;</div><h3>Austrian Passport / Hapsburg Group</h3><span class="new-tag">NEW</span></div>
+      <div class="card-body"><p>Fake passport: "Marius Fortelni" (real person, Southampton NY). Linked to "Hapsburg Group (Manafort, Gusenbauer, Goldscheider)." Defense declined to confirm foreign citizenship.</p></div>
+      <div class="card-cite"><span class="cite-tag">Bail hearing <span class="page">Jul 2019</span></span><span class="cite-tag">FBI tip</span></div>
+    </div>
+    <div class="card c-purple">
+      <div class="card-header"><div class="card-num">&#8505;</div><h3>Maxwell Surveillance</h3><span class="new-tag">NEW</span></div>
+      <div class="card-body"><p>Pen registers (all calls tracked), mail cover, aerial surveillance, 4 court-authorized intercepts, TECS silent hit border monitoring. Swedish, Australian, Mexican coordination.</p></div>
+      <div class="card-cite"><span class="cite-tag">EFTA02730741 <span class="page">pp.112-134</span></span></div>
+    </div>
+  </div>
+</div>
+
+<!-- === POLITICAL === -->
+<div class="section-block" id="political">
+  <div class="section-title">
+    <div class="icon" style="background:var(--blue-glow);font-size:20px;">&#127963;</div>
+    <h2>Political Connections</h2>
+  </div>
+  <div class="cards-grid">
+    <div class="card c-blue">
+      <div class="card-header"><div class="card-num">&#127963;</div><h3>Trump</h3></div>
+      <div class="card-body"><p>"Just him and Epstein" and "28 Girls" at Mar-a-Lago. Victim recruited at 16 as towel girl. Guest on Robert Maxwell's yacht 1989. Security: "end up as fertilizer." Victim diary: "Mr. Joe and Mrs. Anne" at Mar-a-Lago. <strong>Lutnick (Commerce Sec.): money laundering allegation.</strong></p></div>
+      <div class="card-cite"><span class="cite-tag">EFTA00030187</span><span class="cite-tag">EFTA00029525</span><span class="cite-tag">EFTA01660679</span><span class="cite-tag">EFTA02731361</span></div>
+    </div>
+    <div class="card c-blue">
+      <div class="card-header"><div class="card-num">&#127963;</div><h3>Clinton</h3></div>
+      <div class="card-body"><p>Africa trip with victim as "masseuse." Secret Service doctor: Maxwell and 4 young women on plane. Epstein "grabbing buttocks." Maxwell blocking bedroom door.</p></div>
+      <div class="card-cite"><span class="cite-tag">EFTA02731082 <span class="page">pp.50-51</span></span></div>
+    </div>
+    <div class="card c-blue">
+      <div class="card-header"><div class="card-num">&#127963;</div><h3>Other Politicians</h3></div>
+      <div class="card-body"><p><em class="name">George Mitchell</em>: "who you think would be good like a grandpa are bad." <em class="name">Bill Richardson</em>: victim allegations. <em class="name">Andrew Cuomo</em>: named in FBI tip. <em class="name">Lawrence Summers</em>: executor in earlier wills.</p></div>
+      <div class="card-cite"><span class="cite-tag">EFTA02731420</span><span class="cite-tag">EFTA01660679</span><span class="cite-tag">Will records</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- === DOCUMENTS === -->
+<div class="section-block" id="docs">
+  <div class="section-title">
+    <div class="icon" style="background:var(--cyan);background:rgba(34,211,238,0.15);font-size:20px;">&#128196;</div>
+    <h2>Key Documents Index</h2>
+    <span class="count-badge" style="background:rgba(34,211,238,0.15);color:var(--cyan);">21 docs</span>
+  </div>
+  <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);overflow:auto;">
+  <table class="data-table">
+    <tr><th>EFTA Number</th><th>Description</th><th>Pages</th><th>Status</th></tr>
+    <tr><td class="cite-cell">EFTA02731082</td><td>SDNY Prosecution Memo / Wexner Proffer — THE KEY DOCUMENT</td><td>86</td><td style="color:var(--red)">Analyzed</td></tr>
+    <tr><td class="cite-cell">EFTA02730741</td><td>FBI NTOC Master Investigation Log</td><td>255</td><td style="color:var(--red)">Analyzed</td></tr>
+    <tr><td class="cite-cell">EFTA02731662</td><td>FBI-DANY emails: Leon Black sexual violence investigation</td><td>multi</td><td style="color:var(--yellow)">NEW</td></tr>
+    <tr><td class="cite-cell">EFTA02731361</td><td>Victim diary: forced medical procedures, forced abortion</td><td>multi</td><td style="color:var(--yellow)">NEW</td></tr>
+    <tr><td class="cite-cell">EFTA02731420</td><td>Victim account: Mitchell, Snyder, Kimsey named</td><td>multi</td><td style="color:var(--yellow)">NEW</td></tr>
+    <tr><td class="cite-cell">EFTA02731023</td><td>Senate Finance Committee: Black $1B+ tax scheme</td><td>multi</td><td style="color:var(--yellow)">NEW</td></tr>
+    <tr><td class="cite-cell">EFTA02730267</td><td>FBI TIR: Grumbridge / 150+ Maxwell shell companies</td><td>multi</td><td style="color:var(--yellow)">NEW</td></tr>
+    <tr><td class="cite-cell">EFTA02730265</td><td>bgC3/Gates employment termination letter</td><td>1</td><td style="color:var(--yellow)">NEW</td></tr>
+    <tr><td class="cite-cell">EFTA01660679</td><td>FBI Tips: Trump, video, Robin Leach, Sinaloa (7 categories)</td><td>6</td><td style="color:var(--red)">Analyzed</td></tr>
+    <tr><td class="cite-cell">EFTA02731515</td><td>Attorney letter: circulating video</td><td>2</td><td style="color:var(--red)">Analyzed</td></tr>
+    <tr><td class="cite-cell">EFTA00030181</td><td>Acosta "belonged to intelligence" email</td><td>1</td><td style="color:var(--red)">Analyzed</td></tr>
+    <tr><td class="cite-cell">EFTA00009220</td><td>Acosta formal questioning — denial (p.405)</td><td>multi</td><td style="color:var(--red)">Analyzed</td></tr>
+    <tr><td class="cite-cell">EFTA00010417</td><td>Hyoid bone redaction debate</td><td>multi</td><td style="color:var(--red)">Analyzed</td></tr>
+    <tr><td class="cite-cell">EFTA00037551</td><td>Complete evidence inventory (60+ devices)</td><td>multi</td><td style="color:var(--red)">Analyzed</td></tr>
+    <tr><td class="cite-cell">EFTA00684028</td><td>Gates Foundation donor vehicle emails</td><td>multi</td><td style="color:var(--red)">Analyzed</td></tr>
+    <tr><td class="cite-cell">EFTA00069900</td><td>Edge Foundation dinner: Brin, Page, Bezos</td><td>multi</td><td style="color:var(--red)">Analyzed</td></tr>
+    <tr><td class="cite-cell">EFTA02730486</td><td>FBI index: Chabad/Russia/Israel presidential pardons</td><td>multi</td><td style="color:var(--yellow)">NEW</td></tr>
+  </table>
+  </div>
+</div>
+
+</div>
+
+<footer>
+  <p style="margin-bottom:8px;">Epstein Files Interactive Investigation Dashboard v10</p>
+  <p>Generated: February 1, 2026 &bull; Sources: 406 PDFs, 42MB corpus, 8 deep-dive agents, 2,500+ findings</p>
+  <p style="margin-top:8px;">All citations reference EFTA document numbers from the <a href="https://archive.org/details/epstein-files" target="_blank">January 30, 2026 release on archive.org</a></p>
+  <p style="margin-top:16px;"><a href="https://github.com/Jbapckfan/epstein-files" target="_blank">GitHub: Jbapckfan/epstein-files</a></p>
+</footer>
+
+<script>
+// ======= FINDINGS DATA =======
+const findings = [
+  {n:1,title:"Leon Black's Extreme Sexual Violence",body:'FBI-Manhattan DA communications (June-July 2023): Victim "trafficked by Maxwell and Epstein" identified Leon Black. <strong>"Black was very violent, tore her clothes off, bit her vagina, forced sex toys into her."</strong> Described as "looking like Shrek." Mother confirmed ID.',extra:'DANY also "believed she was also abused by Staley." Victim was from Northern Virginia, introduced when she was 17 around 2001/2002. Attorney Horowitz worked with multiple victims.',cite:['EFTA02731662'],tags:['new','violence'],color:'red'},
+  {n:2,title:"Victim Diary: Forced Medical Procedures & Abortion",body:'"The doctor was different again. I think from Israel. He had kind eyes but didnt speak directly to me. A shot and those rod like things had a hook and so much pain." Forced abortion: <strong>"April 22nd I had no choice... their baby inside me."</strong>',extra:'"6 weeks wasnt even given before being sent back. Punishment for trying to run." Also: "Jean Luc Brunel is a disgusting pig." References "Mr. Joe and Mrs. Anne" at Mar-a-Lago.',cite:['EFTA02731361'],tags:['new','violence'],color:'red'},
+  {n:3,title:"Howard Lutnick Money Laundering Allegation",body:'FBI NTOC: <strong>"Alleged Money Laundering by Howard Lutnick via BGC Financial and Cantor Fitzgerald."</strong> UK travel records requested. Lutnick is currently Trump\'s Secretary of Commerce. Never publicly reported.',cite:['EFTA02730741, p.108'],tags:['new','financial','intel'],color:'purple'},
+  {n:4,title:"Chabad / Presidential Pardons / Russia-Israel",body:'Two FBI documents: <strong>"Chabad\'s involvement in U.S. Presidential pardon petitions and influences from Russia and Israel on [President]."</strong> First version heavily redacted; second reveals entity as Chabad.',cite:['EFTA02730486, p.21','EFTA02730741, p.57'],tags:['new','intel'],color:'purple'},
+  {n:5,title:"$1 Billion Tax Avoidance — Black-Epstein",body:'Senate Finance investigation: 2006 GRAT with $189M+ in Apollo assets. Estate tax savings: <strong>"exceeding $1 billion."</strong> Black paid Epstein $158M (2012-2017). Family office: Elysium Management LLC.',cite:['EFTA02731023','EFTA02730996'],tags:['new','financial'],color:'yellow'},
+  {n:6,title:"Malcolm Grumbridge — 150+ Maxwell Shell Companies",body:'FBI Tactical Intelligence Report: Grumbridge <strong>set up 150+ companies</strong> for Maxwell family. Custodian of 44 Kinnerton St, Belgravia. Quit law in 2020 after "string of rule breaches."',cite:['EFTA02730267'],tags:['new','financial'],color:'yellow'},
+  {n:7,title:"The Escape Kit: Fake Passport, 48 Diamonds, $72K",body:'NYC safe: <strong>$72,083 cash, 48 diamonds (1-2.38ct)</strong>, Austrian passport "Marius Fortelni", foreign currency, AMEX check. Defense refused to confirm foreign citizenship.',cite:['Bail hearing, Jul 2019','EFTA00037551'],tags:['new','evidence'],color:'green'},
+  {n:8,title:"Hapsburg Group / Manafort Connection",body:'Tip linked Austrian passport to <strong>"Hapsburg Group (Manafort, Alfred Gusenbauer, Peter Goldscheider)"</strong> — same influence operation Manafort was convicted for.',cite:['FBI tip in evidence file'],tags:['new','intel'],color:'purple'},
+  {n:9,title:"CPUs Surgically Removed Before Search",body:'<strong>CPUs removed</strong> from multiple rooms; monitors, keyboards, cables left. "Missing CPUs were never recovered." July 2007 email: urgently trying to get them.',cite:['Palm Beach PD report','FBI summary'],tags:['new','evidence','obstruction'],color:'green'},
+  {n:10,title:'CDs Labeled "Nudes 00-24" and Female Names',body:'Fifth-floor closet: box "women/old photos" — <strong>7 CDs: "nudes 00-24", "Photographer-- J 03", rest with female names.</strong>',cite:['NYC search warrant, 5th floor'],tags:['new','evidence'],color:'green'},
+  {n:11,title:"71,000 Zero-Byte Files in FBI Processing",body:'FBI emails: <strong>71,000 empty files</strong>, broken email-attachment linking, lost device attribution. "Basically impossible for us to keep track."',cite:['Internal FBI/SDNY emails'],tags:['new','obstruction'],color:'orange'},
+  {n:12,title:"MCC Surveillance: 18 Components, 1 Failed",body:'Nice Vision DVR: <strong>18 components</strong>. <strong>"THIS DOWNLOAD FAILED"</strong> on one. Camera "not functioning since Thursday." FBI canvassed for nearby cameras.',cite:['90A-NY-3151227','EFTA02730741, pp.212-252'],tags:['new','evidence'],color:'red'},
+  {n:13,title:'"PB Girls" Binder — Organized Victim Tracking',body:'Search warrant targeted <strong>"binder labeled PB Girls"</strong> on Little St. James. Also: computerized database tracking "availability and proximity" of victims.',cite:['USVI search warrant, Aug 12, 2019'],tags:['new','evidence'],color:'green'},
+  {n:14,title:"Dan Snyder, Jim Kimsey, George Mitchell Named",body:'Victim account: Mitchell <strong>"who you think would be good like a grandpa are bad."</strong> "Mr. Kimsey is deranged" (AOL). Dan Snyder <strong>"is a pig!"</strong>',cite:['EFTA02731420'],tags:['new','violence'],color:'orange'},
+  {n:15,title:"Boys Also Recruited",body:'FBI tip: Caller <strong>"stated that her son recruited not only young girls, but young boys as well."</strong> Virtually no coverage.',cite:['EFTA02730741 (NTOC tip)'],tags:['new','violence'],color:'red'},
+  {n:16,title:"15-Year-Old Tried to Swim Off Island",body:'<strong>"A 15-year-old girl attempted to swim off the island"</strong> after sex acts. Captured; passport confiscated. Air traffic controllers saw girls "as young as 11" in 2018.',cite:['USVI AG filing'],tags:['new','violence'],color:'red'},
+  {n:17,title:"SPIEF 2014 USB — Russian Forum Connection",body:'<strong>"SPIEF 2014 Silver USB"</strong> seized. St. Petersburg International Economic Forum — Russia\'s Davos.',cite:['EFTA02730741, p.10'],tags:['new','intel'],color:'purple'},
+  {n:18,title:"Matchmaker Database — Shred Reconstruction",body:'"Box containing Shredded paper" + <strong>"Disk containing images of Matchmaker shred reconstruction."</strong> FBI reconstructed the database.',cite:['EFTA02730741'],tags:['new','evidence','obstruction'],color:'green'},
+  {n:19,title:"Lawrence Summers as Successor Executor",body:'Earlier wills named <strong>Jes Staley AND Lawrence Summers</strong> (Treasury Secretary, Harvard president) as successor executors.',cite:['Will records'],tags:['new'],color:'blue'},
+  {n:20,title:"4,800+ Flights in Ten Years",body:'AMEX records: <strong>4,800+ flights</strong> in ten years, including hundreds for specific individuals.',cite:['Financial records subpoena'],tags:['new','financial'],color:'yellow'},
+  {n:21,title:"Blanket Immunity for Co-Conspirators",body:'NPA: "blanket transactional immunity" for ANY "potential co-conspirators." None had cooperated. Unprecedented.',cite:['NPA / OPR analysis','EFTA00009075'],tags:['obstruction'],color:'orange'},
+  {n:22,title:"Jes Staley Raped a Victim",body:'<strong>"Forced [victim] to touch his genitals and then raped [victim]."</strong> Corroborating messages found.',cite:['EFTA02731082, p.68'],tags:['violence'],color:'red'},
+  {n:23,title:"One Recruiter Brought ~100 Underage Girls",body:'"May have brought as many as <strong>one hundred underage girls</strong>." Became pregnant at 15.',cite:['EFTA02731082, p.22'],tags:['violence'],color:'red'},
+  {n:24,title:"FBI Deleted 400 TB During Investigation",body:'"They mandated we delete old stuff (<strong>about 400 TB worth</strong>)." Evidence still unprocessed.',cite:['Internal FBI emails, Feb 2020'],tags:['obstruction'],color:'orange'},
+  {n:25,title:"$350K Wire Transfers After Miami Herald",body:'$100K + $250K wired to co-conspirators. <strong>"Neither appears to be recurring."</strong>',cite:['SDNY bail memo'],tags:['financial','obstruction'],color:'yellow'},
+  {n:26,title:'Acosta: "Belonged to Intelligence"',body:'To Trump transition: "belonged to intelligence." Under oath: <strong>"No, and no."</strong>',cite:['EFTA00030181','EFTA00009220, p.405'],tags:['intel'],color:'purple'},
+  {n:27,title:"All Wealth Came from Wexner",body:'"Appears to account for <strong>VIRTUALLY ALL of Epstein\'s wealth.</strong>" Stole "several hundred million."',cite:['EFTA02731082, pp.53-58'],tags:['financial'],color:'yellow'},
+  {n:28,title:"Boris Nikolic — Will Executor, Gates Advisor",body:'Will Aug 8, 2019 (2 days before death). Indyke at MCC for signing. All property to "The 1953 Trust."',cite:['EFTA02731082','Will records'],tags:[],color:'blue'},
+  {n:29,title:"Pen Registers on Maxwell's Phone",body:'FBI: <strong>pen register</strong> (all calls tracked), mail cover, aerial surveillance, 4 intercept orders, TECS border monitoring.',cite:['EFTA02730741, pp.112-134'],tags:['new','intel'],color:'purple'},
+  {n:30,title:"Victim Intimidation System",body:'"Those who help him will be compensated; those who hurt him will be dealt with." PIs impersonated police. <strong>2-year-old\'s life threatened.</strong> "End up as fertilizer."',cite:['Multiple EFTA docs'],tags:['violence','obstruction'],color:'red'},
+];
+
+// Render findings
+function renderFindings(filter='all') {
+  const grid = document.getElementById('findingsGrid');
+  grid.innerHTML = '';
+  findings.forEach(f => {
+    if (filter !== 'all' && !f.tags.includes(filter)) return;
+    const card = document.createElement('div');
+    card.className = `card c-${f.color}`;
+    card.onclick = () => card.classList.toggle('expanded');
+    const isNew = f.tags.includes('new');
+    card.innerHTML = `
+      <div class="card-header">
+        <div class="card-num">${f.n}</div>
+        <h3>${f.title}</h3>
+        ${isNew ? '<span class="new-tag">NEW</span>' : ''}
+      </div>
+      <div class="card-body"><p>${f.body}</p></div>
+      <div class="card-cite">${f.cite.map(c => `<span class="cite-tag">${c}</span>`).join('')}</div>
+      ${f.extra ? `<div class="card-expand"><p>${f.extra}</p></div>` : ''}
+    `;
+    grid.appendChild(card);
+  });
+}
+renderFindings();
+
+// Filter pills
+document.querySelectorAll('.filter-pill').forEach(pill => {
+  pill.onclick = () => {
+    document.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
+    pill.classList.add('active');
+    renderFindings(pill.dataset.filter);
+  };
+});
+
+// ======= NETWORK GRAPH =======
+const canvas = document.getElementById('networkCanvas');
+const ctx = canvas.getContext('2d');
+const tooltip = document.getElementById('netTooltip');
+
+function resizeCanvas() {
+  canvas.width = canvas.parentElement.offsetWidth;
+  canvas.height = 500;
+}
+resizeCanvas();
+window.addEventListener('resize', resizeCanvas);
+
+const nodes = [
+  {id:'epstein',label:'Jeffrey Epstein',x:0,y:0,r:22,color:'#ff3b5c',group:'core'},
+  {id:'maxwell',label:'Ghislaine Maxwell',x:0,y:0,r:18,color:'#ff3b5c',group:'core'},
+  {id:'wexner',label:'Les Wexner',x:0,y:0,r:14,color:'#60a5fa',group:'financial'},
+  {id:'black',label:'Leon Black',x:0,y:0,r:14,color:'#ffc53d',group:'abuser'},
+  {id:'staley',label:'Jes Staley',x:0,y:0,r:12,color:'#ffc53d',group:'abuser'},
+  {id:'andrew',label:'Prince Andrew',x:0,y:0,r:14,color:'#ffc53d',group:'abuser'},
+  {id:'dershowitz',label:'Alan Dershowitz',x:0,y:0,r:12,color:'#ffc53d',group:'abuser'},
+  {id:'dubin',label:'Glenn Dubin',x:0,y:0,r:11,color:'#ffc53d',group:'abuser'},
+  {id:'weinstein',label:'Harvey Weinstein',x:0,y:0,r:12,color:'#ffc53d',group:'abuser'},
+  {id:'brunel',label:'Jean-Luc Brunel',x:0,y:0,r:12,color:'#ffc53d',group:'abuser'},
+  {id:'mitchell',label:'George Mitchell',x:0,y:0,r:10,color:'#34d399',group:'political'},
+  {id:'snyder',label:'Dan Snyder',x:0,y:0,r:10,color:'#ffc53d',group:'abuser'},
+  {id:'kimsey',label:'Jim Kimsey',x:0,y:0,r:10,color:'#ffc53d',group:'abuser'},
+  {id:'clinton',label:'Bill Clinton',x:0,y:0,r:13,color:'#34d399',group:'political'},
+  {id:'trump',label:'Donald Trump',x:0,y:0,r:13,color:'#34d399',group:'political'},
+  {id:'gates',label:'Bill Gates',x:0,y:0,r:12,color:'#ff7b42',group:'science'},
+  {id:'nikolic',label:'Boris Nikolic',x:0,y:0,r:9,color:'#ff7b42',group:'science'},
+  {id:'summers',label:'Lawrence Summers',x:0,y:0,r:10,color:'#34d399',group:'political'},
+  {id:'lutnick',label:'Howard Lutnick',x:0,y:0,r:10,color:'#60a5fa',group:'financial'},
+  {id:'acosta',label:'Alexander Acosta',x:0,y:0,r:10,color:'#a78bfa',group:'intel'},
+  {id:'grumbridge',label:'Malcolm Grumbridge',x:0,y:0,r:9,color:'#60a5fa',group:'financial'},
+  {id:'indyke',label:'Darren Indyke',x:0,y:0,r:10,color:'#60a5fa',group:'financial'},
+  {id:'rmaxwell',label:'Robert Maxwell',x:0,y:0,r:12,color:'#a78bfa',group:'intel'},
+  {id:'richardson',label:'Bill Richardson',x:0,y:0,r:10,color:'#34d399',group:'political'},
+  {id:'minsky',label:'Marvin Minsky',x:0,y:0,r:9,color:'#ff7b42',group:'science'},
+  {id:'brockman',label:'John Brockman',x:0,y:0,r:9,color:'#ff7b42',group:'science'},
+];
+
+const edges = [
+  {from:'epstein',to:'maxwell'},{from:'epstein',to:'wexner'},{from:'epstein',to:'black'},
+  {from:'epstein',to:'staley'},{from:'epstein',to:'andrew'},{from:'epstein',to:'dershowitz'},
+  {from:'epstein',to:'dubin'},{from:'epstein',to:'weinstein'},{from:'epstein',to:'brunel'},
+  {from:'epstein',to:'clinton'},{from:'epstein',to:'trump'},{from:'epstein',to:'gates'},
+  {from:'epstein',to:'mitchell'},{from:'epstein',to:'indyke'},{from:'epstein',to:'acosta'},
+  {from:'epstein',to:'summers'},{from:'epstein',to:'richardson'},{from:'epstein',to:'minsky'},
+  {from:'epstein',to:'brockman'},{from:'epstein',to:'nikolic'},
+  {from:'maxwell',to:'andrew'},{from:'maxwell',to:'brunel'},{from:'maxwell',to:'dubin'},
+  {from:'maxwell',to:'clinton'},{from:'maxwell',to:'rmaxwell'},{from:'maxwell',to:'grumbridge'},
+  {from:'maxwell',to:'trump'},{from:'maxwell',to:'snyder'},{from:'maxwell',to:'kimsey'},
+  {from:'gates',to:'nikolic'},{from:'black',to:'lutnick'},{from:'wexner',to:'rmaxwell'},
+  {from:'staley',to:'andrew'},{from:'brunel',to:'weinstein'},
+];
+
+// Initialize positions in a circle
+const cx = canvas.width / 2, cy = canvas.height / 2;
+nodes.forEach((n, i) => {
+  const a = (i / nodes.length) * Math.PI * 2 - Math.PI / 2;
+  const r = i < 2 ? 0 : 120 + Math.random() * 100;
+  n.x = cx + Math.cos(a) * r;
+  n.y = cy + Math.sin(a) * r;
+  n.vx = 0; n.vy = 0;
+});
+nodes[0].x = cx; nodes[0].y = cy;
+nodes[1].x = cx + 60; nodes[1].y = cy - 30;
+
+let hoveredNode = null;
+let selectedNode = null;
+
+function simulate() {
+  // Force simulation
+  nodes.forEach(n => { n.vx *= 0.9; n.vy *= 0.9; });
+  // Repulsion
+  for (let i = 0; i < nodes.length; i++) {
+    for (let j = i + 1; j < nodes.length; j++) {
+      const dx = nodes[j].x - nodes[i].x;
+      const dy = nodes[j].y - nodes[i].y;
+      const d = Math.sqrt(dx * dx + dy * dy) || 1;
+      const f = 800 / (d * d);
+      nodes[i].vx -= dx / d * f;
+      nodes[i].vy -= dy / d * f;
+      nodes[j].vx += dx / d * f;
+      nodes[j].vy += dy / d * f;
+    }
+  }
+  // Attraction (edges)
+  edges.forEach(e => {
+    const a = nodes.find(n => n.id === e.from);
+    const b = nodes.find(n => n.id === e.to);
+    if (!a || !b) return;
+    const dx = b.x - a.x;
+    const dy = b.y - a.y;
+    const d = Math.sqrt(dx * dx + dy * dy) || 1;
+    const f = (d - 120) * 0.005;
+    a.vx += dx / d * f;
+    a.vy += dy / d * f;
+    b.vx -= dx / d * f;
+    b.vy -= dy / d * f;
+  });
+  // Center gravity
+  nodes.forEach(n => {
+    n.vx += (cx - n.x) * 0.001;
+    n.vy += (cy - n.y) * 0.001;
+    n.x += n.vx;
+    n.y += n.vy;
+    n.x = Math.max(n.r + 10, Math.min(canvas.width - n.r - 10, n.x));
+    n.y = Math.max(n.r + 10, Math.min(canvas.height - n.r - 10, n.y));
+  });
+}
+
+function drawNetwork() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  // Draw edges
+  edges.forEach(e => {
+    const a = nodes.find(n => n.id === e.from);
+    const b = nodes.find(n => n.id === e.to);
+    if (!a || !b) return;
+    const isHighlighted = hoveredNode && (hoveredNode.id === e.from || hoveredNode.id === e.to);
+    ctx.beginPath();
+    ctx.moveTo(a.x, a.y);
+    ctx.lineTo(b.x, b.y);
+    ctx.strokeStyle = isHighlighted ? 'rgba(255,255,255,0.2)' : 'rgba(255,255,255,0.04)';
+    ctx.lineWidth = isHighlighted ? 1.5 : 0.5;
+    ctx.stroke();
+  });
+  // Draw nodes
+  nodes.forEach(n => {
+    const isHovered = hoveredNode === n;
+    const isConnected = hoveredNode && edges.some(e =>
+      (e.from === hoveredNode.id && e.to === n.id) || (e.to === hoveredNode.id && e.from === n.id)
+    );
+    const alpha = hoveredNode ? (isHovered || isConnected ? 1 : 0.15) : 0.85;
+
+    // Glow
+    if (isHovered) {
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, n.r + 8, 0, Math.PI * 2);
+      ctx.fillStyle = n.color + '20';
+      ctx.fill();
+    }
+
+    ctx.beginPath();
+    ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
+    ctx.fillStyle = n.color + (alpha < 1 ? '30' : '');
+    ctx.fill();
+    ctx.strokeStyle = n.color + (alpha < 1 ? '30' : '80');
+    ctx.lineWidth = isHovered ? 2 : 1;
+    ctx.stroke();
+
+    // Label
+    ctx.font = `${isHovered ? '600 12px' : '400 10px'} Inter, sans-serif`;
+    ctx.fillStyle = alpha < 1 ? 'rgba(255,255,255,0.15)' : 'rgba(255,255,255,0.8)';
+    ctx.textAlign = 'center';
+    ctx.fillText(n.label, n.x, n.y + n.r + 14);
+  });
+}
+
+canvas.addEventListener('mousemove', e => {
+  const rect = canvas.getBoundingClientRect();
+  const mx = e.clientX - rect.left;
+  const my = e.clientY - rect.top;
+  hoveredNode = null;
+  nodes.forEach(n => {
+    const d = Math.sqrt((mx - n.x) ** 2 + (my - n.y) ** 2);
+    if (d < n.r + 5) hoveredNode = n;
+  });
+  canvas.style.cursor = hoveredNode ? 'pointer' : 'default';
+  if (hoveredNode) {
+    tooltip.style.display = 'block';
+    tooltip.style.left = (e.clientX - rect.left + 16) + 'px';
+    tooltip.style.top = (e.clientY - rect.top - 10) + 'px';
+    const conns = edges.filter(ed => ed.from === hoveredNode.id || ed.to === hoveredNode.id).length;
+    tooltip.textContent = `${hoveredNode.label} — ${conns} connections`;
+  } else {
+    tooltip.style.display = 'none';
+  }
+});
+
+function animate() {
+  simulate();
+  drawNetwork();
+  requestAnimationFrame(animate);
+}
+animate();
+
+// ======= NAV =======
+document.querySelectorAll('.nav-btn').forEach(btn => {
+  btn.onclick = () => {
+    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const target = document.getElementById(btn.dataset.target);
+    if (target) target.scrollIntoView({ behavior: 'smooth' });
+  };
+});
+
+// ======= SEARCH =======
+const globalSearch = document.getElementById('globalSearch');
+document.addEventListener('keydown', e => {
+  if ((e.ctrlKey || e.metaKey) && e.key === 'k') { e.preventDefault(); globalSearch.focus(); }
+  if (e.key === 'Escape') { globalSearch.blur(); globalSearch.value = ''; }
+});
+
+globalSearch.addEventListener('input', function() {
+  const q = this.value.trim().toLowerCase();
+  if (!q || q.length < 2) {
+    document.querySelectorAll('.section-block').forEach(s => s.style.display = '');
+    document.querySelectorAll('mark').forEach(m => m.outerHTML = m.textContent);
+    return;
+  }
+  document.querySelectorAll('.section-block').forEach(s => {
+    const has = s.textContent.toLowerCase().includes(q);
+    s.style.display = has ? '' : 'none';
+  });
+});
+
+// ======= COUNTER ANIMATION =======
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.querySelectorAll('[data-count]').forEach(el => {
+        const target = parseInt(el.dataset.count);
+        let current = 0;
+        const step = Math.ceil(target / 40);
+        const timer = setInterval(() => {
+          current = Math.min(current + step, target);
+          el.textContent = current.toLocaleString();
+          if (current >= target) clearInterval(timer);
+        }, 30);
+      });
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.5 });
+document.querySelectorAll('.stats-row').forEach(el => observer.observe(el));
+
+// Scroll-based nav highlighting
+const sections = document.querySelectorAll('.section-block');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 100) current = s.id;
+  });
+  document.querySelectorAll('.nav-btn').forEach(b => {
+    b.classList.toggle('active', b.dataset.target === current);
+  });
+});
+</script>
+</body>
+</html>
