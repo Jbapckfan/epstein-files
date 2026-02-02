@@ -2,14 +2,27 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta http-equiv="refresh" content="0;url=epstein_interactive.html">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Epstein Files — Investigation Dashboard</title>
 <style>
-body { background: #08090d; color: #e8eaed; font-family: Inter, sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
-a { color: #60a5fa; }
+body { background: #08090d; color: #e8eaed; font-family: Inter, -apple-system, sans-serif; display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 100vh; padding: 40px 20px; }
+h1 { font-size: 28px; margin-bottom: 8px; }
+p { color: #9aa0b0; margin-bottom: 30px; font-size: 14px; }
+.links { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
+a { display: inline-block; padding: 14px 28px; background: rgba(255,59,92,0.1); border: 1px solid rgba(255,59,92,0.3); border-radius: 12px; color: #ff3b5c; text-decoration: none; font-weight: 600; font-size: 15px; transition: all 0.3s; }
+a:hover { background: rgba(255,59,92,0.2); transform: translateY(-2px); }
+a.secondary { background: rgba(96,165,250,0.1); border-color: rgba(96,165,250,0.3); color: #60a5fa; }
+a.secondary:hover { background: rgba(96,165,250,0.2); }
+.stat { color: #5a6070; font-size: 12px; margin-top: 30px; }
 </style>
 </head>
 <body>
-<p>Redirecting to <a href="epstein_interactive.html">Interactive Investigation Dashboard</a>...</p>
+<h1>Epstein Files Investigation</h1>
+<p>Comprehensive analysis of FOIA document releases — 62,000+ findings across 800,000+ documents</p>
+<div class="links">
+  <a href="epstein_interactive.html">Interactive Dashboard (Network Graph)</a>
+  <a href="dashboard_v10_latest.html" class="secondary">Dataset Overview + All Findings</a>
+</div>
+<p class="stat">Last updated: February 2, 2026 — Pipelines actively processing 450K+ Dataset 9 PDFs</p>
 </body>
 </html>
