@@ -1748,7 +1748,7 @@ function initGraph() {
   canvas.addEventListener('mouseup', onMouseUp);
   canvas.addEventListener('mouseleave', onMouseLeave);
   canvas.addEventListener('click', onCanvasClick);
-  canvas.addEventListener('wheel', onWheel, { passive: false });
+  // Wheel zoom removed — scrolling should scroll the page, not zoom the graph
 
   // Touch support
   canvas.addEventListener('touchstart', onTouchStart, { passive: false });
@@ -1898,8 +1898,8 @@ function onTouchStart(e) {
   }
 }
 function onTouchMove(e) {
-  e.preventDefault();
   if (e.touches.length === 1 && dragging) {
+    e.preventDefault();
     const rect = canvas.getBoundingClientRect();
     const sx = e.touches[0].clientX - rect.left;
     const sy = e.touches[0].clientY - rect.top;
@@ -1909,17 +1909,7 @@ function onTouchMove(e) {
     dragging.vx = 0;
     dragging.vy = 0;
   }
-  if (e.touches.length === 2) {
-    const dist = Math.hypot(
-      e.touches[0].clientX - e.touches[1].clientX,
-      e.touches[0].clientY - e.touches[1].clientY
-    );
-    if (lastTouchDist > 0) {
-      const delta = dist / lastTouchDist;
-      scale = Math.max(0.3, Math.min(3, scale * delta));
-    }
-    lastTouchDist = dist;
-  }
+  // Pinch zoom removed — let the page scroll normally
 }
 function onTouchEnd() {
   dragging = null;
