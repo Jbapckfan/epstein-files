@@ -615,7 +615,7 @@ footer a { color: var(--blue); text-decoration: none; }
   <p class="meta-line animate d3">406 PDFs &bull; 42MB Full Text &bull; 11 Deep-Dive Agents &bull; 3,000+ Findings</p>
 
   <div class="stats-row animate d4">
-    <div class="stat-pill"><span class="num" data-count="40">0</span><span class="lbl">Key Findings</span></div>
+    <div class="stat-pill"><span class="num" data-count="50">0</span><span class="lbl">Key Findings</span></div>
     <div class="stat-pill"><span class="num" data-count="24">0</span><span class="lbl">Victims Mapped</span></div>
     <div class="stat-pill"><span class="num" data-count="20">0</span><span class="lbl">Named Abusers</span></div>
     <div class="stat-pill"><span class="num" data-count="150">0</span><span class="lbl">Shell Companies</span></div>
@@ -630,7 +630,7 @@ footer a { color: var(--blue); text-decoration: none; }
 <!-- ===== NAV ===== -->
 <nav class="nav-bar" id="navbar">
 <div class="nav-inner">
-  <button class="nav-btn active" data-target="top30">Top 40</button>
+  <button class="nav-btn active" data-target="top30">Top 50</button>
   <button class="nav-btn" data-target="network">Network</button>
   <button class="nav-btn" data-target="timeline">Timeline</button>
   <button class="nav-btn" data-target="lentout">Lent Out</button>
@@ -713,7 +713,7 @@ footer a { color: var(--blue); text-decoration: none; }
 <div class="section-block" id="top30">
   <div class="section-title">
     <div class="icon" style="background:var(--red-glow);font-size:20px;">&#9888;</div>
-    <h2>Top 40: What Journalists Are Missing</h2>
+    <h2>Top 50: What Journalists Are Missing</h2>
     <span class="count-badge" style="background:var(--red-glow);color:var(--red);">40</span>
   </div>
   <div class="filter-row">
@@ -1005,7 +1005,7 @@ footer a { color: var(--blue); text-decoration: none; }
   <div class="section-title">
     <div class="icon" style="background:var(--cyan);background:rgba(34,211,238,0.15);font-size:20px;">&#128196;</div>
     <h2>Key Documents Index</h2>
-    <span class="count-badge" style="background:rgba(34,211,238,0.15);color:var(--cyan);">28 docs</span>
+    <span class="count-badge" style="background:rgba(34,211,238,0.15);color:var(--cyan);">36 docs</span>
   </div>
   <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);overflow:auto;">
   <table class="data-table">
@@ -1033,6 +1033,14 @@ footer a { color: var(--blue); text-decoration: none; }
     <tr><td class="cite-cell">EFTA00037809</td><td>FBI tips: $1M NDAs, ATC witness, shredded docs</td><td>multi</td><td style="color:var(--yellow)">NEW</td></tr>
     <tr><td class="cite-cell">EFTA00008696-01</td><td>Grand jury: Maxwell deposition perjury testimony</td><td>multi</td><td style="color:var(--yellow)">NEW</td></tr>
     <tr><td class="cite-cell">EFTA00018443</td><td>NYT: Epstein eugenics plan at Zorro Ranch</td><td>multi</td><td style="color:var(--yellow)">NEW</td></tr>
+    <tr><td class="cite-cell">EFTA00010513</td><td>NPA kept secret from victims — defense sought assurances</td><td>multi</td><td style="color:var(--yellow)">NEW v12</td></tr>
+    <tr><td class="cite-cell">EFTA00021558</td><td>Jane Doe #3: blackmail system — required descriptions of sex acts</td><td>multi</td><td style="color:var(--yellow)">NEW v12</td></tr>
+    <tr><td class="cite-cell">EFTA00019888</td><td>Epstein-Staley blackmail ring / UK Parliament allegations</td><td>multi</td><td style="color:var(--yellow)">NEW v12</td></tr>
+    <tr><td class="cite-cell">EFTA00016356</td><td>FBI affidavit: TerraMar phone used to locate Maxwell</td><td>multi</td><td style="color:var(--yellow)">NEW v12</td></tr>
+    <tr><td class="cite-cell">EFTA00020072</td><td>Victim impact statement: Harvard promise, "ache" testimony</td><td>multi</td><td style="color:var(--yellow)">NEW v12</td></tr>
+    <tr><td class="cite-cell">EFTA00022134</td><td>Victim summary sheets: Dershowitz sex 6+ times</td><td>multi</td><td style="color:var(--yellow)">NEW v12</td></tr>
+    <tr><td class="cite-cell">EFTA00015615</td><td>Bail hearing: "Young Nudes" disks, thousands of photos</td><td>multi</td><td style="color:var(--yellow)">NEW v12</td></tr>
+    <tr><td class="cite-cell">EFTA00007219</td><td>Palm Beach search: CPUs deliberately removed</td><td>multi</td><td style="color:var(--yellow)">NEW v12</td></tr>
   </table>
   </div>
 </div>
@@ -1040,8 +1048,8 @@ footer a { color: var(--blue); text-decoration: none; }
 </div>
 
 <footer>
-  <p style="margin-bottom:8px;">Epstein Files Interactive Investigation Dashboard v11</p>
-  <p>Generated: February 1, 2026 &bull; Sources: 406 PDFs, 42MB corpus, 11 deep-dive agents, 3,000+ findings</p>
+  <p style="margin-bottom:8px;">Epstein Files Interactive Investigation Dashboard v12</p>
+  <p>Generated: February 1, 2026 &bull; Sources: 406 PDFs, 42MB corpus, 14 deep-dive agents, 3,500+ findings</p>
   <p style="margin-top:8px;">All citations reference EFTA document numbers from the <a href="https://archive.org/details/epstein-files" target="_blank">January 30, 2026 release on archive.org</a></p>
   <p style="margin-top:16px;"><a href="https://github.com/Jbapckfan/epstein-files" target="_blank">GitHub: Jbapckfan/epstein-files</a></p>
 </footer>
@@ -1089,6 +1097,16 @@ const findings = [
   {n:38,title:"Air Traffic Controllers Saw Girls as Young as 11",body:'ATC worker at St. Thomas: <strong>"has seen JE with underage girls getting off his jet"</strong> then flying them via helicopter to island. USVI AG: air traffic controllers saw girls "appearing between 11 and 18" as recently as 2018.',cite:['EFTA00037809, FBI tip','EFTA00018789, USVI AG filing'],tags:['new','violence'],color:'red'},
   {n:39,title:"Austrian Passport Used in Saudi Arabia",body:'Fake passport "Marius Fortelni" had stamps showing entry into <strong>France, Spain, Britain, AND Saudi Arabia</strong> in the 1980s. Tip linked it to "Hapsburg Group (Manafort, Gusenbauer, Goldscheider)."',cite:['EFTA00018387','FBI tip re: Hapsburg'],tags:['new','intel'],color:'purple'},
   {n:40,title:"Mr. Leonsis, Mr. Case, the Gregorys — New Names",body:'Victim diary names additional individuals: <strong>"Mr. Leonsis, Mr. Case, the Gregorys, Mr. Colgan"</strong> alongside Snyder, Mitchell, Kimsey. "Whether its with Jeffrey [or them]... it is all horror." Ted Leonsis (Caps/Wizards owner), Steve Case (AOL co-founder).',cite:['EFTA02731420, pp.12-13'],tags:['new','violence'],color:'red'},
+  {n:41,title:"NPA Kept Secret From Victims — Defense Sought Assurances",body:'The Non-Prosecution Agreement was <strong>"deliberately" hidden from victims</strong> by the USAO. Epstein\'s counsel <strong>"sought assurances"</strong> that the NPA would remain secret. FBI and ICE called the initial plea offer <strong>"completely unacceptable."</strong> None of the 4 named coconspirators cooperated, yet all received blanket immunity.',cite:['EFTA00010513','EFTA00009090 area'],tags:['new','obstruction'],color:'orange'},
+  {n:42,title:"Blackmail System: Victims Ordered to Report on Powerful Men",body:'Jane Doe #3 filing: Epstein trafficked her to <strong>"numerous prominent American politicians, powerful business executives, foreign presidents, a well-known Prime Minister."</strong> Epstein <strong>"required Jane Doe #3 to describe the events"</strong> with these men <strong>"so that he could potentially blackmail them."</strong>',extra:'Separate allegations that Epstein blackmailed UK Parliament to accept Jes Staley as CEO of Barclays. MPs John Mann and Mark Garnier referenced "threats Epstein was alleged to have made to blackmail Parliament."',cite:['EFTA00021558','EFTA00019888-19892'],tags:['new','intel','violence'],color:'purple'},
+  {n:43,title:"EDNY Prosecutor Called It \"Murder of Jeffrey Epstein\"",body:'An AUSA in EDNY (Eastern District of NY) wrote internally that they were <strong>"working on an investigation into the death of an inmate at the Brooklyn MDC"</strong> and referenced <strong>"the investigation into the murder of Jeffrey Epstein."</strong> Forensic pathologist: broken bones <strong>"more consistent with homicide."</strong>',extra:'SDNY internally dismissed Baden\'s homicide finding as "bunk" — telling media to "tamp down any hysteria." A CD labeled "Epstein Murder Evidence" was received and dismissed as "materials from a crazy person."',cite:['SDNY internal emails','EFTA00031392','EFTA00017941-17942'],tags:['new','death'],color:'red'},
+  {n:44,title:"MCC Video Footage \"Inadvertently\" Destroyed",body:'The BOP <strong>"inadvertently preserved footage showing a different area within MCC"</strong> — not the SHU where Epstein died. The actual SHU video <strong>"no longer exists on the backup system because of a technical error."</strong> Camera reportedly <strong>"not functioning since Thursday"</strong> before Saturday death.',cite:['SDNY prosecution records','BOP records'],tags:['new','death','obstruction'],color:'red'},
+  {n:45,title:"\"Woody Allen Archive\" Drive Found in FBI Search",body:'FBI evidence inventory item NYC024338: <strong>"external drive Seagate external drive with label \'Woody Allen Archive\' Woody Allen Movies."</strong> Found among 60+ seized devices from Maxwell properties. Catalogued as "Nothing for Southern" — meaning not relevant to SDNY prosecution.',cite:['EFTA00037551'],tags:['new','intel'],color:'purple'},
+  {n:46,title:"Victim\'s Harvard Ache — Promised Recommendation Letter",body:'Victim impact statement: <strong>"He promised me that he would write me a letter of recommendation for Harvard"</strong> as he was "funding and leading Harvard\'s studies on the human brain, and the president was his friend." Years later: <strong>"To this day, there is still an ache in my being that I did not apply to Harvard in fear of his influence there."</strong>',cite:['EFTA00020072'],tags:['new','violence'],color:'red'},
+  {n:47,title:"CPUs Deliberately Removed Before Police Search",body:'During the 2005 Palm Beach search warrant, <strong>three separate computer stations had monitors, keyboards, mice — but no CPUs.</strong> "All of the cables were removed from an area where a computer had once been." Pattern repeated in Garden Room and Cabana — indicating <strong>foreknowledge of the search</strong> and deliberate evidence destruction.',cite:['EFTA00007219'],tags:['new','obstruction'],color:'orange'},
+  {n:48,title:"Safe Contained \"Young Miscellaneous Nudes\" Disks",body:'2019 search of NYC mansion: locked safe contained <strong>"electronic disks with labels that included the words \'Young Miscellaneous Nudes 1\' and \'Girl Pics Nude.\'"</strong> Also found: <strong>"at least hundreds, and perhaps thousands, of sexually suggestive photographs of nude females, many of whom appear to be underage."</strong>',cite:['EFTA00015615'],tags:['new','violence'],color:'red'},
+  {n:49,title:"TerraMar Phone Used to Locate and Arrest Maxwell",body:'FBI used a cell phone subscribed to <strong>"Terramar Project, Inc."</strong> — Maxwell\'s ocean charity — to track and arrest her. TerraMar had <strong>UBS and Citibank accounts</strong> with Maxwell as signatory. Tax returns showed she claimed to work 60 hours/week there but received <strong>no compensation.</strong>',extra:'Maxwell defense: "Boies Schiller produced some 90,000 pages of discovery material to the government" despite Maxwell demanding they "return or destroy all confidential information."',cite:['EFTA00016356-16358','EFTA00010287','EFTA00011378'],tags:['new','financial'],color:'blue'},
+  {n:50,title:"Dershowitz: \"Had Sex at Least 6 Times, Aged 16-19\"",body:'Victim summary sheet states plainly: <strong>"Had sex with Dershowitz at least 6 times, aged 16-19."</strong> Another victim account: "Shown into a room with Alan Dershowitz and Epstein. Dershowitz left the room." Separately: <strong>"she disclosed that she had sex with Epstein and Allan Dershowitz"</strong> to FBI.',extra:'Dershowitz served as Epstein\'s defense attorney and helped negotiate the NPA. Harvard professor emeritus. Called on Harvard to "investigate him so he would be exonerated completely." 106 total mentions in documents.',cite:['EFTA00022134','FBI interview records','EFTA00038124'],tags:['new','violence'],color:'red'},
 ];
 
 // Render findings
@@ -1168,6 +1186,11 @@ const nodes = [
   {id:'case',label:'Steve Case',x:0,y:0,r:9,color:'#ffc53d',group:'abuser'},
   {id:'pinker',label:'Steven Pinker',x:0,y:0,r:8,color:'#ff7b42',group:'science'},
   {id:'visoski',label:'Larry Visoski',x:0,y:0,r:8,color:'#60a5fa',group:'financial'},
+  {id:'seth_lloyd',label:'Seth Lloyd',x:0,y:0,r:8,color:'#ff7b42',group:'science'},
+  {id:'nowak',label:'Martin Nowak',x:0,y:0,r:8,color:'#ff7b42',group:'science'},
+  {id:'barak',label:'Ehud Barak',x:0,y:0,r:10,color:'#34d399',group:'political'},
+  {id:'tartaglione',label:'Nick Tartaglione',x:0,y:0,r:8,color:'#ff3b5c',group:'core'},
+  {id:'krauss',label:'Lawrence Krauss',x:0,y:0,r:8,color:'#ff7b42',group:'science'},
 ];
 
 const edges = [
@@ -1186,6 +1209,10 @@ const edges = [
   {from:'epstein',to:'leonsis'},{from:'epstein',to:'case'},{from:'epstein',to:'pinker'},
   {from:'maxwell',to:'leonsis'},{from:'maxwell',to:'case'},
   {from:'epstein',to:'visoski'},{from:'kimsey',to:'case'},
+  {from:'epstein',to:'seth_lloyd'},{from:'epstein',to:'nowak'},{from:'epstein',to:'barak'},
+  {from:'epstein',to:'tartaglione'},{from:'epstein',to:'krauss'},
+  {from:'brockman',to:'seth_lloyd'},{from:'nowak',to:'pinker'},{from:'krauss',to:'pinker'},
+  {from:'barak',to:'maxwell'},
 ];
 
 // Initialize positions in a circle
