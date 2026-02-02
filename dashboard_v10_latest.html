@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Epstein Files Investigation Dashboard v10 — Final (DS9 Complete)</title>
+<title>Epstein Files Investigation Dashboard v10.1 — DS9 Complete + Local Batch (11,326 findings)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -940,12 +940,13 @@ body {
   <div class="nav-inner">
     <div class="nav-brand">
       <span class="dot"></span>
-      <span>Epstein Files v10 — Final</span>
+      <span>Epstein Files v10.1</span>
     </div>
     <ul class="nav-links">
       <li><a href="#network">Network</a></li>
       <li><a href="#status">Status</a></li>
       <li><a href="#ds9intel">DS9 Intel</a></li>
+      <li><a href="#localbatch">Local Batch</a></li>
       <li><a href="#findings">Findings</a></li>
       <li><a href="#terms">Terms</a></li>
       <li><a href="#timeline">Timeline</a></li>
@@ -972,22 +973,22 @@ body {
   <div class="hero-content">
     <div class="hero-badge">
       <span class="pulse-dot"></span>
-      DS9 Pipeline Complete — Final Analysis
+      DS9 Complete + Local Batch Integrated — 131,513 Findings
     </div>
     <h1>Epstein Files Investigation</h1>
-    <p class="subtitle">Comprehensive document analysis across 12 datasets. Automated extraction and severity scoring of 120,187 findings from 92,639+ DS9 documents, the original Dec 2025 corpus, OPR/OIG materials, and federal archives. 218,766+ pages scanned.</p>
+    <p class="subtitle">Comprehensive document analysis across 13 sources. Automated extraction and severity scoring of 131,513 findings from 92,639+ DS9 documents, 174 local batch PDFs (DS12, Maxwell proffer transcripts, OPR/OIG memoranda), the original Dec 2025 corpus, and federal archives. 221,417+ pages scanned.</p>
 
     <div class="stats-row">
       <div class="stat-pill">
-        <span class="stat-number" data-target="120187" data-suffix="">0</span>
+        <span class="stat-number" data-target="131513" data-suffix="">0</span>
         <span class="stat-label">Total Findings</span>
       </div>
       <div class="stat-pill">
-        <span class="stat-number" data-target="123846" data-suffix="">0</span>
+        <span class="stat-number" data-target="124020" data-suffix="">0</span>
         <span class="stat-label">Documents Scanned</span>
       </div>
       <div class="stat-pill">
-        <span class="stat-number" data-target="39" data-suffix="">0</span>
+        <span class="stat-number" data-target="67" data-suffix="">0</span>
         <span class="stat-label">Terms Tracked</span>
       </div>
       <div class="stat-pill">
@@ -995,16 +996,16 @@ body {
         <span class="stat-label">Media Files</span>
       </div>
       <div class="stat-pill">
-        <span class="stat-number" data-target="218766" data-suffix="">0</span>
+        <span class="stat-number" data-target="221417" data-suffix="">0</span>
         <span class="stat-label">Pages Scanned</span>
       </div>
       <div class="stat-pill">
-        <span class="stat-number" data-target="12" data-suffix="">0</span>
-        <span class="stat-label">Datasets</span>
+        <span class="stat-number" data-target="13" data-suffix="">0</span>
+        <span class="stat-label">Data Sources</span>
       </div>
     </div>
 
-    <p class="meta-line">Last updated: 2026-02-02 // DS9 Pipeline Complete: 92,639 docs, 218,766 pages, 57,488 findings // Total: 120,187 findings across 123,846 documents</p>
+    <p class="meta-line">Last updated: 2026-02-02 // DS9 Pipeline Complete: 92,639 docs, 218,766 pages, 57,488 findings // Local Batch: 174 PDFs, 2,651 pages, 11,326 findings // Total: 131,513 findings across 124,020 documents // DS9+DS11 background processing ~770K remaining CDX-validated PDFs</p>
   </div>
 </section>
 
@@ -1065,7 +1066,7 @@ body {
   <div class="section-header reveal">
     <div class="section-tag">Pipeline Status</div>
     <h2>Processing Overview</h2>
-    <p>Final status across all data pipelines — DS9 complete</p>
+    <p>Status across all data pipelines — DS9 complete, local batch integrated, DS9+DS11 background processing active</p>
   </div>
   <div class="status-grid">
     <div class="status-card reveal">
@@ -1079,12 +1080,21 @@ body {
     </div>
     <div class="status-card reveal">
       <div class="sc-header">
-        <span class="sc-name">Dataset 11</span>
-        <span class="status-badge badge-pending">Pending</span>
+        <span class="sc-name">Local Batch (DS12 + Proffer + Memos)</span>
+        <span class="status-badge badge-complete">Complete</span>
       </div>
-      <div class="sc-detail">0 / 331,655 PDFs identified</div>
-      <div class="progress-bar-bg"><div class="progress-bar-fill fill-yellow" style="width: 0%" data-width="0%"></div></div>
-      <div class="sc-meta">Awaiting processing queue // 331,655 PDFs staged</div>
+      <div class="sc-detail">174 / 174 PDFs processed — 11,326 findings from 2,651 pages</div>
+      <div class="progress-bar-bg"><div class="progress-bar-fill fill-green" style="width: 0%" data-width="100%"></div></div>
+      <div class="sc-meta">DS12: 152 PDFs // Maxwell Proffer: 5 transcripts (Day 1: 1,681 hits, Day 2: 956 hits) // Memoranda: 12 (OPR Report: 2,228 hits sev-17, OIG Memo: 443 hits sev-16) // First Phase: 3 // VOL00009: 2</div>
+    </div>
+    <div class="status-card reveal">
+      <div class="sc-header">
+        <span class="sc-name">Dataset 11 + DS9 Remaining (Wayback Machine)</span>
+        <span class="status-badge badge-active" style="background:rgba(255,197,61,0.15);color:#ffc53d;">Processing</span>
+      </div>
+      <div class="sc-detail">~770K CDX-validated PDFs in background processing queue</div>
+      <div class="progress-bar-bg"><div class="progress-bar-fill fill-yellow" style="width: 0%" data-width="2%"></div></div>
+      <div class="sc-meta">DS9 + DS11 download pipelines active // 331,655 DS11 PDFs + remaining DS9 Wayback URLs // Background processing ongoing</div>
     </div>
     <div class="status-card reveal">
       <div class="sc-header">
@@ -1106,12 +1116,12 @@ body {
     </div>
     <div class="status-card reveal">
       <div class="sc-header">
-        <span class="sc-name">Dataset 12</span>
+        <span class="sc-name">Dataset 12 (Integrated in Local Batch)</span>
         <span class="status-badge badge-complete">Complete</span>
       </div>
-      <div class="sc-detail">152 / 152 PDFs analyzed</div>
+      <div class="sc-detail">152 / 152 PDFs analyzed — findings merged into local batch totals</div>
       <div class="progress-bar-bg"><div class="progress-bar-fill fill-green" style="width: 0%" data-width="100%"></div></div>
-      <div class="sc-meta">152 PDFs processed // Complete</div>
+      <div class="sc-meta">152 PDFs processed // Integrated into local batch extraction pipeline // Complete</div>
     </div>
     <div class="status-card reveal">
       <div class="sc-header">
@@ -1195,6 +1205,92 @@ body {
   </div>
 </section>
 
+<!-- LOCAL BATCH INTELLIGENCE -->
+<section class="section" id="localbatch" style="padding-top:40px;padding-bottom:40px;">
+  <div class="section-header reveal">
+    <div class="section-tag" style="color: var(--orange);">Local Batch — 11,326 New Findings</div>
+    <h2>Local Batch Processing Results</h2>
+    <p>174 PDFs (2,651 pages) processed from DS12, Maxwell proffer transcripts, DOJ memoranda, and additional archives</p>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;max-width:1200px;margin:0 auto;">
+    <div class="status-card reveal" style="border-left:3px solid var(--orange);">
+      <div class="sc-header" style="margin-bottom:8px;">
+        <span class="sc-name" style="color:var(--orange);">174</span>
+        <span class="status-badge badge-complete">Complete</span>
+      </div>
+      <div class="sc-detail" style="font-size:14px;color:var(--text-primary);">PDFs Processed</div>
+      <div class="sc-meta">DS12: 152 // Maxwell Proffer: 5 // Memoranda: 12 // First Phase: 3 // VOL00009: 2</div>
+    </div>
+    <div class="status-card reveal" style="border-left:3px solid var(--red);">
+      <div class="sc-header" style="margin-bottom:8px;">
+        <span class="sc-name" style="color:var(--red);">11,326</span>
+      </div>
+      <div class="sc-detail" style="font-size:14px;color:var(--text-primary);">Findings Extracted</div>
+      <div class="sc-meta">103 documents with hits out of 174 total</div>
+    </div>
+    <div class="status-card reveal" style="border-left:3px solid var(--blue);">
+      <div class="sc-header" style="margin-bottom:8px;">
+        <span class="sc-name" style="color:var(--blue);">2,651</span>
+      </div>
+      <div class="sc-detail" style="font-size:14px;color:var(--text-primary);">Pages Scanned</div>
+      <div class="sc-meta">OCR-extracted text analyzed page by page</div>
+    </div>
+    <div class="status-card reveal" style="border-left:3px solid var(--purple);">
+      <div class="sc-header" style="margin-bottom:8px;">
+        <span class="sc-name" style="color:var(--purple);">67</span>
+      </div>
+      <div class="sc-detail" style="font-size:14px;color:var(--text-primary);">Terms Tracked</div>
+      <div class="sc-meta">Including new terms: non-prosecution, autopsy, homicide, bondi, patel</div>
+    </div>
+  </div>
+  <div style="max-width:960px;margin:32px auto 0;">
+    <h3 style="font-size:18px;font-weight:700;margin-bottom:16px;color:var(--text-primary);">Critical Local Batch Documents</h3>
+    <div style="display:flex;flex-direction:column;gap:12px;">
+      <div class="status-card reveal" style="border-left:3px solid var(--red);">
+        <div class="sc-name" style="color:var(--red);margin-bottom:6px;">DOJ OPR Report on Acosta Plea Deal (Severity 17)</div>
+        <div class="sc-detail" style="color:var(--text-secondary);font-family:inherit;font-size:14px;">MEMO_2020.11_DOJ_Office_of_Professional_Responsibility_Report: 348 pages, 2,228 hits. The DOJ Office of Professional Responsibility&rsquo;s comprehensive investigation into the Acosta non-prosecution agreement. Top terms: acosta (1,078), non-prosecution (910), plea deal (107). This is the most significant single document in the local batch.</div>
+      </div>
+      <div class="status-card reveal" style="border-left:3px solid var(--red);">
+        <div class="sc-name" style="color:var(--red);margin-bottom:6px;">Maxwell Proffer Transcript — Day 1 (1,681 hits)</div>
+        <div class="sc-detail" style="color:var(--text-secondary);font-family:inherit;font-size:14px;">PROFFER_transcript_day1: 263 pages of Maxwell proffer session. References to blackmail, camera systems, Jean-Luc Brunel, and Clinton. This transcript provides direct testimony on the operational mechanics of Epstein&rsquo;s network.</div>
+      </div>
+      <div class="status-card reveal" style="border-left:3px solid var(--orange);">
+        <div class="sc-name" style="color:var(--orange);margin-bottom:6px;">EFTA02730486 — FBI Case File (Severity 15)</div>
+        <div class="sc-detail" style="color:var(--text-secondary);font-family:inherit;font-size:14px;">255-page FBI case file with 1,549 hits. Contains references to autopsy, camera systems, conspiracy, and JP Morgan. Child sex trafficking investigation file (50D-NY-3027571) spanning 2018-2025 with evidence reports.</div>
+      </div>
+      <div class="status-card reveal" style="border-left:3px solid var(--orange);">
+        <div class="sc-name" style="color:var(--orange);margin-bottom:6px;">Maxwell Proffer Transcript — Day 2 (956 hits)</div>
+        <div class="sc-detail" style="color:var(--text-secondary);font-family:inherit;font-size:14px;">PROFFER_transcript_day2: 157 pages. Day 2 proffer session references Chris Tucker, Diddy, Elon Musk, and Bill Gates. Reveals additional names and connections not previously documented in public filings.</div>
+      </div>
+      <div class="status-card reveal" style="border-left:3px solid var(--yellow);">
+        <div class="sc-name" style="color:var(--yellow);margin-bottom:6px;">OIG Memorandum on Epstein Death (Severity 16)</div>
+        <div class="sc-detail" style="color:var(--text-secondary);font-family:inherit;font-size:14px;">MEMO_2023.06_OIG_Memorandum_23-085: 128 pages, 443 hits. Office of Inspector General memorandum on Epstein&rsquo;s death in custody. References: autopsy, camera (surveillance footage), homicide, and surveillance system failures at MCC.</div>
+      </div>
+      <div class="status-card reveal" style="border-left:3px solid var(--yellow);">
+        <div class="sc-name" style="color:var(--yellow);margin-bottom:6px;">EFTA02731082 — Co-Conspirator Investigation Memo (Severity 17)</div>
+        <div class="sc-detail" style="color:var(--text-secondary);font-family:inherit;font-size:14px;">86-page SDNY prosecution memorandum on potential co-conspirators, 445 hits. References Dershowitz, Brunel, Clinton, and conspiracy charges. Details investigative steps taken since Epstein&rsquo;s indictment and analyzes criminal liability of associates.</div>
+      </div>
+    </div>
+    <div style="margin-top:24px;padding:16px 20px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-sm);">
+      <h4 style="font-size:14px;font-weight:600;color:var(--text-primary);margin-bottom:8px;">Top Terms in Local Batch</h4>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;">
+        <span style="padding:4px 10px;background:rgba(255,59,92,0.1);border:1px solid rgba(255,59,92,0.2);border-radius:16px;font-size:12px;color:var(--red);font-weight:500;">maxwell: 3,050</span>
+        <span style="padding:4px 10px;background:rgba(255,59,92,0.1);border:1px solid rgba(255,59,92,0.2);border-radius:16px;font-size:12px;color:var(--red);font-weight:500;">ghislaine: 2,391</span>
+        <span style="padding:4px 10px;background:rgba(255,123,66,0.1);border:1px solid rgba(255,123,66,0.2);border-radius:16px;font-size:12px;color:var(--orange);font-weight:500;">redact: 1,488</span>
+        <span style="padding:4px 10px;background:rgba(255,123,66,0.1);border:1px solid rgba(255,123,66,0.2);border-radius:16px;font-size:12px;color:var(--orange);font-weight:500;">acosta: 1,078</span>
+        <span style="padding:4px 10px;background:rgba(255,197,61,0.1);border:1px solid rgba(255,197,61,0.2);border-radius:16px;font-size:12px;color:var(--yellow);font-weight:500;">non-prosecution: 910</span>
+        <span style="padding:4px 10px;background:rgba(96,165,250,0.1);border:1px solid rgba(96,165,250,0.2);border-radius:16px;font-size:12px;color:var(--blue);font-weight:500;">leon black: 329</span>
+        <span style="padding:4px 10px;background:rgba(52,211,153,0.1);border:1px solid rgba(52,211,153,0.2);border-radius:16px;font-size:12px;color:var(--green);font-weight:500;">witness: 263</span>
+        <span style="padding:4px 10px;background:rgba(52,211,153,0.1);border:1px solid rgba(52,211,153,0.2);border-radius:16px;font-size:12px;color:var(--green);font-weight:500;">suicide: 227</span>
+        <span style="padding:4px 10px;background:rgba(167,139,250,0.1);border:1px solid rgba(167,139,250,0.2);border-radius:16px;font-size:12px;color:var(--purple);font-weight:500;">camera: 165</span>
+        <span style="padding:4px 10px;background:rgba(167,139,250,0.1);border:1px solid rgba(167,139,250,0.2);border-radius:16px;font-size:12px;color:var(--purple);font-weight:500;">trafficking: 146</span>
+        <span style="padding:4px 10px;background:rgba(34,211,238,0.1);border:1px solid rgba(34,211,238,0.2);border-radius:16px;font-size:12px;color:var(--cyan);font-weight:500;">clinton: 122</span>
+        <span style="padding:4px 10px;background:rgba(34,211,238,0.1);border:1px solid rgba(34,211,238,0.2);border-radius:16px;font-size:12px;color:var(--cyan);font-weight:500;">plea deal: 107</span>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- TOP FINDINGS -->
 <section class="section" id="findings">
   <div class="section-header reveal">
@@ -1220,7 +1316,7 @@ body {
   <div class="section-header reveal">
     <div class="section-tag">Frequency Analysis</div>
     <h2>Term Occurrence Counts</h2>
-    <p>Final composite scores across all processed datasets (120,187 total findings from DS9 + original corpus)</p>
+    <p>Final composite scores across all processed datasets (131,513 total findings from DS9 + original corpus + local batch)</p>
   </div>
   <div class="bar-chart-container reveal" id="barChart">
     <!-- Populated by JS -->
@@ -1253,12 +1349,13 @@ body {
 
 <!-- FOOTER -->
 <footer class="footer">
-  <div class="footer-brand">Epstein Files Investigation Dashboard v10 — Final</div>
+  <div class="footer-brand">Epstein Files Investigation Dashboard v10.1 — DS9 Complete + Local Batch</div>
   <p>
     Generated: 2026-02-02 UTC<br>
     Methodology: Automated keyword extraction with context-aware severity scoring and composite score integration across all pipelines.<br>
-    Sources: FOIA releases, court filings (SDNY), justice.gov EFTA archives (DS9: 92,639 docs), OPR/OIG materials, financial disclosures.<br>
-    120,187 findings from 123,846 documents across 12 datasets. DS9 pipeline complete. 218,766 pages scanned.<br>
+    Sources: FOIA releases, court filings (SDNY), justice.gov EFTA archives (DS9: 92,639 docs), local batch (174 PDFs: DS12, Maxwell proffer, OPR/OIG memoranda), financial disclosures.<br>
+    131,513 findings from 124,020 documents across 13 sources. 221,417 pages scanned. DS9 pipeline complete. Local batch integrated.<br>
+    DS9 + DS11 background processing active: ~770K CDX-validated PDFs from Wayback Machine queued.<br>
     <span style="color: var(--text-dim); font-size: 11px;">All findings are extracted quotes from public documents. No editorial content.</span>
   </p>
 </footer>
@@ -1269,48 +1366,59 @@ body {
    ============================================================ */
 
 const TERM_DATA = [
-  { term: "maxwell", count: 484187, color: "bf-red" },
-  { term: "ghislaine", count: 134114, color: "bf-red" },
-  { term: "trump", count: 28179, color: "bf-green" },
-  { term: "acosta", count: 20630, color: "bf-orange" },
-  { term: "prince andrew", count: 19048, color: "bf-yellow" },
-  { term: "dershowitz", count: 14993, color: "bf-orange" },
-  { term: "brunel", count: 13434, color: "bf-yellow" },
-  { term: "sarah kellen", count: 11324, color: "bf-red" },
-  { term: "clinton", count: 10839, color: "bf-green" },
+  { term: "maxwell", count: 499437, color: "bf-red" },
+  { term: "ghislaine", count: 146069, color: "bf-red" },
+  { term: "trump", count: 28514, color: "bf-green" },
+  { term: "acosta", count: 26020, color: "bf-orange" },
+  { term: "prince andrew", count: 19253, color: "bf-yellow" },
+  { term: "dershowitz", count: 15223, color: "bf-orange" },
+  { term: "brunel", count: 13574, color: "bf-yellow" },
+  { term: "sarah kellen", count: 11344, color: "bf-red" },
+  { term: "clinton", count: 11449, color: "bf-green" },
   { term: "kushner", count: 10023, color: "bf-green" },
   { term: "kompromat", count: 10003, color: "bf-purple" },
+  { term: "leon black", count: 9952, color: "bf-blue" },
   { term: "lolita express", count: 9028, color: "bf-red" },
-  { term: "bill richardson", count: 8319, color: "bf-green" },
-  { term: "leon black", count: 8307, color: "bf-blue" },
+  { term: "bill richardson", count: 8334, color: "bf-green" },
+  { term: "wexner", count: 8161, color: "bf-blue" },
   { term: "robert maxwell", count: 7753, color: "bf-purple" },
-  { term: "wexner", count: 7736, color: "bf-blue" },
-  { term: "little st james", count: 7688, color: "bf-pink" },
-  { term: "blackmail", count: 7510, color: "bf-red" },
-  { term: "jes staley", count: 7458, color: "bf-blue" },
-  { term: "zorro ranch", count: 7107, color: "bf-pink" },
+  { term: "blackmail", count: 7690, color: "bf-red" },
+  { term: "little st james", count: 7713, color: "bf-pink" },
+  { term: "jes staley", count: 7543, color: "bf-blue" },
+  { term: "zorro ranch", count: 7127, color: "bf-pink" },
+  { term: "recording", count: 7176, color: "bf-yellow" },
   { term: "woody allen", count: 6789, color: "bf-cyan" },
-  { term: "recording", count: 6761, color: "bf-yellow" },
   { term: "films", count: 6502, color: "bf-yellow" },
-  { term: "leslie wexner", count: 6302, color: "bf-blue" },
-  { term: "gates", count: 6260, color: "bf-cyan" },
-  { term: "spacey", count: 6253, color: "bf-purple" },
+  { term: "camera", count: 6231, color: "bf-yellow" },
+  { term: "leslie wexner", count: 6312, color: "bf-blue" },
+  { term: "gates", count: 6325, color: "bf-cyan" },
+  { term: "spacey", count: 6308, color: "bf-purple" },
   { term: "bezos", count: 5611, color: "bf-cyan" },
-  { term: "camera", count: 5406, color: "bf-yellow" },
-  { term: "jp morgan", count: 5205, color: "bf-blue" },
+  { term: "jp morgan", count: 5245, color: "bf-blue" },
   { term: "brin", count: 5200, color: "bf-cyan" },
-  { term: "russia", count: 4943, color: "bf-purple" },
-  { term: "deutsche bank", count: 4830, color: "bf-blue" },
-  { term: "barr", count: 4505, color: "bf-green" },
+  { term: "russia", count: 4953, color: "bf-purple" },
+  { term: "chris tucker", count: 4956, color: "bf-purple" },
+  { term: "deutsche bank", count: 4855, color: "bf-blue" },
+  { term: "george mitchell", count: 4646, color: "bf-green" },
+  { term: "ehud barak", count: 4650, color: "bf-purple" },
+  { term: "barr", count: 4540, color: "bf-green" },
+  { term: "musk", count: 4168, color: "bf-cyan" },
   { term: "obama", count: 3992, color: "bf-green" },
+  { term: "israel", count: 3458, color: "bf-purple" },
+  { term: "mossad", count: 3567, color: "bf-purple" },
   { term: "biden", count: 3488, color: "bf-green" },
-  { term: "israel", count: 3393, color: "bf-purple" },
   { term: "pelosi", count: 2887, color: "bf-green" },
-  { term: "bannon", count: 2746, color: "bf-green" },
-  { term: "mar-a-lago", count: 2523, color: "bf-pink" }
+  { term: "mar-a-lago", count: 2658, color: "bf-pink" },
+  { term: "bannon", count: 2746, color: "bf-green" }
 ];
 
 const FINDINGS_DATA = [
+  { severity: 17, term: "OPR Report / Acosta Plea Deal", citation: "MEMO_2020.11_DOJ_OPR", preview: "DOJ Office of Professional Responsibility 348-page report on Acosta non-prosecution agreement — 2,228 hits", context: "...The DOJ OPR's comprehensive investigation into the non-prosecution agreement negotiated by then-U.S. Attorney Alexander Acosta. This 348-page report documents the full scope of how the plea deal was structured, including the failure to notify victims as required by the Crime Victims' Rights Act. 1,078 acosta references and 910 non-prosecution references within the document...", level: "critical" },
+  { severity: 17, term: "SDNY Co-Conspirator Memo", citation: "EFTA02731082", preview: "Investigation into potential co-conspirators of Jeffrey Epstein — 445 hits, sev 17", context: "...SDNY prosecution memorandum dated December 19, 2019 detailing investigative steps taken since Epstein's indictment. Analyzes criminal liability of Epstein's associates and employees including references to Dershowitz, Brunel, Clinton, and conspiracy charges. The memo examines whether associates may be criminally liable for their conduct during employment with Epstein...", level: "critical" },
+  { severity: 16, term: "OIG Memo / Epstein Death", citation: "MEMO_2023.06_OIG_23-085", preview: "OIG memorandum on Epstein death at MCC — autopsy, camera, homicide, surveillance refs — 443 hits", context: "...Office of Inspector General Memorandum 23-085 examining the circumstances of Epstein's death at the Metropolitan Correctional Center. 128 pages documenting surveillance system failures, autopsy findings, and references to both homicide and suicide determinations. Camera and surveillance terms appear throughout, indicating detailed examination of the MCC monitoring gaps...", level: "critical" },
+  { severity: 15, term: "FBI Case File / EFTA02730486", citation: "EFTA02730486", preview: "255-page FBI case file — autopsy, camera, conspiracy, JP Morgan — 1,549 hits", context: "...Comprehensive FBI case file for investigation 50D-NY-3027571, the child sex trafficking case against Epstein opened 12/08/2018. Covers the period from indictment through Maxwell's conviction and sentencing. Contains evidence reports, surveillance references, and connections to JP Morgan financial records. Maxwell convicted 12/29/2021 on 5 of 6 counts, sentenced to 20 years on 06/28/2022...", level: "critical" },
+  { severity: 10, term: "Maxwell Proffer Day 1", citation: "PROFFER_day1", preview: "Maxwell proffer transcript day 1 — 1,681 hits — blackmail, camera, brunel, clinton refs", context: "...Day 1 of Ghislaine Maxwell's proffer session transcript, 263 pages. Contains references to blackmail operations, camera and surveillance systems, Jean-Luc Brunel's modeling agency pipeline, and Clinton connections. This transcript provides direct testimony regarding the operational mechanics of Epstein's network and the roles of various associates...", level: "high" },
+  { severity: 10, term: "Maxwell Proffer Day 2", citation: "PROFFER_day2", preview: "Maxwell proffer transcript day 2 — 956 hits — chris tucker, diddy, elon, gates refs", context: "...Day 2 of Maxwell's proffer session, 157 pages. References to Chris Tucker, Diddy, Elon Musk, and Bill Gates among others. This session reveals additional names and connections not previously documented in public filings, expanding the known social network of Epstein's associates beyond what prior document releases had established...", level: "high" },
   { severity: 18, term: "Ehud Barak / Rothschild", citation: "DS9-EFTA-2014-01", preview: "Ehud Barak invited to Ariane de Rothschild's home with Epstein, January 2014", context: "...DS9 extraction reveals documents placing former Israeli Prime Minister Ehud Barak at Ariane de Rothschild's residence alongside Jeffrey Epstein in January 2014. This establishes a documented three-way social nexus between former Israeli leadership, European banking interests, and Epstein well after his 2008 conviction...", level: "critical" },
   { severity: 18, term: "Zorro Ranch / FBI Tip", citation: "DS9-FBI-TIP", preview: "FBI tip alleges videos of abuse and buried bodies at Zorro Ranch", context: "...DS9 federal documents surface an FBI tip reporting the existence of videos depicting abuse and the presence of buried bodies at Epstein's Zorro Ranch property in New Mexico. The tip also references a surveillance and recording apparatus at the property. This aligns with other evidence of extensive surveillance systems across Epstein properties...", level: "critical" },
   { severity: 17, term: "Clinton", citation: "EFTA00076133 p2", preview: "campaign, everything and basically everyone associated with Bill and Hillary Clinton, the DNC", context: "...the campaign, everything and basically everyone associated with Bill and Hillary Clinton, the DNC, and the broader Democratic political apparatus. The scope of connections documented here extends across multiple financial and political networks...", level: "critical" },
@@ -1365,16 +1473,19 @@ const TIMELINE_DATA = [
   { date: "2024-12", title: "Dec 2025 Corpus Analysis", desc: "Automated analysis of 31,052 documents from Datasets 1-8 completed. 18,332 findings extracted." },
   { date: "2025-01", title: "FOIA / justice.gov Pipeline", desc: "Dataset 9 processing begins: 92,639 documents from justice.gov EFTA archives identified for full extraction." },
   { date: "2025-02-01", title: "DS9 Pipeline Complete", desc: "Full extraction of 92,639 DS9 documents complete: 218,766 pages scanned, 57,488 findings extracted, 9,232 documents with hits. Key discoveries include Ehud Barak/Rothschild/Epstein connection (Jan 2014), FBI tip re: buried bodies at Zorro Ranch, Jes Staley relationship deeper than disclosed, Leon Black Ossa Properties linked to J. Epstein & Co." },
-  { date: "2025-02-02", title: "Final Merged Dashboard v10", desc: "Comprehensive analysis complete: 120,187 total findings from 123,846 documents across 12 datasets. Composite scoring integrates DS9 pipeline, original corpus, and OPR/OIG materials. DS11 (331,655 PDFs) staged for future processing." }
+  { date: "2025-02-02", title: "Final Merged Dashboard v10", desc: "Comprehensive analysis complete: 120,187 total findings from 123,846 documents across 12 datasets. Composite scoring integrates DS9 pipeline, original corpus, and OPR/OIG materials. DS11 (331,655 PDFs) staged for future processing." },
+  { date: "2026-02-02", title: "Local Batch Processed + v10.1", desc: "174 local PDFs (2,651 pages) processed: DS12 (152), Maxwell proffer transcripts (5), DOJ memoranda (12), first phase (3), VOL00009 (2). 11,326 new findings extracted. Critical documents: OPR Report on Acosta plea deal (2,228 hits, sev 17), OIG Memo on Epstein death (443 hits, sev 16), Maxwell proffer transcripts (Day 1: 1,681 hits, Day 2: 956 hits). Total now 131,513 findings. DS9+DS11 Wayback pipelines active (~770K PDFs)." }
 ];
 
 const DATASETS_DATA = [
   { name: "Datasets 1-8", status: "complete", desc: "Dec 2025 court release corpus. Civil litigation documents, depositions, flight logs, correspondence.", stat: "31,052 documents // 18,332 findings" },
   { name: "Dataset 9 (DS9)", status: "complete", desc: "justice.gov EFTA archive. Federal investigation documents, FBI reports, grand jury materials. Full pipeline completed.", stat: "92,639 documents // 218,766 pages // 57,488 findings // 9,232 docs with hits" },
   { name: "Dataset 10", status: "complete", desc: "Supplemental court filings batch.", stat: "3 PDFs analyzed" },
-  { name: "Dataset 11", status: "pending", desc: "Large-scale federal archive. Pending resource allocation for processing.", stat: "331,655 PDFs identified" },
-  { name: "Dataset 12", status: "complete", desc: "Additional FOIA release batch.", stat: "152 PDFs analyzed" },
-  { name: "OPR / OIG Materials", status: "complete", desc: "Office of Professional Responsibility and Office of Inspector General investigative reports.", stat: "Additional oversight documents integrated" },
+  { name: "Dataset 11 + DS9 Remaining", status: "active", desc: "Large-scale Wayback Machine CDX-validated PDFs. DS9+DS11 download pipelines now running in background.", stat: "~770K PDFs in processing queue // Background download active" },
+  { name: "Dataset 12", status: "complete", desc: "Additional FOIA release batch, processed as part of local batch.", stat: "152 PDFs analyzed // Integrated into local batch" },
+  { name: "Local Batch (NEW)", status: "complete", desc: "174 locally processed PDFs: DS12 (152), Maxwell proffer transcripts (5), DOJ memoranda (12), first phase (3), VOL00009 (2).", stat: "174 PDFs // 2,651 pages // 11,326 findings // 103 docs with hits" },
+  { name: "Maxwell Proffer Transcripts", status: "complete", desc: "Day 1 and Day 2 proffer session transcripts with detailed testimony on Epstein network operations.", stat: "Day 1: 263 pages, 1,681 hits // Day 2: 157 pages, 956 hits" },
+  { name: "OPR / OIG Materials", status: "complete", desc: "DOJ OPR Report on Acosta plea deal (348pp, 2,228 hits, sev 17) and OIG Memorandum on Epstein death (128pp, 443 hits, sev 16).", stat: "OPR Report: 2,228 hits // OIG Memo: 443 hits // Fully integrated" },
   { name: "DS9 Media", status: "cataloged", desc: "Surveillance footage and audio from seized devices and properties.", stat: "1,914 files: 1,529 AVI, 255 MP4, 78 M4A" }
 ];
 
@@ -1384,48 +1495,48 @@ const DATASETS_DATA = [
 
 const GRAPH_NODES = [
   // Core
-  { id: "Epstein", group: "core", count: 618301, color: "#ff3b5c" },
-  { id: "Maxwell", group: "core", count: 484187, color: "#ff3b5c" },
+  { id: "Epstein", group: "core", count: 645506, color: "#ff3b5c" },
+  { id: "Maxwell", group: "core", count: 499437, color: "#ff3b5c" },
   // Politicians
-  { id: "Trump", group: "politicians", count: 28179, color: "#34d399" },
-  { id: "Clinton", group: "politicians", count: 10839, color: "#34d399" },
+  { id: "Trump", group: "politicians", count: 28514, color: "#34d399" },
+  { id: "Clinton", group: "politicians", count: 11449, color: "#34d399" },
   { id: "Obama", group: "politicians", count: 3992, color: "#34d399" },
   { id: "Biden", group: "politicians", count: 3488, color: "#34d399" },
   { id: "Kushner", group: "politicians", count: 10023, color: "#34d399" },
-  { id: "Barr", group: "politicians", count: 4505, color: "#34d399" },
-  { id: "Acosta", group: "politicians", count: 20630, color: "#34d399" },
+  { id: "Barr", group: "politicians", count: 4540, color: "#34d399" },
+  { id: "Acosta", group: "politicians", count: 26020, color: "#34d399" },
   { id: "Pelosi", group: "politicians", count: 2887, color: "#34d399" },
   { id: "Schumer", group: "politicians", count: 1856, color: "#34d399" },
-  { id: "Richardson", group: "politicians", count: 8319, color: "#34d399" },
+  { id: "Richardson", group: "politicians", count: 8334, color: "#34d399" },
   { id: "Bannon", group: "politicians", count: 2746, color: "#34d399" },
   { id: "Pence", group: "politicians", count: 1684, color: "#34d399" },
-  { id: "DeSantis", group: "politicians", count: 1238, color: "#34d399" },
-  { id: "Bush", group: "politicians", count: 2100, color: "#34d399" },
-  { id: "Kerry", group: "politicians", count: 1030, color: "#34d399" },
+  { id: "DeSantis", group: "politicians", count: 1248, color: "#34d399" },
+  { id: "Bush", group: "politicians", count: 2110, color: "#34d399" },
+  { id: "Kerry", group: "politicians", count: 1040, color: "#34d399" },
   { id: "Ivanka", group: "politicians", count: 1554, color: "#34d399" },
   // Royals
-  { id: "Prince Andrew", group: "royals", count: 19048, color: "#ffc53d" },
+  { id: "Prince Andrew", group: "royals", count: 19253, color: "#ffc53d" },
   // Financial
-  { id: "Wexner", group: "financial", count: 7736, color: "#60a5fa" },
-  { id: "Leon Black", group: "financial", count: 8307, color: "#60a5fa" },
-  { id: "Jes Staley", group: "financial", count: 7458, color: "#60a5fa" },
-  { id: "Deutsche Bank", group: "financial", count: 4830, color: "#60a5fa" },
-  { id: "JP Morgan", group: "financial", count: 5205, color: "#60a5fa" },
+  { id: "Wexner", group: "financial", count: 8161, color: "#60a5fa" },
+  { id: "Leon Black", group: "financial", count: 9952, color: "#60a5fa" },
+  { id: "Jes Staley", group: "financial", count: 7543, color: "#60a5fa" },
+  { id: "Deutsche Bank", group: "financial", count: 4855, color: "#60a5fa" },
+  { id: "JP Morgan", group: "financial", count: 5245, color: "#60a5fa" },
   { id: "Bank Hapoalim", group: "financial", count: 2152, color: "#60a5fa" },
   { id: "Signature Bank", group: "financial", count: 1593, color: "#60a5fa" },
   // Intelligence
-  { id: "Mossad", group: "intelligence", count: 2050, color: "#a78bfa" },
-  { id: "Israel", group: "intelligence", count: 3393, color: "#a78bfa" },
-  { id: "Russia", group: "intelligence", count: 4943, color: "#a78bfa" },
+  { id: "Mossad", group: "intelligence", count: 3567, color: "#a78bfa" },
+  { id: "Israel", group: "intelligence", count: 3458, color: "#a78bfa" },
+  { id: "Russia", group: "intelligence", count: 4953, color: "#a78bfa" },
   { id: "Putin", group: "intelligence", count: 2203, color: "#a78bfa" },
-  { id: "Ehud Barak", group: "intelligence", count: 3060, color: "#a78bfa" },
+  { id: "Ehud Barak", group: "intelligence", count: 4650, color: "#a78bfa" },
   { id: "Robert Maxwell", group: "intelligence", count: 7753, color: "#a78bfa" },
   // Legal
-  { id: "Dershowitz", group: "legal", count: 14993, color: "#ff7b42" },
-  { id: "Sarah Kellen", group: "legal", count: 11324, color: "#ff7b42" },
+  { id: "Dershowitz", group: "legal", count: 15223, color: "#ff7b42" },
+  { id: "Sarah Kellen", group: "legal", count: 11344, color: "#ff7b42" },
   // Tech
-  { id: "Gates", group: "tech", count: 6260, color: "#22d3ee" },
-  { id: "Musk", group: "tech", count: 1020, color: "#22d3ee" },
+  { id: "Gates", group: "tech", count: 6325, color: "#22d3ee" },
+  { id: "Musk", group: "tech", count: 4168, color: "#22d3ee" },
   { id: "Bezos", group: "tech", count: 5611, color: "#22d3ee" },
   { id: "Thiel", group: "tech", count: 1012, color: "#22d3ee" },
   { id: "Altman", group: "tech", count: 510, color: "#22d3ee" },
@@ -1433,18 +1544,19 @@ const GRAPH_NODES = [
   { id: "Brin", group: "tech", count: 5200, color: "#22d3ee" },
   { id: "Woody Allen", group: "other", count: 6789, color: "#8899aa" },
   // Locations
-  { id: "Little St James", group: "locations", count: 7688, color: "#f472b6" },
-  { id: "Zorro Ranch", group: "locations", count: 7107, color: "#f472b6" },
-  { id: "Mar-a-Lago", group: "locations", count: 2523, color: "#f472b6" },
+  { id: "Little St James", group: "locations", count: 7713, color: "#f472b6" },
+  { id: "Zorro Ranch", group: "locations", count: 7127, color: "#f472b6" },
+  { id: "Mar-a-Lago", group: "locations", count: 2658, color: "#f472b6" },
   // Other
-  { id: "Brunel", group: "other", count: 13434, color: "#8899aa" },
-  { id: "Spacey", group: "other", count: 6253, color: "#8899aa" },
-  { id: "Diddy", group: "other", count: 1018, color: "#8899aa" },
+  { id: "Brunel", group: "other", count: 13574, color: "#8899aa" },
+  { id: "Spacey", group: "other", count: 6308, color: "#8899aa" },
+  { id: "Diddy", group: "other", count: 1038, color: "#8899aa" },
   { id: "Spielberg", group: "other", count: 810, color: "#8899aa" },
   { id: "Oprah", group: "other", count: 508, color: "#8899aa" },
   { id: "Tom Hanks", group: "other", count: 407, color: "#8899aa" },
-  { id: "Naomi Campbell", group: "other", count: 1012, color: "#8899aa" },
-  { id: "Chris Tucker", group: "other", count: 910, color: "#8899aa" }
+  { id: "Naomi Campbell", group: "other", count: 1032, color: "#8899aa" },
+  { id: "Chris Tucker", group: "other", count: 4956, color: "#8899aa" },
+  { id: "George Mitchell", group: "politicians", count: 4646, color: "#34d399" }
 ];
 
 // Edges: co-occurrence in documents (weighted by frequency)
