@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Epstein Files Investigation Dashboard v10.2 — DS1-8 Complete + All Sources (183,616 findings)</title>
+<title>Epstein Files Investigation Dashboard v10.3 — DS1-8 + DS10 Complete + All Sources (186,027 findings)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -940,7 +940,7 @@ body {
   <div class="nav-inner">
     <div class="nav-brand">
       <span class="dot"></span>
-      <span>Epstein Files v10.2</span>
+      <span>Epstein Files v10.3</span>
     </div>
     <ul class="nav-links">
       <li><a href="#network">Network</a></li>
@@ -948,6 +948,7 @@ body {
       <li><a href="#ds9intel">DS9 Intel</a></li>
       <li><a href="#localbatch">Local Batch</a></li>
       <li><a href="#ds18intel">DS1-8</a></li>
+      <li><a href="#ds10intel">DS10</a></li>
       <li><a href="#findings">Findings</a></li>
       <li><a href="#terms">Terms</a></li>
       <li><a href="#timeline">Timeline</a></li>
@@ -974,18 +975,18 @@ body {
   <div class="hero-content">
     <div class="hero-badge">
       <span class="pulse-dot"></span>
-      DS1-8 + DS9 + Local Batch Complete — 183,616 Findings
+      DS1-8 + DS9 + DS10 + Local Batch Complete — 186,027 Findings
     </div>
     <h1>Epstein Files Investigation</h1>
-    <p class="subtitle">Comprehensive document analysis across 14 sources. Automated extraction and severity scoring of 183,616 findings from 108,208+ documents including DS1-8 (14,693 PDFs, 50,932 findings), DS9 (92,639 docs, 58,648 findings), local batch (174 PDFs, 11,326 findings), and federal archives. 256,814+ pages scanned.</p>
+    <p class="subtitle">Comprehensive document analysis across 15 sources. Automated extraction and severity scoring of 186,027 findings from 108,608+ documents including DS1-8 (14,693 PDFs, 50,932 findings), DS9 (92,639 docs, 58,648 findings), DS10 (200 recovered PDFs, 2,345 findings), local batch (174 PDFs, 11,326 findings), and federal archives. 263,193+ pages scanned.</p>
 
     <div class="stats-row">
       <div class="stat-pill">
-        <span class="stat-number" data-target="183616" data-suffix="">0</span>
+        <span class="stat-number" data-target="186027" data-suffix="">0</span>
         <span class="stat-label">Total Findings</span>
       </div>
       <div class="stat-pill">
-        <span class="stat-number" data-target="108208" data-suffix="">0</span>
+        <span class="stat-number" data-target="108608" data-suffix="">0</span>
         <span class="stat-label">Documents Scanned</span>
       </div>
       <div class="stat-pill">
@@ -997,7 +998,7 @@ body {
         <span class="stat-label">Media Files</span>
       </div>
       <div class="stat-pill">
-        <span class="stat-number" data-target="256814" data-suffix="">0</span>
+        <span class="stat-number" data-target="263193" data-suffix="">0</span>
         <span class="stat-label">Pages Scanned</span>
       </div>
       <div class="stat-pill">
@@ -1006,7 +1007,7 @@ body {
       </div>
     </div>
 
-    <p class="meta-line">Last updated: 2026-02-02 // DS1-8 Local Batch: 14,693 PDFs, 35,397 pages, 50,932 findings // DS9: 92,639 docs, 218,766 pages, 58,648 findings // Local Batch: 174 PDFs, 2,651 pages, 11,326 findings // Total: 183,616 findings across 108,208 documents // DS9+DS11 Wayback processing ~770K remaining CDX-validated PDFs</p>
+    <p class="meta-line">Last updated: 2026-02-02 // DS1-8 Local Batch: 14,693 PDFs, 35,397 pages, 50,932 findings // DS9: 92,639 docs, 218,766 pages, 58,648 findings // DS10 (Recovered): 200 PDFs, 4,025 pages, 2,345 findings // Local Batch: 174 PDFs, 2,651 pages, 11,326 findings // Total: 186,027 findings across 108,608 documents // DS9+DS11 Wayback processing ~770K remaining CDX-validated PDFs</p>
   </div>
 </section>
 
@@ -1067,7 +1068,7 @@ body {
   <div class="section-header reveal">
     <div class="section-tag">Pipeline Status</div>
     <h2>Processing Overview</h2>
-    <p>Status across all data pipelines — DS1-8 complete (50,932 findings), DS9 complete, local batch integrated, DS9+DS11 background processing active</p>
+    <p>Status across all data pipelines — DS1-8 complete (50,932 findings), DS9 complete, DS10 recovered (2,345 findings), local batch integrated, DS9+DS11 background processing active</p>
   </div>
   <div class="status-grid">
     <div class="status-card reveal">
@@ -1379,6 +1380,81 @@ body {
   </div>
 </section>
 
+
+
+<!-- DS10 INTELLIGENCE (RECOVERED) -->
+<section class="section" id="ds10intel" style="padding-top:40px;padding-bottom:40px;">
+  <div class="section-header reveal">
+    <div class="section-tag" style="color: var(--red);">DS10 Recovered — 2,345 New Findings from Sealed SDNY Documents</div>
+    <h2>DS10 Intelligence: Sealed Court Documents</h2>
+    <p>200 PDFs recovered from truncated ZIP using 7zip. 2,345 findings across 4,025 pages. EFTA range: 01262805-01266807. Contains sealed SDNY court documents including FBI search warrant affidavits, warrant applications for electronic evidence, and pen register/trap-and-trace surveillance applications.</p>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;max-width:1200px;margin:0 auto;">
+    <div class="status-card reveal" style="border-left:3px solid var(--red);">
+      <div class="sc-header" style="margin-bottom:8px;">
+        <span class="sc-name" style="color:var(--red);">200</span>
+        <span class="status-badge badge-complete">Recovered</span>
+      </div>
+      <div class="sc-detail" style="font-size:14px;color:var(--text-primary);">PDFs Recovered (7zip)</div>
+      <div class="sc-meta">Truncated ZIP repaired // EFTA01262805&ndash;01266807</div>
+    </div>
+    <div class="status-card reveal" style="border-left:3px solid var(--red);">
+      <div class="sc-header" style="margin-bottom:8px;">
+        <span class="sc-name" style="color:var(--red);">2,345</span>
+      </div>
+      <div class="sc-detail" style="font-size:14px;color:var(--text-primary);">Findings Extracted</div>
+      <div class="sc-meta">Sealed SDNY documents including warrants and surveillance applications</div>
+    </div>
+    <div class="status-card reveal" style="border-left:3px solid var(--blue);">
+      <div class="sc-header" style="margin-bottom:8px;">
+        <span class="sc-name" style="color:var(--blue);">4,025</span>
+      </div>
+      <div class="sc-detail" style="font-size:14px;color:var(--text-primary);">Pages Scanned</div>
+      <div class="sc-meta">OCR-extracted text analyzed page by page</div>
+    </div>
+    <div class="status-card reveal" style="border-left:3px solid var(--purple);">
+      <div class="sc-header" style="margin-bottom:8px;">
+        <span class="sc-name" style="color:var(--purple);">SEALED</span>
+      </div>
+      <div class="sc-detail" style="font-size:14px;color:var(--text-primary);">SDNY Court Documents</div>
+      <div class="sc-meta">FBI warrants, pen registers, grand jury unsealing orders</div>
+    </div>
+  </div>
+  <div style="max-width:960px;margin:32px auto 0;">
+    <h3 style="font-size:18px;font-weight:700;margin-bottom:16px;color:var(--text-primary);">Key DS10 Sealed Documents</h3>
+    <div style="display:flex;flex-direction:column;gap:12px;">
+      <div class="status-card reveal" style="border-left:3px solid var(--red);">
+        <div class="sc-name" style="color:var(--red);margin-bottom:6px;">EFTA01262805 (24 pages) &mdash; FBI Search Warrant Affidavit</div>
+        <div class="sc-detail" style="color:var(--text-secondary);font-family:inherit;font-size:14px;">FBI search warrant affidavit for 9 East 71st Street &mdash; Epstein&rsquo;s Manhattan mansion. Sealed SDNY filing establishing probable cause for the search of Epstein&rsquo;s primary New York residence, the six-story townhouse that was the largest private residence in Manhattan.</div>
+      </div>
+      <div class="status-card reveal" style="border-left:3px solid var(--red);">
+        <div class="sc-name" style="color:var(--red);margin-bottom:6px;">EFTA01262829 (34 pages) &mdash; Warrant for CDs from Epstein&rsquo;s Safe</div>
+        <div class="sc-detail" style="color:var(--text-secondary);font-family:inherit;font-size:14px;">Warrant application for CDs recovered from Epstein&rsquo;s safe. CD labels include: &ldquo;Young [name]&rdquo;, &ldquo;Nudes 00-24&rdquo;, &ldquo;Misc. Nudes&rdquo;, &ldquo;Girl Pics Nude&rdquo;, &ldquo;Thai Massage&rdquo;, &ldquo;Blonde Girl Photo Shoot&rdquo;, &ldquo;Misc. Girls Nude/Dinner&mdash;Scientists&rdquo;. Additional CDs marked &ldquo;Zorro&rdquo; and &ldquo;LSJ&rdquo; (Little Saint James). This warrant details some of the most explicit evidence of organized exploitation material.</div>
+      </div>
+      <div class="status-card reveal" style="border-left:3px solid var(--red);">
+        <div class="sc-name" style="color:var(--red);margin-bottom:6px;">EFTA01262900 (56 pages) &mdash; Warrant for iPhone, iPad, Hard Drives</div>
+        <div class="sc-detail" style="color:var(--text-secondary);font-family:inherit;font-size:14px;">Warrant application for electronic evidence: iPhone, iPad, 2 hard drives, and binders of CDs. All electronic evidence from Epstein&rsquo;s Manhattan residence. 56-page sealed filing detailing the scope of digital evidence sought by federal investigators.</div>
+      </div>
+      <div class="status-card reveal" style="border-left:3px solid var(--red);">
+        <div class="sc-name" style="color:var(--red);margin-bottom:6px;">EFTA01263024 (61 pages) &mdash; Little Saint James Island Raid Warrant</div>
+        <div class="sc-detail" style="color:var(--text-secondary);font-family:inherit;font-size:14px;">Warrant for 27 electronic devices seized during the August 12, 2019 FBI raid on Little Saint James Island. Devices include Macs, servers, Unifi video surveillance system, and a Nikon camera. This is the largest single electronic evidence seizure in the Epstein case, documenting the full scope of the island&rsquo;s digital infrastructure.</div>
+      </div>
+      <div class="status-card reveal" style="border-left:3px solid var(--orange);">
+        <div class="sc-name" style="color:var(--orange);margin-bottom:6px;">EFTA01262784 (7 pages) &mdash; Pen Register / Trap-and-Trace Application</div>
+        <div class="sc-detail" style="color:var(--text-secondary);font-family:inherit;font-size:14px;">Sealed pen register and trap-and-trace application for phone surveillance. This document reveals that federal investigators sought real-time monitoring of incoming and outgoing call metadata from phone numbers associated with Epstein, indicating active surveillance prior to arrest.</div>
+      </div>
+      <div class="status-card reveal" style="border-left:3px solid var(--orange);">
+        <div class="sc-name" style="color:var(--orange);margin-bottom:6px;">EFTA01263227 (13 pages) &mdash; SDNY Unsealing: Giuffre v. Maxwell for Grand Jury</div>
+        <div class="sc-detail" style="color:var(--text-secondary);font-family:inherit;font-size:14px;">SDNY order unsealing portions of Giuffre v. Maxwell civil discovery materials for use in grand jury proceedings. This document bridges the civil litigation and criminal investigation, showing how testimony from the civil case was leveraged for the federal criminal prosecution.</div>
+      </div>
+      <div class="status-card reveal" style="border-left:3px solid var(--yellow);">
+        <div class="sc-name" style="color:var(--yellow);margin-bottom:6px;">EFTA01263246 (26 pages) &mdash; Sealed Order: Modify Protective Order</div>
+        <div class="sc-detail" style="color:var(--text-secondary);font-family:inherit;font-size:14px;">Sealed court order granting the government&rsquo;s application to modify the protective order in the case. This modification allowed previously restricted discovery materials to be shared with federal prosecutors, expanding the evidentiary scope of the criminal investigation.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- TOP FINDINGS -->
 <section class="section" id="findings">
   <div class="section-header reveal">
@@ -1404,7 +1480,7 @@ body {
   <div class="section-header reveal">
     <div class="section-tag">Frequency Analysis</div>
     <h2>Term Occurrence Counts</h2>
-    <p>Final composite scores across all processed datasets (183,616 total findings from DS1-8 + DS9 + local batch + original corpus)</p>
+    <p>Final composite scores (v4) across all processed datasets (186,027 total findings from DS1-8 + DS9 + DS10 + local batch + original corpus)</p>
   </div>
   <div class="bar-chart-container reveal" id="barChart">
     <!-- Populated by JS -->
@@ -1437,12 +1513,12 @@ body {
 
 <!-- FOOTER -->
 <footer class="footer">
-  <div class="footer-brand">Epstein Files Investigation Dashboard v10.2 — DS1-8 + DS9 + Local Batch Complete</div>
+  <div class="footer-brand">Epstein Files Investigation Dashboard v10.3 — DS1-8 + DS9 + DS10 + Local Batch Complete</div>
   <p>
     Generated: 2026-02-02 UTC<br>
     Methodology: Automated keyword extraction with context-aware severity scoring and composite score integration across all pipelines.<br>
-    Sources: FOIA releases, court filings (SDNY), justice.gov EFTA archives (DS9: 92,639 docs), DS1-8 local batch (14,693 PDFs, 50,932 findings), local batch (174 PDFs: DS12, Maxwell proffer, OPR/OIG memoranda), financial disclosures.<br>
-    183,616 findings from 108,208 documents across 14 sources. 256,814 pages scanned. DS1-8 complete. DS9 pipeline complete. Local batch integrated.<br>
+    Sources: FOIA releases, court filings (SDNY), justice.gov EFTA archives (DS9: 92,639 docs), DS1-8 local batch (14,693 PDFs, 50,932 findings), DS10 recovered (200 PDFs, 2,345 findings from sealed SDNY documents), local batch (174 PDFs: DS12, Maxwell proffer, OPR/OIG memoranda), financial disclosures.<br>
+    186,027 findings from 108,608 documents across 15 sources. 263,193 pages scanned. DS1-8 complete. DS9 pipeline complete. DS10 recovered. Local batch integrated.<br>
     DS9 + DS11 background processing active: ~770K CDX-validated PDFs from Wayback Machine queued.<br>
     <span style="color: var(--text-dim); font-size: 11px;">All findings are extracted quotes from public documents. No editorial content.</span>
   </p>
@@ -1454,23 +1530,23 @@ body {
    ============================================================ */
 
 const TERM_DATA = [
-  { term: "maxwell", count: 548017, color: "bf-red" },
-  { term: "ghislaine", count: 160624, color: "bf-red" },
-  { term: "trump", count: 29470, color: "bf-green" },
-  { term: "acosta", count: 21115, color: "bf-orange" },
+  { term: "maxwell", count: 94443, color: "bf-red" },
+  { term: "ghislaine", count: 41522, color: "bf-red" },
+  { term: "victim", count: 19045, color: "bf-red" },
+  { term: "minor", count: 13127, color: "bf-red" },
+  { term: "acosta", count: 13061, color: "bf-orange" },
+  { term: "trump", count: 12306, color: "bf-green" },
+  { term: "witness", count: 10282, color: "bf-yellow" },
+  { term: "non-prosecution", count: 10251, color: "bf-orange" },
+  { term: "kompromat", count: 10001, color: "bf-purple" },
+  { term: "lolita express", count: 9016, color: "bf-red" },
   { term: "prince andrew", count: 18280, color: "bf-yellow" },
-  { term: "victim", count: 17409, color: "bf-red" },
   { term: "dershowitz", count: 14579, color: "bf-orange" },
   { term: "brunel", count: 13188, color: "bf-yellow" },
   { term: "clinton", count: 12656, color: "bf-green" },
-  { term: "minor", count: 11799, color: "bf-red" },
   { term: "sarah kellen", count: 10915, color: "bf-red" },
   { term: "kushner", count: 10822, color: "bf-green" },
   { term: "leon black", count: 10692, color: "bf-blue" },
-  { term: "non-prosecution", count: 10235, color: "bf-orange" },
-  { term: "kompromat", count: 10003, color: "bf-purple" },
-  { term: "witness", count: 9994, color: "bf-yellow" },
-  { term: "lolita express", count: 9034, color: "bf-red" },
   { term: "bill richardson", count: 8357, color: "bf-green" },
   { term: "wexner", count: 8233, color: "bf-blue" },
   { term: "suicide", count: 8203, color: "bf-orange" },
@@ -1519,6 +1595,13 @@ const FINDINGS_DATA = [
   { severity: 7, term: "DS1-8: EFTA00010750 (17pg)", citation: "EFTA00010750", preview: "Kushner, Leon Black, Putin, Russia, Trump — 17 pages, sev 7", context: "...DS1-8 extraction from 17-page document EFTA00010750 connecting political and financial figures to Russian interests. References to Kushner, Leon Black, Putin, Russia, and Trump in a single document suggest investigation into financial and geopolitical connections within Epstein's network...", level: "medium" },
   { severity: 10, term: "Maxwell Proffer Day 1", citation: "PROFFER_day1", preview: "Maxwell proffer transcript day 1 — 1,681 hits — blackmail, camera, brunel, clinton refs", context: "...Day 1 of Ghislaine Maxwell's proffer session transcript, 263 pages. Contains references to blackmail operations, camera and surveillance systems, Jean-Luc Brunel's modeling agency pipeline, and Clinton connections. This transcript provides direct testimony regarding the operational mechanics of Epstein's network and the roles of various associates...", level: "high" },
   { severity: 10, term: "Maxwell Proffer Day 2", citation: "PROFFER_day2", preview: "Maxwell proffer transcript day 2 — 956 hits — chris tucker, diddy, elon, gates refs", context: "...Day 2 of Maxwell's proffer session, 157 pages. References to Chris Tucker, Diddy, Elon Musk, and Bill Gates among others. This session reveals additional names and connections not previously documented in public filings, expanding the known social network of Epstein's associates beyond what prior document releases had established...", level: "high" },
+  { severity: 16, term: "DS10: EFTA01262829 (34pg) — CDs from Safe", citation: "EFTA01262829", preview: "Warrant for CDs from Epstein safe: Young [name], Nudes 00-24, Girl Pics Nude, Thai Massage, Zorro, LSJ", context: "...DS10 recovered sealed warrant application for CDs found in Epstein's safe at 9 East 71st Street. CD labels include: Young [name], Nudes 00-24, Misc. Nudes, Girl Pics Nude, Thai Massage, Blonde Girl Photo Shoot, Misc. Girls Nude/Dinner—Scientists. Additional CDs marked Zorro (referencing Zorro Ranch) and LSJ (Little Saint James). This is among the most explicit evidence catalogs in the entire case...", level: "critical" },
+  { severity: 15, term: "DS10: EFTA01263024 (61pg) — LSJ Raid Warrant", citation: "EFTA01263024", preview: "Warrant for 27 electronic devices from Little Saint James Island raid (Aug 12, 2019)", context: "...DS10 recovered sealed warrant for 27 electronic devices seized during the August 12, 2019 FBI raid on Little Saint James Island. Devices include multiple Mac computers, servers, Unifi video surveillance system, and a Nikon camera. This represents the largest single electronic evidence seizure in the Epstein case, revealing the full scope of the island's digital and surveillance infrastructure...", level: "critical" },
+  { severity: 14, term: "DS10: EFTA01262805 (24pg) — FBI Mansion Warrant", citation: "EFTA01262805", preview: "FBI search warrant affidavit for 9 East 71st Street (Epstein mansion)", context: "...DS10 recovered sealed FBI search warrant affidavit establishing probable cause for the search of Epstein's Manhattan mansion at 9 East 71st Street. The six-story townhouse was the largest private residence in Manhattan and contained extensive evidence including the CDs cataloged in EFTA01262829...", level: "high" },
+  { severity: 14, term: "DS10: EFTA01262900 (56pg) — Electronic Evidence Warrant", citation: "EFTA01262900", preview: "Warrant for iPhone, iPad, 2 hard drives, binders of CDs — all electronic evidence", context: "...DS10 recovered sealed warrant application for electronic evidence including iPhone, iPad, 2 hard drives, and binders of CDs from Epstein's Manhattan residence. 56-page filing detailing the comprehensive scope of digital evidence sought by federal investigators...", level: "high" },
+  { severity: 12, term: "DS10: EFTA01262784 (7pg) — Pen Register/Phone Surveillance", citation: "EFTA01262784", preview: "Sealed pen register/trap-and-trace application for phone surveillance", context: "...DS10 recovered sealed pen register and trap-and-trace application revealing federal investigators sought real-time monitoring of incoming and outgoing call metadata from phone numbers associated with Epstein. This indicates active surveillance was in place prior to his arrest...", level: "high" },
+  { severity: 11, term: "DS10: EFTA01263227 (13pg) — Grand Jury Unsealing", citation: "EFTA01263227", preview: "SDNY unsealing of Giuffre v. Maxwell civil discovery for grand jury proceedings", context: "...DS10 recovered SDNY order unsealing portions of Giuffre v. Maxwell civil discovery materials for use in federal grand jury proceedings. This document bridges the civil litigation and criminal investigation, demonstrating how testimony from the civil case was directly leveraged for the federal criminal prosecution...", level: "high" },
+  { severity: 10, term: "DS10: EFTA01263246 (26pg) — Protective Order Modification", citation: "EFTA01263246", preview: "Sealed order granting government application to modify protective order", context: "...DS10 recovered sealed court order granting the government's application to modify the protective order in the case. This modification expanded prosecutorial access to previously restricted discovery materials, broadening the evidentiary scope of the criminal investigation...", level: "high" },
   { severity: 18, term: "Ehud Barak / Rothschild", citation: "DS9-EFTA-2014-01", preview: "Ehud Barak invited to Ariane de Rothschild's home with Epstein, January 2014", context: "...DS9 extraction reveals documents placing former Israeli Prime Minister Ehud Barak at Ariane de Rothschild's residence alongside Jeffrey Epstein in January 2014. This establishes a documented three-way social nexus between former Israeli leadership, European banking interests, and Epstein well after his 2008 conviction...", level: "critical" },
   { severity: 18, term: "Zorro Ranch / FBI Tip", citation: "DS9-FBI-TIP", preview: "FBI tip alleges videos of abuse and buried bodies at Zorro Ranch", context: "...DS9 federal documents surface an FBI tip reporting the existence of videos depicting abuse and the presence of buried bodies at Epstein's Zorro Ranch property in New Mexico. The tip also references a surveillance and recording apparatus at the property. This aligns with other evidence of extensive surveillance systems across Epstein properties...", level: "critical" },
   { severity: 17, term: "Clinton", citation: "EFTA00076133 p2", preview: "campaign, everything and basically everyone associated with Bill and Hillary Clinton, the DNC", context: "...the campaign, everything and basically everyone associated with Bill and Hillary Clinton, the DNC, and the broader Democratic political apparatus. The scope of connections documented here extends across multiple financial and political networks...", level: "critical" },
@@ -1572,7 +1655,8 @@ const TIMELINE_DATA = [
   { date: "2025-02-01", title: "DS9 Pipeline Complete", desc: "Full extraction of 92,639 DS9 documents complete: 218,766 pages scanned, 57,488 findings extracted, 9,232 documents with hits. Key discoveries include Ehud Barak/Rothschild/Epstein connection (Jan 2014), FBI tip re: buried bodies at Zorro Ranch, Jes Staley relationship deeper than disclosed, Leon Black Ossa Properties linked to J. Epstein & Co." },
   { date: "2025-02-02", title: "Final Merged Dashboard v10", desc: "Comprehensive analysis complete: 120,187 total findings from 123,846 documents across 12 datasets. Composite scoring integrates DS9 pipeline, original corpus, and OPR/OIG materials. DS11 (331,655 PDFs) staged for future processing." },
   { date: "2026-02-02", title: "Local Batch Processed + v10.1", desc: "174 local PDFs (2,651 pages) processed: DS12 (152), Maxwell proffer transcripts (5), DOJ memoranda (12), first phase (3), VOL00009 (2). 11,326 new findings extracted. Critical documents: OPR Report on Acosta plea deal (2,228 hits, sev 17), OIG Memo on Epstein death (443 hits, sev 16), Maxwell proffer transcripts (Day 1: 1,681 hits, Day 2: 956 hits)." },
-  { date: "2026-02-02", title: "DS1-8 Full Extraction + v10.2", desc: "Full local batch extraction of Datasets 1-8 completed: 14,693 PDFs (35,397 pages), 50,932 new findings. Key documents: EFTA00010819 (122pg, sev 10: Acosta/Bannon/Clinton), EFTA00011039 (7pg, sev 12: Bannon/Biden/conspiracy/Israel/Maxwell), EFTA00009809 (14pg, sev 10: trafficking/minor/victim). Total now 183,616 findings across 108,208 documents. DS9+DS11 Wayback pipelines continue (~770K PDFs)." }
+  { date: "2026-02-02", title: "DS1-8 Full Extraction + v10.2", desc: "Full local batch extraction of Datasets 1-8 completed: 14,693 PDFs (35,397 pages), 50,932 new findings. Key documents: EFTA00010819 (122pg, sev 10: Acosta/Bannon/Clinton), EFTA00011039 (7pg, sev 12: Bannon/Biden/conspiracy/Israel/Maxwell), EFTA00009809 (14pg, sev 10: trafficking/minor/victim). Total now 183,616 findings across 108,208 documents. DS9+DS11 Wayback pipelines continue (~770K PDFs)." },
+  { date: "2026-02-02", title: "DS10 Recovery + v10.3", desc: "200 PDFs recovered from truncated DS10 ZIP using 7zip. 2,345 findings across 4,025 pages. EFTA range 01262805-01266807. Contains sealed SDNY court documents: FBI search warrant affidavit for 9 East 71st Street, warrant for CDs from Epstein safe (labeled Nudes 00-24, Girl Pics Nude, etc.), warrant for iPhone/iPad/hard drives, Little Saint James Island raid warrant (27 electronic devices), pen register/trap-and-trace application, Giuffre v. Maxwell grand jury unsealing, and sealed protective order modification. Composite scores updated to v4 (114 terms). Grand total: 186,027 findings from 108,608 documents across 263,193 pages." }
 ];
 
 const DATASETS_DATA = [
@@ -1585,7 +1669,7 @@ const DATASETS_DATA = [
   { name: "Dataset 7 (DS7)", status: "complete", desc: "Court-released documents batch 7. Additional exhibits.", stat: "17 PDFs // COMPLETE" },
   { name: "Dataset 8 (DS8)", status: "complete", desc: "Court-released documents batch 8. Largest batch — financial, legal, and investigative documents.", stat: "10,594 PDFs // COMPLETE // 50,932 combined DS1-8 findings" },
   { name: "Dataset 9 (DS9)", status: "complete", desc: "justice.gov EFTA archive. Federal investigation documents, FBI reports, grand jury materials. Full pipeline completed.", stat: "92,639 documents // 218,766 pages // 58,648 findings // 9,232 docs with hits" },
-  { name: "Dataset 10 (DS10)", status: "corrupt", desc: "Supplemental court filings batch. Data corruption detected.", stat: "CORRUPT // 3 PDFs recovered" },
+  { name: "Dataset 10 (DS10)", status: "complete", desc: "Recovered sealed SDNY court documents from truncated ZIP using 7zip. Contains FBI search warrant affidavits, electronic evidence warrants, pen register applications, and grand jury unsealing orders. EFTA range: 01262805-01266807.", stat: "200 PDFs recovered // 4,025 pages // 2,345 findings // SEALED SDNY DOCUMENTS" },
   { name: "Dataset 11 (DS11)", status: "active", desc: "Large-scale Wayback Machine CDX-validated PDFs. Background download pipeline active.", stat: "331,638 CDX URLs // <1% processed // 15 findings so far" },
   { name: "Dataset 12 (DS12)", status: "complete", desc: "Additional FOIA release batch, processed as part of local batch.", stat: "152 PDFs // COMPLETE // Integrated into local batch" },
   { name: "DS9 Remaining (Wayback)", status: "active", desc: "Remaining DS9 documents via Wayback Machine CDX pipeline.", stat: "438,565 CDX URLs // ~21% done // Background processing" },
