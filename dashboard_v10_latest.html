@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Epstein Files Investigation Dashboard v10.26 — DS1-8 + DS10 Complete + All Sources (186,027 findings)</title>
+<title>Epstein Files Investigation Dashboard v10.27 — DS1-8 + DS10 Complete + All Sources (186,027 findings)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -940,7 +940,7 @@ body {
   <div class="nav-inner">
     <div class="nav-brand">
       <span class="dot"></span>
-      <span>Epstein Files v10.26</span>
+      <span>Epstein Files v10.27</span>
     </div>
     <ul class="nav-links">
       <li><a href="#network">Network</a></li>
@@ -1513,7 +1513,7 @@ body {
 
 <!-- FOOTER -->
 <footer class="footer">
-  <div class="footer-brand">Epstein Files Investigation Dashboard v10.26 — DS1-8 + DS9 + DS10 + Local Batch Complete</div>
+  <div class="footer-brand">Epstein Files Investigation Dashboard v10.27 — DS1-8 + DS9 + DS10 + Local Batch Complete</div>
   <p>
     Generated: 2026-02-02 UTC<br>
     Methodology: Automated keyword extraction with context-aware severity scoring and composite score integration across all pipelines.<br>
@@ -1803,6 +1803,8 @@ const FINDINGS_DATA = [
 {id: "EFTA00173350", severity: "critical", pages: 5, dataset: "DS9", keywords: ["ghislaine", "maxwell", "trump"], title: "Senator Durbin Letter to AG Bondi: Trump-Flagging, Modified Surveillance Video (July 18, 2025)", description: "Senate Judiciary Ranking Member Durbin's formal letter to AG Bondi raising serious concerns: (1) ~1,000 FBI personnel on 24-hour shifts reviewing ~100,000 Epstein records; (2) Personnel instructed to FLAG records mentioning President Trump; (3) Bondi claimed client list was 'sitting on my desk' but DOJ later found 'no incriminating client list'; (4) Released surveillance footage described as 'full raw' was actually modified per WIRED metadata analysis (~3 minutes cut); (5) Trump's 2003 birthday letter to Epstein contained 'outline of a naked woman hand-drawn with heavy marker' with signature 'squiggly Donald below her waist' per WSJ; (6) Bondi's whistleblower claims unsubstantiated.", persons: ["Pam Bondi", "Richard Durbin", "Donald Trump"], dateRange: "2025"},
 {id: "EFTA00166775", severity: "high", pages: 24, dataset: "DS9", keywords: ["deutsche bank", "jp morgan", "maxwell", "wexner"], title: "Deutsche Bank Internal KYC Document for Epstein (Grand Jury Exhibit)", description: "Complete Know Your Customer profile for Epstein's Deutsche Bank relationship. Relationship Manager Paul Morris transitioned Epstein from JP Morgan. Butterfly Trust accounts opened Oct 2013. Net worth $100-500M, annual income $10M, JP Morgan holding $120M. Wexner named as sole known client. Darren Indyke primary contact, Richard Kahn trustee. Marked CONFIDENTIAL - Fed. R. Crim. P. 6(e) grand jury material. DB-SDNY-0002549.", persons: ["Paul Morris", "Darren Indyke", "Richard Kahn", "Leslie Wexner"], dateRange: "2013-2019"},
     {id: "EFTA00079370", severity: "critical", pages: 2, dataset: "DS9", keywords: ["leon black", "maxwell", "prince andrew", "epstein"], title: "FBI FD-302: Victim Accuses Leon Black of Running Sex Trafficking Ring with Epstein", description: "FBI victim interview (April 10, 2020). Victim met Leon Black in 2008 while modeling. States 'BLACK ran a sex trafficking ring' — flew victim to Epstein's Florida home. Black told victim he was friends with police, Epstein and Harvey Weinstein. BLACK transferred $10 million to Epstein around 2015. Victim introduced to Ghislaine Maxwell and Prince Andrew among others. NDA signed fall 2015. Case 50D-NY-3027571.", persons: ["Leon Black", "Ghislaine Maxwell", "Prince Andrew", "Harvey Weinstein"], dateRange: "2008-2020"},
+    {id: "EFTA00377688", severity: "high", pages: 1, dataset: "DS9", keywords: ["leon black", "woody allen", "epstein"], title: "Epstein-Leon Black-Woody Allen Screening Email: '3 Other Girls' Invited (Dec 2013)", description: "Direct email chain between Epstein's assistant and Woody Allen's assistant Ginevra Tamberi (Manhattan Film Center, 575 Park Ave). Arranges film screening for Jeffrey with 'Mr. and Mrs. Leon Black' plus '3 other girls.' Allen responds: '7 people is ok, we don't need the names of the girls.' Puts Epstein, Leon Black, and unnamed women/girls together at a private screening in December 2013 — two years before Black's alleged $10M transfer to Epstein.", persons: ["Leon Black", "Woody Allen", "Ginevra Tamberi"], dateRange: "2013"},
+    {id: "EFTA00397684", severity: "high", pages: 4, dataset: "DS9", keywords: ["leon black", "ehud barak", "woody allen", "deutsche bank"], title: "Epstein Personal Calendar Jan 2013: Leon Black, Ehud Barak, Woody Allen Dinner, Paul Morris (Deutsche Bank)", description: "Internal scheduling email to Epstein (jeevacation@gmail.com) showing Jan 2013 calendar. Key entries: Leon Black appointment (Jan 17), Paul Morris/Deutsche Bank appointment (Jan 22 — same month DB opened Butterfly Trust accounts), dinner with Woody Allen, Soon Yi, Bobby Slayton, Lewis Black, David Brenner and Dick Cavett (Jan 23), Ehud Barak coordinated meetings at Davos (Jan 23-27) and possible Paris meeting (Jan 27-28). Also references Karyna Shuliak.", persons: ["Leon Black", "Ehud Barak", "Woody Allen", "Paul Morris", "Soon Yi Previn", "Karyna Shuliak"], dateRange: "2013"},
 ];
   {id:'EFTA00153703',dataset:'DS9',pages:26,severity:10,keywords:['ghislaine','maxwell','trump','brunel','blackmail','russia'],summary:'MAJOR: Complete FBI FD-302 victim interview - 14yo Interlochen recruit. Maxwell directed group abuse. Brunel brought 15yo to island and brought Russian women on tourist visas. Crystal Walsh blackmailed Epstein for $50K then tipped him off. Shredding papers in NY office. Met Weinstein at Golden Globes. TRUMP ALLEGATION DENIED by victim. Immigration fraud via Parda Beskardes.',date:'2019-10-25',type:'fbi-interview'},
   {id:'EFTA00152619',dataset:'DS9',pages:6,severity:4,keywords:['maxwell'],summary:'SDNY processing Maxwell discovery evidence - Reiter 15 VHS + 39 cassette tapes, Maxwell cell phone GPS data, 4 Blu-Ray discs',date:'2020-10-06',type:'fbi-operational'},
@@ -1840,7 +1842,7 @@ const TIMELINE_DATA = [
   { date: "2019-08-09", title: "FBI Status Update: ~60 Victims Identified", desc: "Day before Epstein death. FBI reports ~60 victims, potentially hundreds more. All co-conspirators served except Maxwell in London. [v10.8]" },
   { date: "2019-08-06", title: "FBI Planning Little St James Island Raid", desc: "SDNY drafting search warrant affidavit for island. 845 photos already taken in 13-hour NY residence search. [v10.8]" },
   { date: "2019-10-29", title: "FBI PRTT Active on Maxwell Phone", desc: "Pen Register/Trap and Trace surveillance activated on Ghislaine Maxwell. IP tracked to Pawtucket, Rhode Island. [v10.8]" },
-  { date: "2020-06-08", title: "FBI Maxwell Pre-Arrest: 6 Counts Planned, Active Surveillance", desc: "FBI email reveals exact Maxwell indictment charges planned, mail cover on her address, pen register on phone, physical surveillance coming. Prince Andrew MLAT response coordinated with SDNY. [v10.26]" }
+  { date: "2020-06-08", title: "FBI Maxwell Pre-Arrest: 6 Counts Planned, Active Surveillance", desc: "FBI email reveals exact Maxwell indictment charges planned, mail cover on her address, pen register on phone, physical surveillance coming. Prince Andrew MLAT response coordinated with SDNY. [v10.27]" }
   {date:'2018-12-13',event:'FBI/NYPD discover Epstein SORNA registration phone linked to Wexner/The Limited, begin MC2 model housing investigation',source:'EFTA00152144'},
   {date:'2019-07-24',event:'FBI/NYPD task force tracking down former Epstein employees for interviews about NY residence activities',source:'EFTA00150941'},
   {date:'2020-06-23',event:'FBI CAST analyzing Maxwell phone records and IP addresses one week before arrest, detecting VPN masking',source:'EFTA00150943'},
@@ -1907,6 +1909,8 @@ const TIMELINE_DATA = [
 {date: "2025-07-18", event: "Senator Durbin writes AG Bondi questioning Trump-flagging of Epstein records, modified surveillance footage, and unsubstantiated whistleblower claims", source: "EFTA00173350", category: "cover-up"},
 {date: "2013-10-09", event: "Deutsche Bank opens Butterfly Trust accounts for Epstein after JP Morgan transition — internal KYC lists net worth $100-500M, Wexner as sole known client", source: "EFTA00166775", category: "financial"},
     {date: "2020-04-10", event: "FBI interviews victim who accuses Leon Black of running sex trafficking ring — Black flew her to Epstein's Florida home, transferred $10M to Epstein ~2015, victim introduced to Maxwell and Prince Andrew", source: "EFTA00079370", category: "investigation"},
+    {date: "2013-12-17", event: "Email arranges Woody Allen film screening for Epstein, Leon Black ('Mr. and Mrs.') and '3 other girls' — Allen says 'we don't need the names of the girls'", source: "EFTA00377688", category: "network"},
+    {date: "2013-01-22", event: "Epstein calendar shows appointment with Paul Morris (Deutsche Bank RM) — same month DB opens Butterfly Trust accounts; also dinner with Woody Allen/Soon Yi, meetings coordinated with Ehud Barak", source: "EFTA00397684", category: "financial"},
 ];
 
 const DATASETS_DATA = [
