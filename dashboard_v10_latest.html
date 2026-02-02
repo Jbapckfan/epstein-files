@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Epstein Files Investigation Dashboard v10.3 — DS1-8 + DS10 Complete + All Sources (186,027 findings)</title>
+<title>Epstein Files Investigation Dashboard v10.4 — DS1-8 + DS10 Complete + All Sources (186,027 findings)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -940,7 +940,7 @@ body {
   <div class="nav-inner">
     <div class="nav-brand">
       <span class="dot"></span>
-      <span>Epstein Files v10.3</span>
+      <span>Epstein Files v10.4</span>
     </div>
     <ul class="nav-links">
       <li><a href="#network">Network</a></li>
@@ -1513,7 +1513,7 @@ body {
 
 <!-- FOOTER -->
 <footer class="footer">
-  <div class="footer-brand">Epstein Files Investigation Dashboard v10.3 — DS1-8 + DS9 + DS10 + Local Batch Complete</div>
+  <div class="footer-brand">Epstein Files Investigation Dashboard v10.4 — DS1-8 + DS9 + DS10 + Local Batch Complete</div>
   <p>
     Generated: 2026-02-02 UTC<br>
     Methodology: Automated keyword extraction with context-aware severity scoring and composite score integration across all pipelines.<br>
@@ -1583,6 +1583,10 @@ const TERM_DATA = [
 ];
 
 const FINDINGS_DATA = [
+  { severity: 18, term: "INTEL: EFTA00090314 (3pg) — FBI FD-1023 CHS Report", citation: "EFTA00090314", preview: "FBI CHS: Dershowitz told Acosta 'Epstein belonged to both U.S. and allied intelligence services'. Mossad debriefed Dershowitz. Epstein 'trained as spy under' Ehud Barak.", context: "...FBI FD-1023 Confidential Human Source report. CHS states Dershowitz told Acosta 'Epstein belonged to both U.S. and allied intelligence services.' After Dershowitz-Epstein calls, 'Mossad would then call Dershowitz to debrief.' Epstein 'close to former PM of Israel, Ehud Barak and trained as a spy under him.' CHS concluded Epstein was 'a co-opted Mossad Agent.' Also covers Leon Black/Apollo/Blackwater/Constellis connection, Kushner/Chabad nexus, and claims 'Trump has been compromised by Israel.'...", level: "critical" },
+  { severity: 17, term: "INTEL: EFTA00098456 (31pg) — Sworn Blackmail Declaration", citation: "EFTA00098456", preview: "Victim: Epstein 'maintained videos in rooms', 'required me to describe sexual events' — blackmail operation evidence", context: "...Sworn declaration under penalty of perjury. Victim testifies Epstein 'maintained videos in some rooms where I had sex with other powerful people.' Epstein 'required me to describe the sexual events that I had with these men presumably so that he could potentially blackmail them.' Claims 6 encounters with Dershowitz starting at age 16. Prince Andrew named. Clinton confirmed on Little Saint James Island. 'Epstein's connections and his ability to blackmail these other powerful people could have helped Epstein seek a plea bargain.'...", level: "critical" },
+  { severity: 15, term: "INTEL: EFTA00103831 (42pg) — Intelligence Methodology", citation: "EFTA00103831", preview: "MI5 filmed abuse for blackmail — 'classic Intelligence modus operandi'. Epstein mansion wired with hidden cameras.", context: "...Compiled intelligence dossier. 'MI5 took foreign diplomats to the North Wales homes and secretly filmed them abusing and torturing boys to use the tapes for blackmail. This is a classic Intelligence modus operandi.' Separately: 'Epstein mansion was wired with hidden cameras secretly recording orgies involving his prominent friends and underage girls, for the purpose of blackmail.'...", level: "critical" },
+  { severity: 12, term: "INTEL: EFTA00080475 (3pg) — Kompromat Reference", citation: "EFTA00080475", preview: "Epstein CSAM collection described as 'kompromat' — Russian intelligence terminology for compromising material", context: "...Tip/report to authorities describing alleged ongoing operation. 'A computer containing an immense child pornography library. It is the same material that Jeffrey Epstein kept and used as kompromat.' Claims Deutsche Bank connections and that 'wealthy and well-known people that were personal associates of the late Jeffrey Epstein are still involved.'...", level: "high" },
   { severity: 17, term: "OPR Report / Acosta Plea Deal", citation: "MEMO_2020.11_DOJ_OPR", preview: "DOJ Office of Professional Responsibility 348-page report on Acosta non-prosecution agreement — 2,228 hits", context: "...The DOJ OPR's comprehensive investigation into the non-prosecution agreement negotiated by then-U.S. Attorney Alexander Acosta. This 348-page report documents the full scope of how the plea deal was structured, including the failure to notify victims as required by the Crime Victims' Rights Act. 1,078 acosta references and 910 non-prosecution references within the document...", level: "critical" },
   { severity: 17, term: "SDNY Co-Conspirator Memo", citation: "EFTA02731082", preview: "Investigation into potential co-conspirators of Jeffrey Epstein — 445 hits, sev 17", context: "...SDNY prosecution memorandum dated December 19, 2019 detailing investigative steps taken since Epstein's indictment. Analyzes criminal liability of Epstein's associates and employees including references to Dershowitz, Brunel, Clinton, and conspiracy charges. The memo examines whether associates may be criminally liable for their conduct during employment with Epstein...", level: "critical" },
   { severity: 16, term: "OIG Memo / Epstein Death", citation: "MEMO_2023.06_OIG_23-085", preview: "OIG memorandum on Epstein death at MCC — autopsy, camera, homicide, surveillance refs — 443 hits", context: "...Office of Inspector General Memorandum 23-085 examining the circumstances of Epstein's death at the Metropolitan Correctional Center. 128 pages documenting surveillance system failures, autopsy findings, and references to both homicide and suicide determinations. Camera and surveillance terms appear throughout, indicating detailed examination of the MCC monitoring gaps...", level: "critical" },
@@ -1656,7 +1660,8 @@ const TIMELINE_DATA = [
   { date: "2025-02-02", title: "Final Merged Dashboard v10", desc: "Comprehensive analysis complete: 120,187 total findings from 123,846 documents across 12 datasets. Composite scoring integrates DS9 pipeline, original corpus, and OPR/OIG materials. DS11 (331,655 PDFs) staged for future processing." },
   { date: "2026-02-02", title: "Local Batch Processed + v10.1", desc: "174 local PDFs (2,651 pages) processed: DS12 (152), Maxwell proffer transcripts (5), DOJ memoranda (12), first phase (3), VOL00009 (2). 11,326 new findings extracted. Critical documents: OPR Report on Acosta plea deal (2,228 hits, sev 17), OIG Memo on Epstein death (443 hits, sev 16), Maxwell proffer transcripts (Day 1: 1,681 hits, Day 2: 956 hits)." },
   { date: "2026-02-02", title: "DS1-8 Full Extraction + v10.2", desc: "Full local batch extraction of Datasets 1-8 completed: 14,693 PDFs (35,397 pages), 50,932 new findings. Key documents: EFTA00010819 (122pg, sev 10: Acosta/Bannon/Clinton), EFTA00011039 (7pg, sev 12: Bannon/Biden/conspiracy/Israel/Maxwell), EFTA00009809 (14pg, sev 10: trafficking/minor/victim). Total now 183,616 findings across 108,208 documents. DS9+DS11 Wayback pipelines continue (~770K PDFs)." },
-  { date: "2026-02-02", title: "DS10 Recovery + v10.3", desc: "200 PDFs recovered from truncated DS10 ZIP using 7zip. 2,345 findings across 4,025 pages. EFTA range 01262805-01266807. Contains sealed SDNY court documents: FBI search warrant affidavit for 9 East 71st Street, warrant for CDs from Epstein safe (labeled Nudes 00-24, Girl Pics Nude, etc.), warrant for iPhone/iPad/hard drives, Little Saint James Island raid warrant (27 electronic devices), pen register/trap-and-trace application, Giuffre v. Maxwell grand jury unsealing, and sealed protective order modification. Composite scores updated to v4 (114 terms). Grand total: 186,027 findings from 108,608 documents across 263,193 pages." }
+  { date: "2026-02-02", title: "DS10 Recovery + v10.3", desc: "200 PDFs recovered from truncated DS10 ZIP using 7zip. 2,345 findings across 4,025 pages. EFTA range 01262805-01266807. Contains sealed SDNY court documents: FBI search warrant affidavit for 9 East 71st Street, warrant for CDs from Epstein safe (labeled Nudes 00-24, Girl Pics Nude, etc.), warrant for iPhone/iPad/hard drives, Little Saint James Island raid warrant (27 electronic devices), pen register/trap-and-trace application, Giuffre v. Maxwell grand jury unsealing, and sealed protective order modification. Composite scores updated to v4 (114 terms). Grand total: 186,027 findings from 108,608 documents across 263,193 pages." },
+  { date: "2026-02-02", title: "Intelligence Analysis v10.4", desc: "Deep analysis of 4 intelligence-linked documents from DS9 pipeline. FBI FD-1023 CHS report (EFTA00090314) reveals Epstein described as 'co-opted Mossad Agent' who 'belonged to both U.S. and allied intelligence services.' Sworn declaration (EFTA00098456) details blackmail operation with video surveillance. Intelligence methodology compilation (EFTA00103831) documents MI5 parallel. Kompromat reference (EFTA00080475) confirms terminology. Sev-18 false positives identified: FBI Public Affairs news briefings inflating severity scores." }
 ];
 
 const DATASETS_DATA = [
