@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Epstein Files Investigation Dashboard v10.29 — DS1-8 + DS10 Complete + All Sources (186,027 findings)</title>
+<title>Epstein Files Investigation Dashboard v10.30 — DS1-8 + DS10 Complete + All Sources (186,027 findings)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -940,7 +940,7 @@ body {
   <div class="nav-inner">
     <div class="nav-brand">
       <span class="dot"></span>
-      <span>Epstein Files v10.29</span>
+      <span>Epstein Files v10.30</span>
     </div>
     <ul class="nav-links">
       <li><a href="#network">Network</a></li>
@@ -1513,7 +1513,7 @@ body {
 
 <!-- FOOTER -->
 <footer class="footer">
-  <div class="footer-brand">Epstein Files Investigation Dashboard v10.29 — DS1-8 + DS9 + DS10 + Local Batch Complete</div>
+  <div class="footer-brand">Epstein Files Investigation Dashboard v10.30 — DS1-8 + DS9 + DS10 + Local Batch Complete</div>
   <p>
     Generated: 2026-02-02 UTC<br>
     Methodology: Automated keyword extraction with context-aware severity scoring and composite score integration across all pipelines.<br>
@@ -1808,6 +1808,9 @@ const FINDINGS_DATA = [
             {id: "EFTA00090717", severity: "critical", pages: 3, dataset: "DS9", keywords: ["jes staley", "epstein", "trafficking"], title: "FBI Guardian: Two Women Accuse Jes Staley (Barclays CEO) of Violent Rape — USVI AG Investigation (Oct 2021)", description: "FBI FD-71A Guardian Complaint + Incident Summary (762214_NY). Outside counsel for USVI Attorney General investigating Epstein estate reported that two women accused James 'Jes' Edwards Staley (CEO Barclays) of violent rape. Activity classified as 'Sexual Exploitation/Abuse, Commercial sex (Child sex trafficking overseas).' Also reported: 'Epstein\'s attorney and accountant were aware of the activities occurring and were helping in perpetuating the crimes being committed by covering them up' — directly implicating Indyke/Kahn. FBI CLOSED as 'Information Only' on 10/18/2021, just 5 days after conferring with AUSA. Case 50D-NY-3027571.", persons: ["Jes Staley", "Darren Indyke", "Richard Kahn"], dateRange: "2021"},
             {id: "EFTA00040941", severity: "critical", pages: 16, dataset: "DS9", keywords: ["epstein death", "bop", "psychological reconstruction"], title: "BOP Psychological Reconstruction of Epstein Death — FBI Seized Video, 179/183 Round Signatures Missing", description: "Official BOP psychological autopsy of Jeffrey Epstein (76318-054). FBI confiscated original SHU video BEFORE BOP reconstruction team could review. Officers Noel & Thomas admitted not completing 30-minute rounds at 3am and 5am. 179 of 183 round signatures MISSING from Psychological Observation logs. Epstein told staff he was calling his mother — deceased since 2004. Attorney depositing funds into cellmate Reyes' commissary for 'unknown reasons.' SENTRY records showed 3 inmates in a 2-person cell. 'Note(s) Left Behind by Deceased' listed in documents examined. Removed from suicide watch after only 31 hours.", persons: ["Jeffrey Epstein", "Nicholas Tartaglione", "Tova Noel", "Michael Thomas"], dateRange: "2019"},
             {id: "EFTA00167011", severity: "high", pages: 12, dataset: "DS9", keywords: ["deutsche bank", "kyc", "gratitude america"], title: "Deutsche Bank KYC — Approved Epstein Foundation Account in 2015 Despite Sex Offense Conviction", description: "DB Private Wealth Management KYC form for 'Gratitude America, Ltd' — Epstein's 501(c)(3) foundation. Account Manager: Paul Morris (same person on Epstein's Jan 2013 personal calendar). Primary contact: Darren Indyke. DB approved this new account Feb 2015 despite noting Epstein's 2008 sex offense conviction — KYC stated court cases 'have been closed.' Estimated Net Worth: $100M-$500M with $330M at DB. Foundation 'has not yet started distributing funds.' Wexner identified as Epstein's only known client.", persons: ["Jeffrey Epstein", "Darren Indyke", "Paul Morris", "Leslie Wexner", "Erika Kellerhals"], dateRange: "2015"},
+
+{id: "EFTA00166775", severity: "critical", pages: 24, dataset: "DS9", keywords: ["deutsche bank", "butterfly trust", "ghislaine maxwell", "jp morgan", "wexner"], title: "Deutsche Bank KYC: Butterfly Trust — Ghislaine Maxwell Named as Beneficiary, Paul Morris Followed Epstein from JPMorgan", description: "Complete 24-page Deutsche Bank PWM KYC for Epstein's Butterfly Trust (est. 12/27/2006). Paul Morris was Epstein's relationship manager at BOTH JPMorgan and Deutsche Bank — he followed Epstein between banks. Trust accounts opened 10/9/2013. Ghislaine Maxwell listed as Beneficiary #9. Trustees: Darren Indyke and Richard Kahn. Assets: $120M at JPMorgan, $70M at DB. Net worth $100M-$500M. DB rated relationship as 'High Risk' but compliance approved Jan 2014 despite criminal conviction. Grand jury exhibit under Fed. R. Crim. P. 6(e).", persons: ["Jeffrey Epstein", "Paul Morris", "Ghislaine Maxwell", "Darren Indyke", "Richard Kahn", "Leslie Wexner", "Brian Biggar", "Jacqueline Lightbody"], dateRange: "2013-2014"},
+{id: "EFTA00078198", severity: "critical", pages: 9, dataset: "DS9", keywords: ["maxwell", "trafficking", "israel", "ukraine", "brunel"], title: "Marsh Law Firm Letter to SDNY: Israeli Child Victim Identifies Epstein Mansion, Maxwell ('Lane') Trained Children in Abuse", description: "Formal 9-page letter from Marsh Law Firm to U.S. Attorney Audrey Strauss (Nov 2020) reporting Israeli child victim 'I' trafficked to NYC. Victim identified Epstein's mansion at '9 on 71 street' with precise architectural details. Described 'Jeffrey' and 'Lane' (Maxwell) who 'taught I and other girls how to use oil to touch men like Jeffrey.' Evidence of victims YOUNGER than teenagers — 'it cost more money to be with the younger girls.' Foster parents 'Mike' and 'Sheila'/Barbara connected to trafficking network. Ukrainian phone numbers confirmed by DeliverFund. ~30 CSAM images. Ongoing Hebrew-language threats to victim through 2019-2020.", persons: ["Jeffrey Epstein", "Ghislaine Maxwell", "Jean-Luc Brunel", "Audrey Strauss"], dateRange: "1997-2020"},
 ];
   {id:'EFTA00153703',dataset:'DS9',pages:26,severity:10,keywords:['ghislaine','maxwell','trump','brunel','blackmail','russia'],summary:'MAJOR: Complete FBI FD-302 victim interview - 14yo Interlochen recruit. Maxwell directed group abuse. Brunel brought 15yo to island and brought Russian women on tourist visas. Crystal Walsh blackmailed Epstein for $50K then tipped him off. Shredding papers in NY office. Met Weinstein at Golden Globes. TRUMP ALLEGATION DENIED by victim. Immigration fraud via Parda Beskardes.',date:'2019-10-25',type:'fbi-interview'},
   {id:'EFTA00152619',dataset:'DS9',pages:6,severity:4,keywords:['maxwell'],summary:'SDNY processing Maxwell discovery evidence - Reiter 15 VHS + 39 cassette tapes, Maxwell cell phone GPS data, 4 Blu-Ray discs',date:'2020-10-06',type:'fbi-operational'},
@@ -1845,7 +1848,7 @@ const TIMELINE_DATA = [
   { date: "2019-08-09", title: "FBI Status Update: ~60 Victims Identified", desc: "Day before Epstein death. FBI reports ~60 victims, potentially hundreds more. All co-conspirators served except Maxwell in London. [v10.8]" },
   { date: "2019-08-06", title: "FBI Planning Little St James Island Raid", desc: "SDNY drafting search warrant affidavit for island. 845 photos already taken in 13-hour NY residence search. [v10.8]" },
   { date: "2019-10-29", title: "FBI PRTT Active on Maxwell Phone", desc: "Pen Register/Trap and Trace surveillance activated on Ghislaine Maxwell. IP tracked to Pawtucket, Rhode Island. [v10.8]" },
-  { date: "2020-06-08", title: "FBI Maxwell Pre-Arrest: 6 Counts Planned, Active Surveillance", desc: "FBI email reveals exact Maxwell indictment charges planned, mail cover on her address, pen register on phone, physical surveillance coming. Prince Andrew MLAT response coordinated with SDNY. [v10.29]" }
+  { date: "2020-06-08", title: "FBI Maxwell Pre-Arrest: 6 Counts Planned, Active Surveillance", desc: "FBI email reveals exact Maxwell indictment charges planned, mail cover on her address, pen register on phone, physical surveillance coming. Prince Andrew MLAT response coordinated with SDNY. [v10.30]" }
   {date:'2018-12-13',event:'FBI/NYPD discover Epstein SORNA registration phone linked to Wexner/The Limited, begin MC2 model housing investigation',source:'EFTA00152144'},
   {date:'2019-07-24',event:'FBI/NYPD task force tracking down former Epstein employees for interviews about NY residence activities',source:'EFTA00150941'},
   {date:'2020-06-23',event:'FBI CAST analyzing Maxwell phone records and IP addresses one week before arrest, detecting VPN masking',source:'EFTA00150943'},
@@ -1917,6 +1920,9 @@ const TIMELINE_DATA = [
             {date: "2021-10-18", event: "FBI Guardian: USVI AG outside counsel reports two women accuse Jes Staley of violent rape — FBI classifies as child sex trafficking but closes as 'Information Only' within 5 days", source: "EFTA00090717", category: "investigation"},
             {date: "2019-09-17", event: "BOP completes psychological reconstruction of Epstein's death — documents FBI seized video, 179/183 missing round signatures, officers admitted skipping rounds", source: "EFTA00040941", category: "investigation"},
             {date: "2015-02-27", event: "Deutsche Bank approves KYC for Epstein's 'Gratitude America' foundation account despite sex offense conviction — Paul Morris as account manager", source: "EFTA00167011", category: "financial"},
+
+{date: "2013-10-09", event: "Deutsche Bank opens Butterfly Trust accounts for Epstein — Ghislaine Maxwell named as beneficiary, Paul Morris (Epstein's former JPM RM) manages account, rated 'High Risk' but approved", source: "EFTA00166775", category: "financial"},
+{date: "2020-11-10", event: "Marsh Law Firm writes to SDNY reporting Israeli child victim who identified Epstein mansion and Maxwell — evidence of younger-than-teen victims, Ukrainian trafficking connections, ~30 CSAM images", source: "EFTA00078198", category: "legal"},
 ];
 
 const DATASETS_DATA = [
