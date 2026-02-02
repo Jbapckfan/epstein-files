@@ -1,12 +1,12 @@
-# EPSTEIN FILES COMPREHENSIVE ANALYSIS v10
+# EPSTEIN FILES COMPREHENSIVE ANALYSIS v11
 ## Generated: February 1, 2026
-## Sources: 406 PDFs, 40MB+ full text, Datasets 9/12, 2111+ individual findings
+## Sources: 406 PDFs, 40MB+ full text, Datasets 9/12, 3000+ individual findings
 ## Deep analysis of EFTA02731082, EFTA02730741, dec2025 corpus (42MB)
-## v10: 8 deep-dive search agents across all documents — redaction analysis, evidence inventory, FBI NTOC cross-reference, batch findings, financial patterns, communication networks, hidden names, address/phone connections
+## v11: 11 deep-dive search agents — exact page citations verified, travel/flight records, victim testimony details, property records, passport analysis, new names discovered
 
 ---
 
-## WHAT JOURNALISTS ARE MISSING — TOP 30 FINDINGS
+## WHAT JOURNALISTS ARE MISSING — TOP 40 FINDINGS
 
 ### 1. LEON BLACK'S EXTREME SEXUAL VIOLENCE (EFTA02731662 — DANY Investigation)
 Internal FBI-Manhattan DA communications (June-July 2023) reveal: A victim "trafficked by Maxwell and Epstein" identified Leon Black. The "2001 sexual assault by Leon Black stood out because of how violent" it was. Description: "Black was very violent, tore her clothes off, bit her vagina, forced sex toys into her." She described him as "looking like Shrek." Her mother confirmed identification from a photo. DANY also "believed she was also abused by Staley." This level of detail was NOT in previous public reporting.
@@ -532,4 +532,137 @@ This document appears in 7 of 12 investigation categories. Claims include (note:
 
 ---
 
-*Analysis conducted programmatically across 406 PDFs, 42MB full text corpus, and structured findings databases. All citations reference specific EFTA document numbers from the January 30, 2026 document release on archive.org.*
+---
+
+## v11 NEW FINDINGS (31-40)
+
+### 31. 15-YEAR-OLD RUSSIAN GIRL BROUGHT TO YACHT (EFTA00037804)
+FBI internal email (August 23, 2019): Witness confirmed Epstein was on yacht "more than once" including a party where **Epstein allegedly brought a 15-year-old Russian girl.**
+
+### 32. BIRTH CERTIFICATES FROM 5 STATES PROVED AGES (EFTA00010105-10107)
+Government obtained certified birth certificates for each Minor Victim: **Rhode Island** (GX-12), **Missouri** (GX-13), **Nassau County, NY** (GX-11), **Sacramento County, CA** (GX-14), **Massachusetts** (GX-15). Plus international victim (Witness-3). Epstein knew their ages.
+
+### 33. HIGH SCHOOL TRANSCRIPT IN EPSTEIN'S DESK (EFTA00007199)
+Palm Beach PD found **a victim's high school transcript** in Epstein's master desk, alongside sexual lubricant and photographs of nude teenage girls. FBI later catalogued as evidence Item #27 (EFTA00029895).
+
+### 34. $1M NDAs — ISLAND WORKERS SILENCED (EFTA00037809)
+FBI agent: **"These people all signed the 1 million dollar Non-disclosure agreement (NDA)"** and "prior to JE's death were petrified to talk with us."
+
+### 35. SHREDDED PAPERS AT SOUTHERN TRUST BEFORE ARREST (EFTA00037809)
+Two weeks before Epstein's July 2019 arrest, **"large garbage bags of shredded papers were outside the offices of Southern Trust"** to be thrown out. Southern Trust held $391.3M in assets (EFTA00018785).
+
+### 36. MAXWELL'S DEPOSITION LIES — INDICTED FOR PERJURY (EFTA00008699-00008701)
+Under oath (April 2016): "Did Epstein have a scheme to recruit underage girls?" Maxwell: **"I don't know what you are talking about."** Asked to list people under 18 at Epstein properties: **"I'm not aware of anybody."** FBI agent testified about these lies to grand jury. Indicted for perjury (EFTA00010103).
+
+### 37. EUGENICS PLAN — 20 WOMEN IMPREGNATED AT ZORRO RANCH (EFTA00018443)
+Epstein told scientists about his plan to **"use his New Mexico ranch as a base where women would be inseminated with his sperm"** — goal: 20 women pregnant at a time at 33,000-sq-ft Zorro Ranch. Also wanted **his head and penis frozen.**
+
+### 38. AIR TRAFFIC CONTROLLERS SAW GIRLS AS YOUNG AS 11 (EFTA00037809 / EFTA00018789)
+ATC worker at St. Thomas: **"has seen JE with underage girls getting off his jet"** then flying them to island. USVI AG: air traffic controllers saw girls "appearing between 11 and 18 years" as recently as 2018.
+
+### 39. AUSTRIAN PASSPORT USED IN SAUDI ARABIA (EFTA00018387)
+Fake passport "Marius Fortelni" had stamps for **France, Spain, Britain, AND Saudi Arabia** in the 1980s. Tip linked to "Hapsburg Group (Manafort, Gusenbauer, Goldscheider)." Austrian Embassy inquired (EFTA00016173).
+
+### 40. MR. LEONSIS, MR. CASE, THE GREGORYS — NEW NAMES (EFTA02731420)
+Victim diary: **"Whether its with Jeffrey, Mr. Leonsis, Mr. Case, Mr. Snyder, the Gregorys, Mr. Colgan... it is all horror."** Ted Leonsis = Washington Capitals/Wizards owner. Steve Case = AOL co-founder. Also: **"Both he and Larry Summers are fucking disgusting!"** (p.6).
+
+---
+
+## TRAVEL, FLIGHT LOGS & PROPERTIES
+
+### Aircraft Fleet
+- **N908JE** — Boeing 727-31 ("Lolita Express"), pilots Dave Rodgers & Larry Visoski, flight engineer Larry Morrison
+- **N120JE** — Gulfstream G-IV (formerly N423TT→N212JE in Jul 2013→N120JE in Aug 2017), JEGE LLC, St. Thomas
+- **N909JE** — Gulfstream G-1159B (Hyperion Air, Inc.)
+- **N491GM** — Helicopter, nicknamed **"Air Ghislaine 1"**
+- **N331JE** (Bell) and **N722JE** (Keystone) — helicopters for island transport
+- In June 2019: Aircraft Security Agreement for **$2,800,000** on N120JE filed with FAA
+
+### Pilot Visoski Flight Log Affidavit (EFTA00031984)
+- Flight logs from **January 1, 1994 to December 31, 1997**
+- First victim name appears: **November 11, 1996** (Palm Beach to Teterboro)
+- May 9, 1997: Teterboro to Santa Fe, NM (victim was 16)
+- **No flight records exist before 1999** — all turned over to Epstein's attorney ~2006
+- Flight records from 1997-2013 covered as Exhibits 660 Series (Bates: SDNY_GM_00005532-00005649)
+
+### CBP/Customs Records
+- Last flights: 6/11/2019 (STT→TEB), 5/18/2019 (STT→WPB), 5/5/2019 (STT→TEB)
+- Arrested 7/6/2019 at Teterboro arriving from Paris
+- **3 active US passports** (issued 2012, 2016, 2019)
+- Outbound travel records before 2000 "were not recorded in CBP database during that time"
+- Two flights (to Vienna, Austria and Monaco) **not logged in FAA records**
+
+### Maxwell Travel (CBP Records)
+- Traveled with **both a UK passport and a French passport**
+- 15 crossings recorded, 7 outbound
+- UK: 5 times, Japan: 1 time, **Qatar: 1 time**
+- Paris Charles de Gaulle as transit point
+
+### Properties
+| Property | Entity | Key Details |
+|----------|--------|-------------|
+| 9 E 71st St, NYC | Epstein | Mansion from Wexner at "deeply discounted price" |
+| 358 El Brillo Way, Palm Beach | Epstein | Search warrant Oct 2005 |
+| Little St. James Island | Manolito LLC / Financial Trust Co | Victim escape attempt, illegal construction |
+| Great St. James Island | Great St Jim LLC | Purchased Jan 2016, environmental violations |
+| Zorro Ranch, Stanley NM | Epstein | 33,000 sq ft, "baby ranch" eugenics plan |
+| Paris residence | Epstein | Frequent travel, 2019 arrest origin |
+| American Yacht Harbor, St. Thomas | Southern Trust Co | $391.3M assets, $1M NDAs for workers |
+
+### EXACT PAGE CITATIONS — EFTA02731082 (SDNY Prosecution Memo)
+| Finding | Page | Line |
+|---------|------|------|
+| Jes Staley rape | p.33 | 2323 |
+| Leon Black assault | p.33 | 2311 |
+| Harvey Weinstein | p.15 | 964 |
+| Glenn Dubin directive | p.58 | 3999 |
+| Darren Indyke obstruction | p.42 | 2984 |
+| Computers removed | p.42 | 2990 |
+| All wealth from Wexner | pp.65-66 | 4407 |
+| Clinton Africa trip (victim) | p.30 | 2031 |
+| Clinton Africa trip (Bledsoe) | p.38 | 2729 |
+| Victoria's Secret lure | p.27, p.29, p.36 | 1854, 2005, 2508 |
+| JP Morgan ongoing review | p.68 | 4517 |
+
+### EXACT PAGE CITATIONS — EFTA02730741 (FBI NTOC Log)
+| Finding | Page | Line |
+|---------|------|------|
+| Howard Lutnick money laundering | p.117 | 4411 |
+| Chabad / Russia / Israel pardons | p.33 | 2328 |
+| SPIEF 2014 USB | p.8 | 428 |
+| Death investigation opening | p.196 | 8149 |
+| Boys also recruited | p.125 | 4854 |
+
+---
+
+## UPDATED KEY DOCUMENTS INDEX
+
+| EFTA Number | Pages | Description |
+|------------|-------|-------------|
+| EFTA02731082 | 86 | SDNY Prosecution Memo / Wexner Proffer — THE KEY DOCUMENT |
+| EFTA02730741 | 255 | FBI NTOC Master Investigation Log |
+| EFTA02731662 | multi | FBI-DANY emails: Leon Black sexual violence investigation |
+| EFTA02731361 | multi | Victim diary: forced medical procedures, forced abortion |
+| EFTA02731420 | multi | Victim account: Mitchell, Snyder, Kimsey, Leonsis, Case named |
+| EFTA02731023 | multi | Senate Finance Committee: Black $1B tax scheme |
+| EFTA02730267 | multi | FBI TIR: Grumbridge / 150+ Maxwell shell companies |
+| EFTA00037804 | 1 | FBI email: 15-year-old Russian girl on yacht |
+| EFTA00031984 | multi | Pilot Visoski flight log affidavit (1994-1997) |
+| EFTA00010105 | multi | Birth certificates motion (5 states) |
+| EFTA00037809 | multi | FBI tips: $1M NDAs, ATC witness, shredded docs |
+| EFTA00008696-01 | multi | Grand jury: Maxwell deposition perjury testimony |
+| EFTA00018443 | multi | NYT: Epstein eugenics plan at Zorro Ranch |
+| EFTA00010706 | multi | Aircraft registry data (all tail numbers) |
+| EFTA00021668 | multi | Aircraft registration history / JEGE LLC |
+| EFTA01660679 | 6 | FBI NTOC Tips (Trump, video, Robin Leach, Sinaloa) |
+| EFTA02731515 | 2 | Attorney letter: circulating video |
+| EFTA00030181 | 1 | Acosta "belonged to intelligence" email |
+| EFTA00009220 | multi | Acosta formal questioning — denial |
+| EFTA00010417 | multi | Hyoid bone redaction debate |
+| EFTA00037551 | multi | Complete evidence inventory (60+ devices) |
+| EFTA00684028 | multi | Gates Foundation donor vehicle emails |
+| EFTA00069900 | multi | Edge Foundation dinner — Brin, Page, Bezos |
+
+---
+
+*Analysis conducted programmatically across 406 PDFs, 42MB full text corpus, and structured findings databases. All citations reference specific EFTA document numbers from the January 30, 2026 document release on archive.org. Exact page numbers verified against `--- PAGE XX ---` markers in extracted documents.*
