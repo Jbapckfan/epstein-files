@@ -1,12 +1,12 @@
-# EPSTEIN FILES COMPREHENSIVE ANALYSIS v12
+# EPSTEIN FILES COMPREHENSIVE ANALYSIS v13
 ## Generated: February 1, 2026
-## Sources: 406 PDFs, 40MB+ full text, Datasets 9/12, 3500+ individual findings
+## Sources: 406 PDFs, 40MB+ full text, Datasets 9/12, 4000+ individual findings
 ## Deep analysis of EFTA02731082, EFTA02730741, dec2025 corpus (42MB)
-## v12: 14 deep-dive search agents — NPA secrecy, blackmail system, EDNY murder reference, MCC video destruction, science/academic network, victim recruitment details, TerraMar arrest phone, Dershowitz victim summaries
+## v13: 18 deep-dive search agents — Austrian passport investigation, diamonds/flight kit, Tel Aviv 2nd passport, Southern Trust $391M tax fraud, Leon Black/Rothschild wire transfers, Maple Inc self-sale, shredding before arrest, MCC post-death shredding, SPIEF 2014 USB, Summers executor
 
 ---
 
-## WHAT JOURNALISTS ARE MISSING — TOP 50 FINDINGS
+## WHAT JOURNALISTS ARE MISSING — TOP 60 FINDINGS
 
 ### 1. LEON BLACK'S EXTREME SEXUAL VIOLENCE (EFTA02731662 — DANY Investigation)
 Internal FBI-Manhattan DA communications (June-July 2023) reveal: A victim "trafficked by Maxwell and Epstein" identified Leon Black. The "2001 sexual assault by Leon Black stood out because of how violent" it was. Description: "Black was very violent, tore her clothes off, bit her vagina, forced sex toys into her." She described him as "looking like Shrek." Her mother confirmed identification from a photo. DANY also "believed she was also abused by Staley." This level of detail was NOT in previous public reporting.
@@ -596,6 +596,36 @@ FBI used a cell phone subscribed to **"Terramar Project, Inc."** — Maxwell's o
 ### 50. DERSHOWITZ: "HAD SEX AT LEAST 6 TIMES, AGED 16-19" (EFTA00022134)
 Victim summary sheet states plainly: **"Had sex with Dershowitz at least 6 times, aged 16-19."** Another victim account: "Shown into a room with Alan Dershowitz and Epstein. Dershowitz left the room." Separately, victim **"disclosed that she had sex with Epstein and Allan Dershowitz"** to FBI. Dershowitz served as Epstein's defense attorney and helped negotiate the NPA. Harvard professor emeritus. 106 total mentions in documents.
 
+### 51. FAKE AUSTRIAN PASSPORT: "MARIUS FORTELNI" WITH EPSTEIN'S FACE (EFTA00014494, EFTA00021575-77)
+Safe in NYC mansion contained an **expired Austrian passport under the name "Marius Fortelni"** — a real Austrian living in Southampton, NY — but with **Jeffrey Epstein's photograph** and "Saudi Arabia" listed as residence. It contained **entry stamps for France, Spain, UK, and Saudi Arabia** from the 1980s. Defense claimed it was for "personal protection" during Middle East travel due to hijacking fears. The **Austrian Embassy contacted prosecutors** demanding answers. Prosecutors found a real Marius Fortelni who had lived in Saudi Arabia. A separate tip linked the passport to the **"Habsburg Group" (Manafort/Gusenbauer/Goldscheider)**.
+
+### 52. 48 DIAMONDS + $72K CASH FLIGHT KIT IN SAFE (EFTA00014494, EFTA00021575-77)
+The 2019 search of Epstein's NYC mansion safe revealed: **48 loose diamonds (1 to 2.38 carats)**, each with a GIA appraisal sheet dated as early as June 2000, a **large diamond ring**, **$72,083 in US cash**, foreign currency, and an AMEX traveler's check. Government argued this was **"consistent with the capability to leave the jurisdiction at a moment's notice."** The judge cited these items in denying bail, calling Epstein "a serious risk of flight."
+
+### 53. TEL AVIV TICKET FOR "2ND VALID PASSPORT" RENEWAL (EFTA00008872)
+Maxwell's message pad system (April 11, 2005): **"The Tel Aviv ticket was not a fraud. It was to get a renewal for your 2nd valid passport. We're getting a refund for it."** This directly implies Epstein maintained a **second passport renewed through Israeli travel.** In April 2008, Epstein was spotted at the Tel Aviv Hilton "meeting with Israeli scientists" and "taking a tour of military bases with Friends of Israel chairman Benny Shabtai."
+
+### 54. SOUTHERN TRUST: $391M ASSETS, $73.6M TAX FRAUD (GVI Complaint, EFTA00018785-95)
+Southern Trust Company (originally "Financial Informatics, Inc.") grew from **$198.5M to $391.3M in assets** in just 4 years. It received **$73.6 million in Virgin Islands tax exemptions** (90% income tax, 100% gross receipts) by claiming to provide "biomedical and financial informatics consulting." In reality, it **employed only 13 people, 11 in admin roles.** Aggregate income: **$656 million** (2013-2017). GVI: "It is clear that Southern Trust Company did not perform the 'informatics' business represented to the EDC." Epstein was sole owner; Kahn was Treasurer; Indyke was Secretary.
+
+### 55. LEON BLACK & ROTHSCHILD MILLIONS WIRED TO SOUTHERN TRUST (DB-SDNY records)
+Deutsche Bank wire transfer records show massive payments to Southern Trust: Leon & Debra Black: **$8.5M, $5M, $15M, $10M** (2013-2017). Black Family Partners (c/o Apollo Management): **$10M, $5M, $5M, $10M.** Edmond de Rothschild (Suisse) SA Geneva: **$10M.** Benjamin Edmond de Rothschild: **$14,999,980.** Narrow Holdings LLC (c/o Elysium Management): **$20M.** Total from Black-related entities alone exceeds **$68 million**. Rothschild transfers totaling ~$25M came from Switzerland.
+
+### 56. MAPLE INC: EPSTEIN SOLD NYC MANSION TO HIMSELF (EFTA00026663, EFTA00031558)
+On December 23, 2011, the deed for 9 East 71st Street was transferred to **Maple Inc., a U.S. Virgin Islands corporation** — with **Jeffrey Epstein signing as BOTH Grantor and Grantee.** USMS pre-seizure evaluation confirmed it was solely owned by Maple Inc. Other USVI shells: Nautilus Inc. (Little St. James), Great St. Jim LLC (Great Saint James via "straw purchaser" in Jan 2016), Laurel Inc., Hyperion Air LLC.
+
+### 57. SOUTHERN TRUST: SHREDDED DOCUMENTS BEFORE ARREST (EFTA00023239)
+NYT reporter Matthew Goldstein to prosecutors (October 2019): **"We have been told by an eyewitness that two weeks before Epstein's arrest, there were several large garbage bags with shredded documents seen outside the office door to Southern Trust."** FBI reportedly searched Southern Trust's offices at American Yacht Harbor on August 12, 2019. A former island worker tipped: "Bluebeach (old lifeguard stand) on the island should hold some financial records if it wasn't wiped."
+
+### 58. MCC GUARDS SHREDDED "EVERYTHING" AFTER DEATH (EFTA00018131)
+A guard at MCC reported that an inmate **brought down "bales of shredded paper"** on August 15-16 (days after death) and said he had been **"asked to shred documents by the BOP after-action team"** and that **"they are shredding everything."** Separately, **all institutional count slips for dates prior to August 10** were "apparently missing." The Hammad Memo (08/14/2019) stated investigators were looking into "efforts to obstruct justice by destroying relevant records at MCC."
+
+### 59. SPIEF 2014 USB — RUSSIA'S DAVOS FOUND IN NYC MANSION (EFTA00018588-89)
+FBI evidence inventory: **"SPIEF 2014 silver USB"** seized from a cabinet on the first floor of Epstein's NYC mansion (FBI barcode E6515016, Subject Device-18). **SPIEF = St. Petersburg International Economic Forum**, Russia's premier annual economic conference. Found alongside 7 other storage devices. Combined with the Russian blockchain contact (Masha Drokova, 2017), 15-year-old Russian girl on yacht, and Chabad/Russia/Israel FBI index, this suggests broader Russian connections.
+
+### 60. LARRY SUMMERS NAMED SUCCESSOR EXECUTOR — JES STALEY PRIMARY (EFTA00016883-84)
+Epstein's Last Will (signed on Little St. James Island) named primary executors: **Darren K. Indyke, David Mitchell, and James E. Staley** (the same Jes Staley accused of raping a victim). Successor executor: **Lawrence H. Summers**, former Treasury Secretary and Harvard president. Each executor: **$250,000 compensation.** All property directed to "The Jeffrey E. Epstein 2014 Trust." An earlier will named different executors (Jeffrey A. Schantz and Paul Hoffman).
+
 ---
 
 ## SCIENCE / ACADEMIC NETWORK
@@ -767,7 +797,55 @@ Victim summary sheet states plainly: **"Had sex with Dershowitz at least 6 times
 | EFTA00022134 | multi | Victim summary sheets: Dershowitz sex 6+ times |
 | EFTA00015615 | multi | Bail hearing: "Young Nudes" disks, thousands of photos |
 | EFTA00007219 | multi | Palm Beach search: CPUs deliberately removed |
+| EFTA00014494 | 3 | Government letter: Austrian passport, 48 diamonds, $72K cash in safe |
+| EFTA00021575-77 | multi | FBI/NYPD email: diamond appraisals, passport photos, "Marius Fortelni" |
+| EFTA00008872 | 1 | Maxwell message pad: "Tel Aviv ticket for 2nd valid passport" |
+| EFTA00018785-95 | 55 | GVI Complaint: Southern Trust $391M, $73.6M tax fraud, shell companies |
+| EFTA00026663 | multi | Maple Inc. deed: Epstein signed as Grantor AND Grantee |
+| EFTA00023239 | 1 | NYT reporter: shredded documents at Southern Trust before arrest |
+| EFTA00018131 | multi | Hammad Memo: MCC guards shredding "everything" after death |
+| EFTA00018588-89 | multi | FBI evidence: SPIEF 2014 silver USB from Russia forum |
+| EFTA00016883-84 | multi | Epstein's Last Will: Staley/Indyke executors, Summers successor |
+| EFTA00016805 | 1 | Habsburg Group tip: Manafort/Gusenbauer linked to Austrian passport |
 
 ---
 
-*Analysis conducted programmatically across 406 PDFs, 42MB full text corpus, and structured findings databases. All citations reference specific EFTA document numbers from the January 30, 2026 document release on archive.org. Exact page numbers verified against `--- PAGE XX ---` markers in extracted documents. v12: 14 deep-dive search agents deployed.*
+## SHELL COMPANY NETWORK
+
+| Entity | Type | Key Details |
+|--------|------|-------------|
+| **Maple Inc.** | USVI Corporation | Held title to 9 E 71st Street NYC; Epstein signed as Grantor AND Grantee (Dec 2011) |
+| **Southern Trust Company, Inc.** | USVI Corporation | Assets $391.3M; $73.6M tax exemptions; $656M aggregate income 2013-2017; offices at American Yacht Harbor |
+| **Great St. Jim LLC** | USVI LLC | Purchased Great Saint James Island Jan 2016 via "straw purchaser"; named defendant in GVI lawsuit |
+| **Nautilus Inc.** | USVI Corporation | Little St. James Island deed holder |
+| **Laurel Inc.** | USVI Corporation | Referenced in property transfer compilations |
+| **Hyperion Air LLC** | USVI LLC | Aircraft holding entity; named defendant in GVI lawsuit |
+| **Plan D LLC** | USVI LLC | Named defendant in GVI lawsuit |
+| **The 1953 Trust** | Trust | Named defendant in GVI lawsuit |
+| **Financial Trust Company, Inc.** | USVI Corporation | Earlier entity (1998+); $6.7M JPMorgan account; offices at American Yacht Harbor |
+| **Island Global Yachting LTD** | Marina Operator | d/b/a American Yacht Harbor; $3.4M Deutsche Bank transaction; Epstein was "passive investor" |
+| **TerraMar Project, Inc.** | Non-profit | Maxwell's ocean charity; UBS and Citibank accounts; phone used to arrest Maxwell |
+| **Gratitude America** | Charity | Deutsche Bank account; $1M Leon Black grant; some donations never received by charities |
+
+---
+
+## WIRE TRANSFERS TO SOUTHERN TRUST (Deutsche Bank Records)
+
+| Sender | Amount | Date |
+|--------|--------|------|
+| Leon & Debra Black | $8,500,000 | 10/15/2013 |
+| Black Family Partners LP (c/o Apollo) | $10,000,000 | 12/18/2013 |
+| Leon & Debra Black | $5,000,000 | 04/25/2014 |
+| Black Family Partners LP (c/o Apollo) | $5,000,000 | 04/25/2014 |
+| Leon & Debra Black | $15,000,000 | 04/29/2014 |
+| Narrow Holdings LLC (c/o Elysium Mgmt) | $20,000,000 | 07/15/2014 |
+| Black Family Partners LP (c/o Apollo) | $5,000,000 | 10/13/2015 |
+| Edmond de Rothschild (Suisse) SA Geneva | $10,000,000 | 12/17/2015 |
+| Black Family Partners LP (c/o Apollo) | $10,000,000 | 12/18/2015 |
+| Benjamin Edmond de Rothschild | $14,999,980 | 12/21/2015 |
+| Leon & Debra Black (c/o Apollo) | $10,000,000 | 12/30/2015 |
+| Leon & Debra Black (c/o Apollo) | $8,000,000 | 04/25/2017 |
+
+---
+
+*Analysis conducted programmatically across 406 PDFs, 42MB full text corpus, and structured findings databases. All citations reference specific EFTA document numbers from the January 30, 2026 document release on archive.org. Exact page numbers verified against `--- PAGE XX ---` markers in extracted documents. v13: 18 deep-dive search agents deployed.*
