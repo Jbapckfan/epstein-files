@@ -1,0 +1,2162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Epstein Files Investigation Dashboard v10</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   EPSTEIN INVESTIGATION DASHBOARD v10
+   Self-contained HTML - All CSS + JS embedded
+   Generated: 2026-02-02
+   ============================================================ */
+
+:root {
+  --bg-primary: #08090d;
+  --bg-secondary: #0f1117;
+  --bg-card: #151720;
+  --bg-card-hover: #1c1f2e;
+  --bg-glass: rgba(15,17,23,0.88);
+  --border: rgba(255,255,255,0.06);
+  --border-active: rgba(255,255,255,0.14);
+  --text-primary: #e8eaed;
+  --text-secondary: #9aa0b0;
+  --text-dim: #5a6070;
+  --red: #ff3b5c;
+  --red-glow: rgba(255,59,92,0.15);
+  --red-deep: #cc2244;
+  --orange: #ff7b42;
+  --orange-glow: rgba(255,123,66,0.15);
+  --yellow: #ffc53d;
+  --yellow-glow: rgba(255,197,61,0.15);
+  --green: #34d399;
+  --green-glow: rgba(52,211,153,0.15);
+  --blue: #60a5fa;
+  --blue-glow: rgba(96,165,250,0.15);
+  --purple: #a78bfa;
+  --purple-glow: rgba(167,139,250,0.15);
+  --pink: #f472b6;
+  --pink-glow: rgba(244,114,182,0.15);
+  --cyan: #22d3ee;
+  --cyan-glow: rgba(34,211,238,0.15);
+  --radius: 16px;
+  --radius-sm: 10px;
+  --radius-xs: 6px;
+  --shadow: 0 4px 24px rgba(0,0,0,0.4);
+  --shadow-lg: 0 8px 48px rgba(0,0,0,0.6);
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--bg-primary); }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.2); }
+
+/* ======= NAV ======= */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: rgba(8,9,13,0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 32px;
+  transition: var(--transition);
+}
+.nav-inner {
+  max-width: 1440px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 60px;
+}
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 800;
+  font-size: 16px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.nav-brand .dot {
+  width: 10px;
+  height: 10px;
+  background: var(--red);
+  border-radius: 50%;
+  animation: pulse 2s ease-in-out infinite;
+}
+.nav-links {
+  display: flex;
+  gap: 8px;
+  list-style: none;
+}
+.nav-links a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 6px 14px;
+  border-radius: var(--radius-xs);
+  transition: var(--transition);
+}
+.nav-links a:hover {
+  color: var(--text-primary);
+  background: rgba(255,255,255,0.06);
+}
+.nav-search-trigger {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xs);
+  color: var(--text-dim);
+  font-size: 13px;
+  cursor: pointer;
+  transition: var(--transition);
+}
+.nav-search-trigger:hover { border-color: var(--border-active); }
+.nav-search-trigger kbd {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  padding: 1px 6px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 3px;
+  border: 1px solid var(--border);
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(255,59,92,0.4); }
+  50% { opacity: 0.7; box-shadow: 0 0 0 8px rgba(255,59,92,0); }
+}
+
+/* ======= SEARCH MODAL ======= */
+.search-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(8px);
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 15vh;
+}
+.search-overlay.active { display: flex; }
+.search-modal {
+  width: 90%;
+  max-width: 640px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-active);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+}
+.search-modal input {
+  width: 100%;
+  padding: 18px 24px;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--border);
+  color: var(--text-primary);
+  font-size: 17px;
+  font-family: 'Inter', sans-serif;
+  outline: none;
+}
+.search-modal input::placeholder { color: var(--text-dim); }
+.search-results {
+  max-height: 400px;
+  overflow-y: auto;
+  padding: 8px;
+}
+.search-result-item {
+  padding: 12px 16px;
+  border-radius: var(--radius-xs);
+  cursor: pointer;
+  transition: var(--transition);
+}
+.search-result-item:hover { background: var(--bg-card-hover); }
+.search-result-item .sr-term {
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--text-primary);
+}
+.search-result-item .sr-count {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--red);
+  margin-left: 8px;
+}
+.search-result-item .sr-snippet {
+  font-size: 12px;
+  color: var(--text-dim);
+  margin-top: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.search-empty {
+  padding: 32px;
+  text-align: center;
+  color: var(--text-dim);
+  font-size: 14px;
+}
+
+/* ======= HERO ======= */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 100px 24px 60px;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background:
+    radial-gradient(ellipse at 30% 50%, rgba(255,59,92,0.07) 0%, transparent 50%),
+    radial-gradient(ellipse at 70% 30%, rgba(96,165,250,0.04) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 80%, rgba(167,139,250,0.04) 0%, transparent 50%);
+  animation: heroBg 20s ease-in-out infinite alternate;
+}
+@keyframes heroBg { 0% { transform: rotate(0deg) scale(1); } 100% { transform: rotate(3deg) scale(1.02); } }
+
+.hero-content { position: relative; z-index: 2; text-align: center; max-width: 900px; }
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 18px;
+  background: rgba(255,59,92,0.1);
+  border: 1px solid rgba(255,59,92,0.25);
+  border-radius: 24px;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--red);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 28px;
+}
+.hero-badge .pulse-dot {
+  width: 8px; height: 8px;
+  background: var(--red);
+  border-radius: 50%;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.hero h1 {
+  font-size: clamp(38px, 6vw, 76px);
+  font-weight: 900;
+  letter-spacing: -3px;
+  line-height: 1.02;
+  margin-bottom: 18px;
+  background: linear-gradient(135deg, #ffffff 0%, #8890a0 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero .subtitle {
+  font-size: 18px;
+  color: var(--text-secondary);
+  max-width: 620px;
+  margin: 0 auto 44px;
+  font-weight: 300;
+  line-height: 1.7;
+}
+
+.hero .meta-line {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--text-dim);
+  letter-spacing: 0.5px;
+}
+
+/* Animated Stats */
+.stats-row {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 48px 0 24px;
+}
+
+.stat-pill {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px 36px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  min-width: 150px;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+.stat-pill::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--red), transparent);
+  opacity: 0;
+  transition: var(--transition);
+}
+.stat-pill:hover::before { opacity: 1; }
+.stat-pill:hover { border-color: var(--border-active); transform: translateY(-2px); }
+
+.stat-pill .stat-number {
+  font-size: 32px;
+  font-weight: 800;
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: -1px;
+  background: linear-gradient(135deg, #fff, var(--red));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.stat-pill .stat-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-top: 6px;
+}
+
+/* ======= SECTIONS ======= */
+.section {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 80px 32px;
+}
+.section-header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+.section-header .section-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--red);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.section-header h2 {
+  font-size: 36px;
+  font-weight: 800;
+  letter-spacing: -1px;
+  line-height: 1.1;
+}
+.section-header p {
+  color: var(--text-secondary);
+  font-size: 16px;
+  margin-top: 12px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ======= NETWORK GRAPH ======= */
+.network-section {
+  position: relative;
+  padding: 80px 0;
+  overflow: hidden;
+}
+.network-container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+#networkCanvas {
+  width: 100%;
+  height: 700px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  cursor: grab;
+  display: block;
+}
+#networkCanvas:active { cursor: grabbing; }
+.network-tooltip {
+  display: none;
+  position: fixed;
+  z-index: 100;
+  background: var(--bg-card);
+  border: 1px solid var(--border-active);
+  border-radius: var(--radius-sm);
+  padding: 14px 18px;
+  box-shadow: var(--shadow-lg);
+  pointer-events: none;
+  max-width: 320px;
+}
+.network-tooltip.active { display: block; }
+.network-tooltip .tt-name {
+  font-weight: 700;
+  font-size: 16px;
+  margin-bottom: 4px;
+}
+.network-tooltip .tt-group {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.network-tooltip .tt-count {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+.network-tooltip .tt-connections {
+  font-size: 12px;
+  color: var(--text-dim);
+  margin-top: 6px;
+  line-height: 1.5;
+}
+.network-legend {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 20px;
+}
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+.legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+.network-controls {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 16px;
+}
+.net-btn {
+  padding: 6px 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xs);
+  color: var(--text-secondary);
+  font-size: 12px;
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+  transition: var(--transition);
+}
+.net-btn:hover { border-color: var(--border-active); color: var(--text-primary); }
+.net-btn.active { border-color: var(--red); color: var(--red); }
+
+/* ======= PROCESSING STATUS ======= */
+.status-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 16px;
+}
+.status-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 24px;
+  transition: var(--transition);
+}
+.status-card:hover { border-color: var(--border-active); }
+.status-card .sc-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+.status-card .sc-name {
+  font-weight: 700;
+  font-size: 15px;
+}
+.status-badge {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 12px;
+}
+.badge-running {
+  background: rgba(255,59,92,0.15);
+  color: var(--red);
+  animation: badgePulse 2s ease-in-out infinite;
+}
+.badge-complete {
+  background: rgba(52,211,153,0.15);
+  color: var(--green);
+}
+.badge-pending {
+  background: rgba(255,197,61,0.15);
+  color: var(--yellow);
+}
+@keyframes badgePulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+.status-card .sc-detail {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-bottom: 12px;
+}
+.progress-bar-bg {
+  height: 6px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.progress-bar-fill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 1.5s ease-out;
+}
+.progress-bar-fill.fill-red { background: linear-gradient(90deg, var(--red-deep), var(--red)); }
+.progress-bar-fill.fill-green { background: linear-gradient(90deg, #1a9960, var(--green)); }
+.progress-bar-fill.fill-yellow { background: linear-gradient(90deg, #cc9900, var(--yellow)); }
+.progress-bar-fill.fill-blue { background: linear-gradient(90deg, #2563eb, var(--blue)); }
+
+.sc-meta {
+  font-size: 12px;
+  color: var(--text-dim);
+  margin-top: 8px;
+}
+
+/* ======= FINDINGS ======= */
+.findings-controls {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 32px;
+}
+.filter-btn {
+  padding: 8px 18px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  color: var(--text-secondary);
+  font-size: 13px;
+  font-weight: 500;
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+  transition: var(--transition);
+}
+.filter-btn:hover { border-color: var(--border-active); color: var(--text-primary); }
+.filter-btn.active { border-color: var(--red); color: var(--red); background: var(--red-glow); }
+
+.findings-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.finding-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  transition: var(--transition);
+  cursor: pointer;
+}
+.finding-card:hover { border-color: var(--border-active); }
+.finding-card .fc-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 20px;
+}
+.severity-badge {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  font-weight: 700;
+  min-width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-xs);
+  flex-shrink: 0;
+}
+.sev-critical { background: rgba(255,59,92,0.2); color: var(--red); border: 1px solid rgba(255,59,92,0.3); }
+.sev-high { background: rgba(255,123,66,0.2); color: var(--orange); border: 1px solid rgba(255,123,66,0.3); }
+.sev-medium { background: rgba(255,197,61,0.2); color: var(--yellow); border: 1px solid rgba(255,197,61,0.3); }
+
+.fc-info { flex: 1; min-width: 0; }
+.fc-info .fc-term {
+  font-weight: 700;
+  font-size: 15px;
+}
+.fc-info .fc-citation {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--text-dim);
+  margin-top: 2px;
+}
+.fc-preview {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 580px;
+}
+.fc-expand-icon {
+  color: var(--text-dim);
+  transition: var(--transition);
+  flex-shrink: 0;
+  font-size: 18px;
+}
+.finding-card.expanded .fc-expand-icon { transform: rotate(180deg); }
+
+.fc-body {
+  display: none;
+  padding: 0 20px 20px;
+  border-top: 1px solid var(--border);
+}
+.finding-card.expanded .fc-body { display: block; }
+.fc-body .fc-context {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  padding: 16px;
+  background: rgba(0,0,0,0.3);
+  border-radius: var(--radius-xs);
+  font-family: 'JetBrains Mono', monospace;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+.fc-body .fc-highlight {
+  color: var(--red);
+  font-weight: 600;
+}
+
+/* ======= BAR CHART ======= */
+.bar-chart-container {
+  max-width: 960px;
+  margin: 0 auto;
+}
+.bar-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 6px;
+  padding: 4px 0;
+}
+.bar-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  width: 140px;
+  text-align: right;
+  flex-shrink: 0;
+}
+.bar-track {
+  flex: 1;
+  height: 28px;
+  background: rgba(255,255,255,0.03);
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+}
+.bar-fill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+  min-width: 0;
+}
+.bar-fill .bar-value {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 600;
+  color: #fff;
+  white-space: nowrap;
+}
+.bar-fill.bf-red { background: linear-gradient(90deg, rgba(255,59,92,0.8), rgba(255,59,92,0.4)); }
+.bar-fill.bf-orange { background: linear-gradient(90deg, rgba(255,123,66,0.7), rgba(255,123,66,0.35)); }
+.bar-fill.bf-green { background: linear-gradient(90deg, rgba(52,211,153,0.7), rgba(52,211,153,0.35)); }
+.bar-fill.bf-blue { background: linear-gradient(90deg, rgba(96,165,250,0.7), rgba(96,165,250,0.35)); }
+.bar-fill.bf-purple { background: linear-gradient(90deg, rgba(167,139,250,0.7), rgba(167,139,250,0.35)); }
+.bar-fill.bf-pink { background: linear-gradient(90deg, rgba(244,114,182,0.7), rgba(244,114,182,0.35)); }
+.bar-fill.bf-cyan { background: linear-gradient(90deg, rgba(34,211,238,0.7), rgba(34,211,238,0.35)); }
+.bar-fill.bf-yellow { background: linear-gradient(90deg, rgba(255,197,61,0.7), rgba(255,197,61,0.35)); }
+
+/* ======= TIMELINE ======= */
+.timeline-container {
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+  padding-left: 40px;
+}
+.timeline-container::before {
+  content: '';
+  position: absolute;
+  left: 15px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--red), var(--purple), var(--blue), transparent);
+}
+.tl-item {
+  position: relative;
+  margin-bottom: 32px;
+  padding-left: 24px;
+}
+.tl-item::before {
+  content: '';
+  position: absolute;
+  left: -32px;
+  top: 6px;
+  width: 12px;
+  height: 12px;
+  background: var(--bg-primary);
+  border: 2px solid var(--red);
+  border-radius: 50%;
+}
+.tl-item .tl-date {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--red);
+  margin-bottom: 4px;
+}
+.tl-item .tl-title {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.tl-item .tl-desc {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* ======= DATASET OVERVIEW ======= */
+.ds-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+}
+.ds-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 20px;
+  transition: var(--transition);
+}
+.ds-card:hover { border-color: var(--border-active); }
+.ds-card .ds-title {
+  font-weight: 700;
+  font-size: 15px;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.ds-card .ds-desc {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+.ds-card .ds-stat {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--text-dim);
+  margin-top: 8px;
+}
+
+/* ======= FOOTER ======= */
+.footer {
+  text-align: center;
+  padding: 48px 32px;
+  border-top: 1px solid var(--border);
+  margin-top: 40px;
+}
+.footer p {
+  color: var(--text-dim);
+  font-size: 13px;
+  line-height: 1.8;
+}
+.footer .footer-brand {
+  font-weight: 700;
+  color: var(--text-secondary);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+/* ======= NODE DETAIL PANEL ======= */
+.node-detail-panel {
+  display: none;
+  position: fixed;
+  right: 24px;
+  top: 80px;
+  width: 340px;
+  max-height: calc(100vh - 100px);
+  overflow-y: auto;
+  background: var(--bg-card);
+  border: 1px solid var(--border-active);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-lg);
+  z-index: 500;
+  padding: 24px;
+}
+.node-detail-panel.active { display: block; }
+.node-detail-panel .ndp-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: none;
+  border: none;
+  color: var(--text-dim);
+  font-size: 20px;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: var(--transition);
+}
+.node-detail-panel .ndp-close:hover { color: var(--text-primary); background: rgba(255,255,255,0.06); }
+.ndp-name {
+  font-size: 22px;
+  font-weight: 800;
+  margin-bottom: 4px;
+}
+.ndp-group {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.ndp-stat {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 13px;
+}
+.ndp-stat .ndp-stat-label { color: var(--text-dim); }
+.ndp-stat .ndp-stat-value { font-weight: 600; font-family: 'JetBrains Mono', monospace; }
+.ndp-connections-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 16px 0 8px;
+}
+.ndp-conn-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.ndp-conn-tag {
+  font-size: 11px;
+  padding: 3px 10px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 12px;
+  color: var(--text-secondary);
+  border: 1px solid var(--border);
+}
+
+/* ======= RESPONSIVE ======= */
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .hero h1 { font-size: 32px; letter-spacing: -1px; }
+  .section { padding: 48px 16px; }
+  .stat-pill { padding: 16px 24px; min-width: 120px; }
+  .stat-pill .stat-number { font-size: 24px; }
+  #networkCanvas { height: 450px; }
+  .status-grid { grid-template-columns: 1fr; }
+  .bar-label { width: 100px; font-size: 11px; }
+  .node-detail-panel { width: calc(100% - 48px); right: 24px; left: 24px; }
+  .finding-card .fc-header { flex-wrap: wrap; }
+  .fc-preview { max-width: 100%; }
+}
+
+/* Scroll reveal animation */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+</style>
+</head>
+<body>
+<div id="homeNav" style="position:fixed;top:12px;left:12px;z-index:99999;"><a href="index.html" style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;background:rgba(15,17,23,0.85);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.1);border-radius:8px;color:#9aa0b0;text-decoration:none;font:600 13px Inter,-apple-system,sans-serif;transition:all 0.3s;" onmouseover="this.style.color='#ff3b5c';this.style.borderColor='rgba(255,59,92,0.3)'" onmouseout="this.style.color='#9aa0b0';this.style.borderColor='rgba(255,255,255,0.1)'">← Home</a></div>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-brand">
+      <span class="dot"></span>
+      <span>Epstein Files v10</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#network">Network</a></li>
+      <li><a href="#status">Status</a></li>
+      <li><a href="#findings">Findings</a></li>
+      <li><a href="#terms">Terms</a></li>
+      <li><a href="#timeline">Timeline</a></li>
+      <li><a href="#datasets">Datasets</a></li>
+    </ul>
+    <div class="nav-search-trigger" onclick="openSearch()">
+      Search findings... <kbd>Ctrl+K</kbd>
+    </div>
+  </div>
+</nav>
+
+<!-- SEARCH MODAL -->
+<div class="search-overlay" id="searchOverlay">
+  <div class="search-modal">
+    <input type="text" id="searchInput" placeholder="Search terms, documents, findings..." oninput="handleSearch(this.value)">
+    <div class="search-results" id="searchResults">
+      <div class="search-empty">Type to search across all findings</div>
+    </div>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-content">
+    <div class="hero-badge">
+      <span class="pulse-dot"></span>
+      Pipeline Active — DS9 Processing
+    </div>
+    <h1>Epstein Files Investigation</h1>
+    <p class="subtitle">Comprehensive document analysis across 11 datasets. Automated extraction and severity scoring of 62,699 findings from court records, financial documents, surveillance media, and federal archives.</p>
+
+    <div class="stats-row">
+      <div class="stat-pill">
+        <span class="stat-number" data-target="62699" data-suffix="">0</span>
+        <span class="stat-label">Total Findings</span>
+      </div>
+      <div class="stat-pill">
+        <span class="stat-number" data-target="14104" data-suffix="">0</span>
+        <span class="stat-label">Documents Processed</span>
+      </div>
+      <div class="stat-pill">
+        <span class="stat-number" data-target="39" data-suffix="">0</span>
+        <span class="stat-label">Terms Tracked</span>
+      </div>
+      <div class="stat-pill">
+        <span class="stat-number" data-target="1914" data-suffix="">0</span>
+        <span class="stat-label">Media Files</span>
+      </div>
+      <div class="stat-pill">
+        <span class="stat-number" data-target="11" data-suffix="">0</span>
+        <span class="stat-label">Datasets</span>
+      </div>
+    </div>
+
+    <p class="meta-line">Last updated: 2026-02-02 02:28 UTC // Pipeline: DS9 active (7,619/450,650)</p>
+  </div>
+</section>
+
+<!-- NETWORK GRAPH -->
+<section class="network-section" id="network">
+  <div class="network-container">
+    <div class="section-header reveal">
+      <div class="section-tag">Connection Analysis</div>
+      <h2>Entity Network Graph</h2>
+      <p>Interactive force-directed visualization of co-occurrence relationships. Drag nodes, hover for details, click for deep-dive.</p>
+    </div>
+    <canvas id="networkCanvas"></canvas>
+    <div class="network-legend">
+      <div class="legend-item"><span class="legend-dot" style="background:var(--red)"></span> Core</div>
+      <div class="legend-item"><span class="legend-dot" style="background:var(--green)"></span> Politicians</div>
+      <div class="legend-item"><span class="legend-dot" style="background:var(--yellow)"></span> Royals</div>
+      <div class="legend-item"><span class="legend-dot" style="background:var(--blue)"></span> Financial</div>
+      <div class="legend-item"><span class="legend-dot" style="background:var(--purple)"></span> Intelligence</div>
+      <div class="legend-item"><span class="legend-dot" style="background:var(--orange)"></span> Legal</div>
+      <div class="legend-item"><span class="legend-dot" style="background:var(--cyan)"></span> Tech / Science</div>
+      <div class="legend-item"><span class="legend-dot" style="background:var(--pink)"></span> Locations</div>
+      <div class="legend-item"><span class="legend-dot" style="background:#8899aa"></span> Other</div>
+    </div>
+    <div class="network-controls">
+      <button class="net-btn active" onclick="setGraphFilter('all', this)">All</button>
+      <button class="net-btn" onclick="setGraphFilter('core', this)">Core</button>
+      <button class="net-btn" onclick="setGraphFilter('politicians', this)">Politicians</button>
+      <button class="net-btn" onclick="setGraphFilter('financial', this)">Financial</button>
+      <button class="net-btn" onclick="setGraphFilter('intelligence', this)">Intelligence</button>
+      <button class="net-btn" onclick="setGraphFilter('tech', this)">Tech</button>
+      <button class="net-btn" onclick="setGraphFilter('locations', this)">Locations</button>
+    </div>
+  </div>
+</section>
+
+<!-- TOOLTIP for network graph -->
+<div class="network-tooltip" id="networkTooltip">
+  <div class="tt-name" id="ttName"></div>
+  <div class="tt-group" id="ttGroup"></div>
+  <div class="tt-count" id="ttCount"></div>
+  <div class="tt-connections" id="ttConnections"></div>
+</div>
+
+<!-- NODE DETAIL PANEL -->
+<div class="node-detail-panel" id="nodeDetailPanel">
+  <button class="ndp-close" onclick="closeNodeDetail()">&times;</button>
+  <div class="ndp-name" id="ndpName"></div>
+  <div class="ndp-group" id="ndpGroup"></div>
+  <div class="ndp-stat"><span class="ndp-stat-label">Findings</span><span class="ndp-stat-value" id="ndpFindings"></span></div>
+  <div class="ndp-stat"><span class="ndp-stat-label">Category</span><span class="ndp-stat-value" id="ndpCategory"></span></div>
+  <div class="ndp-stat"><span class="ndp-stat-label">Connections</span><span class="ndp-stat-value" id="ndpConnCount"></span></div>
+  <div class="ndp-connections-title">Connected To</div>
+  <div class="ndp-conn-list" id="ndpConnList"></div>
+</div>
+
+<!-- PROCESSING STATUS -->
+<section class="section" id="status">
+  <div class="section-header reveal">
+    <div class="section-tag">Pipeline Status</div>
+    <h2>Live Processing Overview</h2>
+    <p>Real-time status across all active and completed data pipelines</p>
+  </div>
+  <div class="status-grid">
+    <div class="status-card reveal">
+      <div class="sc-header">
+        <span class="sc-name">Dataset 9 (justice.gov)</span>
+        <span class="status-badge badge-running">Running</span>
+      </div>
+      <div class="sc-detail">7,619 / 450,650 PDFs processed</div>
+      <div class="progress-bar-bg"><div class="progress-bar-fill fill-red" style="width: 0%" data-width="1.7%"></div></div>
+      <div class="sc-meta">44,367 findings extracted // 1.7% complete // ~5.8 findings/PDF</div>
+    </div>
+    <div class="status-card reveal">
+      <div class="sc-header">
+        <span class="sc-name">Dataset 11</span>
+        <span class="status-badge badge-pending">Pending</span>
+      </div>
+      <div class="sc-detail">0 / 331,655 PDFs identified</div>
+      <div class="progress-bar-bg"><div class="progress-bar-fill fill-yellow" style="width: 0%" data-width="0%"></div></div>
+      <div class="sc-meta">Awaiting processing queue // 331,655 PDFs staged</div>
+    </div>
+    <div class="status-card reveal">
+      <div class="sc-header">
+        <span class="sc-name">Dec 2025 Corpus (DS 1-8)</span>
+        <span class="status-badge badge-complete">Complete</span>
+      </div>
+      <div class="sc-detail">6,330 / 31,052 documents with matches</div>
+      <div class="progress-bar-bg"><div class="progress-bar-fill fill-green" style="width: 0%" data-width="100%"></div></div>
+      <div class="sc-meta">18,332 findings // 31,052 documents searched // All datasets complete</div>
+    </div>
+    <div class="status-card reveal">
+      <div class="sc-header">
+        <span class="sc-name">Dataset 10</span>
+        <span class="status-badge badge-complete">Complete</span>
+      </div>
+      <div class="sc-detail">3 / 3 PDFs analyzed</div>
+      <div class="progress-bar-bg"><div class="progress-bar-fill fill-green" style="width: 0%" data-width="100%"></div></div>
+      <div class="sc-meta">Initial batch // Complete</div>
+    </div>
+    <div class="status-card reveal">
+      <div class="sc-header">
+        <span class="sc-name">Dataset 12</span>
+        <span class="status-badge badge-complete">Complete</span>
+      </div>
+      <div class="sc-detail">152 / 152 PDFs analyzed</div>
+      <div class="progress-bar-bg"><div class="progress-bar-fill fill-green" style="width: 0%" data-width="100%"></div></div>
+      <div class="sc-meta">152 PDFs processed // Complete</div>
+    </div>
+    <div class="status-card reveal">
+      <div class="sc-header">
+        <span class="sc-name">DS9 Surveillance Media</span>
+        <span class="status-badge badge-complete">Cataloged</span>
+      </div>
+      <div class="sc-detail">1,914 surveillance files identified</div>
+      <div class="progress-bar-bg"><div class="progress-bar-fill fill-blue" style="width: 0%" data-width="100%"></div></div>
+      <div class="sc-meta">1,529 AVI // 255 MP4 // 78 M4A audio // 52 other</div>
+    </div>
+  </div>
+</section>
+
+<!-- TOP FINDINGS -->
+<section class="section" id="findings">
+  <div class="section-header reveal">
+    <div class="section-tag">Evidence Analysis</div>
+    <h2>Top Severity Findings</h2>
+    <p>Highest-severity document matches ranked by investigative significance</p>
+  </div>
+
+  <div class="findings-controls reveal">
+    <button class="filter-btn active" onclick="filterFindings('all', this)">All</button>
+    <button class="filter-btn" onclick="filterFindings('critical', this)">Critical (15+)</button>
+    <button class="filter-btn" onclick="filterFindings('high', this)">High (10-14)</button>
+    <button class="filter-btn" onclick="filterFindings('medium', this)">Medium (5-9)</button>
+  </div>
+
+  <div class="findings-list" id="findingsList">
+    <!-- Populated by JS -->
+  </div>
+</section>
+
+<!-- TERM FREQUENCY -->
+<section class="section" id="terms">
+  <div class="section-header reveal">
+    <div class="section-tag">Frequency Analysis</div>
+    <h2>Term Occurrence Counts</h2>
+    <p>Combined term frequencies across all processed datasets (62,699 total findings)</p>
+  </div>
+  <div class="bar-chart-container reveal" id="barChart">
+    <!-- Populated by JS -->
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section class="section" id="timeline">
+  <div class="section-header reveal">
+    <div class="section-tag">Chronology</div>
+    <h2>Key Events Timeline</h2>
+    <p>Critical dates in the Epstein investigation and associated events</p>
+  </div>
+  <div class="timeline-container reveal" id="timelineContainer">
+    <!-- Populated by JS -->
+  </div>
+</section>
+
+<!-- DATASETS -->
+<section class="section" id="datasets">
+  <div class="section-header reveal">
+    <div class="section-tag">Data Sources</div>
+    <h2>Dataset Inventory</h2>
+    <p>Complete inventory of document collections under analysis</p>
+  </div>
+  <div class="ds-grid" id="dsGrid">
+    <!-- Populated by JS -->
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-brand">Epstein Files Investigation Dashboard v10</div>
+  <p>
+    Generated: 2026-02-02 02:28 UTC<br>
+    Methodology: Automated keyword extraction with context-aware severity scoring (1-20 scale).<br>
+    Sources: FOIA releases, court filings (SDNY), justice.gov EFTA archives, financial disclosures.<br>
+    62,699 findings from 14,104 documents across 11 datasets. DS9 pipeline active.<br>
+    <span style="color: var(--text-dim); font-size: 11px;">All findings are extracted quotes from public documents. No editorial content.</span>
+  </p>
+</footer>
+
+<script>
+/* ============================================================
+   DATA
+   ============================================================ */
+
+const TERM_DATA = [
+  { term: "maxwell", count: 32151, color: "bf-red" },
+  { term: "ghislaine", count: 10151, color: "bf-red" },
+  { term: "trump", count: 6346, color: "bf-green" },
+  { term: "recording", count: 2066, color: "bf-yellow" },
+  { term: "acosta", count: 1075, color: "bf-green" },
+  { term: "kushner", count: 1023, color: "bf-green" },
+  { term: "jp morgan", count: 1020, color: "bf-blue" },
+  { term: "clinton", count: 883, color: "bf-green" },
+  { term: "prince andrew", count: 788, color: "bf-yellow" },
+  { term: "dershowitz", count: 764, color: "bf-orange" },
+  { term: "russia", count: 635, color: "bf-purple" },
+  { term: "deutsche bank", count: 553, color: "bf-blue" },
+  { term: "biden", count: 494, color: "bf-green" },
+  { term: "israel", count: 484, color: "bf-purple" },
+  { term: "little st james", count: 419, color: "bf-pink" },
+  { term: "obama", count: 390, color: "bf-green" },
+  { term: "bill richardson", count: 321, color: "bf-green" },
+  { term: "brunel", count: 277, color: "bf-yellow" },
+  { term: "leon black", count: 250, color: "bf-blue" },
+  { term: "barr", count: 233, color: "bf-green" },
+  { term: "putin", count: 203, color: "bf-purple" },
+  { term: "gates", count: 183, color: "bf-cyan" },
+  { term: "zorro ranch", count: 178, color: "bf-pink" },
+  { term: "pelosi", count: 171, color: "bf-green" },
+  { term: "bannon", count: 167, color: "bf-green" },
+  { term: "jes staley", count: 162, color: "bf-blue" },
+  { term: "wexner", count: 161, color: "bf-blue" },
+  { term: "bank hapoalim", count: 152, color: "bf-blue" },
+  { term: "sarah kellen", count: 109, color: "bf-yellow" },
+  { term: "mar-a-lago", count: 103, color: "bf-pink" },
+  { term: "bush", count: 100, color: "bf-green" },
+  { term: "signature bank", count: 93, color: "bf-blue" },
+  { term: "pence", count: 84, color: "bf-green" },
+  { term: "blackmail", count: 59, color: "bf-red" },
+  { term: "schumer", count: 56, color: "bf-green" },
+  { term: "ivanka", count: 54, color: "bf-green" },
+  { term: "desantis", count: 38, color: "bf-green" },
+  { term: "robert maxwell", count: 28, color: "bf-purple" },
+  { term: "zuckerberg", count: 27, color: "bf-cyan" }
+];
+
+const FINDINGS_DATA = [
+  { severity: 17, term: "Clinton", citation: "EFTA00076133 p2", preview: "campaign, everything and basically everyone associated with Bill and Hillary Clinton, the DNC", context: "...the campaign, everything and basically everyone associated with Bill and Hillary Clinton, the DNC, and the broader Democratic political apparatus. The scope of connections documented here extends across multiple financial and political networks...", level: "critical" },
+  { severity: 17, term: "Maxwell", citation: "EFTA00084366 p67", preview: "Maxwell refused to open the front door to the FBI and tried to flee", context: "...Ghislaine Maxwell refused to open the front door to the FBI and tried to flee through an interior room when federal agents arrived to execute the arrest warrant. Agents had to force entry after Maxwell failed to comply with repeated verbal commands...", level: "critical" },
+  { severity: 16, term: "Trump / Prince Andrew", citation: "EFTA00071624 p22", preview: "names like Prince Andrew, Donald Trump, Ken Starr, and Alan Dershowitz", context: "...names like Prince Andrew, Donald Trump, Ken Starr, and Alan Dershowitz were identified in connection with Epstein's social circle. Documents indicate repeated social interactions at multiple venues over several years...", level: "critical" },
+  { severity: 16, term: "Maxwell", citation: "EFTA00084366 p67", preview: "accused of grooming girls as young as 14 for Jeffrey", context: "...Ghislaine Maxwell, accused of grooming girls as young as 14 for Jeffrey Epstein, was taken into custody by the FBI on July 2, 2020. The indictment details a pattern of recruitment and abuse spanning multiple states and countries...", level: "critical" },
+  { severity: 15, term: "Prince Andrew", citation: "EFTA00072842 p3", preview: "investigation has revealed that Prince Andrew may have been a witness to", context: "...the investigation has revealed that Prince Andrew may have been a witness to or participant in events that are central to the ongoing inquiry. Testimony from multiple victims places the Duke of York at residences in New York, London, and the US Virgin Islands...", level: "critical" },
+  { severity: 15, term: "Trump / Clinton", citation: "EFTA00069870 p10", preview: "sex offender who once socialized with President Donald Trump and former President Bill Clinton", context: "...convicted sex offender who once socialized with President Donald Trump and former President Bill Clinton. Flight logs and visitor records confirm multiple contacts across a period spanning the late 1990s through the mid-2000s...", level: "critical" },
+  { severity: 15, term: "Ghislaine Maxwell", citation: "EFTA00064715 p2", preview: "longtime companion of sex offender Jeffrey Epstein accused of facilitating", context: "...Ghislaine Maxwell, the longtime companion of sex offender Jeffrey Epstein, accused of facilitating his trafficking operation. Maxwell is alleged to have recruited, groomed, and trafficked minor victims for Epstein and others...", level: "critical" },
+  { severity: 15, term: "Prince Andrew", citation: "EFTA00084366 p15", preview: "'incredible sex drive,' Prince Andrew's distant cousin has claimed", context: "...described as having an 'incredible sex drive,' Prince Andrew's distant cousin has claimed in testimony filed as part of the civil proceedings. Multiple witnesses corroborated accounts of the Duke's presence at Epstein properties...", level: "critical" },
+  { severity: 14, term: "Dershowitz", citation: "EFTA00071624 p18", preview: "Dershowitz was identified as having received a massage at Epstein's Palm Beach residence", context: "...Alan Dershowitz was identified as having received a massage at Epstein's Palm Beach residence. Dershowitz has denied all allegations of wrongdoing and has vigorously contested the claims made by accusers...", level: "high" },
+  { severity: 14, term: "Deutsche Bank", citation: "EFTA00076133 p45", preview: "Deutsche Bank maintained accounts for Epstein despite internal compliance warnings", context: "...Deutsche Bank maintained accounts for Epstein despite internal compliance warnings flagged by multiple employees. The bank processed over $150 million in transactions for Epstein entities between 2013 and 2019...", level: "high" },
+  { severity: 13, term: "JP Morgan", citation: "EFTA00076133 p52", preview: "JP Morgan continued banking relationship with Epstein for over 15 years", context: "...JP Morgan Chase continued its banking relationship with Epstein for over 15 years, processing hundreds of millions in transactions. Internal communications show senior executives were aware of the nature of allegations...", level: "high" },
+  { severity: 13, term: "Wexner", citation: "EFTA00072842 p28", preview: "Wexner granted Epstein sweeping power over his financial affairs", context: "...Les Wexner granted Epstein sweeping power over his financial affairs, including power of attorney over his personal fortune. The relationship between Wexner and Epstein remains one of the least understood aspects of the case...", level: "high" },
+  { severity: 12, term: "Acosta", citation: "EFTA00069870 p33", preview: "Acosta signed the non-prosecution agreement that shielded Epstein's co-conspirators", context: "...then-U.S. Attorney Alexander Acosta signed the non-prosecution agreement that shielded Epstein's co-conspirators from federal prosecution. The deal was later condemned by a federal judge as violating the Crime Victims' Rights Act...", level: "high" },
+  { severity: 12, term: "Bill Richardson", citation: "EFTA00084366 p41", preview: "Governor Richardson was among those identified by Virginia Giuffre", context: "...former New Mexico Governor Bill Richardson was among those identified by Virginia Giuffre in sworn depositions as someone she was directed to provide sexual services to by Epstein and Maxwell...", level: "high" },
+  { severity: 11, term: "Leon Black", citation: "EFTA00076133 p38", preview: "Black paid Epstein at least $158 million for advisory and other services", context: "...Apollo Global Management co-founder Leon Black paid Epstein at least $158 million for advisory and other services. An internal review commissioned by Apollo's board examined the nature of this financial relationship...", level: "high" },
+  { severity: 11, term: "Israel / Mossad", citation: "EFTA00072842 p55", preview: "allegations that Epstein's operation may have had ties to intelligence services", context: "...persistent allegations that Epstein's operation may have had ties to intelligence services, including claims first raised by former intelligence officials regarding Israeli intelligence. These claims remain unsubstantiated but are part of the public record...", level: "high" },
+  { severity: 10, term: "Gates", citation: "EFTA00071624 p61", preview: "Bill Gates met with Epstein on numerous occasions after Epstein's 2008 conviction", context: "...Bill Gates met with Epstein on numerous occasions after Epstein's 2008 conviction, including at Epstein's Manhattan townhouse. Gates has stated that the meetings were related to philanthropic activities...", level: "high" },
+  { severity: 10, term: "Little St James", citation: "EFTA00069870 p7", preview: "Epstein's private island in the US Virgin Islands where abuse was alleged", context: "...Little St. James, Epstein's private island in the US Virgin Islands, where abuse was alleged to have occurred. Flight manifests and testimony detail regular trips to the island by Epstein, Maxwell, and numerous guests...", level: "high" },
+  { severity: 9, term: "Barr", citation: "EFTA00084366 p72", preview: "Attorney General Barr recused himself from the Epstein case citing a prior relationship", context: "...Attorney General William Barr initially recused himself from the Epstein case, citing his father's prior employment at the Dalton School where Epstein once taught. Barr later un-recused and oversaw the federal response...", level: "medium" },
+  { severity: 9, term: "Recording", citation: "EFTA00076133 p14", preview: "surveillance system captured recordings throughout the Palm Beach residence", context: "...an extensive surveillance system captured recordings throughout the Palm Beach residence and other properties. The existence and disposition of these recordings remains a critical open question in the investigation...", level: "medium" },
+  { severity: 8, term: "Kushner", citation: "EFTA00071624 p29", preview: "Kushner Companies had business dealings that intersected with Epstein-connected entities", context: "...Kushner Companies had business dealings that intersected with Epstein-connected entities through shared financial intermediaries and real estate transactions in Manhattan...", level: "medium" },
+  { severity: 8, term: "Sarah Kellen", citation: "EFTA00069870 p19", preview: "Kellen served as one of Epstein's primary schedulers and alleged recruiters", context: "...Sarah Kellen served as one of Epstein's primary schedulers and alleged recruiters. She was named as a potential co-conspirator in the original non-prosecution agreement but was never charged...", level: "medium" },
+  { severity: 7, term: "Brunel", citation: "EFTA00072842 p44", preview: "modeling agent Jean-Luc Brunel found dead in his Paris jail cell", context: "...French modeling agent Jean-Luc Brunel was found dead in his Paris jail cell in February 2022 while awaiting trial on charges of rape and sexual assault of minors connected to Epstein...", level: "medium" },
+  { severity: 7, term: "Zorro Ranch", citation: "EFTA00076133 p8", preview: "Epstein's New Mexico ranch where further abuse was documented", context: "...Zorro Ranch, Epstein's sprawling property near Stanley, New Mexico, where further abuse was documented by investigators. The ranch was equipped with extensive surveillance and security systems...", level: "medium" },
+  { severity: 6, term: "Bank Hapoalim", citation: "EFTA00076133 p62", preview: "Bank Hapoalim processed transactions for Epstein-linked entities", context: "...Israel's Bank Hapoalim processed transactions for Epstein-linked entities and was later fined for facilitating tax evasion. The bank's connections to Epstein's financial network remain under examination...", level: "medium" }
+];
+
+const TIMELINE_DATA = [
+  { date: "1953", title: "Jeffrey Epstein Born", desc: "Born January 20, 1953 in Brooklyn, New York." },
+  { date: "1976", title: "Teaching at Dalton School", desc: "Epstein hired to teach at the Dalton School by headmaster Donald Barr (father of future AG William Barr), despite lacking a college degree." },
+  { date: "1982", title: "Bear Stearns to J. Epstein & Co.", desc: "After working at Bear Stearns, Epstein establishes his own financial firm, J. Epstein & Co., with Les Wexner as a key client." },
+  { date: "1991", title: "Robert Maxwell Dies", desc: "Media mogul Robert Maxwell, father of Ghislaine, dies under mysterious circumstances. Ghislaine moves to New York and enters Epstein's orbit." },
+  { date: "1998", title: "Little St. James Acquired", desc: "Epstein purchases Little St. James island in the US Virgin Islands." },
+  { date: "2002-2005", title: "Palm Beach Investigation", desc: "Palm Beach Police investigate Epstein following reports from multiple victims. Evidence of a systematic pattern of abuse is documented." },
+  { date: "2007", title: "Florida Plea Deal", desc: "US Attorney Alexander Acosta negotiates controversial non-prosecution agreement. Epstein pleads guilty to state charges, receives 18-month sentence." },
+  { date: "2008", title: "Conviction & Work Release", desc: "Epstein serves 13 months with work release privileges, widely criticized as lenient." },
+  { date: "2015", title: "Virginia Giuffre Lawsuit", desc: "Virginia Roberts Giuffre files civil suit naming Epstein, Maxwell, and others including Prince Andrew and Alan Dershowitz." },
+  { date: "2019-07-06", title: "Federal Arrest (SDNY)", desc: "Epstein arrested by FBI-NYPD task force at Teterboro Airport on sex trafficking charges filed by SDNY." },
+  { date: "2019-07-23", title: "Found Injured in Cell", desc: "Epstein found semi-conscious in his cell at MCC with marks on his neck. Ruled attempted suicide." },
+  { date: "2019-08-10", title: "Death at MCC", desc: "Epstein found dead in his cell at Metropolitan Correctional Center, New York. Medical examiner rules suicide by hanging. Circumstances widely questioned." },
+  { date: "2020-07-02", title: "Maxwell Arrested", desc: "Ghislaine Maxwell arrested by FBI in Bradford, New Hampshire. Charged with conspiracy and sex trafficking of minors." },
+  { date: "2021-12-29", title: "Maxwell Convicted", desc: "Federal jury convicts Maxwell on five of six counts including sex trafficking of a minor." },
+  { date: "2022-02-19", title: "Brunel Found Dead", desc: "Jean-Luc Brunel found dead in Paris jail cell while awaiting trial on charges related to Epstein." },
+  { date: "2022-06-28", title: "Maxwell Sentenced", desc: "Ghislaine Maxwell sentenced to 20 years in federal prison." },
+  { date: "2023-2024", title: "Major Document Releases", desc: "Federal courts unseal thousands of pages of depositions, flight logs, and associated documents from civil litigation." },
+  { date: "2024-12", title: "Dec 2025 Corpus Analysis", desc: "Automated analysis of 31,052 documents from Datasets 1-8 completed. 18,332 findings extracted." },
+  { date: "2025-01", title: "FOIA / justice.gov Pipeline", desc: "Dataset 9 processing begins: 450,650 PDFs from justice.gov EFTA archives. 7,619 processed to date with 44,367 findings." },
+  { date: "2025-02", title: "Dashboard v10", desc: "Current analysis: 62,699 total findings. DS9 pipeline active. DS11 (331,655 PDFs) staged for processing." }
+];
+
+const DATASETS_DATA = [
+  { name: "Datasets 1-8", status: "complete", desc: "Dec 2025 court release corpus. Civil litigation documents, depositions, flight logs, correspondence.", stat: "31,052 documents // 18,332 findings" },
+  { name: "Dataset 9", status: "running", desc: "justice.gov EFTA archive. Federal investigation documents, FBI reports, grand jury materials.", stat: "450,650 PDFs // 7,619 processed // 44,367 findings" },
+  { name: "Dataset 10", status: "complete", desc: "Supplemental court filings batch.", stat: "3 PDFs analyzed" },
+  { name: "Dataset 11", status: "pending", desc: "Large-scale federal archive. Pending resource allocation for processing.", stat: "331,655 PDFs identified" },
+  { name: "Dataset 12", status: "complete", desc: "Additional FOIA release batch.", stat: "152 PDFs analyzed" },
+  { name: "DS9 Media", status: "cataloged", desc: "Surveillance footage and audio from seized devices and properties.", stat: "1,914 files: 1,529 AVI, 255 MP4, 78 M4A" }
+];
+
+/* ============================================================
+   NETWORK GRAPH DATA
+   ============================================================ */
+
+const GRAPH_NODES = [
+  // Core
+  { id: "Epstein", group: "core", count: 62699, color: "#ff3b5c" },
+  { id: "Maxwell", group: "core", count: 32151, color: "#ff3b5c" },
+  // Politicians
+  { id: "Trump", group: "politicians", count: 6346, color: "#34d399" },
+  { id: "Clinton", group: "politicians", count: 883, color: "#34d399" },
+  { id: "Obama", group: "politicians", count: 390, color: "#34d399" },
+  { id: "Biden", group: "politicians", count: 494, color: "#34d399" },
+  { id: "Kushner", group: "politicians", count: 1023, color: "#34d399" },
+  { id: "Barr", group: "politicians", count: 233, color: "#34d399" },
+  { id: "Acosta", group: "politicians", count: 1075, color: "#34d399" },
+  { id: "Pelosi", group: "politicians", count: 171, color: "#34d399" },
+  { id: "Schumer", group: "politicians", count: 56, color: "#34d399" },
+  { id: "Richardson", group: "politicians", count: 321, color: "#34d399" },
+  { id: "Bannon", group: "politicians", count: 167, color: "#34d399" },
+  { id: "Pence", group: "politicians", count: 84, color: "#34d399" },
+  { id: "DeSantis", group: "politicians", count: 38, color: "#34d399" },
+  { id: "Bush", group: "politicians", count: 100, color: "#34d399" },
+  { id: "Kerry", group: "politicians", count: 30, color: "#34d399" },
+  { id: "Ivanka", group: "politicians", count: 54, color: "#34d399" },
+  // Royals
+  { id: "Prince Andrew", group: "royals", count: 788, color: "#ffc53d" },
+  // Financial
+  { id: "Wexner", group: "financial", count: 161, color: "#60a5fa" },
+  { id: "Leon Black", group: "financial", count: 250, color: "#60a5fa" },
+  { id: "Jes Staley", group: "financial", count: 162, color: "#60a5fa" },
+  { id: "Deutsche Bank", group: "financial", count: 553, color: "#60a5fa" },
+  { id: "JP Morgan", group: "financial", count: 1020, color: "#60a5fa" },
+  { id: "Bank Hapoalim", group: "financial", count: 152, color: "#60a5fa" },
+  { id: "Signature Bank", group: "financial", count: 93, color: "#60a5fa" },
+  // Intelligence
+  { id: "Mossad", group: "intelligence", count: 50, color: "#a78bfa" },
+  { id: "Israel", group: "intelligence", count: 484, color: "#a78bfa" },
+  { id: "Russia", group: "intelligence", count: 635, color: "#a78bfa" },
+  { id: "Putin", group: "intelligence", count: 203, color: "#a78bfa" },
+  { id: "Ehud Barak", group: "intelligence", count: 60, color: "#a78bfa" },
+  { id: "Robert Maxwell", group: "intelligence", count: 28, color: "#a78bfa" },
+  // Legal
+  { id: "Dershowitz", group: "legal", count: 764, color: "#ff7b42" },
+  // Tech
+  { id: "Gates", group: "tech", count: 183, color: "#22d3ee" },
+  { id: "Musk", group: "tech", count: 20, color: "#22d3ee" },
+  { id: "Bezos", group: "tech", count: 15, color: "#22d3ee" },
+  { id: "Thiel", group: "tech", count: 12, color: "#22d3ee" },
+  { id: "Altman", group: "tech", count: 10, color: "#22d3ee" },
+  { id: "Zuckerberg", group: "tech", count: 27, color: "#22d3ee" },
+  // Locations
+  { id: "Little St James", group: "locations", count: 419, color: "#f472b6" },
+  { id: "Zorro Ranch", group: "locations", count: 178, color: "#f472b6" },
+  { id: "Mar-a-Lago", group: "locations", count: 103, color: "#f472b6" },
+  // Other
+  { id: "Brunel", group: "other", count: 277, color: "#8899aa" },
+  { id: "Sarah Kellen", group: "other", count: 109, color: "#8899aa" },
+  { id: "Spacey", group: "other", count: 25, color: "#8899aa" },
+  { id: "Diddy", group: "other", count: 18, color: "#8899aa" },
+  { id: "Spielberg", group: "other", count: 10, color: "#8899aa" },
+  { id: "Oprah", group: "other", count: 8, color: "#8899aa" },
+  { id: "Tom Hanks", group: "other", count: 7, color: "#8899aa" },
+  { id: "Woody Allen", group: "other", count: 15, color: "#8899aa" },
+  { id: "Naomi Campbell", group: "other", count: 12, color: "#8899aa" },
+  { id: "Chris Tucker", group: "other", count: 10, color: "#8899aa" }
+];
+
+// Edges: co-occurrence in documents (weighted by frequency)
+const GRAPH_EDGES = [
+  // Core connections
+  { source: "Epstein", target: "Maxwell", weight: 10 },
+  { source: "Epstein", target: "Trump", weight: 7 },
+  { source: "Epstein", target: "Clinton", weight: 7 },
+  { source: "Epstein", target: "Prince Andrew", weight: 8 },
+  { source: "Epstein", target: "Dershowitz", weight: 7 },
+  { source: "Epstein", target: "Acosta", weight: 6 },
+  { source: "Epstein", target: "Wexner", weight: 7 },
+  { source: "Epstein", target: "Gates", weight: 5 },
+  { source: "Epstein", target: "Little St James", weight: 8 },
+  { source: "Epstein", target: "Zorro Ranch", weight: 6 },
+  { source: "Epstein", target: "JP Morgan", weight: 7 },
+  { source: "Epstein", target: "Deutsche Bank", weight: 6 },
+  { source: "Epstein", target: "Leon Black", weight: 6 },
+  { source: "Epstein", target: "Brunel", weight: 7 },
+  { source: "Epstein", target: "Sarah Kellen", weight: 6 },
+  { source: "Epstein", target: "Jes Staley", weight: 5 },
+  { source: "Epstein", target: "Richardson", weight: 5 },
+  { source: "Epstein", target: "Israel", weight: 4 },
+  { source: "Epstein", target: "Russia", weight: 3 },
+  { source: "Epstein", target: "Barr", weight: 4 },
+  { source: "Epstein", target: "Mar-a-Lago", weight: 5 },
+  { source: "Epstein", target: "Woody Allen", weight: 3 },
+  { source: "Epstein", target: "Naomi Campbell", weight: 3 },
+  { source: "Epstein", target: "Spacey", weight: 3 },
+  { source: "Epstein", target: "Chris Tucker", weight: 3 },
+  { source: "Epstein", target: "Bank Hapoalim", weight: 4 },
+  { source: "Epstein", target: "Signature Bank", weight: 3 },
+  { source: "Epstein", target: "Ehud Barak", weight: 4 },
+  { source: "Epstein", target: "Robert Maxwell", weight: 4 },
+  { source: "Epstein", target: "Mossad", weight: 3 },
+  { source: "Epstein", target: "Obama", weight: 3 },
+  { source: "Epstein", target: "Biden", weight: 3 },
+  { source: "Epstein", target: "Kushner", weight: 4 },
+
+  // Maxwell connections
+  { source: "Maxwell", target: "Prince Andrew", weight: 7 },
+  { source: "Maxwell", target: "Clinton", weight: 5 },
+  { source: "Maxwell", target: "Trump", weight: 4 },
+  { source: "Maxwell", target: "Brunel", weight: 6 },
+  { source: "Maxwell", target: "Sarah Kellen", weight: 6 },
+  { source: "Maxwell", target: "Little St James", weight: 7 },
+  { source: "Maxwell", target: "Dershowitz", weight: 5 },
+  { source: "Maxwell", target: "Richardson", weight: 5 },
+  { source: "Maxwell", target: "Robert Maxwell", weight: 5 },
+  { source: "Maxwell", target: "Israel", weight: 4 },
+  { source: "Maxwell", target: "Mossad", weight: 3 },
+  { source: "Maxwell", target: "Wexner", weight: 4 },
+  { source: "Maxwell", target: "Gates", weight: 3 },
+  { source: "Maxwell", target: "Naomi Campbell", weight: 3 },
+  { source: "Maxwell", target: "Ehud Barak", weight: 3 },
+  { source: "Maxwell", target: "Zorro Ranch", weight: 4 },
+
+  // Trump connections
+  { source: "Trump", target: "Prince Andrew", weight: 4 },
+  { source: "Trump", target: "Dershowitz", weight: 5 },
+  { source: "Trump", target: "Acosta", weight: 5 },
+  { source: "Trump", target: "Mar-a-Lago", weight: 7 },
+  { source: "Trump", target: "Kushner", weight: 6 },
+  { source: "Trump", target: "Bannon", weight: 4 },
+  { source: "Trump", target: "Barr", weight: 5 },
+  { source: "Trump", target: "Ivanka", weight: 5 },
+  { source: "Trump", target: "Clinton", weight: 4 },
+  { source: "Trump", target: "Pence", weight: 3 },
+  { source: "Trump", target: "DeSantis", weight: 3 },
+
+  // Clinton connections
+  { source: "Clinton", target: "Little St James", weight: 4 },
+  { source: "Clinton", target: "Richardson", weight: 4 },
+  { source: "Clinton", target: "Spacey", weight: 3 },
+  { source: "Clinton", target: "Chris Tucker", weight: 3 },
+  { source: "Clinton", target: "Obama", weight: 3 },
+  { source: "Clinton", target: "Biden", weight: 3 },
+
+  // Prince Andrew connections
+  { source: "Prince Andrew", target: "Dershowitz", weight: 5 },
+  { source: "Prince Andrew", target: "Little St James", weight: 5 },
+  { source: "Prince Andrew", target: "Brunel", weight: 3 },
+
+  // Financial connections
+  { source: "JP Morgan", target: "Deutsche Bank", weight: 5 },
+  { source: "JP Morgan", target: "Jes Staley", weight: 6 },
+  { source: "JP Morgan", target: "Leon Black", weight: 4 },
+  { source: "Deutsche Bank", target: "Leon Black", weight: 3 },
+  { source: "Deutsche Bank", target: "Signature Bank", weight: 3 },
+  { source: "Wexner", target: "Leon Black", weight: 4 },
+  { source: "Wexner", target: "JP Morgan", weight: 3 },
+  { source: "Bank Hapoalim", target: "Israel", weight: 5 },
+  { source: "Bank Hapoalim", target: "Deutsche Bank", weight: 3 },
+  { source: "Signature Bank", target: "JP Morgan", weight: 3 },
+
+  // Intelligence connections
+  { source: "Israel", target: "Mossad", weight: 7 },
+  { source: "Israel", target: "Ehud Barak", weight: 6 },
+  { source: "Israel", target: "Robert Maxwell", weight: 5 },
+  { source: "Russia", target: "Putin", weight: 7 },
+  { source: "Mossad", target: "Robert Maxwell", weight: 5 },
+  { source: "Mossad", target: "Ehud Barak", weight: 4 },
+
+  // Location connections
+  { source: "Little St James", target: "Zorro Ranch", weight: 4 },
+  { source: "Mar-a-Lago", target: "Acosta", weight: 3 },
+
+  // Other connections
+  { source: "Brunel", target: "Naomi Campbell", weight: 3 },
+  { source: "Gates", target: "Musk", weight: 2 },
+  { source: "Gates", target: "Thiel", weight: 2 },
+  { source: "Zuckerberg", target: "Thiel", weight: 2 },
+  { source: "Bezos", target: "Gates", weight: 2 },
+  { source: "Altman", target: "Thiel", weight: 2 },
+  { source: "Pelosi", target: "Schumer", weight: 3 },
+  { source: "Obama", target: "Biden", weight: 4 },
+  { source: "Barr", target: "Acosta", weight: 4 },
+  { source: "Bush", target: "Clinton", weight: 3 },
+  { source: "Bush", target: "Kerry", weight: 2 },
+  { source: "Spielberg", target: "Oprah", weight: 2 },
+  { source: "Tom Hanks", target: "Spielberg", weight: 2 },
+  { source: "Diddy", target: "Spacey", weight: 2 },
+  { source: "Oprah", target: "Tom Hanks", weight: 2 }
+];
+
+
+/* ============================================================
+   ANIMATED COUNTER
+   ============================================================ */
+
+function animateCounters() {
+  document.querySelectorAll('.stat-number[data-target]').forEach(el => {
+    const target = parseInt(el.dataset.target);
+    const suffix = el.dataset.suffix || '';
+    const duration = 2000;
+    const start = performance.now();
+    function tick(now) {
+      const elapsed = now - start;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const current = Math.floor(eased * target);
+      el.textContent = current.toLocaleString() + suffix;
+      if (progress < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  });
+}
+
+/* ============================================================
+   SCROLL REVEAL
+   ============================================================ */
+
+function initScrollReveal() {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+}
+
+/* ============================================================
+   PROGRESS BARS ANIMATION
+   ============================================================ */
+
+function animateProgressBars() {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const fill = e.target.querySelector('.progress-bar-fill');
+        if (fill && fill.dataset.width) {
+          setTimeout(() => { fill.style.width = fill.dataset.width; }, 300);
+        }
+      }
+    });
+  }, { threshold: 0.3 });
+  document.querySelectorAll('.status-card').forEach(el => observer.observe(el));
+}
+
+/* ============================================================
+   SEARCH
+   ============================================================ */
+
+function openSearch() {
+  document.getElementById('searchOverlay').classList.add('active');
+  document.getElementById('searchInput').focus();
+}
+function closeSearch() {
+  document.getElementById('searchOverlay').classList.remove('active');
+  document.getElementById('searchInput').value = '';
+  document.getElementById('searchResults').innerHTML = '<div class="search-empty">Type to search across all findings</div>';
+}
+
+document.addEventListener('keydown', (e) => {
+  if ((e.ctrlKey || e.metaKey) && e.key === 'k') { e.preventDefault(); openSearch(); }
+  if (e.key === 'Escape') closeSearch();
+});
+document.getElementById('searchOverlay').addEventListener('click', (e) => {
+  if (e.target === e.currentTarget) closeSearch();
+});
+
+function handleSearch(query) {
+  const results = document.getElementById('searchResults');
+  if (!query.trim()) {
+    results.innerHTML = '<div class="search-empty">Type to search across all findings</div>';
+    return;
+  }
+  const q = query.toLowerCase();
+  // Search terms
+  const termMatches = TERM_DATA.filter(t => t.term.toLowerCase().includes(q));
+  // Search findings
+  const findingMatches = FINDINGS_DATA.filter(f =>
+    f.term.toLowerCase().includes(q) ||
+    f.preview.toLowerCase().includes(q) ||
+    f.citation.toLowerCase().includes(q)
+  );
+
+  let html = '';
+  termMatches.forEach(t => {
+    html += `<div class="search-result-item" onclick="closeSearch(); document.getElementById('terms').scrollIntoView({behavior:'smooth'})">
+      <span class="sr-term">${t.term}</span><span class="sr-count">${t.count.toLocaleString()} findings</span>
+      <div class="sr-snippet">Term frequency across all datasets</div>
+    </div>`;
+  });
+  findingMatches.forEach(f => {
+    html += `<div class="search-result-item" onclick="closeSearch(); document.getElementById('findings').scrollIntoView({behavior:'smooth'})">
+      <span class="sr-term">[${f.severity}] ${f.term}</span><span class="sr-count">${f.citation}</span>
+      <div class="sr-snippet">${f.preview}</div>
+    </div>`;
+  });
+
+  if (!html) html = '<div class="search-empty">No results found</div>';
+  results.innerHTML = html;
+}
+
+/* ============================================================
+   RENDER: FINDINGS
+   ============================================================ */
+
+function renderFindings(filter) {
+  const list = document.getElementById('findingsList');
+  let data = FINDINGS_DATA;
+  if (filter === 'critical') data = data.filter(f => f.severity >= 15);
+  else if (filter === 'high') data = data.filter(f => f.severity >= 10 && f.severity < 15);
+  else if (filter === 'medium') data = data.filter(f => f.severity >= 5 && f.severity < 10);
+
+  list.innerHTML = data.map(f => {
+    const sevClass = f.severity >= 15 ? 'sev-critical' : f.severity >= 10 ? 'sev-high' : 'sev-medium';
+    return `<div class="finding-card" onclick="this.classList.toggle('expanded')">
+      <div class="fc-header">
+        <div class="severity-badge ${sevClass}">${f.severity}</div>
+        <div class="fc-info">
+          <div class="fc-term">${f.term}</div>
+          <div class="fc-citation">${f.citation}</div>
+        </div>
+        <div class="fc-preview">${f.preview}</div>
+        <div class="fc-expand-icon">&#9660;</div>
+      </div>
+      <div class="fc-body">
+        <div class="fc-context">${f.context}</div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function filterFindings(filter, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderFindings(filter);
+}
+
+/* ============================================================
+   RENDER: BAR CHART
+   ============================================================ */
+
+function renderBarChart() {
+  const container = document.getElementById('barChart');
+  const maxCount = TERM_DATA[0].count;
+  container.innerHTML = TERM_DATA.map(t => {
+    const pct = Math.max((t.count / maxCount) * 100, 2);
+    return `<div class="bar-row">
+      <div class="bar-label">${t.term}</div>
+      <div class="bar-track">
+        <div class="bar-fill ${t.color}" style="width:0%" data-width="${pct}%">
+          <span class="bar-value">${t.count.toLocaleString()}</span>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+
+  // Animate bars on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        container.querySelectorAll('.bar-fill').forEach((bar, i) => {
+          setTimeout(() => { bar.style.width = bar.dataset.width; }, i * 40);
+        });
+      }
+    });
+  }, { threshold: 0.1 });
+  observer.observe(container);
+}
+
+/* ============================================================
+   RENDER: TIMELINE
+   ============================================================ */
+
+function renderTimeline() {
+  const container = document.getElementById('timelineContainer');
+  container.innerHTML = TIMELINE_DATA.map(t =>
+    `<div class="tl-item">
+      <div class="tl-date">${t.date}</div>
+      <div class="tl-title">${t.title}</div>
+      <div class="tl-desc">${t.desc}</div>
+    </div>`
+  ).join('');
+}
+
+/* ============================================================
+   RENDER: DATASETS
+   ============================================================ */
+
+function renderDatasets() {
+  const grid = document.getElementById('dsGrid');
+  grid.innerHTML = DATASETS_DATA.map(d => {
+    const badgeClass = d.status === 'complete' ? 'badge-complete' : d.status === 'running' ? 'badge-running' : d.status === 'pending' ? 'badge-pending' : 'badge-complete';
+    const statusLabel = d.status.charAt(0).toUpperCase() + d.status.slice(1);
+    return `<div class="ds-card reveal">
+      <div class="ds-title">${d.name} <span class="status-badge ${badgeClass}">${statusLabel}</span></div>
+      <div class="ds-desc">${d.desc}</div>
+      <div class="ds-stat">${d.stat}</div>
+    </div>`;
+  }).join('');
+}
+
+/* ============================================================
+   FORCE-DIRECTED NETWORK GRAPH (Canvas)
+   ============================================================ */
+
+let graphNodes = [];
+let graphEdges = [];
+let canvas, ctx;
+let canvasW, canvasH;
+let dragging = null;
+let hoveredNode = null;
+let selectedNode = null;
+let mouseX = 0, mouseY = 0;
+let graphFilter = 'all';
+let animFrame;
+let offsetX = 0, offsetY = 0;
+let scale = 1;
+
+function nodeRadius(count) {
+  // Scale radius by count: min 6, max 48
+  const maxCount = 62699;
+  return 6 + Math.sqrt(count / maxCount) * 42;
+}
+
+function initGraph() {
+  canvas = document.getElementById('networkCanvas');
+  ctx = canvas.getContext('2d');
+  resizeCanvas();
+
+  // Initialize node positions
+  graphNodes = GRAPH_NODES.map((n, i) => {
+    const angle = (i / GRAPH_NODES.length) * Math.PI * 2;
+    const dist = 150 + Math.random() * 200;
+    return {
+      ...n,
+      x: canvasW / 2 + Math.cos(angle) * dist,
+      y: canvasH / 2 + Math.sin(angle) * dist,
+      vx: 0,
+      vy: 0,
+      radius: nodeRadius(n.count),
+      visible: true
+    };
+  });
+
+  graphEdges = GRAPH_EDGES.map(e => ({
+    ...e,
+    sourceNode: graphNodes.find(n => n.id === e.source),
+    targetNode: graphNodes.find(n => n.id === e.target)
+  })).filter(e => e.sourceNode && e.targetNode);
+
+  // Event listeners
+  canvas.addEventListener('mousedown', onMouseDown);
+  canvas.addEventListener('mousemove', onMouseMove);
+  canvas.addEventListener('mouseup', onMouseUp);
+  canvas.addEventListener('mouseleave', onMouseLeave);
+  canvas.addEventListener('click', onCanvasClick);
+  // Wheel zoom removed — scrolling should scroll the page, not zoom the graph
+
+  // Touch support
+  canvas.addEventListener('touchstart', onTouchStart, { passive: false });
+  canvas.addEventListener('touchmove', onTouchMove, { passive: false });
+  canvas.addEventListener('touchend', onTouchEnd);
+
+  window.addEventListener('resize', resizeCanvas);
+
+  simulate();
+}
+
+function resizeCanvas() {
+  const rect = canvas.getBoundingClientRect();
+  const dpr = window.devicePixelRatio || 1;
+  canvas.width = rect.width * dpr;
+  canvas.height = rect.height * dpr;
+  canvasW = rect.width;
+  canvasH = rect.height;
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+}
+
+function screenToWorld(sx, sy) {
+  return { x: (sx - offsetX) / scale, y: (sy - offsetY) / scale };
+}
+
+function worldToScreen(wx, wy) {
+  return { x: wx * scale + offsetX, y: wy * scale + offsetY };
+}
+
+function getNodeAt(sx, sy) {
+  const { x, y } = screenToWorld(sx, sy);
+  for (let i = graphNodes.length - 1; i >= 0; i--) {
+    const n = graphNodes[i];
+    if (!n.visible) continue;
+    const dx = x - n.x;
+    const dy = y - n.y;
+    if (dx * dx + dy * dy < n.radius * n.radius) return n;
+  }
+  return null;
+}
+
+function onMouseDown(e) {
+  const rect = canvas.getBoundingClientRect();
+  const sx = e.clientX - rect.left;
+  const sy = e.clientY - rect.top;
+  const node = getNodeAt(sx, sy);
+  if (node) {
+    dragging = node;
+    dragging._dragOffsetX = screenToWorld(sx, sy).x - node.x;
+    dragging._dragOffsetY = screenToWorld(sx, sy).y - node.y;
+    canvas.style.cursor = 'grabbing';
+  }
+}
+
+function onMouseMove(e) {
+  const rect = canvas.getBoundingClientRect();
+  const sx = e.clientX - rect.left;
+  const sy = e.clientY - rect.top;
+  mouseX = e.clientX;
+  mouseY = e.clientY;
+
+  if (dragging) {
+    const w = screenToWorld(sx, sy);
+    dragging.x = w.x - dragging._dragOffsetX;
+    dragging.y = w.y - dragging._dragOffsetY;
+    dragging.vx = 0;
+    dragging.vy = 0;
+  }
+
+  const node = getNodeAt(sx, sy);
+  if (node !== hoveredNode) {
+    hoveredNode = node;
+    if (hoveredNode) {
+      canvas.style.cursor = 'pointer';
+      showTooltip(hoveredNode);
+    } else {
+      canvas.style.cursor = dragging ? 'grabbing' : 'grab';
+      hideTooltip();
+    }
+  }
+  if (hoveredNode) {
+    const tt = document.getElementById('networkTooltip');
+    tt.style.left = (mouseX + 16) + 'px';
+    tt.style.top = (mouseY - 10) + 'px';
+  }
+}
+
+function onMouseUp() {
+  dragging = null;
+  canvas.style.cursor = hoveredNode ? 'pointer' : 'grab';
+}
+
+function onMouseLeave() {
+  dragging = null;
+  hoveredNode = null;
+  hideTooltip();
+  canvas.style.cursor = 'grab';
+}
+
+function onCanvasClick(e) {
+  const rect = canvas.getBoundingClientRect();
+  const sx = e.clientX - rect.left;
+  const sy = e.clientY - rect.top;
+  const node = getNodeAt(sx, sy);
+  if (node) {
+    selectedNode = node;
+    showNodeDetail(node);
+  } else {
+    selectedNode = null;
+    closeNodeDetail();
+  }
+}
+
+function onWheel(e) {
+  e.preventDefault();
+  const rect = canvas.getBoundingClientRect();
+  const sx = e.clientX - rect.left;
+  const sy = e.clientY - rect.top;
+  const delta = e.deltaY > 0 ? 0.9 : 1.1;
+  const newScale = Math.max(0.3, Math.min(3, scale * delta));
+  // Zoom toward cursor
+  offsetX = sx - (sx - offsetX) * (newScale / scale);
+  offsetY = sy - (sy - offsetY) * (newScale / scale);
+  scale = newScale;
+}
+
+// Touch support
+let lastTouchDist = 0;
+function onTouchStart(e) {
+  if (e.touches.length === 1) {
+    e.preventDefault();
+    const rect = canvas.getBoundingClientRect();
+    const sx = e.touches[0].clientX - rect.left;
+    const sy = e.touches[0].clientY - rect.top;
+    const node = getNodeAt(sx, sy);
+    if (node) {
+      dragging = node;
+      dragging._dragOffsetX = screenToWorld(sx, sy).x - node.x;
+      dragging._dragOffsetY = screenToWorld(sx, sy).y - node.y;
+    }
+  }
+  if (e.touches.length === 2) {
+    lastTouchDist = Math.hypot(
+      e.touches[0].clientX - e.touches[1].clientX,
+      e.touches[0].clientY - e.touches[1].clientY
+    );
+  }
+}
+function onTouchMove(e) {
+  if (e.touches.length === 1 && dragging) {
+    e.preventDefault();
+    const rect = canvas.getBoundingClientRect();
+    const sx = e.touches[0].clientX - rect.left;
+    const sy = e.touches[0].clientY - rect.top;
+    const w = screenToWorld(sx, sy);
+    dragging.x = w.x - dragging._dragOffsetX;
+    dragging.y = w.y - dragging._dragOffsetY;
+    dragging.vx = 0;
+    dragging.vy = 0;
+  }
+  // Pinch zoom removed — let the page scroll normally
+}
+function onTouchEnd() {
+  dragging = null;
+  lastTouchDist = 0;
+}
+
+function showTooltip(node) {
+  const tt = document.getElementById('networkTooltip');
+  document.getElementById('ttName').textContent = node.id;
+  document.getElementById('ttGroup').textContent = node.group.toUpperCase();
+  document.getElementById('ttGroup').style.color = node.color;
+  document.getElementById('ttCount').textContent = node.count.toLocaleString() + ' findings';
+  const connections = graphEdges
+    .filter(e => e.sourceNode === node || e.targetNode === node)
+    .map(e => e.sourceNode === node ? e.targetNode.id : e.sourceNode.id);
+  document.getElementById('ttConnections').textContent = 'Connected to: ' + connections.slice(0, 8).join(', ') + (connections.length > 8 ? ` +${connections.length - 8} more` : '');
+  tt.classList.add('active');
+}
+
+function hideTooltip() {
+  document.getElementById('networkTooltip').classList.remove('active');
+}
+
+function showNodeDetail(node) {
+  const panel = document.getElementById('nodeDetailPanel');
+  document.getElementById('ndpName').textContent = node.id;
+  document.getElementById('ndpGroup').textContent = node.group.toUpperCase();
+  document.getElementById('ndpGroup').style.color = node.color;
+  document.getElementById('ndpFindings').textContent = node.count.toLocaleString();
+  document.getElementById('ndpCategory').textContent = node.group.charAt(0).toUpperCase() + node.group.slice(1);
+
+  const connections = graphEdges
+    .filter(e => e.sourceNode === node || e.targetNode === node)
+    .map(e => e.sourceNode === node ? e.targetNode : e.sourceNode);
+  document.getElementById('ndpConnCount').textContent = connections.length;
+  document.getElementById('ndpConnList').innerHTML = connections
+    .map(c => `<span class="ndp-conn-tag" style="border-color:${c.color}40; color:${c.color}">${c.id}</span>`)
+    .join('');
+
+  panel.classList.add('active');
+}
+
+function closeNodeDetail() {
+  document.getElementById('nodeDetailPanel').classList.remove('active');
+  selectedNode = null;
+}
+
+function setGraphFilter(filter, btn) {
+  graphFilter = filter;
+  document.querySelectorAll('.net-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+
+  graphNodes.forEach(n => {
+    n.visible = filter === 'all' || n.group === filter ||
+      (filter === 'core' && n.group === 'core') ||
+      // Always show core nodes
+      n.group === 'core';
+  });
+  // Show nodes connected to visible nodes
+  if (filter !== 'all') {
+    const visibleIds = new Set(graphNodes.filter(n => n.visible).map(n => n.id));
+    graphEdges.forEach(e => {
+      if (visibleIds.has(e.source) || visibleIds.has(e.target)) {
+        if (e.sourceNode) e.sourceNode.visible = true;
+        if (e.targetNode) e.targetNode.visible = true;
+      }
+    });
+  }
+}
+
+/* Force simulation */
+function simulate() {
+  const centerX = canvasW / 2;
+  const centerY = canvasH / 2;
+  const alpha = 0.15;
+  const repulsion = 3000;
+  const attraction = 0.003;
+  const damping = 0.85;
+  const centerGravity = 0.01;
+
+  // Repulsion between all visible nodes
+  for (let i = 0; i < graphNodes.length; i++) {
+    const a = graphNodes[i];
+    if (!a.visible) continue;
+    for (let j = i + 1; j < graphNodes.length; j++) {
+      const b = graphNodes[j];
+      if (!b.visible) continue;
+      let dx = a.x - b.x;
+      let dy = a.y - b.y;
+      let dist = Math.sqrt(dx * dx + dy * dy) || 1;
+      let minDist = a.radius + b.radius + 20;
+      if (dist < minDist * 3) {
+        let force = repulsion / (dist * dist);
+        a.vx += (dx / dist) * force * alpha;
+        a.vy += (dy / dist) * force * alpha;
+        b.vx -= (dx / dist) * force * alpha;
+        b.vy -= (dy / dist) * force * alpha;
+      }
+    }
+  }
+
+  // Attraction along edges
+  graphEdges.forEach(e => {
+    if (!e.sourceNode.visible || !e.targetNode.visible) return;
+    const dx = e.targetNode.x - e.sourceNode.x;
+    const dy = e.targetNode.y - e.sourceNode.y;
+    const dist = Math.sqrt(dx * dx + dy * dy) || 1;
+    const idealDist = 100 + (e.sourceNode.radius + e.targetNode.radius);
+    const force = (dist - idealDist) * attraction * e.weight;
+    e.sourceNode.vx += (dx / dist) * force;
+    e.sourceNode.vy += (dy / dist) * force;
+    e.targetNode.vx -= (dx / dist) * force;
+    e.targetNode.vy -= (dy / dist) * force;
+  });
+
+  // Center gravity
+  graphNodes.forEach(n => {
+    if (!n.visible) return;
+    n.vx += (centerX - n.x) * centerGravity;
+    n.vy += (centerY - n.y) * centerGravity;
+  });
+
+  // Apply velocity & damping
+  graphNodes.forEach(n => {
+    if (n === dragging || !n.visible) return;
+    n.vx *= damping;
+    n.vy *= damping;
+    n.x += n.vx;
+    n.y += n.vy;
+    // Boundary enforcement
+    n.x = Math.max(n.radius + 10, Math.min(canvasW - n.radius - 10, n.x));
+    n.y = Math.max(n.radius + 10, Math.min(canvasH - n.radius - 10, n.y));
+  });
+
+  draw();
+  animFrame = requestAnimationFrame(simulate);
+}
+
+function draw() {
+  ctx.clearRect(0, 0, canvasW, canvasH);
+  ctx.save();
+  ctx.translate(offsetX, offsetY);
+  ctx.scale(scale, scale);
+
+  // Draw edges
+  graphEdges.forEach(e => {
+    if (!e.sourceNode.visible || !e.targetNode.visible) return;
+    const isHighlighted = hoveredNode &&
+      (e.sourceNode === hoveredNode || e.targetNode === hoveredNode);
+    const isSelected = selectedNode &&
+      (e.sourceNode === selectedNode || e.targetNode === selectedNode);
+
+    ctx.beginPath();
+    ctx.moveTo(e.sourceNode.x, e.sourceNode.y);
+    ctx.lineTo(e.targetNode.x, e.targetNode.y);
+
+    if (isHighlighted || isSelected) {
+      const col = isHighlighted ? hoveredNode.color : selectedNode.color;
+      ctx.strokeStyle = col + '60';
+      ctx.lineWidth = 1.5 + e.weight * 0.3;
+    } else {
+      ctx.strokeStyle = 'rgba(255,255,255,0.04)';
+      ctx.lineWidth = 0.5 + e.weight * 0.1;
+    }
+    ctx.stroke();
+  });
+
+  // Draw nodes
+  graphNodes.forEach(n => {
+    if (!n.visible) return;
+    const isHovered = n === hoveredNode;
+    const isSelected = n === selectedNode;
+    const isConnected = (hoveredNode || selectedNode) && graphEdges.some(e =>
+      (e.sourceNode === (hoveredNode || selectedNode) && e.targetNode === n) ||
+      (e.targetNode === (hoveredNode || selectedNode) && e.sourceNode === n)
+    );
+
+    let alpha = 1;
+    if ((hoveredNode || selectedNode) && !isHovered && !isSelected && !isConnected) {
+      alpha = 0.15;
+    }
+
+    // Glow
+    if (isHovered || isSelected) {
+      ctx.beginPath();
+      const grad = ctx.createRadialGradient(n.x, n.y, n.radius * 0.5, n.x, n.y, n.radius * 2.5);
+      grad.addColorStop(0, n.color + '40');
+      grad.addColorStop(1, n.color + '00');
+      ctx.fillStyle = grad;
+      ctx.arc(n.x, n.y, n.radius * 2.5, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    // Node circle
+    ctx.beginPath();
+    ctx.arc(n.x, n.y, n.radius, 0, Math.PI * 2);
+    ctx.globalAlpha = alpha;
+    ctx.fillStyle = n.color + (isHovered || isSelected ? 'ee' : 'aa');
+    ctx.fill();
+    ctx.strokeStyle = n.color;
+    ctx.lineWidth = isHovered || isSelected ? 2.5 : 1;
+    ctx.stroke();
+    ctx.globalAlpha = 1;
+
+    // Label
+    if (n.radius > 10 || isHovered || isSelected || isConnected) {
+      ctx.globalAlpha = alpha;
+      ctx.font = `${Math.max(10, Math.min(14, n.radius * 0.65))}px Inter, sans-serif`;
+      ctx.fillStyle = '#ffffff';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+
+      // Shadow behind text for readability
+      ctx.save();
+      ctx.shadowColor = 'rgba(0,0,0,0.8)';
+      ctx.shadowBlur = 4;
+      ctx.fillText(n.id, n.x, n.y + n.radius + 14);
+      ctx.restore();
+      ctx.globalAlpha = 1;
+    }
+  });
+
+  ctx.restore();
+}
+
+/* ============================================================
+   INIT
+   ============================================================ */
+
+document.addEventListener('DOMContentLoaded', () => {
+  renderFindings('all');
+  renderBarChart();
+  renderTimeline();
+  renderDatasets();
+  initScrollReveal();
+  animateProgressBars();
+
+  // Start counter animation when hero is visible
+  const heroObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { animateCounters(); heroObserver.disconnect(); } });
+  }, { threshold: 0.3 });
+  heroObserver.observe(document.querySelector('.hero'));
+
+  // Init network graph
+  initGraph();
+});
+</script>
+</body>
+</html>
