@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Epstein Files Investigation Dashboard v10.30 — DS1-8 + DS10 Complete + All Sources (186,027 findings)</title>
+<title>Epstein Files Investigation Dashboard v10.31 — DS1-8 + DS10 Complete + All Sources (186,027 findings)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -940,7 +940,7 @@ body {
   <div class="nav-inner">
     <div class="nav-brand">
       <span class="dot"></span>
-      <span>Epstein Files v10.30</span>
+      <span>Epstein Files v10.31</span>
     </div>
     <ul class="nav-links">
       <li><a href="#network">Network</a></li>
@@ -1513,7 +1513,7 @@ body {
 
 <!-- FOOTER -->
 <footer class="footer">
-  <div class="footer-brand">Epstein Files Investigation Dashboard v10.30 — DS1-8 + DS9 + DS10 + Local Batch Complete</div>
+  <div class="footer-brand">Epstein Files Investigation Dashboard v10.31 — DS1-8 + DS9 + DS10 + Local Batch Complete</div>
   <p>
     Generated: 2026-02-02 UTC<br>
     Methodology: Automated keyword extraction with context-aware severity scoring and composite score integration across all pipelines.<br>
@@ -1811,7 +1811,57 @@ const FINDINGS_DATA = [
 
 {id: "EFTA00166775", severity: "critical", pages: 24, dataset: "DS9", keywords: ["deutsche bank", "butterfly trust", "ghislaine maxwell", "jp morgan", "wexner"], title: "Deutsche Bank KYC: Butterfly Trust — Ghislaine Maxwell Named as Beneficiary, Paul Morris Followed Epstein from JPMorgan", description: "Complete 24-page Deutsche Bank PWM KYC for Epstein's Butterfly Trust (est. 12/27/2006). Paul Morris was Epstein's relationship manager at BOTH JPMorgan and Deutsche Bank — he followed Epstein between banks. Trust accounts opened 10/9/2013. Ghislaine Maxwell listed as Beneficiary #9. Trustees: Darren Indyke and Richard Kahn. Assets: $120M at JPMorgan, $70M at DB. Net worth $100M-$500M. DB rated relationship as 'High Risk' but compliance approved Jan 2014 despite criminal conviction. Grand jury exhibit under Fed. R. Crim. P. 6(e).", persons: ["Jeffrey Epstein", "Paul Morris", "Ghislaine Maxwell", "Darren Indyke", "Richard Kahn", "Leslie Wexner", "Brian Biggar", "Jacqueline Lightbody"], dateRange: "2013-2014"},
 {id: "EFTA00078198", severity: "critical", pages: 9, dataset: "DS9", keywords: ["maxwell", "trafficking", "israel", "ukraine", "brunel"], title: "Marsh Law Firm Letter to SDNY: Israeli Child Victim Identifies Epstein Mansion, Maxwell ('Lane') Trained Children in Abuse", description: "Formal 9-page letter from Marsh Law Firm to U.S. Attorney Audrey Strauss (Nov 2020) reporting Israeli child victim 'I' trafficked to NYC. Victim identified Epstein's mansion at '9 on 71 street' with precise architectural details. Described 'Jeffrey' and 'Lane' (Maxwell) who 'taught I and other girls how to use oil to touch men like Jeffrey.' Evidence of victims YOUNGER than teenagers — 'it cost more money to be with the younger girls.' Foster parents 'Mike' and 'Sheila'/Barbara connected to trafficking network. Ukrainian phone numbers confirmed by DeliverFund. ~30 CSAM images. Ongoing Hebrew-language threats to victim through 2019-2020.", persons: ["Jeffrey Epstein", "Ghislaine Maxwell", "Jean-Luc Brunel", "Audrey Strauss"], dateRange: "1997-2020"},
-];
+
+
+            {
+                id: "EFTA00174356",
+                title: "FBI Complete Case Initiation Summary — Full Investigation Timeline",
+                severity: "critical",
+                category: "FBI Internal",
+                date: "2019-2022",
+                source: "DS9 Wayback Pipeline",
+                persons: ["Leon Black", "Jes Staley", "Harvey Weinstein", "Ghislaine Maxwell", "Sarah Kellen", "Lesley Groff", "Les Wexner", "Jean Luc Brunel", "Nick Tartaglione"],
+                summary: "Complete FBI case summary spanning 12/2018-6/2022. October 2019 victim testimony: Leon Black 'began initiating sexual contact' during massage — victim fled. Jes Staley 'forced her to touch his genitals and raped her.' Epstein 'laughed off' complaint about Black. Victim asked to massage Harvey Weinstein who asked her to remove shirt — she refused. 'Contrary to news reports, searches did not reveal any cameras in bedrooms or massage rooms.' CSAM found on Epstein devices. Wexner 'severed ties in 2007 after discovering Epstein stole hundreds of thousands.' Kellen's lawyers: relationship 'sexually abusive,' destroyed evidence at Epstein's direction. 07/23/2019: Epstein found unconscious, cellmate Tartaglione denied knowledge.",
+                document_pages: 6,
+                key_quote: "Leon Black began initiating sexual contact... Jes Staley forced her to touch his genitals and raped her... Contrary to some news reports, these searches did not reveal any cameras in any of the bedrooms or massage rooms"
+            },
+            {
+                id: "EFTA00090314",
+                title: "FBI FD-1023 CHS Report — Epstein Intelligence Service Connections",
+                severity: "high",
+                category: "FBI Intelligence",
+                date: "2020-10-19",
+                source: "DS9 Wayback Pipeline",
+                persons: ["Alan Dershowitz", "Alexander Acosta", "Ehud Barak", "Leon Black", "Masha Drokova"],
+                summary: "FBI LA Field Office Confidential Human Source reporting document. CHS reports Dershowitz told Acosta 'Epstein belonged to both U.S. and allied intelligence services.' Epstein allegedly 'close to Ehud Barak and trained as a spy under him.' After Dershowitz-Epstein calls, 'Mossad would then call Dershowitz to debrief.' Masha Drokova (Putin youth contact) called Epstein 'wonderful man.' CHS claims Leon Black 'owns Blackwater/Constellis.' NOTE: CHS reliability unknown; many claims secondhand.",
+                document_pages: 3,
+                key_quote: "Dershowitz told Acosta that Epstein belonged to both U.S. and allied intelligence services... Mossad would then call Dershowitz to debrief"
+            },
+            {
+                id: "EFTA00105304",
+                title: "SDNY Internal Financial Investigation — Payment Recipients & Co-Conspirator Trust",
+                severity: "critical",
+                category: "Prosecution Internal",
+                date: "2019-09-15",
+                source: "DS9 Wayback Pipeline",
+                persons: ["Ehud Barak", "Bruce Moskowitz", "Noam Chomsky", "Woody Allen", "Glenn Dubin", "Barry Diller", "Les Wexner", "Henry Jarecki", "Andrew Farkas", "Leon Black"],
+                summary: "Internal SDNY prosecution email on financial investigation. 'Review hasn\'t resulted in anything actionable from a charging perspective.' Named payments to: Ehud Barak, Bruce Moskowitz (Mar-a-Lago dentist/Trump connection), Noam Chomsky, Woody Allen, 25+ Eastern European models. Co-conspirator payments from 'one particular trust account at Deutsche Bank' (Butterfly Trust). 70+ DB accounts, ~40 capitalized names. Financial connections to: Glenn Dubin, Barry Diller, Wexner, Henry Jarecki, Andrew Farkas, Leon Black. Wealth 'consistent with getting a huge chunk from Wexner in the 90s.' Honeycomb Asset Management: ~$100M.",
+                document_pages: 3,
+                key_quote: "Review hasn\'t resulted in anything actionable from a charging perspective... payments to Ehud Barak, Bruce Moskowitz, Noam Chomsky, Woody Allen... one particular trust account at Deutsche Bank"
+            },
+            {
+                id: "EFTA00392990",
+                title: "Epstein Calendar April-May 2013 — Leon Black at Apollo, Power Dinner Circuit",
+                severity: "high",
+                category: "Calendar/Schedule",
+                date: "2013-04",
+                source: "DS9 Wayback Pipeline",
+                persons: ["Leon Black", "Ehud Barak", "Peter Mandelson", "Jes Staley", "Mort Zuckerman", "Andrew Farkas", "Bill Richardson", "Joi Ito", "Roman Abramovich"],
+                summary: "Epstein's personal calendar April-May 2013 (jeevacation@gmail.com to Lesley Groff). April 2: Breakfast w/Leon Black. April 3: Meeting w/Leon Black, Debra, Alan Halperin at Apollo Offices (9 W 57th St, 43rd Floor). April 4: Dinner w/Ehud Barak, Peter Mandelson, Jes Staley, Mort Zuckerman. April 7: Andrew Farkas on Little Saint James. April 27: 'Robert Redford and Richardson' at Ranch (Zorro Ranch). April 29: Milken Conference. Also includes Joi Ito, Roman Abramovich, David Blaine.",
+                document_pages: 6,
+                key_quote: "Meeting w/Leon Black, Debra, Alan Halperin at Apollo Offices, 9 W 57th St 43rd Floor... Dinner w/Ehud Barak, Peter Mandelson, Jes Staley, Mort Zuckerman"
+            }
+        ];
   {id:'EFTA00153703',dataset:'DS9',pages:26,severity:10,keywords:['ghislaine','maxwell','trump','brunel','blackmail','russia'],summary:'MAJOR: Complete FBI FD-302 victim interview - 14yo Interlochen recruit. Maxwell directed group abuse. Brunel brought 15yo to island and brought Russian women on tourist visas. Crystal Walsh blackmailed Epstein for $50K then tipped him off. Shredding papers in NY office. Met Weinstein at Golden Globes. TRUMP ALLEGATION DENIED by victim. Immigration fraud via Parda Beskardes.',date:'2019-10-25',type:'fbi-interview'},
   {id:'EFTA00152619',dataset:'DS9',pages:6,severity:4,keywords:['maxwell'],summary:'SDNY processing Maxwell discovery evidence - Reiter 15 VHS + 39 cassette tapes, Maxwell cell phone GPS data, 4 Blu-Ray discs',date:'2020-10-06',type:'fbi-operational'},
 
@@ -1848,7 +1898,7 @@ const TIMELINE_DATA = [
   { date: "2019-08-09", title: "FBI Status Update: ~60 Victims Identified", desc: "Day before Epstein death. FBI reports ~60 victims, potentially hundreds more. All co-conspirators served except Maxwell in London. [v10.8]" },
   { date: "2019-08-06", title: "FBI Planning Little St James Island Raid", desc: "SDNY drafting search warrant affidavit for island. 845 photos already taken in 13-hour NY residence search. [v10.8]" },
   { date: "2019-10-29", title: "FBI PRTT Active on Maxwell Phone", desc: "Pen Register/Trap and Trace surveillance activated on Ghislaine Maxwell. IP tracked to Pawtucket, Rhode Island. [v10.8]" },
-  { date: "2020-06-08", title: "FBI Maxwell Pre-Arrest: 6 Counts Planned, Active Surveillance", desc: "FBI email reveals exact Maxwell indictment charges planned, mail cover on her address, pen register on phone, physical surveillance coming. Prince Andrew MLAT response coordinated with SDNY. [v10.30]" }
+  { date: "2020-06-08", title: "FBI Maxwell Pre-Arrest: 6 Counts Planned, Active Surveillance", desc: "FBI email reveals exact Maxwell indictment charges planned, mail cover on her address, pen register on phone, physical surveillance coming. Prince Andrew MLAT response coordinated with SDNY. [v10.31]" }
   {date:'2018-12-13',event:'FBI/NYPD discover Epstein SORNA registration phone linked to Wexner/The Limited, begin MC2 model housing investigation',source:'EFTA00152144'},
   {date:'2019-07-24',event:'FBI/NYPD task force tracking down former Epstein employees for interviews about NY residence activities',source:'EFTA00150941'},
   {date:'2020-06-23',event:'FBI CAST analyzing Maxwell phone records and IP addresses one week before arrest, detecting VPN masking',source:'EFTA00150943'},
@@ -1923,7 +1973,13 @@ const TIMELINE_DATA = [
 
 {date: "2013-10-09", event: "Deutsche Bank opens Butterfly Trust accounts for Epstein — Ghislaine Maxwell named as beneficiary, Paul Morris (Epstein's former JPM RM) manages account, rated 'High Risk' but approved", source: "EFTA00166775", category: "financial"},
 {date: "2020-11-10", event: "Marsh Law Firm writes to SDNY reporting Israeli child victim who identified Epstein mansion and Maxwell — evidence of younger-than-teen victims, Ukrainian trafficking connections, ~30 CSAM images", source: "EFTA00078198", category: "legal"},
-];
+
+
+            {date: "2019-2022", event: "FBI Complete Case Initiation Summary — Leon Black sexual contact, Jes Staley raped victim, Weinstein massage, no cameras found, CSAM on devices", source: "EFTA00174356", severity: "critical"},
+            {date: "2020-10-19", event: "FBI FD-1023 CHS Report — Dershowitz told Acosta 'Epstein belonged to intelligence services,' Mossad debriefs, Barak spy claims", source: "EFTA00090314", severity: "high"},
+            {date: "2019-09-15", event: "SDNY internal email: payments to Barak, Moskowitz, Chomsky, Woody Allen; DB trust for co-conspirator payments; Honeycomb $100M", source: "EFTA00105304", severity: "critical"},
+            {date: "2013-04", event: "Epstein calendar: Leon Black at Apollo offices, Barak-Mandelson-Staley-Zuckerman dinner, Richardson at Ranch", source: "EFTA00392990", severity: "high"}
+        ];
 
 const DATASETS_DATA = [
   { name: "Dataset 1 (DS1)", status: "complete", desc: "Court-released documents batch 1. Civil litigation materials, depositions, correspondence.", stat: "3,156 PDFs // COMPLETE" },
