@@ -1,12 +1,12 @@
-# EPSTEIN FILES COMPREHENSIVE ANALYSIS v11
+# EPSTEIN FILES COMPREHENSIVE ANALYSIS v12
 ## Generated: February 1, 2026
-## Sources: 406 PDFs, 40MB+ full text, Datasets 9/12, 3000+ individual findings
+## Sources: 406 PDFs, 40MB+ full text, Datasets 9/12, 3500+ individual findings
 ## Deep analysis of EFTA02731082, EFTA02730741, dec2025 corpus (42MB)
-## v11: 11 deep-dive search agents — exact page citations verified, travel/flight records, victim testimony details, property records, passport analysis, new names discovered
+## v12: 14 deep-dive search agents — NPA secrecy, blackmail system, EDNY murder reference, MCC video destruction, science/academic network, victim recruitment details, TerraMar arrest phone, Dershowitz victim summaries
 
 ---
 
-## WHAT JOURNALISTS ARE MISSING — TOP 40 FINDINGS
+## WHAT JOURNALISTS ARE MISSING — TOP 50 FINDINGS
 
 ### 1. LEON BLACK'S EXTREME SEXUAL VIOLENCE (EFTA02731662 — DANY Investigation)
 Internal FBI-Manhattan DA communications (June-July 2023) reveal: A victim "trafficked by Maxwell and Epstein" identified Leon Black. The "2001 sexual assault by Leon Black stood out because of how violent" it was. Description: "Black was very violent, tore her clothes off, bit her vagina, forced sex toys into her." She described him as "looking like Shrek." Her mother confirmed identification from a photo. DANY also "believed she was also abused by Staley." This level of detail was NOT in previous public reporting.
@@ -566,6 +566,103 @@ Fake passport "Marius Fortelni" had stamps for **France, Spain, Britain, AND Sau
 ### 40. MR. LEONSIS, MR. CASE, THE GREGORYS — NEW NAMES (EFTA02731420)
 Victim diary: **"Whether its with Jeffrey, Mr. Leonsis, Mr. Case, Mr. Snyder, the Gregorys, Mr. Colgan... it is all horror."** Ted Leonsis = Washington Capitals/Wizards owner. Steve Case = AOL co-founder. Also: **"Both he and Larry Summers are fucking disgusting!"** (p.6).
 
+### 41. NPA KEPT SECRET FROM VICTIMS — DEFENSE SOUGHT ASSURANCES (EFTA00010513)
+The Non-Prosecution Agreement was **"deliberately" hidden from victims** by the USAO. Epstein's counsel **"sought assurances"** that the NPA would remain secret. FBI and ICE called the initial plea offer **"completely unacceptable."** None of the 4 named coconspirators cooperated, yet all received blanket immunity. A sealed federal indictment existed BEFORE the NPA deal was finalized.
+
+### 42. BLACKMAIL SYSTEM: VICTIMS ORDERED TO REPORT ON POWERFUL MEN (EFTA00021558)
+Jane Doe #3 filing: Epstein trafficked her to **"numerous prominent American politicians, powerful business executives, foreign presidents, a well-known Prime Minister, and other world leaders."** Epstein **"required Jane Doe #3 to describe the events"** with these men **"so that he could potentially blackmail them."** Separate allegations that Epstein blackmailed UK Parliament to accept Jes Staley as CEO of Barclays (EFTA00019888-19892). MPs John Mann and Mark Garnier referenced "threats Epstein was alleged to have made to blackmail Parliament."
+
+### 43. EDNY PROSECUTOR CALLED IT "MURDER OF JEFFREY EPSTEIN" (SDNY internal emails)
+An AUSA in EDNY (Eastern District of NY) wrote internally that they were **"working on an investigation into the death of an inmate at the Brooklyn MDC"** and referenced **"the investigation into the murder of Jeffrey Epstein."** Forensic pathologist: broken bones **"more consistent with homicide."** SDNY internally dismissed Baden's homicide finding as "bunk" — telling media to "tamp down any hysteria." A CD labeled "Epstein Murder Evidence" was received and dismissed as "materials from a crazy person" (EFTA00017941-17942).
+
+### 44. MCC VIDEO FOOTAGE "INADVERTENTLY" DESTROYED (BOP records)
+The BOP **"inadvertently preserved footage showing a different area within MCC"** — not the SHU where Epstein died. The actual SHU video **"no longer exists on the backup system because of a technical error."** Camera reportedly **"not functioning since Thursday"** before Saturday death. FBI seized 18 hard drives to analyze.
+
+### 45. "WOODY ALLEN ARCHIVE" DRIVE FOUND IN FBI SEARCH (EFTA00037551)
+FBI evidence inventory item NYC024338: **"external drive Seagate external drive with label 'Woody Allen Archive' Woody Allen Movies."** Found among 60+ seized devices from Maxwell properties. Catalogued as "Nothing for Southern" — meaning not relevant to SDNY prosecution.
+
+### 46. VICTIM'S HARVARD ACHE — PROMISED RECOMMENDATION LETTER (EFTA00020072)
+Victim impact statement: **"He promised me that he would write me a letter of recommendation for Harvard"** as he was "funding and leading Harvard's studies on the human brain, and the president was his friend." Years later: **"To this day, there is still an ache in my being that I did not apply to Harvard in fear of his influence there."** Epstein donated $6.5M to Harvard's Program for Evolutionary Dynamics. At his bail hearing, named Harvard and MIT as grantees under oath.
+
+### 47. CPUs DELIBERATELY REMOVED BEFORE POLICE SEARCH (EFTA00007219)
+During the 2005 Palm Beach search warrant, **three separate computer stations had monitors, keyboards, mice — but no CPUs.** "All of the cables were removed from an area where a computer had once been." Pattern repeated in Garden Room and Cabana — indicating **foreknowledge of the search** and deliberate evidence destruction.
+
+### 48. SAFE CONTAINED "YOUNG MISCELLANEOUS NUDES" DISKS (EFTA00015615)
+2019 search of NYC mansion: locked safe contained **"electronic disks with labels that included the words 'Young Miscellaneous Nudes 1' and 'Girl Pics Nude.'"** Also found: **"at least hundreds, and perhaps thousands, of sexually suggestive photographs of nude females, many of whom appear to be underage."**
+
+### 49. TERRAMAR PHONE USED TO LOCATE AND ARREST MAXWELL (EFTA00016356-16358)
+FBI used a cell phone subscribed to **"Terramar Project, Inc."** — Maxwell's ocean charity — to track and arrest her. TerraMar had **UBS and Citibank accounts** with Maxwell as signatory. Tax returns showed she claimed to work 60 hours/week there but received **no compensation.** Boies Schiller produced 90,000 pages of discovery material to the government despite Maxwell demanding they "return or destroy all confidential information."
+
+### 50. DERSHOWITZ: "HAD SEX AT LEAST 6 TIMES, AGED 16-19" (EFTA00022134)
+Victim summary sheet states plainly: **"Had sex with Dershowitz at least 6 times, aged 16-19."** Another victim account: "Shown into a room with Alan Dershowitz and Epstein. Dershowitz left the room." Separately, victim **"disclosed that she had sex with Epstein and Allan Dershowitz"** to FBI. Dershowitz served as Epstein's defense attorney and helped negotiate the NPA. Harvard professor emeritus. 106 total mentions in documents.
+
+---
+
+## SCIENCE / ACADEMIC NETWORK
+
+### Harvard Connections
+- **$6.5 million donation** to Program for Evolutionary Dynamics (Martin Nowak)
+- **Martin Nowak**: Epstein wrote "$500,000 worth of checks" over 3 years. Nowak: "He has changed my life."
+- **Steven Pinker**: Described Epstein as "intellectual impostor" but attended salons hosted by Epstein
+- **Alan Dershowitz**: Professor emeritus of law, Epstein defense attorney
+- **Lawrence Lessig**: Sued NYT for "clickbait defamation" re: Epstein donations
+- **Harvard/Yale probed** for unreported foreign funds by Department of Education (EFTA00001806)
+- Victim testimony: Epstein promised Harvard recommendation letter; victim never applied "in fear of his influence"
+
+### MIT Connections
+- **Seth Lloyd**: MIT physicist, introduced to Epstein at 2004 Brockman dinner. Found him "charming" with "interesting ideas" that "turned out to be quite vague"
+- **Danny Hillis**: MIT-educated computer scientist, Thinking Machines founder
+- **Eric Lander**: MIT mathematician/geneticist — Epstein falsely claimed to sponsor him. Lander denied: "Mr. Epstein appears to have made up lots of things"
+
+### Edge Foundation / John Brockman Network
+- Brockman hosted "billionaires' dinners" that became model for Epstein's townhouse gatherings
+- 2004 Indian Summer dinner (Monterey): **Google founders Sergey Brin & Larry Page, Jeff Bezos** present alongside scientists
+- Brockman was literary agent for Nobel laureate Murray Gell-Mann, who thanked Epstein in his book
+
+### Nobel Laureate Connections
+- **Murray Gell-Mann** (Nobel, Physics): Close friend, Santa Fe Institute
+- **Gerald Edelman** (Nobel, Physiology/Medicine 1972): "Jeff is extraordinary in his ability to pick up on quantitative relations"
+- **Kip S. Thorne** (Nobel, Physics): Attended 2006 USVI gravity conference
+- **Stephen Hawking**: Attended 2006 conference, rode Epstein's chartered submarine
+
+### Victoria's Secret as Recruitment Pipeline
+- 25+ references in documents
+- 1997 Santa Monica police report: Epstein **"identified himself as a talent scout for Victoria's Secret"** before luring victim to hotel (EFTA00016128)
+- Maxwell sent VS lingerie to victims via FedEx from NYC (EFTA00009514)
+- Victim: **"I had spent all of my savings getting Victoria's Secret lingerie to prepare for what I thought would be my audition. But instead, it seemed like a casting call for prostitution"** (EFTA00020072)
+- Maxwell approached 14-year-old at gym, "mentioned Victoria Secret and massages" (EFTA00020491)
+- FBI/NYPD investigated but **"Victoria Secret has recently switched their systems and only can access records dating back approximately 2 years"** (EFTA00021353)
+
+### Eugenics / "Baby Ranch" Plan
+- Goal: **20 women impregnated at once** at 33,000 sq ft Zorro Ranch, New Mexico
+- Based on Repository for Germinal Choice (Nobel sperm bank)
+- Wanted **his head and penis frozen** (cryonics)
+- At 2006 gravity conference, steered discussion toward "perfecting the human genome"
+
+---
+
+## LEGAL PROCEEDINGS — NPA / PLEA DEAL DETAILS
+
+### NPA (Non-Prosecution Agreement) Key Facts
+- **Sealed federal indictment existed BEFORE the NPA** — reference at EFTA00009978
+- NPA **"deliberately" kept secret from victims**; defense **"sought assurances"** of secrecy (EFTA00010513)
+- **Two federal grand juries** convened: 05-02(WPB) and 07-103(WPB) (EFTA00010491)
+- FBI and ICE called initial plea offer **"completely unacceptable"** (~EFTA00009444)
+- **4 named coconspirators received blanket immunity** — none cooperated (EFTA00009090 area)
+- NPA proposed by defense on Sept 16, 2007, extending immunity to coconspirators (EFTA00010512)
+- Acosta: "this wasn't a federal prosecution in the first place... this whole thing is sui generis"
+
+### Electronic Surveillance Records
+- Multiple **ELSUR/Title III intercept** chain of custody forms (EFTA00008482+)
+- Court Authorized Intercepts and Consensual Monitoring documented
+- Defense requested all wire/oral communications intercepted by government
+- Defense asked specifically about "wiretaps, body wires, pen registers"
+
+### Proffer Agreements (Maxwell Case)
+- Multiple proffer agreements documented: May 2021, Oct 2021, Dec 2022
+- **Gloria Allred / Mariann Wang** attorney proffer March 2021 (EFTA00011525)
+- Standard proffer agreements offered at FBI interviews
+
 ---
 
 ## TRAVEL, FLIGHT LOGS & PROPERTIES
@@ -662,7 +759,15 @@ Victim diary: **"Whether its with Jeffrey, Mr. Leonsis, Mr. Case, Mr. Snyder, th
 | EFTA00037551 | multi | Complete evidence inventory (60+ devices) |
 | EFTA00684028 | multi | Gates Foundation donor vehicle emails |
 | EFTA00069900 | multi | Edge Foundation dinner — Brin, Page, Bezos |
+| EFTA00010513 | multi | NPA kept secret from victims — defense sought assurances |
+| EFTA00021558 | multi | Jane Doe #3: blackmail system — required descriptions of sex acts |
+| EFTA00019888 | multi | Epstein-Staley blackmail ring / UK Parliament allegations |
+| EFTA00016356 | multi | FBI affidavit: TerraMar phone used to locate Maxwell |
+| EFTA00020072 | multi | Victim impact statement: Harvard promise, "ache" testimony |
+| EFTA00022134 | multi | Victim summary sheets: Dershowitz sex 6+ times |
+| EFTA00015615 | multi | Bail hearing: "Young Nudes" disks, thousands of photos |
+| EFTA00007219 | multi | Palm Beach search: CPUs deliberately removed |
 
 ---
 
-*Analysis conducted programmatically across 406 PDFs, 42MB full text corpus, and structured findings databases. All citations reference specific EFTA document numbers from the January 30, 2026 document release on archive.org. Exact page numbers verified against `--- PAGE XX ---` markers in extracted documents.*
+*Analysis conducted programmatically across 406 PDFs, 42MB full text corpus, and structured findings databases. All citations reference specific EFTA document numbers from the January 30, 2026 document release on archive.org. Exact page numbers verified against `--- PAGE XX ---` markers in extracted documents. v12: 14 deep-dive search agents deployed.*
