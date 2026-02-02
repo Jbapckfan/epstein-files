@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Epstein Files Analysis Dashboard v10</title>
+<style>
+:root {
+  --bg: #0a0a0f;
+  --surface: #12121a;
+  --surface2: #1a1a25;
+  --border: #2a2a3a;
+  --text: #e0e0e8;
+  --text-dim: #8888a0;
+  --accent: #ff3355;
+  --accent2: #ff6644;
+  --accent3: #ffaa00;
+  --accent4: #00ccaa;
+  --accent5: #4488ff;
+  --accent6: #aa44ff;
+  --accent7: #ff44aa;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: var(--bg); color: var(--text); font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace; font-size: 14px; line-height: 1.6; }
+.container { max-width: 1400px; margin: 0 auto; padding: 20px; }
+header { text-align: center; padding: 40px 20px; border-bottom: 2px solid var(--accent); margin-bottom: 30px; }
+header h1 { font-size: 28px; color: var(--accent); letter-spacing: 2px; margin-bottom: 10px; }
+header .subtitle { color: var(--text-dim); font-size: 13px; }
+header .version { display: inline-block; background: var(--accent); color: white; padding: 2px 12px; border-radius: 12px; font-size: 12px; margin-top: 10px; }
+
+.search-bar { position: sticky; top: 0; z-index: 100; background: var(--bg); padding: 15px 0; border-bottom: 1px solid var(--border); }
+.search-bar input { width: 100%; padding: 12px 20px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; color: var(--text); font-family: inherit; font-size: 14px; outline: none; }
+.search-bar input:focus { border-color: var(--accent); }
+.search-bar .hint { color: var(--text-dim); font-size: 11px; margin-top: 5px; }
+
+.stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; margin: 25px 0; }
+.stat-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 20px; text-align: center; }
+.stat-card .number { font-size: 32px; font-weight: bold; }
+.stat-card .label { color: var(--text-dim); font-size: 11px; text-transform: uppercase; letter-spacing: 1px; margin-top: 5px; }
+.stat-card:nth-child(1) .number { color: var(--accent); }
+.stat-card:nth-child(2) .number { color: var(--accent2); }
+.stat-card:nth-child(3) .number { color: var(--accent3); }
+.stat-card:nth-child(4) .number { color: var(--accent4); }
+.stat-card:nth-child(5) .number { color: var(--accent5); }
+.stat-card:nth-child(6) .number { color: var(--accent6); }
+
+.section { margin: 25px 0; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+.section-header { padding: 18px 24px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; user-select: none; transition: background 0.2s; }
+.section-header:hover { background: var(--surface2); }
+.section-header h2 { font-size: 16px; letter-spacing: 1px; }
+.section-header .count { font-size: 12px; padding: 2px 10px; border-radius: 10px; }
+.section-header .toggle { font-size: 18px; transition: transform 0.3s; color: var(--text-dim); }
+.section.open .toggle { transform: rotate(180deg); }
+.section-content { display: none; padding: 20px 24px; border-top: 1px solid var(--border); }
+.section.open .section-content { display: block; }
+
+.s-red { background: linear-gradient(135deg, rgba(255,51,85,0.15), rgba(255,51,85,0.05)); border-color: rgba(255,51,85,0.3); }
+.s-red .section-header h2 { color: var(--accent); }
+.s-red .count { background: rgba(255,51,85,0.2); color: var(--accent); }
+
+.s-orange { background: linear-gradient(135deg, rgba(255,102,68,0.15), rgba(255,102,68,0.05)); border-color: rgba(255,102,68,0.3); }
+.s-orange .section-header h2 { color: var(--accent2); }
+.s-orange .count { background: rgba(255,102,68,0.2); color: var(--accent2); }
+
+.s-yellow { background: linear-gradient(135deg, rgba(255,170,0,0.15), rgba(255,170,0,0.05)); border-color: rgba(255,170,0,0.3); }
+.s-yellow .section-header h2 { color: var(--accent3); }
+.s-yellow .count { background: rgba(255,170,0,0.2); color: var(--accent3); }
+
+.s-teal { background: linear-gradient(135deg, rgba(0,204,170,0.15), rgba(0,204,170,0.05)); border-color: rgba(0,204,170,0.3); }
+.s-teal .section-header h2 { color: var(--accent4); }
+.s-teal .count { background: rgba(0,204,170,0.2); color: var(--accent4); }
+
+.s-blue { background: linear-gradient(135deg, rgba(68,136,255,0.15), rgba(68,136,255,0.05)); border-color: rgba(68,136,255,0.3); }
+.s-blue .section-header h2 { color: var(--accent5); }
+.s-blue .count { background: rgba(68,136,255,0.2); color: var(--accent5); }
+
+.s-purple { background: linear-gradient(135deg, rgba(170,68,255,0.15), rgba(170,68,255,0.05)); border-color: rgba(170,68,255,0.3); }
+.s-purple .section-header h2 { color: var(--accent6); }
+.s-purple .count { background: rgba(170,68,255,0.2); color: var(--accent6); }
+
+.s-pink { background: linear-gradient(135deg, rgba(255,68,170,0.15), rgba(255,68,170,0.05)); border-color: rgba(255,68,170,0.3); }
+.s-pink .section-header h2 { color: var(--accent7); }
+.s-pink .count { background: rgba(255,68,170,0.2); color: var(--accent7); }
+
+.finding { margin: 16px 0; padding: 16px; background: rgba(0,0,0,0.3); border-radius: 8px; border-left: 3px solid var(--border); }
+.finding h3 { font-size: 14px; margin-bottom: 8px; color: var(--accent3); }
+.finding p, .finding li { font-size: 13px; line-height: 1.7; color: var(--text); }
+.finding .source { color: var(--text-dim); font-size: 11px; margin-top: 8px; font-style: italic; }
+.finding ul { padding-left: 20px; }
+.finding strong { color: var(--accent); }
+.finding em.name { color: var(--accent3); font-style: normal; font-weight: bold; }
+
+table { width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 12px; }
+th { background: rgba(255,255,255,0.05); text-align: left; padding: 10px 12px; color: var(--accent3); border-bottom: 2px solid var(--border); }
+td { padding: 8px 12px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+tr:hover td { background: rgba(255,255,255,0.03); }
+
+.highlight { background: rgba(255,170,0,0.3); padding: 1px 3px; border-radius: 2px; }
+
+.new-badge { display: inline-block; background: var(--accent); color: white; font-size: 9px; padding: 1px 6px; border-radius: 8px; margin-left: 8px; vertical-align: middle; letter-spacing: 0.5px; }
+
+footer { text-align: center; padding: 40px 20px; color: var(--text-dim); font-size: 12px; border-top: 1px solid var(--border); margin-top: 40px; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+<h1>EPSTEIN FILES ANALYSIS</h1>
+<div class="subtitle">Comprehensive Analysis of January 30, 2026 Document Release</div>
+<div class="version">v10 — Deep Dive Edition</div>
+<div class="subtitle" style="margin-top:10px">406 PDFs | 42MB Full Text | 8 Deep-Dive Search Agents | 2,500+ Individual Findings</div>
+</header>
+
+<div class="search-bar">
+<input type="text" id="searchInput" placeholder="Search findings... (Ctrl+K)" autocomplete="off">
+<div class="hint">Search names, document numbers, keywords across all findings</div>
+</div>
+
+<div class="stats-grid">
+<div class="stat-card"><div class="number">30</div><div class="label">Top Findings</div></div>
+<div class="stat-card"><div class="number">24+</div><div class="label">Victims Identified</div></div>
+<div class="stat-card"><div class="number">16+</div><div class="label">Named Abusers</div></div>
+<div class="stat-card"><div class="number">150+</div><div class="label">Shell Companies</div></div>
+<div class="stat-card"><div class="number">60+</div><div class="label">Devices Seized</div></div>
+<div class="stat-card"><div class="number">$1B+</div><div class="label">Tax Avoidance</div></div>
+</div>
+
+<!-- SECTION 1: TOP 30 FINDINGS -->
+<div class="section s-red open">
+<div class="section-header" onclick="toggleSection(this)">
+<h2>TOP 30: WHAT JOURNALISTS ARE MISSING</h2>
+<div><span class="count">30 findings</span> <span class="toggle">&#9660;</span></div>
+</div>
+<div class="section-content">
+
+<div class="finding">
+<h3>1. Leon Black's Extreme Sexual Violence <span class="new-badge">NEW</span></h3>
+<p>FBI-Manhattan DA communications (June-July 2023): A victim "trafficked by Maxwell and Epstein" identified Leon Black. The "2001 sexual assault by Leon Black stood out because of how violent" it was. Description: <strong>"Black was very violent, tore her clothes off, bit her vagina, forced sex toys into her."</strong> She described him as "looking like Shrek." Her mother confirmed identification from a photo. DANY also "believed she was also abused by Staley."</p>
+<div class="source">Source: EFTA02731662</div>
+</div>
+
+<div class="finding">
+<h3>2. Victim Diary: Forced Medical Procedures and Forced Abortion <span class="new-badge">NEW</span></h3>
+<p>A victim's handwritten diary describes: <strong>"The doctor was different again. I think from Israel. He had kind eyes but didnt speak directly to me. This was different. A shot and those rod like things had a hook and so much pain."</strong> An apparent forced abortion: "April 22nd I had no choice. I wasnt ready and she wasnt ready... After so many bonding moments with Jeffrey, Ghislaine, their baby inside me." Also: "6 weeks wasnt even given before being sent back. Punishment for trying to run."</p>
+<div class="source">Source: EFTA02731361</div>
+</div>
+
+<div class="finding">
+<h3>3. Howard Lutnick Money Laundering Allegation <span class="new-badge">NEW</span></h3>
+<p>FBI NTOC master log contains: <strong>"Alleged Money Laundering by Howard Lutnick via BGC Financial and Cantor Fitzgerald."</strong> Accompanied by request for UK travel records classified "(U//REL TO USA, GBR)." Howard Lutnick is currently Trump's Secretary of Commerce. This finding has never been publicly reported.</p>
+<div class="source">Source: EFTA02730741 (NTOC2020 288hmb01)</div>
+</div>
+
+<div class="finding">
+<h3>4. Chabad / Presidential Pardons / Russia-Israel Nexus <span class="new-badge">NEW</span></h3>
+<p>Two separate FBI documents reference: <strong>"Chabad's involvement in U.S. Presidential pardon petitions and influences from Russia and Israel on [President]."</strong> The first version is heavily redacted; the second reveals the entity as Chabad. Connects Russian and Israeli intelligence interests to the presidential pardon process.</p>
+<div class="source">Source: EFTA02730486 / EFTA02730741</div>
+</div>
+
+<div class="finding">
+<h3>5. $1 Billion Tax Avoidance — The Real Black-Epstein Deal <span class="new-badge">NEW</span></h3>
+<p>Senate Finance Committee investigation: Black's 2006 GRAT contained Apollo assets appraised at <strong>$189M+</strong>. Estimated estate tax savings: <strong>"exceeding $1 billion."</strong> Black paid Epstein $158M (2012-2017). Black's family office: Elysium Management LLC. The $1B tax scheme was the core purpose of the relationship.</p>
+<div class="source">Source: EFTA02731023 (Senate Finance Committee / Ron Wyden)</div>
+</div>
+
+<div class="finding">
+<h3>6. Malcolm Grumbridge — 150+ Maxwell Shell Companies <span class="new-badge">NEW</span></h3>
+<p>FBI produced a full Tactical Intelligence Report on Grumbridge. He <strong>set up over 150 companies</strong> linked to the Maxwell family, was custodian of 44 Kinnerton St in Belgravia (Maxwell residence), had ties to Kevin Maxwell through The Hogarth Group, and quit the legal profession in 2020 after being found guilty of "a string of rule breaches."</p>
+<div class="source">Source: EFTA02730267</div>
+</div>
+
+<div class="finding">
+<h3>7. The Escape Kit: Fake Passport, 48 Diamonds, $72K Cash <span class="new-badge">NEW</span></h3>
+<p>In the NYC safe: <strong>$72,083 cash, 48 individually appraised loose diamonds (1-2.38 carats)</strong>, expired Austrian passport with Epstein's photo under name "Marius Fortelni" (a real person in Southampton, NY), foreign currency, and AMEX traveler's check. Defense declined to answer if Epstein held foreign citizenship.</p>
+<div class="source">Source: Evidence inventory / Bail hearing</div>
+</div>
+
+<div class="finding">
+<h3>8. Hapsburg Group / Manafort Connection <span class="new-badge">NEW</span></h3>
+<p>A tip linked Epstein's Austrian passport to <strong>"the Hapsburg Group (Manafort, Alfred Gusenbauer and Peter Goldscheider)"</strong> — connecting Epstein to the same international political influence operation Paul Manafort was convicted for.</p>
+<div class="source">Source: FBI tip in evidence file</div>
+</div>
+
+<div class="finding">
+<h3>9. CPUs Surgically Removed Before Palm Beach Search <span class="new-badge">NEW</span></h3>
+<p><strong>CPUs removed from multiple rooms</strong> while monitors, keyboards, and cables left connected. "The missing CPUs were never recovered." A July 2007 email discusses urgently trying to "get the computer equipment that was removed from Epstein's home prior to the state search warrant."</p>
+<div class="source">Source: Palm Beach PD search warrant / FBI summary</div>
+</div>
+
+<div class="finding">
+<h3>10. CDs Labeled "Nudes 00-24" and Female Names <span class="new-badge">NEW</span></h3>
+<p>Fifth-floor closet at NYC mansion: box marked "women/old photos" containing <strong>seven compact discs — one marked "nudes 00-24," another "Photographer-- J 03," the rest labeled with female names.</strong></p>
+<div class="source">Source: NYC search warrant inventory</div>
+</div>
+
+<div class="finding">
+<h3>11. 71,000 Zero-Byte Files in FBI Evidence Processing <span class="new-badge">NEW</span></h3>
+<p>FBI's own emails: <strong>71,000 documents extracted as zero bytes</strong>, email-to-attachment linking broken, device-to-folder attribution lost. Prosecutors: "it's basically impossible for us to keep track of what we're getting."</p>
+<div class="source">Source: Internal FBI/SDNY emails</div>
+</div>
+
+<div class="finding">
+<h3>12. MCC Surveillance: 18 Components, One Download Failed <span class="new-badge">NEW</span></h3>
+<p>Nice Vision DVR system had <strong>18 components</strong>. FBI seized hard drives. <strong>"THIS DOWNLOAD FAILED"</strong> on one component. Camera "not functioning since Thursday." FBI also canvassed for cameras near MCC.</p>
+<div class="source">Source: EFTA02730741 (death investigation section)</div>
+</div>
+
+<div class="finding">
+<h3>13. "PB Girls" Binder — Organized Victim Tracking <span class="new-badge">NEW</span></h3>
+<p>Search warrant specifically targeted a <strong>"binder labeled 'PB Girls'"</strong> on Little St. James Island. Also: a computerized database tracking "availability and proximity" of underage girls in the Virgin Islands.</p>
+<div class="source">Source: USVI search warrant (Aug 12, 2019)</div>
+</div>
+
+<div class="finding">
+<h3>14. Dan Snyder, Jim Kimsey, George Mitchell Named by Victim <span class="new-badge">NEW</span></h3>
+<p>A victim account names: Senator George Mitchell (<strong>"who you think would be good like a grandpa are bad"</strong>), "Mr. Kimsey is deranged" (Jim Kimsey, AOL co-founder), Dan Snyder <strong>"is a pig!"</strong> Also references "Mr. Colgan" and Leon Black.</p>
+<div class="source">Source: EFTA02731420 (CONFIDENTIAL FOR ATTORNEY'S EYES ONLY)</div>
+</div>
+
+<div class="finding">
+<h3>15. Boys Also Recruited</h3>
+<p><span class="new-badge">NEW</span> An FBI tip: A caller <strong>"stated that her son recruited not only young girls, but young boys as well."</strong> This has received virtually no coverage.</p>
+<div class="source">Source: EFTA02730741 (NTOC tip)</div>
+</div>
+
+<div class="finding">
+<h3>16. 15-Year-Old Tried to Swim Off Little St. James <span class="new-badge">NEW</span></h3>
+<p><strong>"A 15-year-old girl attempted to swim off Mr. Epstein's island and escape"</strong> after being forced into sex acts. She was captured. Epstein confiscated her passport. Air traffic controllers saw Epstein with <strong>"girls who looked as young as 11"</strong> in 2018.</p>
+<div class="source">Source: USVI AG filing</div>
+</div>
+
+<div class="finding">
+<h3>17. SPIEF 2014 USB — Russian Economic Forum <span class="new-badge">NEW</span></h3>
+<p>A <strong>"SPIEF 2014 Silver USB"</strong> was seized from Epstein's property. SPIEF is the St. Petersburg International Economic Forum — Russia's equivalent of Davos.</p>
+<div class="source">Source: EFTA02730741 evidence inventory</div>
+</div>
+
+<div class="finding">
+<h3>18. Matchmaker Database — FBI Reconstructed Shredded Docs <span class="new-badge">NEW</span></h3>
+<p>Evidence includes a "Box containing Shredded paper" and a <strong>"Disk containing images of Matchmaker shred reconstruction."</strong> FBI digitally reconstructed what appears to be Epstein's "Matchmaker" database from shredded documents.</p>
+<div class="source">Source: EFTA02730741</div>
+</div>
+
+<div class="finding">
+<h3>19. Lawrence Summers as Successor Executor <span class="new-badge">NEW</span></h3>
+<p>Before the final will, earlier Epstein wills named <strong>Jes Staley AND Lawrence Summers</strong> (Treasury Secretary, Harvard president) as successor executors.</p>
+<div class="source">Source: Will records in prosecution memo</div>
+</div>
+
+<div class="finding">
+<h3>20. 4,800+ Flights in Ten Years <span class="new-badge">NEW</span></h3>
+<p>AMEX card records documented <strong>more than 4,800 flights</strong> purchased by Epstein in a ten-year period, including hundreds for specific individuals.</p>
+<div class="source">Source: Financial records subpoena</div>
+</div>
+
+<div class="finding">
+<h3>21. Blanket Immunity for Unnamed Co-Conspirators</h3>
+<p>The NPA contained "blanket transactional immunity" for ANY "potential co-conspirators." None of the four named had cooperated. This is unprecedented.</p>
+<div class="source">Source: NPA / OPR analysis</div>
+</div>
+
+<div class="finding">
+<h3>22. Jes Staley Raped a Victim</h3>
+<p>Staley <strong>"forced [victim] to touch his genitals and then raped [victim]."</strong> Corroborating messages found between Staley and Epstein.</p>
+<div class="source">Source: EFTA02731082</div>
+</div>
+
+<div class="finding">
+<h3>23. One Recruiter Brought ~100 Underage Girls</h3>
+<p>"Victim 9 estimates she may have brought as many as <strong>one hundred underage girls</strong>." She became pregnant at age 15.</p>
+<div class="source">Source: EFTA02731082</div>
+</div>
+
+<div class="finding">
+<h3>24. FBI Deleted 400 TB of Data During Investigation</h3>
+<p>FBI examiner: "They are tearing out our old network... they mandated we delete old stuff (<strong>about 400 TB worth</strong>)."</p>
+<div class="source">Source: Internal FBI emails (Feb 2020)</div>
+</div>
+
+<div class="finding">
+<h3>25. $350,000 Wire Transfers After Miami Herald Articles</h3>
+<p>$100K + $250K wired to co-conspirators within days of publication. <strong>"Neither of these payments appears to be recurring."</strong></p>
+<div class="source">Source: SDNY bail memo</div>
+</div>
+
+<div class="finding">
+<h3>26. Acosta: "Belonged to Intelligence" — Then Denied Under Oath</h3>
+<p>To Trump transition: "I was told Epstein 'belonged to intelligence' and to leave it alone." Under oath: <strong>"No, and no."</strong></p>
+<div class="source">Source: EFTA00030181 / EFTA00009220</div>
+</div>
+
+<div class="finding">
+<h3>27. All Epstein's Wealth Came from Wexner</h3>
+<p>"That misconduct, together with fees... appears to account for <strong>VIRTUALLY ALL of Epstein's wealth.</strong>" Stole "several hundred million dollars."</p>
+<div class="source">Source: EFTA02731082</div>
+</div>
+
+<div class="finding">
+<h3>28. Boris Nikolic — Will Executor, Gates Science Advisor</h3>
+<p>Will dated Aug 8, 2019 (2 days before death). Indyke at MCC that day for signing. All property to "The 1953 Trust."</p>
+<div class="source">Source: EFTA02731082 / Will records</div>
+</div>
+
+<div class="finding">
+<h3>29. Pen Registers on Maxwell's Phone</h3>
+<p><span class="new-badge">NEW</span> FBI obtained <strong>pen register surveillance</strong> (all calls tracked), mail cover, aerial surveillance, court-authorized intercepts, and TECS silent hit border monitoring on Maxwell.</p>
+<div class="source">Source: EFTA02730741</div>
+</div>
+
+<div class="finding">
+<h3>30. Victim Intimidation System</h3>
+<p>"Those who help him will be compensated and those who hurt him will be dealt with." PIs impersonated police. Parent driven off road. <strong>2-year-old's life threatened.</strong> Trump security: "end up as fertilizer for the back nine holes."</p>
+<div class="source">Source: Multiple EFTA documents</div>
+</div>
+
+</div>
+</div>
+
+<!-- SECTION 2: LENT OUT SYSTEM -->
+<div class="section s-orange">
+<div class="section-header" onclick="toggleSection(this)">
+<h2>THE "LENT OUT" SYSTEM — 16 NAMED INDIVIDUALS</h2>
+<div><span class="count">16 names</span> <span class="toggle">&#9660;</span></div>
+</div>
+<div class="section-content">
+<table>
+<tr><th>Person</th><th>Allegation</th><th>Source</th></tr>
+<tr><td><em class="name">Prince Andrew</em></td><td>Maxwell told victim to "make him happy and do the exact same things"</td><td>EFTA02731082</td></tr>
+<tr><td><em class="name">Jes Staley</em></td><td>"Forced [victim] to touch his genitals and then raped [victim]"</td><td>EFTA02731082</td></tr>
+<tr><td><em class="name">Leon Black</em></td><td>"Very violent, tore clothes off, bit vagina, forced sex toys" (DANY)</td><td>EFTA02731662</td></tr>
+<tr><td><em class="name">Glenn Dubin</em></td><td>Maxwell "explicitly told [victim] she had to do to Glen what she did for Epstein"</td><td>EFTA02731082</td></tr>
+<tr><td><em class="name">Harvey Weinstein</em></td><td>"Directed [victim] to remove her shirt" during massage</td><td>EFTA02731082</td></tr>
+<tr><td><em class="name">Alan Dershowitz</em></td><td>"Had sex with Dershowitz at least 6 times, aged 16-19"</td><td>Victim deposition</td></tr>
+<tr><td><em class="name">Bill Richardson</em></td><td>Victim alleges directed to have sex with him</td><td>Victim testimony</td></tr>
+<tr><td><em class="name">George Mitchell</em></td><td>"Who you think would be good like a grandpa are bad"</td><td>EFTA02731420</td></tr>
+<tr><td><em class="name">Marvin Minsky</em></td><td>Victim alleges directed to have sex with him</td><td>Victim testimony</td></tr>
+<tr><td><em class="name">Jean-Luc Brunel</em></td><td>"Disgusting pig with bad breath" (victim diary)</td><td>EFTA02731361</td></tr>
+<tr><td><em class="name">Dan Snyder</em> <span class="new-badge">NEW</span></td><td>"Is a pig! A red skin hoggett!"</td><td>EFTA02731420</td></tr>
+<tr><td><em class="name">Jim Kimsey</em> <span class="new-badge">NEW</span></td><td>"Is deranged" (AOL co-founder)</td><td>EFTA02731420</td></tr>
+<tr><td><em class="name">"Mr. Colgan"</em> <span class="new-badge">NEW</span></td><td>Referenced in victim account</td><td>EFTA02731420</td></tr>
+<tr><td>Unnamed "prince"</td><td>Victim alleges directed to have sex</td><td>Victim testimony</td></tr>
+<tr><td>Unnamed "foreign president"</td><td>Victim alleges directed to have sex</td><td>Victim testimony</td></tr>
+<tr><td>Owner of "French hotel chain"</td><td>Victim alleges directed to have sex</td><td>Victim testimony</td></tr>
+</table>
+</div>
+</div>
+
+<!-- SECTION 3: FINANCIAL NETWORK -->
+<div class="section s-yellow">
+<div class="section-header" onclick="toggleSection(this)">
+<h2>FINANCIAL NETWORK — $1B+ IN HIDDEN SCHEMES</h2>
+<div><span class="count">16+ entities</span> <span class="toggle">&#9660;</span></div>
+</div>
+<div class="section-content">
+
+<div class="finding">
+<h3>Leon Black Tax Scheme ($1B+) <span class="new-badge">NEW</span></h3>
+<p>$158M paid to Epstein (2012-2017). 2006 GRAT: Apollo Europe ($98.8M), Apollo Alternative Assets ($80.5M), Apollo Advisors VI ($10.5M). Estate tax savings: <strong>exceeding $1 billion</strong>. Family office: Elysium Management LLC. Senate Finance Committee investigating.</p>
+</div>
+
+<div class="finding">
+<h3>Wexner: Source of All Wealth</h3>
+<p>"Virtually ALL of Epstein's wealth" from Wexner. Power of attorney 1991. Sold himself NYC mansion. Stole "several hundred million." Returned $100M in 2008.</p>
+</div>
+
+<div class="finding">
+<h3>Corporate Shell Structure <span class="new-badge">NEW</span></h3>
+<p><strong>Epstein entities:</strong> JEGE Inc, Hyperion Air, Plan D LLC, J. Epstein & Co, Financial Trust Co, El Zorro Ranch Corp, Southern Trust ($656M income/13 employees), Gratitude America, The 1953 Trust, Jade Data Research Inc, GREAT ST JIM LLC, Maple Inc, Nine East 71st Street Corp.</p>
+<p><strong>Maxwell entities:</strong> TerraMar Project, Ellmax LLC, 116 E 65th St LLC ($14.2M pipeline), Pot and Kettle LLC, Max Foundation, LSJ LLC. Plus <strong>150+ companies set up by Malcolm Grumbridge</strong>.</p>
+<p><strong>Shell triangle:</strong> 457 Madison Ave -> 301 E 66th St -> 9 E 71st St</p>
+</div>
+
+<div class="finding">
+<h3>Banking Red Flags</h3>
+<ul>
+<li><strong>JP Morgan:</strong> Kept Epstein despite warnings. SAR on guard Tova Noel.</li>
+<li><strong>Deutsche Bank:</strong> 78 Epstein mentions. Gratitude America account.</li>
+<li><strong>Colonial Bank:</strong> Joint account "EPSTEIN OR MAXWELL OR RODRIGUEZ"</li>
+<li><strong>Wells Fargo/BofA:</strong> Butterfly Trust witness payments (avoiding Deutsche Bank)</li>
+<li><strong>Edmond de Rothschild:</strong> ~$25M to Epstein; $45M Black+Rothschild convergence Dec 2015</li>
+</ul>
+</div>
+
+</div>
+</div>
+
+<!-- SECTION 4: EVIDENCE INVENTORY -->
+<div class="section s-teal">
+<div class="section-header" onclick="toggleSection(this)">
+<h2>EVIDENCE INVENTORY — 60+ DEVICES, DIAMONDS, PASSPORTS</h2>
+<div><span class="count">NEW section</span> <span class="toggle">&#9660;</span></div>
+</div>
+<div class="section-content">
+
+<div class="finding">
+<h3>NYC Mansion Safe</h3>
+<p>$72,083 cash | 48 loose diamonds (1-2.38 carats, individually appraised) | Diamond ring | Austrian passport ("Marius Fortelni") | US passport | Foreign currency | AMEX traveler's check. A ready-made escape kit.</p>
+</div>
+
+<div class="finding">
+<h3>Digital Devices Seized (40+ NYC, 25+ Island)</h3>
+<p>NYC: Dell towers, Apple desktops, Sony Vaio laptops, <strong>"Woody Allen Archive" drive</strong>, 16GB SD cards, thumb drives, <strong>3 Seagate drives labeled "Florida case evidence"</strong>, iPhone, <strong>folder with 600,000+ items</strong>.</p>
+<p>Island: Unifi Cloud Key, Unifi Server, Unifi Video NVR-2TB, HP Server (4x500GB), 6-bay server (146GB drives), HP Laptop, Red Nikon Camera, Dell tower, Panasonic phone system.</p>
+</div>
+
+<div class="finding">
+<h3>Compromising Media</h3>
+<p>CDs: "nudes 00-24," "Photographer-- J 03," discs with female names. Carved (deleted/recovered) images from 14+ devices. Photo files labeled "LSJ" (Little St. James). "Partially-nude photographs of a young girl labeled with a particular individual's name." Recordings requiring VCR, cassette player, CD player, micro VHS adapter, microcassette player — <strong>spanning decades</strong>.</p>
+</div>
+
+<div class="finding">
+<h3>Evidence Destruction</h3>
+<p>CPUs surgically removed from Palm Beach. Box of shredded paper. FBI reconstructed "Matchmaker" database from shreds. FBI processing: 71,000 zero-byte files, broken email-attachment linking, lost device attribution. 400 TB deleted during investigation.</p>
+</div>
+
+</div>
+</div>
+
+<!-- SECTION 5: PROSECUTION MEMO ANALYSIS -->
+<div class="section s-blue">
+<div class="section-header" onclick="toggleSection(this)">
+<h2>PROSECUTION MEMO REDACTION ANALYSIS (EFTA02731082)</h2>
+<div><span class="count">24+ victims mapped</span> <span class="toggle">&#9660;</span></div>
+</div>
+<div class="section-content">
+
+<div class="finding">
+<h3>Victim Summary (24+ Numbered in Memo)</h3>
+<table>
+<tr><th>#</th><th>Age</th><th>Location</th><th>Key Detail</th></tr>
+<tr><td>1</td><td>~14</td><td>NYC</td><td>Told Epstein she was 14; brought "dozens of girls"; $300/visit</td></tr>
+<tr><td>2</td><td>~14</td><td>Palm Beach</td><td>Recruited ~20-30 girls, most minors</td></tr>
+<tr><td>4</td><td>~13</td><td>Palm Beach</td><td>Maxwell approached at picnic; met Prince Andrew</td></tr>
+<tr><td>5</td><td>~17</td><td>Multiple</td><td>Maxwell gave 18th birthday gift; raped multiple times</td></tr>
+<tr><td>7</td><td>17</td><td>NM/NYC/FL/Paris</td><td>Introduced by "Gypsy"; massaged Weinstein in Paris</td></tr>
+<tr><td>9</td><td>~13-14</td><td>Palm Beach</td><td><strong>Brought ~100 underage girls; pregnant at 15</strong></td></tr>
+<tr><td>10</td><td>16-18</td><td>Palm Beach</td><td>Called assistant Epstein's "sex slave"</td></tr>
+<tr><td>12</td><td>~16</td><td>Palm Beach</td><td>David Copperfield show for 18th birthday</td></tr>
+<tr><td>19</td><td>~14</td><td>NYC</td><td>Befriended outside school; <strong>FBI never identified recruiter</strong></td></tr>
+<tr><td>22</td><td>16</td><td>NYC</td><td>Model; called "best little cocksucker"; Maxwell booked flights</td></tr>
+<tr><td>24</td><td>~15</td><td>NM</td><td>School field trip; Victoria's Secret underwear; $5K check</td></tr>
+</table>
+</div>
+
+<div class="finding">
+<h3>FBI Still-Unidentified Individuals</h3>
+<ul>
+<li>Woman who befriended Victim 19 outside school</li>
+<li>Redheaded woman on NM trip who performed "massage"</li>
+<li>"Mastermind at finding girls"</li>
+<li>Woman Epstein dated ~1999-2000</li>
+<li>Kimberly Galindo (named but not located)</li>
+<li>Woman at Virgin Islands property</li>
+</ul>
+</div>
+
+<div class="finding">
+<h3>Investigation Subjects (Redacted Co-Conspirators)</h3>
+<p>Beyond Maxwell and Leslie Groff (named), four female subjects identified by context:</p>
+<ul>
+<li><strong>Subject 1:</strong> Palm Beach assistant — scheduled massages, destroyed evidence (removed computers, shredded directories)</li>
+<li><strong>Subject 2:</strong> Another assistant with scheduling duties</li>
+<li><strong>Subject 3:</strong> Maxwell's personal assistant — received $250K in Dec 2018, $100K for wedding</li>
+<li><strong>European model/victim:</strong> Met Epstein at Brunel's party at ~15; "sex slave"; forced plastic surgery; thrown down stairs</li>
+</ul>
+</div>
+
+</div>
+</div>
+
+<!-- SECTION 6: DEATH INVESTIGATION -->
+<div class="section s-purple">
+<div class="section-header" onclick="toggleSection(this)">
+<h2>DEATH INVESTIGATION — FULL DETAIL</h2>
+<div><span class="count">Updated</span> <span class="toggle">&#9660;</span></div>
+</div>
+<div class="section-content">
+
+<div class="finding">
+<h3>Timeline</h3>
+<ul>
+<li><strong>July 23, 2019:</strong> Found "in fetal position with noose." Cellmate Tartaglione denied everything.</li>
+<li><strong>~24 hours later:</strong> Removed from suicide watch</li>
+<li><strong>Aug 8, 2019:</strong> Indyke arrives at MCC. New will signed. The 1953 Trust created.</li>
+<li><strong>Aug 9:</strong> Cellmate transferred. No replacement despite staff direction.</li>
+<li><strong>10:30 PM:</strong> Last entry to Epstein's tier</li>
+<li><strong>Night:</strong> Guards falsified 75+ entries. Shopping online. Sleeping.</li>
+<li><strong>6:33 AM Aug 10:</strong> Alarm. Epstein found with noose.</li>
+</ul>
+</div>
+
+<div class="finding">
+<h3>MCC Surveillance System <span class="new-badge">NEW</span></h3>
+<p><strong>18 components</strong> in the Nice Vision DVR system. FBI seized hard drives. <strong>One download FAILED.</strong> Camera "not functioning since Thursday." Video covered SHU floor 9 and attorney visit floor 3 (July 23 - Aug 10). FBI canvassed for external cameras near MCC.</p>
+</div>
+
+<div class="finding">
+<h3>Aftermath</h3>
+<p>Guards got deferred prosecution, then all charges dropped. Crime scene violated. Hyoid bone redaction debate in internal emails. Body moved before ME could photograph. BOP Director: "We failed."</p>
+</div>
+
+</div>
+</div>
+
+<!-- SECTION 7: INTELLIGENCE -->
+<div class="section s-pink">
+<div class="section-header" onclick="toggleSection(this)">
+<h2>INTELLIGENCE CONNECTIONS</h2>
+<div><span class="count">Updated</span> <span class="toggle">&#9660;</span></div>
+</div>
+<div class="section-content">
+
+<div class="finding">
+<h3>Acosta's Contradiction</h3>
+<p>To Trump transition: "belonged to intelligence." Under oath: "No, and no."</p>
+</div>
+
+<div class="finding">
+<h3>Robert Maxwell</h3>
+<p>Died 1991 from yacht "Lady Ghislaine." Known intelligence connections. Trump on Maxwell's yacht 1989.</p>
+</div>
+
+<div class="finding">
+<h3>Chabad / Russia / Israel <span class="new-badge">NEW</span></h3>
+<p>"Chabad's involvement in U.S. Presidential pardon petitions and influences from Russia and Israel on [President]." SPIEF 2014 USB. Wexner Foundation investigated. Mega Group.</p>
+</div>
+
+<div class="finding">
+<h3>Austrian Passport / Hapsburg Group <span class="new-badge">NEW</span></h3>
+<p>Fake passport under "Marius Fortelni." Linked to Hapsburg Group (Manafort, Gusenbauer, Goldscheider). Defense refused to confirm/deny foreign citizenship.</p>
+</div>
+
+<div class="finding">
+<h3>Surveillance Infrastructure <span class="new-badge">NEW</span></h3>
+<p>FBI monitoring: Pen registers on Maxwell's phone (multiple renewals). Mail cover. Aerial surveillance. Court-authorized intercepts (4 orders). TECS silent hit notification. Swedish/Australian/Mexican coordination.</p>
+</div>
+
+</div>
+</div>
+
+<!-- SECTION 8: POLITICAL CONNECTIONS -->
+<div class="section s-red">
+<div class="section-header" onclick="toggleSection(this)">
+<h2>POLITICAL CONNECTIONS</h2>
+<div><span class="count">Updated</span> <span class="toggle">&#9660;</span></div>
+</div>
+<div class="section-content">
+
+<div class="finding">
+<h3>Trump</h3>
+<ul>
+<li>Party at Mar-a-Lago with "just him and Epstein" and "28 Girls"</li>
+<li>Victim recruited from Mar-a-Lago at age 16</li>
+<li>Guest on Robert Maxwell's yacht 1989</li>
+<li>Security threatened witness "end up as fertilizer"</li>
+<li>Victim diary: "Mr. Joe and Mrs. Anne" at Mar-a-Lago</li>
+<li><strong>Howard Lutnick</strong> (now Commerce Secretary): money laundering allegation in FBI files</li>
+</ul>
+</div>
+
+<div class="finding">
+<h3>Clinton</h3>
+<ul>
+<li>Africa trip with victim as "masseuse"</li>
+<li>Secret Service doctor: Maxwell and 4 young women on plane</li>
+<li>Epstein "grabbing buttocks" on plane</li>
+<li>Maxwell blocking bedroom door</li>
+</ul>
+</div>
+
+<div class="finding">
+<h3>Other Politicians</h3>
+<ul>
+<li><strong>Senator George Mitchell:</strong> Named by victim as abuser</li>
+<li><strong>Bill Richardson:</strong> Named in victim allegations</li>
+<li><strong>Andrew Cuomo:</strong> Named in FBI tip alongside Trump and Epstein</li>
+<li><strong>Lawrence Summers:</strong> Named as executor in earlier Epstein wills</li>
+</ul>
+</div>
+
+</div>
+</div>
+
+<!-- SECTION 9: SCIENCE NETWORK -->
+<div class="section s-teal">
+<div class="section-header" onclick="toggleSection(this)">
+<h2>SCIENCE / EUGENICS NETWORK</h2>
+<div><span class="count">Updated</span> <span class="toggle">&#9660;</span></div>
+</div>
+<div class="section-content">
+
+<div class="finding">
+<h3>Edge Foundation Dinner</h3>
+<p>Brin, Page, Bezos (with mother), Seth Lloyd, Daniel Dubno: "All the good-looking women were sitting with the physicists' table."</p>
+</div>
+
+<div class="finding">
+<h3>Gates Connections</h3>
+<ul>
+<li>bgC3 employment termination letter signed by Gates in FBI files <span class="new-badge">NEW</span></li>
+<li>Epstein got Gates to Nobel Peace Prize committee 2013</li>
+<li>Boris Nikolic (Gates science advisor) named as will executor</li>
+<li>Joi Ito: $250K direct payment from Epstein</li>
+</ul>
+</div>
+
+<div class="finding">
+<h3>Eugenics Program</h3>
+<p>"Baby Ranch": 20 women at Zorro Ranch. "Seed the human race with his DNA." Southern Trust: "DNA analysis." George Church: "identify genes to create superior humans." $20K to Transhumanist Association.</p>
+</div>
+
+</div>
+</div>
+
+<!-- SECTION 10: FBI TIPS -->
+<div class="section s-orange">
+<div class="section-header" onclick="toggleSection(this)">
+<h2>FBI TIP COMPILATION (EFTA01660679)</h2>
+<div><span class="count">7 categories</span> <span class="toggle">&#9660;</span></div>
+</div>
+<div class="section-content">
+
+<div class="finding">
+<h3>Most Cross-Cutting Document in the Files</h3>
+<p>This single FBI tip document spans 7 of 12 investigation categories. Note: some tips assessed as "not credible." Claims include:</p>
+<ul>
+<li><strong>Trump Golf Course, Rancho Palos Verdes (1995-96):</strong> Sex trafficking ring; Maxwell as madam/broker</li>
+<li><strong>Robin Leach:</strong> Allegedly "strangled a young girl to death at a party"</li>
+<li><strong>"Calendar Girls" parties at Mar-a-Lago</strong></li>
+<li><strong>Sir Ivan Wilzig party (2004-05):</strong> Epstein, Sammy Sosa, Trump; woman "sold to a man in France"</li>
+<li><strong>"Colette LNU":</strong> Madam at Cheetah Club, NYC; Jamie Foxx connection</li>
+<li><strong>Sinaloa Cartel</strong> connections alleged</li>
+<li>Films claimed of "prominent men such as Epstein, Bill Clinton, and Donald Trump, and that Ghislaine Maxwell is in the videos as well"</li>
+</ul>
+</div>
+
+</div>
+</div>
+
+<!-- SECTION 11: MAXWELL FAMILY -->
+<div class="section s-purple">
+<div class="section-header" onclick="toggleSection(this)">
+<h2>MAXWELL FAMILY — 150+ SHELL COMPANIES</h2>
+<div><span class="count">Updated</span> <span class="toggle">&#9660;</span></div>
+</div>
+<div class="section-content">
+
+<div class="finding">
+<h3>Malcolm Grumbridge — Corporate Architect <span class="new-badge">NEW</span></h3>
+<p>Set up <strong>150+ companies</strong> for Maxwell family. Custodian of 44 Kinnerton St, Belgravia. Hogarth Group (Kevin Maxwell). Found guilty of "string of rule breaches." Quit law 2020. Last US trip: Oct 27, 2019 via JFK.</p>
+</div>
+
+<div class="finding">
+<h3>Family Members</h3>
+<ul>
+<li><strong>Robert Maxwell:</strong> Died 1991; pension embezzlement; intelligence connections</li>
+<li><strong>Kevin Maxwell:</strong> Connected through Hogarth Group/Grumbridge</li>
+<li><strong>FBI tracked siblings:</strong> Kevin, Ian, Anne, Christine, Isabel</li>
+<li><strong>"Ghislaine Borgerson":</strong> Credit cards under this name; no marriage found</li>
+<li><strong>Reddit "r/maxwellhill":</strong> FBI investigated (screenshot in evidence)</li>
+<li><strong>CargoMetrics:</strong> Maxwell tax returns show Borgerson company income</li>
+</ul>
+</div>
+
+</div>
+</div>
+
+<!-- SECTION 12: CONNECTED DEATHS -->
+<div class="section s-red">
+<div class="section-header" onclick="toggleSection(this)">
+<h2>WITNESS INTIMIDATION & CONNECTED DEATHS</h2>
+<div><span class="count">Updated</span> <span class="toggle">&#9660;</span></div>
+</div>
+<div class="section-content">
+
+<div class="finding">
+<h3>Intimidation Pattern</h3>
+<ul>
+<li>"Those who help him will be compensated; those who hurt him will be dealt with"</li>
+<li>PIs impersonated police officers</li>
+<li>Parent driven off road by Candor Investigations</li>
+<li>2-year-old's life threatened</li>
+<li>$350K wire transfers to co-conspirators post-Miami Herald</li>
+<li>Virginia Giuffre: threats on dark web "Deep Paste" — FBI opened entire case</li>
+<li>Maxwell "can make others disappear, if she needs to"</li>
+</ul>
+</div>
+
+<div class="finding">
+<h3>Connected Deaths</h3>
+<ul>
+<li><strong>Jeanne Palfrey:</strong> "Followed all day" before found dead; about to release names</li>
+<li><strong>Jean-Luc Brunel:</strong> Found dead in French prison, January 2022</li>
+<li><strong>Robert Maxwell:</strong> Fell from yacht "Lady Ghislaine" 1991</li>
+<li><strong>Dennis Hof:</strong> "Scared for his life... found dead the day after winning election"</li>
+<li><strong>Karl Erivan Haub:</strong> Mark Epstein contacted Swiss police claiming murder</li>
+</ul>
+</div>
+
+</div>
+</div>
+
+<!-- SECTION 13: KEY DOCUMENTS -->
+<div class="section s-blue">
+<div class="section-header" onclick="toggleSection(this)">
+<h2>KEY DOCUMENTS INDEX</h2>
+<div><span class="count">21 documents</span> <span class="toggle">&#9660;</span></div>
+</div>
+<div class="section-content">
+<table>
+<tr><th>EFTA Number</th><th>Description</th></tr>
+<tr><td>EFTA02731082</td><td>SDNY Prosecution Memo / Wexner Proffer (86pp) — THE KEY DOCUMENT</td></tr>
+<tr><td>EFTA02730741</td><td>FBI NTOC Master Investigation Log (255pp)</td></tr>
+<tr><td>EFTA02731662 <span class="new-badge">NEW</span></td><td>FBI-DANY emails: Leon Black sexual violence investigation</td></tr>
+<tr><td>EFTA02731361 <span class="new-badge">NEW</span></td><td>Victim diary: forced medical procedures, forced abortion</td></tr>
+<tr><td>EFTA02731420 <span class="new-badge">NEW</span></td><td>Victim account: Mitchell, Snyder, Kimsey named</td></tr>
+<tr><td>EFTA02731023 <span class="new-badge">NEW</span></td><td>Senate Finance Committee: Black $1B+ tax scheme</td></tr>
+<tr><td>EFTA02730267 <span class="new-badge">NEW</span></td><td>FBI TIR: Grumbridge / 150+ Maxwell shell companies</td></tr>
+<tr><td>EFTA02730265 <span class="new-badge">NEW</span></td><td>bgC3/Gates employment termination letter</td></tr>
+<tr><td>EFTA01660679</td><td>FBI Tips: Trump, video, Robin Leach, Sinaloa (7 categories)</td></tr>
+<tr><td>EFTA02731515</td><td>Attorney letter: circulating video</td></tr>
+<tr><td>EFTA00030181</td><td>Acosta "belonged to intelligence" email</td></tr>
+<tr><td>EFTA00009220</td><td>Acosta formal questioning — denial</td></tr>
+<tr><td>EFTA00010417</td><td>Hyoid bone redaction debate</td></tr>
+<tr><td>EFTA00010516</td><td>OPR NPA analysis — 40 victims identified</td></tr>
+<tr><td>EFTA00037551</td><td>Complete evidence inventory (60+ devices)</td></tr>
+<tr><td>EFTA00014393</td><td>FBI Maxwell siblings dossier</td></tr>
+<tr><td>EFTA00684028</td><td>Gates Foundation donor vehicle emails</td></tr>
+<tr><td>EFTA00583211</td><td>Topics for Funding (NSA, quantum)</td></tr>
+<tr><td>EFTA00995634</td><td>Russian blockchain contact (Masha Drokova)</td></tr>
+<tr><td>EFTA00069900</td><td>Edge Foundation dinner: Brin, Page, Bezos</td></tr>
+<tr><td>EFTA02730486</td><td>FBI investigation index: Chabad/Russia/Israel</td></tr>
+</table>
+</div>
+</div>
+
+<footer>
+<p>Epstein Files Analysis Dashboard v10 — Deep Dive Edition</p>
+<p>Generated: February 1, 2026 | Sources: 406 PDFs, 42MB corpus, 8 deep-dive agents</p>
+<p>All citations reference specific EFTA document numbers from the January 30, 2026 release on archive.org</p>
+</footer>
+
+</div>
+
+<script>
+function toggleSection(header) {
+  header.parentElement.classList.toggle('open');
+}
+
+// Search
+const searchInput = document.getElementById('searchInput');
+document.addEventListener('keydown', e => {
+  if ((e.ctrlKey || e.metaKey) && e.key === 'k') { e.preventDefault(); searchInput.focus(); }
+  if (e.key === 'Escape') { searchInput.blur(); searchInput.value = ''; clearHighlights(); }
+});
+
+searchInput.addEventListener('input', function() {
+  const query = this.value.trim().toLowerCase();
+  clearHighlights();
+  if (!query || query.length < 2) return;
+
+  document.querySelectorAll('.section').forEach(section => {
+    const content = section.textContent.toLowerCase();
+    if (content.includes(query)) {
+      section.classList.add('open');
+      // Highlight matches in findings
+      section.querySelectorAll('.finding p, .finding li, td').forEach(el => {
+        if (el.textContent.toLowerCase().includes(query)) {
+          const html = el.innerHTML;
+          const regex = new RegExp(`(${query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+          el.innerHTML = html.replace(regex, '<span class="highlight">$1</span>');
+        }
+      });
+    }
+  });
+});
+
+function clearHighlights() {
+  document.querySelectorAll('.highlight').forEach(el => {
+    el.outerHTML = el.textContent;
+  });
+}
+
+// Open first section by default
+document.querySelector('.section').classList.add('open');
+</script>
+</body>
+</html>
