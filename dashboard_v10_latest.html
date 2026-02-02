@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Epstein Files Investigation Dashboard v10.32 — DS1-8 + DS10 Complete + All Sources (186,027 findings)</title>
+<title>Epstein Files Investigation Dashboard v10.33 — DS1-8 + DS10 Complete + All Sources (186,027 findings)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -940,7 +940,7 @@ body {
   <div class="nav-inner">
     <div class="nav-brand">
       <span class="dot"></span>
-      <span>Epstein Files v10.32</span>
+      <span>Epstein Files v10.33</span>
     </div>
     <ul class="nav-links">
       <li><a href="#network">Network</a></li>
@@ -1513,7 +1513,7 @@ body {
 
 <!-- FOOTER -->
 <footer class="footer">
-  <div class="footer-brand">Epstein Files Investigation Dashboard v10.32 — DS1-8 + DS9 + DS10 + Local Batch Complete</div>
+  <div class="footer-brand">Epstein Files Investigation Dashboard v10.33 — DS1-8 + DS9 + DS10 + Local Batch Complete</div>
   <p>
     Generated: 2026-02-02 UTC<br>
     Methodology: Automated keyword extraction with context-aware severity scoring and composite score integration across all pipelines.<br>
@@ -1898,6 +1898,19 @@ const FINDINGS_DATA = [
               document_pages: 6,
               key_quote: "Individuals Who Have Engaged in Massages with Epstein Girls: Frederic Fekkai, Jes Staley, Glen Dubin... Epstein worked for the United States government as a financial bounty hunter"
             }
+        ,
+            {
+              id: "EFTA00362802",
+              title: "Epstein September 2014 Calendar — Bill Burns Private Meeting, Peter Thiel, Kathy Ruemmler",
+              severity: "critical",
+              category: "Calendar/Schedule",
+              date: "2014-09-12",
+              source: "DS9 Wayback Pipeline",
+              persons: ["Bill Burns", "Peter Thiel", "Woody Allen", "Kathy Ruemmler", "Bob Kerrey", "Jes Staley", "Boris Nikolic", "Paul Morris", "Andrew Farkas", "Leon Black", "Ehud Barak"],
+              summary: "Detailed September 2014 calendar. Sep 13: '4-5:00pm Meeting with Bill Burns alone' — instructions: 'YOU ARE TO TAKE BILL BURNS TO THE AIRPORT.' Burns was Deputy Secretary of State until Feb 2014, later CIA Director. Sep 13: 5pm Peter Thiel; 7pm Dinner w/Woody Allen, Soon Yi, Kathy Ruemmler (Obama's White House counsel). Sep 14: Lunch w/Bob Kerrey, Peter Thiel, Kathy Ruemmler, Cass. Sep 15: Paul Morris DB 'Hard Asset Put Structure' conference call. Sep 23: Woody Allen, Alex and Leon Black. Sep 25: Ehud Barak (Kathy Ruemmler would love to join). Sep 29: Dubin Breast Center luncheon — Jeffrey bought 5 tables of 10.",
+              document_pages: 5,
+              key_quote: "4-5:00pm Meeting with Bill Burns alone... YOU ARE TO TAKE BILL BURNS TO THE AIRPORT AFTER HIS MEETING WITH JEFFREY... Dinner w/Woody Allen, Soon Yi, Kathy Ruemmler, and MAYBE Peter Thiel"
+            }
         ];
   {id:'EFTA00153703',dataset:'DS9',pages:26,severity:10,keywords:['ghislaine','maxwell','trump','brunel','blackmail','russia'],summary:'MAJOR: Complete FBI FD-302 victim interview - 14yo Interlochen recruit. Maxwell directed group abuse. Brunel brought 15yo to island and brought Russian women on tourist visas. Crystal Walsh blackmailed Epstein for $50K then tipped him off. Shredding papers in NY office. Met Weinstein at Golden Globes. TRUMP ALLEGATION DENIED by victim. Immigration fraud via Parda Beskardes.',date:'2019-10-25',type:'fbi-interview'},
   {id:'EFTA00152619',dataset:'DS9',pages:6,severity:4,keywords:['maxwell'],summary:'SDNY processing Maxwell discovery evidence - Reiter 15 VHS + 39 cassette tapes, Maxwell cell phone GPS data, 4 Blu-Ray discs',date:'2020-10-06',type:'fbi-operational'},
@@ -1935,7 +1948,7 @@ const TIMELINE_DATA = [
   { date: "2019-08-09", title: "FBI Status Update: ~60 Victims Identified", desc: "Day before Epstein death. FBI reports ~60 victims, potentially hundreds more. All co-conspirators served except Maxwell in London. [v10.8]" },
   { date: "2019-08-06", title: "FBI Planning Little St James Island Raid", desc: "SDNY drafting search warrant affidavit for island. 845 photos already taken in 13-hour NY residence search. [v10.8]" },
   { date: "2019-10-29", title: "FBI PRTT Active on Maxwell Phone", desc: "Pen Register/Trap and Trace surveillance activated on Ghislaine Maxwell. IP tracked to Pawtucket, Rhode Island. [v10.8]" },
-  { date: "2020-06-08", title: "FBI Maxwell Pre-Arrest: 6 Counts Planned, Active Surveillance", desc: "FBI email reveals exact Maxwell indictment charges planned, mail cover on her address, pen register on phone, physical surveillance coming. Prince Andrew MLAT response coordinated with SDNY. [v10.32]" }
+  { date: "2020-06-08", title: "FBI Maxwell Pre-Arrest: 6 Counts Planned, Active Surveillance", desc: "FBI email reveals exact Maxwell indictment charges planned, mail cover on her address, pen register on phone, physical surveillance coming. Prince Andrew MLAT response coordinated with SDNY. [v10.33]" }
   {date:'2018-12-13',event:'FBI/NYPD discover Epstein SORNA registration phone linked to Wexner/The Limited, begin MC2 model housing investigation',source:'EFTA00152144'},
   {date:'2019-07-24',event:'FBI/NYPD task force tracking down former Epstein employees for interviews about NY residence activities',source:'EFTA00150941'},
   {date:'2020-06-23',event:'FBI CAST analyzing Maxwell phone records and IP addresses one week before arrest, detecting VPN masking',source:'EFTA00150943'},
@@ -2020,6 +2033,8 @@ const TIMELINE_DATA = [
             {date: "2025-07-22", event: "FBI internal 'Names in JE file': Trump victim allegation (refused to cooperate), Prince Andrew, Jes Staley, Leon Black, Dubin, Weinstein, Clinton, Dershowitz, Copperfield, Wexner, Brunel, Naomi Campbell, Chris Tucker, Kevin Spacey, Bill Gates", source: "EFTA00161528", severity: "critical"},
             {date: "2011-09-17", event: "Epstein weekly schedule: Brunel dinner, Brock Pierce breakfast, Jes Staley x2, EHUD BARAK, Woody Allen, Gov Richardson (3 days), Kissinger, heads of state", source: "EFTA00428025", severity: "high"},
             {date: "2016-2019", event: "Investigative memo: Fekkai/Staley/Dubin 'engaged in massages with Epstein girls'; Epstein was 'US government financial bounty hunter'; Alvarez 'provides girls'", source: "EFTA00098755", severity: "critical"}
+        ,
+            {date: "2014-09-13", event: "Epstein calendar: Private meeting with Bill Burns (former Dep Sec State, future CIA Director) alone; Peter Thiel; Dinner w/Woody Allen & Kathy Ruemmler (Obama WH counsel); DB 'Hard Asset Put Structure' call with Paul Morris", source: "EFTA00362802", severity: "critical"}
         ];
 
 const DATASETS_DATA = [
