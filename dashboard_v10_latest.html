@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Epstein Files Investigation Dashboard v10.8 — DS1-8 + DS10 Complete + All Sources (186,027 findings)</title>
+<title>Epstein Files Investigation Dashboard v10.9 — DS1-8 + DS10 Complete + All Sources (186,027 findings)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -940,7 +940,7 @@ body {
   <div class="nav-inner">
     <div class="nav-brand">
       <span class="dot"></span>
-      <span>Epstein Files v10.8</span>
+      <span>Epstein Files v10.9</span>
     </div>
     <ul class="nav-links">
       <li><a href="#network">Network</a></li>
@@ -1513,7 +1513,7 @@ body {
 
 <!-- FOOTER -->
 <footer class="footer">
-  <div class="footer-brand">Epstein Files Investigation Dashboard v10.8 — DS1-8 + DS9 + DS10 + Local Batch Complete</div>
+  <div class="footer-brand">Epstein Files Investigation Dashboard v10.9 — DS1-8 + DS9 + DS10 + Local Batch Complete</div>
   <p>
     Generated: 2026-02-02 UTC<br>
     Methodology: Automated keyword extraction with context-aware severity scoring and composite score integration across all pipelines.<br>
@@ -1657,7 +1657,9 @@ const FINDINGS_DATA = [
   { severity: 2, term: "EFTA00147891 (4pg) — FBI Operational Planning: Little St James Island Raid", citation: "EFTA00147891", preview: "FBI operational planning for Little St James island raid, July 27-Aug 7, 2019. 845 photos taken during 13-hour search of NY residence.", context: "...FBI operational planning for Little St James island raid, July 27-Aug 7, 2019. 845 photos taken during 13-hour search of NY residence. 15-20 buildings on island. SDNY drafting search warrant affidavit. CBP providing transport. 'SDNY preferred to isolate this case from previous investigation 12 years ago.' Raid planned before Epstein death (Aug 10), executed Aug 12...", level: "critical" },
   { severity: 8, term: "EFTA00147794 (1pg) — Victim Email: Epstein/Maxwell/Wexner (1996 Report)", citation: "EFTA00147794", preview: "Victim email to EpsteinVictimList@fbi.gov Sept 30, 2019. Self-identifies as the victim who reported EVERYTHING in 1996.", context: "...Victim email to EpsteinVictimList@fbi.gov Sept 30, 2019. Self-identifies as 'the Epstein/Maxwell/Wexner victim that reported EVERYTHING in 1996.' Ignored after second interview in 2006. Names Wexner as co-victimizer alongside Epstein and Maxwell...", level: "high" },
   { severity: 2, term: "EFTA00147785 (1pg) — FBI Active Maxwell Surveillance (PRTT)", citation: "EFTA00147785", preview: "FBI email Oct 30, 2019 showing active Maxwell surveillance. PRTT went active Oct 29. IP hitting in Pawtucket, Rhode Island.", context: "...FBI email Oct 30, 2019 showing active Maxwell surveillance. PRTT (Pen Register/Trap and Trace) went active Oct 29. Subpoena issued for phone tolls. IP hitting in Pawtucket, Rhode Island. Active tracking months before her July 2020 arrest...", level: "high" },
-  { severity: 5, term: "EFTA00147304 (2pg) — FBI Internal: Prince Andrew Interview Story", citation: "EFTA00147304", preview: "FBI internal email Aug 16, 2019 (6 days after Epstein death). The Sun US Editor contacts FBI about Prince Andrew interview story.", context: "...FBI internal email Aug 16, 2019 (6 days after Epstein death). The Sun US Editor contacts FBI saying they are running story that FBI intends to interview Prince Andrew as part of wider conspiracy investigation. FBI forwards internally as FYI 'considering high profile nature' with no comment...", level: "medium" }
+  { severity: 5, term: "EFTA00147304 (2pg) — FBI Internal: Prince Andrew Interview Story", citation: "EFTA00147304", preview: "FBI internal email Aug 16, 2019 (6 days after Epstein death). The Sun US Editor contacts FBI about Prince Andrew interview story.", context: "...FBI internal email Aug 16, 2019 (6 days after Epstein death). The Sun US Editor contacts FBI saying they are running story that FBI intends to interview Prince Andrew as part of wider conspiracy investigation. FBI forwards internally as FYI 'considering high profile nature' with no comment...", level: "medium" },
+  { severity: 5, term: "EFTA00149560 (2pg) — FBI Maxwell Pre-Arrest Planning + Prince Andrew MLAT", citation: "EFTA00149560", preview: "FBI internal email June 8, 2020. Pre-arrest planning for Maxwell indictment: exact 6 counts listed. Active mail cover and pen register on Maxwell. Prince Andrew MLAT request and SDNY response.", context: "...FBI email June 8, 2020 — one month before Maxwell arrest. 'When we are able to have a grand jury, we plan on getting a six count indictment.' Lists exact charges: conspiracy to entice, enticement, conspiracy to transport, transportation, 2x perjury. Mail cover on Maxwell address. Pen register renewed on phone. Physical surveillance planned. Prince Andrew counsel responded to MLAT request. SDNY drafting counter-statement...", level: "critical" },
+  { severity: 5, term: "EFTA00149317 (18pg) — Maxwell Sealed Indictment (20 Cr. 330)", citation: "EFTA00149317", preview: "Original sealed indictment of Ghislaine Maxwell. Six counts. Three identified minor victims. Abuse at NYC, Palm Beach, NM, London. Minor Victim-1 was approximately 14 years old.", context: "...SDNY sealed indictment 20 Cr. 330. Count 1: Conspiracy to entice minors. Count 2: Enticement. Count 3: Conspiracy to transport minors. Count 4: Transportation. Counts 5-6: Perjury. Three minor victims. Minor Victim-1 approximately 14 years old, groomed 1994-1997. Abuse locations: NYC Upper East Side residence, Palm Beach estate, Santa Fe ranch, Maxwell London residence. Maxwell in intimate relationship with Epstein, managed his properties...", level: "high" }
 ];
 
 const TIMELINE_DATA = [
@@ -1692,7 +1694,8 @@ const TIMELINE_DATA = [
   { date: "2023-03-27", title: "FBI/FinCEN Deconfliction on Epstein SARs", desc: "FBI/FinCEN deconfliction on Epstein SARs reveals unknown entities: Nautilus Inc, Sotheby's (EFTA00144237) [v10.8]" },
   { date: "2019-08-09", title: "FBI Status Update: ~60 Victims Identified", desc: "Day before Epstein death. FBI reports ~60 victims, potentially hundreds more. All co-conspirators served except Maxwell in London. [v10.8]" },
   { date: "2019-08-06", title: "FBI Planning Little St James Island Raid", desc: "SDNY drafting search warrant affidavit for island. 845 photos already taken in 13-hour NY residence search. [v10.8]" },
-  { date: "2019-10-29", title: "FBI PRTT Active on Maxwell Phone", desc: "Pen Register/Trap and Trace surveillance activated on Ghislaine Maxwell. IP tracked to Pawtucket, Rhode Island. [v10.8]" }
+  { date: "2019-10-29", title: "FBI PRTT Active on Maxwell Phone", desc: "Pen Register/Trap and Trace surveillance activated on Ghislaine Maxwell. IP tracked to Pawtucket, Rhode Island. [v10.8]" },
+  { date: "2020-06-08", title: "FBI Maxwell Pre-Arrest: 6 Counts Planned, Active Surveillance", desc: "FBI email reveals exact Maxwell indictment charges planned, mail cover on her address, pen register on phone, physical surveillance coming. Prince Andrew MLAT response coordinated with SDNY. [v10.9]" }
 ];
 
 const DATASETS_DATA = [
