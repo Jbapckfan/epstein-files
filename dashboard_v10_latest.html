@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Epstein Files Investigation Dashboard v10.22 — DS1-8 + DS10 Complete + All Sources (186,027 findings)</title>
+<title>Epstein Files Investigation Dashboard v10.23 — DS1-8 + DS10 Complete + All Sources (186,027 findings)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -940,7 +940,7 @@ body {
   <div class="nav-inner">
     <div class="nav-brand">
       <span class="dot"></span>
-      <span>Epstein Files v10.22</span>
+      <span>Epstein Files v10.23</span>
     </div>
     <ul class="nav-links">
       <li><a href="#network">Network</a></li>
@@ -1513,7 +1513,7 @@ body {
 
 <!-- FOOTER -->
 <footer class="footer">
-  <div class="footer-brand">Epstein Files Investigation Dashboard v10.22 — DS1-8 + DS9 + DS10 + Local Batch Complete</div>
+  <div class="footer-brand">Epstein Files Investigation Dashboard v10.23 — DS1-8 + DS9 + DS10 + Local Batch Complete</div>
   <p>
     Generated: 2026-02-02 UTC<br>
     Methodology: Automated keyword extraction with context-aware severity scoring and composite score integration across all pipelines.<br>
@@ -1771,7 +1771,31 @@ const FINDINGS_DATA = [
       keywords_matched: ['brunel', 'clinton', 'dershowitz'],
       source_url: 'https://web.archive.org/web/2025/https://www.justice.gov/d9/2025-01/EFTA00211995.pdf'
     },
-  ];
+      {id: 'EFTA00229906', severity: 'critical', category: 'Prosecution Documents', pages: 10,
+     title: '"Operation Leap Year" Prosecution Memo — AUSA Seeks Indictment Approval',
+     summary: 'THE actual AUSA memorandum from FAUSA Jeff Sloman to US Attorney Acosta seeking indictment approval for Jeffrey Epstein. Code name "Operation Leap Year." Proposed charges under 5 federal statutes (§2422 enticement, §2423 travel, §2421 Mann Act, §1591 sex trafficking, §1956 money laundering). Sought forfeiture of Palm Beach home and two airplanes. 27 girls identified ages 14-23. CPUs and surveillance videotapes MISSING during search warrant execution. Photos of "Epstein sitting with naked girls." Up to 3 massage appointments per day. Property manager Banasiak paid girls from household account. AUSA "erred on the side of over-charging." 82-page prosecution memo + 53-page indictment prepared. Ghislaine Maxwell footnote: "daughter of the late Robert Maxwell, a British newspaper tycoon. Maxwell is credited with bringing Epstein into high society." Maxwell also "implicated in another act of molesting a young girl."',
+     keywords: ['acosta','ghislaine','maxwell','robert maxwell','operation leap year'], dataset: 'DS9', source: 'DOJ FOIA via Wayback Machine'},
+    {id: 'EFTA00235751', severity: 'high', category: 'Legal Filings', pages: 41,
+     title: 'CVRA Motion — Full Timeline of NPA Secrecy and Victim Deception',
+     summary: 'Jane Doe #1 and #2 Motion for Finding of CVRA Violations (March 21, 2011). Exhaustive 41-page filing by Bradley Edwards and Paul Cassell documenting systematic deception of victims. Key revelations: (1) USAO sent FALSE victim notification letters saying "case is currently under investigation" 3+ months after NPA was signed; (2) USAO discussed victim notification with Epstein defense counsel and STOPPED notifications after Lefkowitz objections; (3) USAO tried filing in Miami "to avoid press" coverage reaching victims; (4) Senior AUSA left office and immediately represented Epstein employees including co-conspirator Sarah Kellen — office was "right next door" to Epstein work release; (5) Confirms 82-page prosecution memo and 53-page indictment existed; (6) Names Maxwell and Brunel as enterprise co-conspirators.',
+     keywords: ['acosta','brunel','maxwell','sarah kellen'], dataset: 'DS9', source: 'DOJ FOIA via Wayback Machine'},
+    {id: 'EFTA00223748', severity: 'high', category: 'Prosecution Documents', pages: 76,
+     title: 'AUSA Indictment Drafting Emails — Names in the Indictment',
+     summary: 'Internal AUSA emails regarding drafting the Epstein indictment (Feb 2008). "Here are the names of people I am intending to keep in the indictment." Investigation of FedEx records revealed packages sent to Secret Service agent Chiko Hoge during Clinton Africa trip. MC2/Karin Models packages tracked. References to "Art of Women" recruitment operation in Hawaii. Contains detailed prosecution strategy discussions.',
+     keywords: ['acosta','clinton','sarah kellen','secret service'], dataset: 'DS9', source: 'DOJ FOIA via Wayback Machine'},
+    {id: 'EFTA00214213', severity: 'high', category: 'NPA Correspondence', pages: 2,
+     title: 'Acosta "Memo to File" — Lefkowitz Admits Sex Offender Registration Error',
+     summary: 'US Attorney Acosta emails himself a memorandum for the record (Jan 3, 2008) documenting a conversation with Epstein defense attorney Jay Lefkowitz. Lefkowitz stated: "I may have made a mistake 6 months ago... told us solicitation not registrable. It turns out that the actual offense charged it." This admission that Lefkowitz misrepresented sex offender registration requirements during NPA negotiations was significant enough for Acosta to create a contemporaneous written record.',
+     keywords: ['acosta','lefkowitz','sex offender registration'], dataset: 'DS9', source: 'DOJ FOIA via Wayback Machine'},
+    {id: 'EFTA00229916', severity: 'moderate', category: 'Legal Filings', pages: 277,
+     title: 'OPR Referral — CVRA Motion Forwarded to DOJ Ethics Office',
+     summary: 'Office of Professional Responsibility referral package (April 26, 2011). Cover letter forwarding the CVRA motion and complete set of exhibits including AUSA-Lefkowitz correspondence to DOJ internal ethics office. Includes NPA text as exhibit. CD-ROM of unredacted materials referenced. Confirms formal ethics investigation was initiated into USAO handling of Epstein case.',
+     keywords: ['acosta','brunel','maxwell','prince andrew','OPR'], dataset: 'DS9', source: 'DOJ FOIA via Wayback Machine'},
+    {id: 'EFTA00216201', severity: 'moderate', category: 'Work Release', pages: 2,
+     title: 'Victim Notification — Epstein Work Release in Same Building as USAO',
+     summary: 'Victim notification letter regarding Epstein work release (Dec 8, 2008). Epstein served work release at "The Florida Science Foundation" at 250 South Australian Avenue — the same building housing the US Attorney Office. Government was "never notified" of the work release arrangement and learned about it 6 weeks after it began.',
+     keywords: ['acosta','work release','florida science foundation'], dataset: 'DS9', source: 'DOJ FOIA via Wayback Machine'},
+];
   {id:'EFTA00153703',dataset:'DS9',pages:26,severity:10,keywords:['ghislaine','maxwell','trump','brunel','blackmail','russia'],summary:'MAJOR: Complete FBI FD-302 victim interview - 14yo Interlochen recruit. Maxwell directed group abuse. Brunel brought 15yo to island and brought Russian women on tourist visas. Crystal Walsh blackmailed Epstein for $50K then tipped him off. Shredding papers in NY office. Met Weinstein at Golden Globes. TRUMP ALLEGATION DENIED by victim. Immigration fraud via Parda Beskardes.',date:'2019-10-25',type:'fbi-interview'},
   {id:'EFTA00152619',dataset:'DS9',pages:6,severity:4,keywords:['maxwell'],summary:'SDNY processing Maxwell discovery evidence - Reiter 15 VHS + 39 cassette tapes, Maxwell cell phone GPS data, 4 Blu-Ray discs',date:'2020-10-06',type:'fbi-operational'},
 
@@ -1808,7 +1832,7 @@ const TIMELINE_DATA = [
   { date: "2019-08-09", title: "FBI Status Update: ~60 Victims Identified", desc: "Day before Epstein death. FBI reports ~60 victims, potentially hundreds more. All co-conspirators served except Maxwell in London. [v10.8]" },
   { date: "2019-08-06", title: "FBI Planning Little St James Island Raid", desc: "SDNY drafting search warrant affidavit for island. 845 photos already taken in 13-hour NY residence search. [v10.8]" },
   { date: "2019-10-29", title: "FBI PRTT Active on Maxwell Phone", desc: "Pen Register/Trap and Trace surveillance activated on Ghislaine Maxwell. IP tracked to Pawtucket, Rhode Island. [v10.8]" },
-  { date: "2020-06-08", title: "FBI Maxwell Pre-Arrest: 6 Counts Planned, Active Surveillance", desc: "FBI email reveals exact Maxwell indictment charges planned, mail cover on her address, pen register on phone, physical surveillance coming. Prince Andrew MLAT response coordinated with SDNY. [v10.22]" }
+  { date: "2020-06-08", title: "FBI Maxwell Pre-Arrest: 6 Counts Planned, Active Surveillance", desc: "FBI email reveals exact Maxwell indictment charges planned, mail cover on her address, pen register on phone, physical surveillance coming. Prince Andrew MLAT response coordinated with SDNY. [v10.23]" }
   {date:'2018-12-13',event:'FBI/NYPD discover Epstein SORNA registration phone linked to Wexner/The Limited, begin MC2 model housing investigation',source:'EFTA00152144'},
   {date:'2019-07-24',event:'FBI/NYPD task force tracking down former Epstein employees for interviews about NY residence activities',source:'EFTA00150941'},
   {date:'2020-06-23',event:'FBI CAST analyzing Maxwell phone records and IP addresses one week before arrest, detecting VPN masking',source:'EFTA00150943'},
@@ -1862,7 +1886,12 @@ const TIMELINE_DATA = [
       documents: ['EFTA00211095'],
       severity: 9
     },
-  ];
+      {date: '2007-01-31', event: '"Operation Leap Year" prosecution memo submitted to Acosta', detail: 'FAUSA Jeff Sloman submits formal memorandum seeking indictment approval. 82 pages detailing charges under 5 federal statutes. 53-page indictment prepared. 27 victims identified. Forfeiture of home and planes sought.', source: 'EFTA00229906'},
+    {date: '2008-01-03', event: 'Acosta creates memo documenting Lefkowitz admission', detail: 'Acosta emails himself memorializing Lefkowitz statement about sex offender registration error: "I may have made a mistake 6 months ago."', source: 'EFTA00214213'},
+    {date: '2008-01-10', event: 'FALSE victim notification letters sent', detail: 'FBI sends letters to Jane Doe #1 and #2 stating "case is currently under investigation" — 3+ months after NPA was signed.', source: 'EFTA00235751'},
+    {date: '2011-03-21', event: 'CVRA Motion filed documenting systematic victim deception', detail: 'Edwards/Cassell file 41-page motion documenting how USAO concealed NPA from victims, sent false notifications, and colluded with defense on victim notification.', source: 'EFTA00235751'},
+    {date: '2011-04-26', event: 'OPR referral — CVRA motion forwarded to DOJ ethics office', detail: 'Complete package including unredacted motion and exhibits forwarded to Office of Professional Responsibility.', source: 'EFTA00229916'},
+];
 
 const DATASETS_DATA = [
   { name: "Dataset 1 (DS1)", status: "complete", desc: "Court-released documents batch 1. Civil litigation materials, depositions, correspondence.", stat: "3,156 PDFs // COMPLETE" },
