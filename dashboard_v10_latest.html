@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Epstein Files Investigation Dashboard v10.40 — DS1-8 + DS10 Complete + All Sources (186,027 findings)</title>
+<title>Epstein Files Investigation Dashboard v10.41 — DS1-8 + DS10 Complete + All Sources (186,027 findings)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -940,7 +940,7 @@ body {
   <div class="nav-inner">
     <div class="nav-brand">
       <span class="dot"></span>
-      <span>Epstein Files v10.40</span>
+      <span>Epstein Files v10.41</span>
     </div>
     <ul class="nav-links">
       <li><a href="#network">Network</a></li>
@@ -1513,7 +1513,7 @@ body {
 
 <!-- FOOTER -->
 <footer class="footer">
-  <div class="footer-brand">Epstein Files Investigation Dashboard v10.40 — DS1-8 + DS9 + DS10 + Local Batch Complete</div>
+  <div class="footer-brand">Epstein Files Investigation Dashboard v10.41 — DS1-8 + DS9 + DS10 + Local Batch Complete</div>
   <p>
     Generated: 2026-02-02 UTC<br>
     Methodology: Automated keyword extraction with context-aware severity scoring and composite score integration across all pipelines.<br>
@@ -2246,7 +2246,12 @@ const FINDINGS_DATA = [
             date: '2020-08-19',
             tags: ['fbi-fd302', 'maxwell', 'mar-a-lago', 'recruiting', 'sexual']
         }
-    ];
+    
+  {id:'fd302-scully-prince-andrew-grinding-pool',dataset:'DS9-FD302',pages:3,severity:10,keywords:['prince andrew','maxwell','wexner','dershowitz','island'],summary:'CRITICAL: Island telecom tech Steve Scully (1999-2005, ~100 visits) witnessed Prince Andrew "grinding against some young girl in the pool." Les Wexner was #1 speed dial on ALL Epstein phones. "Special Party" = code for young teenaged girls. Alan Dershowitz visited island. Three naked girls in grotto. Topless photos of 15-16yo girls in bedroom. All bodyguards carried guns after 2001. [v10.41]',date:'2019-08-09',type:'fbi-interview'},
+  {id:'fd302-leon-black-trafficking-ring-10m',dataset:'DS9-FD302',pages:2,severity:10,keywords:['leon black','epstein','weinstein','prince andrew','maxwell','trafficking'],summary:'CRITICAL: Victim states Leon Black "ran a sex trafficking ring." Black transferred $10 MILLION to Epstein in 2015. Black flew victim to Epstein FL home, pressured sex with Epstein. Black raped victim in her apartment ~2014. Black told victim he was friends with police, Epstein, and Harvey Weinstein. Victim met Maxwell and Prince Andrew. NDA forced, threats to destroy her life. [v10.41]',date:'2020-04-10',type:'fbi-interview'},
+  {id:'fd302-scully-dershowitz-island-confirmed',dataset:'DS9-FD302',pages:2,severity:8,keywords:['dershowitz','island','victoria secret'],summary:'Scully follow-up photo IDs: Alan Dershowitz confirmed on island — seen in kitchen with bodyguard. Five girls on dock described as "Victoria Secret models." Epstein "had a type — liked blonde girls." Photo binder identifications of island visitors. [v10.41]',date:'2019-08-13',type:'fbi-interview'},
+  {id:'fd302-edwards-dubin-butler-lead',dataset:'DS9-FD302',pages:1,severity:6,keywords:['glen dubin','eva anderson','maxwell','edwards'],summary:'Attorney Brad Edwards suggests FBI interview former butler for Glen Dubin and Eva Anderson. Butler previously deposed in Maxwell lawsuit (under seal). Edwards believes interview "would be fruitful." Dubin/Anderson connection to Epstein confirmed. [v10.41]',date:'2019-11-01',type:'fbi-interview'},
+];
   {id:'EFTA00153703',dataset:'DS9',pages:26,severity:10,keywords:['ghislaine','maxwell','trump','brunel','blackmail','russia'],summary:'MAJOR: Complete FBI FD-302 victim interview - 14yo Interlochen recruit. Maxwell directed group abuse. Brunel brought 15yo to island and brought Russian women on tourist visas. Crystal Walsh blackmailed Epstein for $50K then tipped him off. Shredding papers in NY office. Met Weinstein at Golden Globes. TRUMP ALLEGATION DENIED by victim. Immigration fraud via Parda Beskardes.',date:'2019-10-25',type:'fbi-interview'},
   {id:'EFTA00152619',dataset:'DS9',pages:6,severity:4,keywords:['maxwell'],summary:'SDNY processing Maxwell discovery evidence - Reiter 15 VHS + 39 cassette tapes, Maxwell cell phone GPS data, 4 Blu-Ray discs',date:'2020-10-06',type:'fbi-operational'},
 
@@ -2283,7 +2288,7 @@ const TIMELINE_DATA = [
   { date: "2019-08-09", title: "FBI Status Update: ~60 Victims Identified", desc: "Day before Epstein death. FBI reports ~60 victims, potentially hundreds more. All co-conspirators served except Maxwell in London. [v10.8]" },
   { date: "2019-08-06", title: "FBI Planning Little St James Island Raid", desc: "SDNY drafting search warrant affidavit for island. 845 photos already taken in 13-hour NY residence search. [v10.8]" },
   { date: "2019-10-29", title: "FBI PRTT Active on Maxwell Phone", desc: "Pen Register/Trap and Trace surveillance activated on Ghislaine Maxwell. IP tracked to Pawtucket, Rhode Island. [v10.8]" },
-  { date: "2020-06-08", title: "FBI Maxwell Pre-Arrest: 6 Counts Planned, Active Surveillance", desc: "FBI email reveals exact Maxwell indictment charges planned, mail cover on her address, pen register on phone, physical surveillance coming. Prince Andrew MLAT response coordinated with SDNY. [v10.40]" }
+  { date: "2020-06-08", title: "FBI Maxwell Pre-Arrest: 6 Counts Planned, Active Surveillance", desc: "FBI email reveals exact Maxwell indictment charges planned, mail cover on her address, pen register on phone, physical surveillance coming. Prince Andrew MLAT response coordinated with SDNY. [v10.41]" }
   {date:'2018-12-13',event:'FBI/NYPD discover Epstein SORNA registration phone linked to Wexner/The Limited, begin MC2 model housing investigation',source:'EFTA00152144'},
   {date:'2019-07-24',event:'FBI/NYPD task force tracking down former Epstein employees for interviews about NY residence activities',source:'EFTA00150941'},
   {date:'2020-06-23',event:'FBI CAST analyzing Maxwell phone records and IP addresses one week before arrest, detecting VPN masking',source:'EFTA00150943'},
@@ -2529,7 +2534,11 @@ const TIMELINE_DATA = [
             source: 'EFTA00090348',
             severity: 'high'
         }
-    ];
+    
+  {date:'1999-2005',event:'Island telecom tech Steve Scully witnesses Prince Andrew "grinding against young girl in pool," three naked girls in grotto, topless photos of 15-16yo girls. Wexner #1 on speed dial. "Special Party" code for underage girls.',source:'EFTA00090602'},
+  {date:'2008-2015',event:'Victim states Leon Black "ran a sex trafficking ring." Black flew victim to Epstein FL home, raped her in apartment ~2014, transferred $10M to Epstein in 2015. Black friends with Weinstein and police.',source:'EFTA00090606'},
+  {date:'2019-08-13',event:'FBI shows island tech Steve Scully 85-person photobook — confirms Alan Dershowitz on island, identifies multiple girls from photos',source:'EFTA00091916'},
+];
 
 const DATASETS_DATA = [
   { name: "Dataset 1 (DS1)", status: "complete", desc: "Court-released documents batch 1. Civil litigation materials, depositions, correspondence.", stat: "3,156 PDFs // COMPLETE" },
