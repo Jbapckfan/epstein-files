@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Epstein Files Investigation Dashboard v10.12 — DS1-8 + DS10 Complete + All Sources (186,027 findings)</title>
+<title>Epstein Files Investigation Dashboard v10.13 — DS1-8 + DS10 Complete + All Sources (186,027 findings)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -940,7 +940,7 @@ body {
   <div class="nav-inner">
     <div class="nav-brand">
       <span class="dot"></span>
-      <span>Epstein Files v10.12</span>
+      <span>Epstein Files v10.13</span>
     </div>
     <ul class="nav-links">
       <li><a href="#network">Network</a></li>
@@ -1513,7 +1513,7 @@ body {
 
 <!-- FOOTER -->
 <footer class="footer">
-  <div class="footer-brand">Epstein Files Investigation Dashboard v10.12 — DS1-8 + DS9 + DS10 + Local Batch Complete</div>
+  <div class="footer-brand">Epstein Files Investigation Dashboard v10.13 — DS1-8 + DS9 + DS10 + Local Batch Complete</div>
   <p>
     Generated: 2026-02-02 UTC<br>
     Methodology: Automated keyword extraction with context-aware severity scoring and composite score integration across all pipelines.<br>
@@ -1671,6 +1671,8 @@ const FINDINGS_DATA = [
   {id:"EFTA00156578",dataset:"DS9",pages:3,severity:10,keywords:["deutsche bank","jp morgan"],category:"Financial Institution",summary:"FBI email chain: USVI civil lawsuit against JP Morgan Chase for Trafficking Victims Protection Act violations. JP Morgan failed BSA regulations, not alerting of criminal acts in USVI. Cases consolidated before Judge Rakoff: Doe v. Deutsche Bank (22-cv-10018), Doe v. JP Morgan (22-cv-10019), USVI v. JP Morgan (22-cv-10904). FBI San Juan seeking NY Epstein case contacts.",flag:"FBI awareness of USVI bank lawsuits — Deutsche Bank and JP Morgan both named"},
   {id:"EFTA00156248",dataset:"DS9",pages:2,severity:5,keywords:["ghislaine","maxwell","prince andrew"],category:"Intelligence Report",summary:"FBI U//FOUO intelligence report on Malcolm Grumbridge — Maxwell family lawyer and financial associate. Travel check shows 17 US trips (last 10/27/2019). Set up ~150 companies for Maxwell family, removed from UK Solicitors Roll for money laundering compliance failures. Custodian of 44 Kinnerton St, Belgravia.",flag:"FBI tracking Maxwell family financial network — Grumbridge money laundering failures"},
   {id:"EFTA00155643",dataset:"DS9",pages:3,severity:5,keywords:["ghislaine","maxwell"],category:"Court Filing",summary:"Maxwell defense declaration (HAMILTON-001) filed December 6, 2021 during trial. Securities broker claims complainant told him on a plane 'it fell right into my lap' about the case with a laugh. Alleges complainant was 'getting big money from the Epstein estate' and that women were 'strengthening their stories.' Defense attempt to undermine victim credibility.",flag:"Defense strategy document — attempted witness impeachment"},
+  {id:"EFTA00156611",dataset:"DS9",pages:3,severity:12,keywords:["deutsche bank","jp morgan","little st james"],category:"CSAM Discovery",summary:"CRITICAL: Epstein Estate counsel notifies SDNY that document reviewer found video containing potential child pornography while reviewing Epstein media for JP Morgan/Deutsche Bank subpoenas. Estate also requesting access to HP Slim Tower computer seized from generator room on Little St James Island. SDNY connects estate with FBI lead investigators.",flag:"CSAM DISCOVERED in Epstein video collection during JP Morgan/Deutsche Bank civil litigation"},
+  {id:"EFTA00156585",dataset:"DS9",pages:7,severity:7,keywords:["jes staley","jp morgan","recording"],category:"Court Order",summary:"Judge Rakoff court order establishing CSAM review protocol for Epstein Estate video materials in USVI v. JP Morgan Chase. If CSAM found during review: stop immediately and notify FBI. Third-party defendant James Edward Staley. Jane Doe 1 represented by Bradley Edwards and David Boies. Stipulated motion filed March 2023 after estate located potentially responsive materials.",flag:"Court-ordered protocol for handling potential CSAM in Epstein media collection"},
 ];
   {id:'EFTA00153703',dataset:'DS9',pages:26,severity:10,keywords:['ghislaine','maxwell','trump','brunel','blackmail','russia'],summary:'MAJOR: Complete FBI FD-302 victim interview - 14yo Interlochen recruit. Maxwell directed group abuse. Brunel brought 15yo to island and brought Russian women on tourist visas. Crystal Walsh blackmailed Epstein for $50K then tipped him off. Shredding papers in NY office. Met Weinstein at Golden Globes. TRUMP ALLEGATION DENIED by victim. Immigration fraud via Parda Beskardes.',date:'2019-10-25',type:'fbi-interview'},
   {id:'EFTA00152619',dataset:'DS9',pages:6,severity:4,keywords:['maxwell'],summary:'SDNY processing Maxwell discovery evidence - Reiter 15 VHS + 39 cassette tapes, Maxwell cell phone GPS data, 4 Blu-Ray discs',date:'2020-10-06',type:'fbi-operational'},
@@ -1708,7 +1710,7 @@ const TIMELINE_DATA = [
   { date: "2019-08-09", title: "FBI Status Update: ~60 Victims Identified", desc: "Day before Epstein death. FBI reports ~60 victims, potentially hundreds more. All co-conspirators served except Maxwell in London. [v10.8]" },
   { date: "2019-08-06", title: "FBI Planning Little St James Island Raid", desc: "SDNY drafting search warrant affidavit for island. 845 photos already taken in 13-hour NY residence search. [v10.8]" },
   { date: "2019-10-29", title: "FBI PRTT Active on Maxwell Phone", desc: "Pen Register/Trap and Trace surveillance activated on Ghislaine Maxwell. IP tracked to Pawtucket, Rhode Island. [v10.8]" },
-  { date: "2020-06-08", title: "FBI Maxwell Pre-Arrest: 6 Counts Planned, Active Surveillance", desc: "FBI email reveals exact Maxwell indictment charges planned, mail cover on her address, pen register on phone, physical surveillance coming. Prince Andrew MLAT response coordinated with SDNY. [v10.12]" }
+  { date: "2020-06-08", title: "FBI Maxwell Pre-Arrest: 6 Counts Planned, Active Surveillance", desc: "FBI email reveals exact Maxwell indictment charges planned, mail cover on her address, pen register on phone, physical surveillance coming. Prince Andrew MLAT response coordinated with SDNY. [v10.13]" }
   {date:'2018-12-13',event:'FBI/NYPD discover Epstein SORNA registration phone linked to Wexner/The Limited, begin MC2 model housing investigation',source:'EFTA00152144'},
   {date:'2019-07-24',event:'FBI/NYPD task force tracking down former Epstein employees for interviews about NY residence activities',source:'EFTA00150941'},
   {date:'2020-06-23',event:'FBI CAST analyzing Maxwell phone records and IP addresses one week before arrest, detecting VPN masking',source:'EFTA00150943'},
@@ -1716,6 +1718,8 @@ const TIMELINE_DATA = [
   {date:'2019-10-25',event:'FBI conducts comprehensive FD-302 victim interview - Interlochen recruit describes Maxwell-directed group abuse from age 14, Brunel trafficking, Russian visa fraud, evidence shredding, Walsh blackmail',source:'EFTA00153703'},
   {date:"2020-01-16",event:"CBP generates Maxwell TECS travel records — 58 border encounters 1990-1999",source:"EFTA00156242",category:"Investigation"},
   {date:"2023-02-02",event:"FBI forwards USVI v. JP Morgan Chase lawsuit — consolidated with Deutsche Bank case before Judge Rakoff",source:"EFTA00156578",category:"Financial"},
+  {date:"2023-03-27",event:"Judge Rakoff orders CSAM review protocol for Epstein Estate video materials in USVI v. JP Morgan litigation",source:"EFTA00156585",category:"Legal"},
+  {date:"2023-04-18",event:"CSAM DISCOVERED: Epstein Estate document reviewer finds video containing potential child pornography during JP Morgan/Deutsche Bank subpoena review",source:"EFTA00156611",category:"Investigation"},
 ];
 
 const DATASETS_DATA = [
