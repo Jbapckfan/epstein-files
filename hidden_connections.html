@@ -300,29 +300,29 @@ footer a:hover{text-decoration:underline}
   </div>
 </section>
 
-<!-- Heatmap + Chord -->
+<!-- Heatmap (full-width) -->
 <section class="section">
-  <div class="viz-grid">
-    <div>
-      <div class="section-label fade-up">02 &mdash; Co-occurrence Matrix</div>
-      <h2 class="section-title fade-up delay-1">Document Heatmap</h2>
-      <p class="section-desc fade-up delay-2">How often do these individuals appear together across unsealed documents?</p>
-      <div class="glass-card fade-up delay-3">
-        <div class="scanline"></div>
-        <div class="card-body" id="heatmap-container">
-          <svg id="heatmap-svg"></svg>
-        </div>
-      </div>
+  <div class="section-label fade-up">02 &mdash; Co-occurrence Matrix</div>
+  <h2 class="section-title fade-up delay-1">Document Heatmap</h2>
+  <p class="section-desc fade-up delay-2">How often do these individuals appear together across unsealed documents?</p>
+  <div class="glass-card fade-up delay-3" style="max-width:1100px;margin:0 auto;">
+    <div class="scanline"></div>
+    <div class="card-body" id="heatmap-container">
+      <svg id="heatmap-svg"></svg>
     </div>
-    <div>
-      <div class="section-label fade-up">03 &mdash; Financial Web</div>
-      <h2 class="section-title fade-up delay-1">Chord Diagram</h2>
-      <p class="section-desc fade-up delay-2">Financial connections between persons and institutions, weighted by transaction evidence.</p>
-      <div class="glass-card fade-up delay-3">
-        <div class="scanline"></div>
-        <div class="card-body" id="chord-container">
-          <svg id="chord-svg"></svg>
-        </div>
+  </div>
+</section>
+
+<!-- Chord -->
+<section class="section">
+  <div style="max-width:600px;margin:0 auto;">
+    <div class="section-label fade-up">03 &mdash; Financial Web</div>
+    <h2 class="section-title fade-up delay-1">Chord Diagram</h2>
+    <p class="section-desc fade-up delay-2">Financial connections between persons and institutions, weighted by transaction evidence.</p>
+    <div class="glass-card fade-up delay-3">
+      <div class="scanline"></div>
+      <div class="card-body" id="chord-container">
+        <svg id="chord-svg"></svg>
       </div>
     </div>
   </div>
@@ -841,16 +841,16 @@ document.querySelectorAll('[data-count]').forEach(el=>{
 (function(){
   const top15=PERSONS.slice(0,15);
   const n=top15.length;
-  const cellSize=36;
-  const labelW=110;
-  const margin={top:120,left:labelW,right:20,bottom:20};
+  const cellSize=52;
+  const labelW=150;
+  const margin={top:160,left:labelW,right:20,bottom:20};
   const svgW=margin.left+n*cellSize+margin.right;
   const svgH=margin.top+n*cellSize+margin.bottom;
 
   const svg=document.getElementById('heatmap-svg');
   svg.setAttribute('viewBox',`0 0 ${svgW} ${svgH}`);
-  svg.setAttribute('width',Math.min(svgW,700));
-  svg.setAttribute('height',Math.min(svgH,700));
+  svg.setAttribute('width',svgW);
+  svg.setAttribute('height',svgH);
   svg.style.maxWidth='100%';svg.style.height='auto';
 
   // Build co-occurrence matrix
@@ -881,16 +881,16 @@ document.querySelectorAll('[data-count]').forEach(el=>{
   // Column labels (rotated)
   for(let j=0;j<n;j++){
     const x=margin.left+j*cellSize+cellSize/2;
-    const y=margin.top-8;
-    const shortName=top15[j].name.split(' ').pop();
-    svgHTML+=`<text x="${x}" y="${y}" fill="${CAT_COLORS[top15[j].cat]||'#888'}" font-size="10" font-family="Inter,sans-serif" font-weight="600" text-anchor="end" transform="rotate(-50,${x},${y})">${shortName}</text>`;
+    const y=margin.top-10;
+    const label=top15[j].name;
+    svgHTML+=`<text x="${x}" y="${y}" fill="${CAT_COLORS[top15[j].cat]||'#888'}" font-size="13" font-family="Inter,sans-serif" font-weight="600" text-anchor="end" transform="rotate(-45,${x},${y})">${label}</text>`;
   }
 
   // Row labels
   for(let i=0;i<n;i++){
-    const y=margin.top+i*cellSize+cellSize/2+4;
-    const shortName=top15[i].name.split(' ').pop();
-    svgHTML+=`<text x="${margin.left-8}" y="${y}" fill="${CAT_COLORS[top15[i].cat]||'#888'}" font-size="10" font-family="Inter,sans-serif" font-weight="600" text-anchor="end">${shortName}</text>`;
+    const y=margin.top+i*cellSize+cellSize/2+5;
+    const label=top15[i].name;
+    svgHTML+=`<text x="${margin.left-10}" y="${y}" fill="${CAT_COLORS[top15[i].cat]||'#888'}" font-size="13" font-family="Inter,sans-serif" font-weight="600" text-anchor="end">${label}</text>`;
   }
 
   // Cells
@@ -901,9 +901,9 @@ document.querySelectorAll('[data-count]').forEach(el=>{
       const v=matrix[i][j];
       const color=i===j?CAT_COLORS[top15[i].cat]||'#444':heatColor(v);
       const opacity=i===j?0.3:1;
-      svgHTML+=`<rect x="${x+1}" y="${y+1}" width="${cellSize-2}" height="${cellSize-2}" rx="4" fill="${color}" opacity="${opacity}"><title>${top15[i].name.split(' ').pop()} × ${top15[j].name.split(' ').pop()}: ${i===j?'self':v}</title></rect>`;
-      if(v>100&&i!==j){
-        svgHTML+=`<text x="${x+cellSize/2}" y="${y+cellSize/2+3}" fill="white" font-size="8" font-family="JetBrains Mono,monospace" text-anchor="middle" opacity="0.8">${v}</text>`;
+      svgHTML+=`<rect x="${x+1}" y="${y+1}" width="${cellSize-2}" height="${cellSize-2}" rx="5" fill="${color}" opacity="${opacity}"><title>${top15[i].name} × ${top15[j].name}: ${i===j?'self':v}</title></rect>`;
+      if(v>50&&i!==j){
+        svgHTML+=`<text x="${x+cellSize/2}" y="${y+cellSize/2+4}" fill="white" font-size="11" font-family="JetBrains Mono,monospace" text-anchor="middle" opacity="0.85">${v}</text>`;
       }
     }
   }
