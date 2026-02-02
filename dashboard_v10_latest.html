@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Epstein Files Investigation Dashboard v10.5 — DS1-8 + DS10 Complete + All Sources (186,027 findings)</title>
+<title>Epstein Files Investigation Dashboard v10.6 — DS1-8 + DS10 Complete + All Sources (186,027 findings)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -940,7 +940,7 @@ body {
   <div class="nav-inner">
     <div class="nav-brand">
       <span class="dot"></span>
-      <span>Epstein Files v10.5</span>
+      <span>Epstein Files v10.6</span>
     </div>
     <ul class="nav-links">
       <li><a href="#network">Network</a></li>
@@ -1513,7 +1513,7 @@ body {
 
 <!-- FOOTER -->
 <footer class="footer">
-  <div class="footer-brand">Epstein Files Investigation Dashboard v10.5 — DS1-8 + DS9 + DS10 + Local Batch Complete</div>
+  <div class="footer-brand">Epstein Files Investigation Dashboard v10.6 — DS1-8 + DS9 + DS10 + Local Batch Complete</div>
   <p>
     Generated: 2026-02-02 UTC<br>
     Methodology: Automated keyword extraction with context-aware severity scoring and composite score integration across all pipelines.<br>
@@ -1640,7 +1640,13 @@ const FINDINGS_DATA = [
   { severity: 8, term: "Kushner", citation: "EFTA00071624 p29", preview: "Kushner Companies had business dealings that intersected with Epstein-connected entities", context: "...Kushner Companies had business dealings that intersected with Epstein-connected entities through shared financial intermediaries and real estate transactions in Manhattan...", level: "medium" },
   { severity: 7, term: "Brunel", citation: "EFTA00072842 p44", preview: "modeling agent Jean-Luc Brunel found dead in his Paris jail cell", context: "...French modeling agent Jean-Luc Brunel was found dead in his Paris jail cell in February 2022 while awaiting trial on charges of rape and sexual assault of minors connected to Epstein...", level: "medium" },
   { severity: 6, term: "Bank Hapoalim", citation: "EFTA00076133 p62", preview: "Bank Hapoalim processed transactions for Epstein-linked entities", context: "...Israel's Bank Hapoalim processed transactions for Epstein-linked entities and was later fined for facilitating tax evasion. The bank's connections to Epstein's financial network remain under examination...", level: "medium" },
-  { severity: 6, term: "Woody Allen / DS9", citation: "DS9-ALLEN", preview: "2,583 DS9 hits for Woody Allen across federal investigation files", context: "...DS9 pipeline produced 2,583 hits for Woody Allen across federal investigation documents, driving his composite score to 6,390. References appear primarily in witness statements and social network mapping documents...", level: "medium" }
+  { severity: 6, term: "Woody Allen / DS9", citation: "DS9-ALLEN", preview: "2,583 DS9 hits for Woody Allen across federal investigation files", context: "...DS9 pipeline produced 2,583 hits for Woody Allen across federal investigation documents, driving his composite score to 6,390. References appear primarily in witness statements and social network mapping documents...", level: "medium" },
+  { severity: 16, term: "MCC Camera Failure", citation: "EFTA00141893", preview: "223-page DOJ OIG interview: MCC camera tech confirms cameras stopped recording July 29 (11 days before death), system appeared to record but wasn't", context: "...223-page DOJ OIG interview: MCC camera tech confirms cameras stopped recording July 29 (11 days before death), system appeared to record but wasn't. The camera system displayed as operational but was not actually capturing footage, creating a false sense of surveillance coverage during the critical period preceding Epstein's death...", level: "critical" },
+  { severity: 15, term: "FBI Camera Analysis", citation: "EFTA00141686", preview: "FBI analysis: only ONE SHU camera was recording, low quality, partial angle - extracted at Quantico from seized video arrays", context: "...FBI analysis: only ONE SHU camera was recording, low quality, partial angle - extracted at Quantico from seized video arrays. Of all surveillance cameras in the Special Housing Unit, FBI forensic analysis at the Quantico lab determined only a single camera was actually recording, producing low-quality footage from a partial angle insufficient for monitoring...", level: "critical" },
+  { severity: 14, term: "OIG Camera Discrepancy", citation: "EFTA00141688", preview: "OIG discrepancy report: BOP staff said cameras were live Aug 9-10 but FBI found only one recording", context: "...OIG discrepancy report: BOP staff said cameras were live Aug 9-10 but FBI found only one recording. Bureau of Prisons staff reported to investigators that camera systems were operational on the night of August 9-10, 2019, directly contradicting FBI forensic findings that only one camera was actually recording...", level: "critical" },
+  { severity: 13, term: "OIG Camera Witness #2", citation: "EFTA00142116", preview: "74-page OIG witness #2: 'cameras were up, just weren't recording, no way to tell' - recording fix scheduled for Aug 10 (day of death)", context: "...74-page OIG witness #2: 'cameras were up, just weren't recording, no way to tell' - recording fix scheduled for Aug 10 (day of death). Witness stated the camera displays showed live feeds but the recording function had silently failed, and a scheduled repair to restore recording capability was set for August 10, 2019 - the same day Epstein was found dead...", level: "high" },
+  { severity: 12, term: "OIG Camera Witness #3", citation: "EFTA00142251", preview: "102-page OIG witness #3: returned Aug 10 to fix recording, new 'Nice' system ordered, confirmed no video retrievable", context: "...102-page OIG witness #3: returned Aug 10 to fix recording, new 'Nice' system ordered, confirmed no video retrievable. Witness returned to MCC on August 10 to repair the recording system, ordered a replacement 'Nice' brand surveillance system, and confirmed that no video footage from the failed system could be retrieved or recovered...", level: "high" },
+  { severity: 10, term: "MCC Phone Monitoring", citation: "EFTA00139877", preview: "MCC internal email: Epstein's phone calls were on unmonitored lines with no recording", context: "...MCC internal email: Epstein's phone calls were on unmonitored lines with no recording. Internal Metropolitan Correctional Center communications reveal that Epstein's telephone calls were routed through unmonitored lines, meaning no recordings exist of his communications while in federal custody...", level: "high" }
 ];
 
 const TIMELINE_DATA = [
@@ -1669,7 +1675,8 @@ const TIMELINE_DATA = [
   { date: "2026-02-02", title: "DS1-8 Full Extraction + v10.2", desc: "Full local batch extraction of Datasets 1-8 completed: 14,693 PDFs (35,397 pages), 50,932 new findings. Key documents: EFTA00010819 (122pg, sev 10: Acosta/Bannon/Clinton), EFTA00011039 (7pg, sev 12: Bannon/Biden/conspiracy/Israel/Maxwell), EFTA00009809 (14pg, sev 10: trafficking/minor/victim). Total now 183,616 findings across 108,208 documents. DS9+DS11 Wayback pipelines continue (~770K PDFs)." },
   { date: "2026-02-02", title: "DS10 Recovery + v10.3", desc: "200 PDFs recovered from truncated DS10 ZIP using 7zip. 2,345 findings across 4,025 pages. EFTA range 01262805-01266807. Contains sealed SDNY court documents: FBI search warrant affidavit for 9 East 71st Street, warrant for CDs from Epstein safe (labeled Nudes 00-24, Girl Pics Nude, etc.), warrant for iPhone/iPad/hard drives, Little Saint James Island raid warrant (27 electronic devices), pen register/trap-and-trace application, Giuffre v. Maxwell grand jury unsealing, and sealed protective order modification. Composite scores updated to v4 (114 terms). Grand total: 186,027 findings from 108,608 documents across 263,193 pages." },
   { date: "2026-02-02", title: "Intelligence Analysis v10.4", desc: "Deep analysis of 4 intelligence-linked documents from DS9 pipeline. FBI FD-1023 CHS report (EFTA00090314) reveals Epstein described as 'co-opted Mossad Agent' who 'belonged to both U.S. and allied intelligence services.' Sworn declaration (EFTA00098456) details blackmail operation with video surveillance. Intelligence methodology compilation (EFTA00103831) documents MI5 parallel. Kompromat reference (EFTA00080475) confirms terminology. Sev-18 false positives identified: FBI Public Affairs news briefings inflating severity scores." }
-  { date: "2026-02-02", title: "Deep Analysis v10.5", desc: "DS9 Batch 2 analysis: USVI AG Denise George FBI interview reveals Indyke/Kahn as trafficking co-conspirators. BOP Psychological Reconstruction: FBI took all video, 179/183 missing observation signatures. MCC RAID crash documented Aug 8, 2019. Epstein trust document reveals shell corp structure and $100M+ to Shuliak. FBI complaint form documents Trump/Epstein allegations. DS11 characterized as 331K email archive (2017-2018) with Barak/Black/Thiel meetings and Russia recruitment pipeline. DS8 spreadsheets: FBI Maxwell financial subpoena tracker, victim compensation program tracker, 4 fully redacted CSV files." }
+  { date: "2026-02-02", title: "Deep Analysis v10.5", desc: "DS9 Batch 2 analysis: USVI AG Denise George FBI interview reveals Indyke/Kahn as trafficking co-conspirators. BOP Psychological Reconstruction: FBI took all video, 179/183 missing observation signatures. MCC RAID crash documented Aug 8, 2019. Epstein trust document reveals shell corp structure and $100M+ to Shuliak. FBI complaint form documents Trump/Epstein allegations. DS11 characterized as 331K email archive (2017-2018) with Barak/Black/Thiel meetings and Russia recruitment pipeline. DS8 spreadsheets: FBI Maxwell financial subpoena tracker, victim compensation program tracker, 4 fully redacted CSV files." },
+  { date: "2026-02-02", title: "MCC Camera Failure Cluster v10.6", desc: "6 DOJ OIG documents (415+ pages) documenting complete surveillance failure: cameras stopped July 29, RAID crash Aug 8, only 1 camera recording, fix scheduled for day of death" }
 ];
 
 const DATASETS_DATA = [
