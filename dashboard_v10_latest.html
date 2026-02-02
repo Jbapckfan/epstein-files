@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Epstein Files Investigation Dashboard v10.35 — DS1-8 + DS10 Complete + All Sources (186,027 findings)</title>
+<title>Epstein Files Investigation Dashboard v10.36 — DS1-8 + DS10 Complete + All Sources (186,027 findings)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -940,7 +940,7 @@ body {
   <div class="nav-inner">
     <div class="nav-brand">
       <span class="dot"></span>
-      <span>Epstein Files v10.35</span>
+      <span>Epstein Files v10.36</span>
     </div>
     <ul class="nav-links">
       <li><a href="#network">Network</a></li>
@@ -1513,7 +1513,7 @@ body {
 
 <!-- FOOTER -->
 <footer class="footer">
-  <div class="footer-brand">Epstein Files Investigation Dashboard v10.35 — DS1-8 + DS9 + DS10 + Local Batch Complete</div>
+  <div class="footer-brand">Epstein Files Investigation Dashboard v10.36 — DS1-8 + DS9 + DS10 + Local Batch Complete</div>
   <p>
     Generated: 2026-02-02 UTC<br>
     Methodology: Automated keyword extraction with context-aware severity scoring and composite score integration across all pipelines.<br>
@@ -2025,6 +2025,49 @@ const FINDINGS_DATA = [
             keyQuote: "TBD Appt w/Bill Gates... Dinner Birthday Party for Woody Allen... Leon Black's office",
             tags: ["calendar", "bill-gates", "woody-allen", "leon-black", "washington-dc"]
         }
+        ,
+        {
+            id: "EFTA00383501",
+            dataset: "DS9",
+            severity: "critical",
+            category: "Calendar/Schedule",
+            title: "Sept 2013 DETAILED — Bill & Melinda Gates to Arrive at Epstein's House",
+            summary: "Most detailed version of September 2013 schedule. '7:30 BILL & Melinda GATES to arrive the house' — BOTH Bill AND Melinda Gates scheduled at Epstein's residence with specific arrival time. '8:00pm DINNER: Bill, Melinda, Terje, Jagbland, JE. Larry & Lisa Summers are invited — waiting for reply.' 'Princess Mette to arrive today and stay until Thurs, Sept 26' — Crown Princess Mette-Marit of Norway staying 5 days. '8:00am BREAKFAST w/Ariane de Rothschild, Olivier Colom & Ehud Barak.' 'Kissinger is free starting evening of Sept 23rd.' '2:00pm Appt w/Leon Black at his office.' '4:15pm Skype w/Reid Hoffman.' 'Dinner at Ariane de Rothschild home' in Paris.",
+            persons: ["Bill Gates", "Melinda Gates", "Larry Summers", "Ehud Barak", "Ariane de Rothschild", "Leon Black", "Reid Hoffman", "Henry Kissinger", "Princess Mette-Marit", "Woody Allen", "Jeff Koons"],
+            date: "2013-09-20",
+            docType: "Calendar",
+            sourceDoc: "EFTA00383501 (7 pages)",
+            keyQuote: "7:30 BILL & Melinda GATES to arrive the house... 8:00pm DINNER: Bill, Melinda, Terje, Jagbland, JE. Larry & Lisa Summers are invited... Princess Mette to arrive today and stay until Sept 26",
+            tags: ["calendar", "bill-gates", "melinda-gates", "epstein-residence", "crown-princess", "norway", "kissinger"]
+        },
+        {
+            id: "EFTA00383661",
+            dataset: "DS9",
+            severity: "high",
+            category: "Internal Communication",
+            title: "Staff Email — Gates Confirmed Coming to Epstein's House, Richard Branson May Join",
+            summary: "Internal email from Epstein's assistant to Richard Barnett (chief engineer): 'JE is having lots of important people to the house next week...including Ehud and all his security detail...and I believe bill gates too...' Staff preparing for VIP guests at Epstein's residence. Updated Sept 2013 schedule adds: 'DINNER W/BILL GATES, TERJE, JAGBLAND, OTHERS (Richard Branson may join the dinner).' 'Kissinger is free starting evening of Sept 23rd.' 'LUNCH W/KAZAKHS.' Morning with Ariane Rothschild.",
+            persons: ["Bill Gates", "Richard Branson", "Ehud Barak", "Henry Kissinger", "Ariane de Rothschild", "Woody Allen", "Jeff Koons"],
+            date: "2013-09-12",
+            docType: "Internal Email",
+            sourceDoc: "EFTA00383661 (4 pages)",
+            keyQuote: "JE is having lots of important people to the house next week...including Ehud and all his security detail...and I believe bill gates too...",
+            tags: ["internal-email", "bill-gates", "richard-branson", "epstein-residence", "staff-communication"]
+        },
+        {
+            id: "EFTA00378907",
+            dataset: "DS9",
+            severity: "high",
+            category: "Internal Communication",
+            title: "Pilot Email Confirms Bill Gates DC Meeting — Flight Logistics",
+            summary: "Email from Larry Visoski (Epstein's personal pilot) regarding flight logistics: 'The only firm times that I have is that he wants to be in Washington DC at 1:30pm to meet with Mr Bill Gates in the afternoon and he wants to leave Washington DC at 6 PM returning to New York.' Pilot explicitly confirming Bill Gates meeting in DC with specific times and flight arrangements. Also shows full December 2013 calendar: Leon Black's office meeting, Woody Allen birthday party (Joel Klein, Nicole Seligman guests), 'Sinofsky, Reid Hoffman' reminder, 'Woody Allen in PB with Jeffrey' over holidays.",
+            persons: ["Bill Gates", "Larry Visoski", "Leon Black", "Woody Allen", "Joel Klein", "Reid Hoffman"],
+            date: "2013-11-27",
+            docType: "Internal Email",
+            sourceDoc: "EFTA00378907 (4 pages)",
+            keyQuote: "he wants to be in Washington DC at 1:30pm to meet with Mr Bill Gates in the afternoon and he wants to leave Washington DC at 6 PM",
+            tags: ["pilot-email", "bill-gates", "washington-dc", "flight-logistics", "internal-communication"]
+        }
         ];
   {id:'EFTA00153703',dataset:'DS9',pages:26,severity:10,keywords:['ghislaine','maxwell','trump','brunel','blackmail','russia'],summary:'MAJOR: Complete FBI FD-302 victim interview - 14yo Interlochen recruit. Maxwell directed group abuse. Brunel brought 15yo to island and brought Russian women on tourist visas. Crystal Walsh blackmailed Epstein for $50K then tipped him off. Shredding papers in NY office. Met Weinstein at Golden Globes. TRUMP ALLEGATION DENIED by victim. Immigration fraud via Parda Beskardes.',date:'2019-10-25',type:'fbi-interview'},
   {id:'EFTA00152619',dataset:'DS9',pages:6,severity:4,keywords:['maxwell'],summary:'SDNY processing Maxwell discovery evidence - Reiter 15 VHS + 39 cassette tapes, Maxwell cell phone GPS data, 4 Blu-Ray discs',date:'2020-10-06',type:'fbi-operational'},
@@ -2062,7 +2105,7 @@ const TIMELINE_DATA = [
   { date: "2019-08-09", title: "FBI Status Update: ~60 Victims Identified", desc: "Day before Epstein death. FBI reports ~60 victims, potentially hundreds more. All co-conspirators served except Maxwell in London. [v10.8]" },
   { date: "2019-08-06", title: "FBI Planning Little St James Island Raid", desc: "SDNY drafting search warrant affidavit for island. 845 photos already taken in 13-hour NY residence search. [v10.8]" },
   { date: "2019-10-29", title: "FBI PRTT Active on Maxwell Phone", desc: "Pen Register/Trap and Trace surveillance activated on Ghislaine Maxwell. IP tracked to Pawtucket, Rhode Island. [v10.8]" },
-  { date: "2020-06-08", title: "FBI Maxwell Pre-Arrest: 6 Counts Planned, Active Surveillance", desc: "FBI email reveals exact Maxwell indictment charges planned, mail cover on her address, pen register on phone, physical surveillance coming. Prince Andrew MLAT response coordinated with SDNY. [v10.35]" }
+  { date: "2020-06-08", title: "FBI Maxwell Pre-Arrest: 6 Counts Planned, Active Surveillance", desc: "FBI email reveals exact Maxwell indictment charges planned, mail cover on her address, pen register on phone, physical surveillance coming. Prince Andrew MLAT response coordinated with SDNY. [v10.36]" }
   {date:'2018-12-13',event:'FBI/NYPD discover Epstein SORNA registration phone linked to Wexner/The Limited, begin MC2 model housing investigation',source:'EFTA00152144'},
   {date:'2019-07-24',event:'FBI/NYPD task force tracking down former Epstein employees for interviews about NY residence activities',source:'EFTA00150941'},
   {date:'2020-06-23',event:'FBI CAST analyzing Maxwell phone records and IP addresses one week before arrest, detecting VPN masking',source:'EFTA00150943'},
@@ -2206,6 +2249,28 @@ const TIMELINE_DATA = [
             type: "calendar",
             severity: "high",
             docId: "EFTA00378544"
+        }
+        ,
+        {
+            date: "2013-09-20",
+            event: "Calendar: BILL & MELINDA GATES to arrive at Epstein's house for dinner, Crown Princess of Norway staying 5 days",
+            type: "calendar",
+            severity: "critical",
+            docId: "EFTA00383501"
+        },
+        {
+            date: "2013-09-12",
+            event: "Internal email: Staff told Gates and Ehud with security detail coming to house, Branson may join dinner",
+            type: "communication",
+            severity: "high",
+            docId: "EFTA00383661"
+        },
+        {
+            date: "2013-11-27",
+            event: "Pilot email: Confirms flight to DC at 1:30pm to meet with Mr Bill Gates in the afternoon",
+            type: "communication",
+            severity: "high",
+            docId: "EFTA00378907"
         }
         ];
 
