@@ -277,6 +277,7 @@ footer a:hover{text-decoration:underline}
     <div id="force-graph-container">
       <canvas id="force-canvas"></canvas>
       <div class="graph-controls">
+        <button class="graph-btn" id="btn-lock" title="Unlock scroll-to-zoom" style="font-size:18px">&#x1f512;</button>
         <button class="graph-btn" id="btn-zoom-in" title="Zoom in">+</button>
         <button class="graph-btn" id="btn-zoom-out" title="Zoom out">&minus;</button>
         <button class="graph-btn" id="btn-reset" title="Reset view">&#8634;</button>
@@ -785,7 +786,17 @@ document.querySelectorAll('[data-count]').forEach(el=>{
     selectedNode=selectedNode===n?null:n;
   });
 
+  let zoomLocked=true;
+  const lockBtn=document.getElementById('btn-lock');
+  function updateLockBtn(){
+    lockBtn.innerHTML=zoomLocked?'&#x1f512;':'&#x1f513;';
+    lockBtn.title=zoomLocked?'Unlock scroll-to-zoom':'Lock scroll-to-zoom';
+    lockBtn.style.background=zoomLocked?'rgba(8,9,13,0.8)':'rgba(255,59,92,0.3)';
+  }
+  lockBtn.onclick=()=>{zoomLocked=!zoomLocked;updateLockBtn()};
+
   canvas.addEventListener('wheel',e=>{
+    if(zoomLocked)return;
     e.preventDefault();
     const rect=canvas.getBoundingClientRect();
     const mx=e.clientX-rect.left,my=e.clientY-rect.top;
@@ -803,23 +814,21 @@ document.querySelectorAll('[data-count]').forEach(el=>{
   // Touch support
   let touchId=null;
   canvas.addEventListener('touchstart',e=>{
-    e.preventDefault();
     const t=e.touches[0];
     const rect=canvas.getBoundingClientRect();
     const sx=t.clientX-rect.left,sy=t.clientY-rect.top;
     mouseX=sx;mouseY=sy;
     const n=getNodeAt(sx,sy);
-    if(n){dragNode=n;n.pinned=true;touchId=t.identifier}
+    if(n){e.preventDefault();dragNode=n;n.pinned=true;touchId=t.identifier}
   },{passive:false});
   canvas.addEventListener('touchmove',e=>{
+    if(!dragNode)return;
     e.preventDefault();
     const t=Array.from(e.touches).find(x=>x.identifier===touchId)||e.touches[0];
     const rect=canvas.getBoundingClientRect();
     mouseX=t.clientX-rect.left;mouseY=t.clientY-rect.top;
-    if(dragNode){
-      const w=screenToWorld(mouseX,mouseY);
-      dragNode.x=w.x;dragNode.y=w.y;dragNode.vx=0;dragNode.vy=0;
-    }
+    const w=screenToWorld(mouseX,mouseY);
+    dragNode.x=w.x;dragNode.y=w.y;dragNode.vx=0;dragNode.vy=0;
   },{passive:false});
   canvas.addEventListener('touchend',()=>{if(dragNode){dragNode.pinned=false;dragNode=null}touchId=null});
 
