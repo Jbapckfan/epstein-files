@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Epstein Files — Concern Factor Analysis</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #08090d;
+  --bg-card: #0f1117;
+  --bg-card-hover: #161822;
+  --border: #1e2030;
+  --text: #e8eaed;
+  --text-dim: #9aa0a6;
+  --text-muted: #5f6368;
+  --dark-red: #dc2626;
+  --red: #ff3b5c;
+  --orange: #f59e0b;
+  --blue: #60a5fa;
+  --gray: #4b5563;
+  --purple: #a855f7;
+  --green: #22c55e;
+  --white: #e8eaed;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  line-height: 1.6;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 24px 80px;
+}
+
+/* ── Header ── */
+.header {
+  text-align: center;
+  margin-bottom: 48px;
+  animation: fadeInDown 0.8s ease-out;
+}
+
+.header h1 {
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
+  background: linear-gradient(135deg, var(--red) 0%, var(--orange) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.header .subtitle {
+  font-size: clamp(0.85rem, 1.5vw, 1rem);
+  color: var(--text-dim);
+  max-width: 860px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+/* ── Section Titles ── */
+.section-title {
+  font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--text);
+}
+
+.section-desc {
+  font-size: 0.875rem;
+  color: var(--text-dim);
+  margin-bottom: 24px;
+}
+
+/* ── Legend ── */
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 32px;
+  justify-content: center;
+  animation: fadeIn 0.6s ease-out 0.3s both;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8rem;
+  color: var(--text-dim);
+}
+
+.legend-swatch {
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+
+/* ── Main Bar Chart ── */
+.chart-section {
+  margin-bottom: 64px;
+}
+
+.bar-row {
+  display: grid;
+  grid-template-columns: 150px 1fr auto;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 6px;
+  opacity: 0;
+  animation: fadeInLeft 0.5s ease-out forwards;
+}
+
+.bar-name {
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-align: right;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--text);
+  text-transform: capitalize;
+}
+
+.bar-track {
+  height: 28px;
+  background: rgba(255,255,255,0.03);
+  border-radius: 4px;
+  position: relative;
+  overflow: hidden;
+}
+
+.bar-fill {
+  height: 100%;
+  border-radius: 4px;
+  width: 0;
+  animation: barGrow 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 8px;
+  min-width: 36px;
+  position: relative;
+}
+
+.bar-score {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #fff;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+  position: relative;
+  z-index: 2;
+}
+
+.bar-meta {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  flex-shrink: 0;
+  min-width: 200px;
+}
+
+.pill {
+  font-size: 0.65rem;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 99px;
+  white-space: nowrap;
+  letter-spacing: 0.02em;
+}
+
+.pill-witness {
+  background: rgba(168, 85, 247, 0.18);
+  color: var(--purple);
+  border: 1px solid rgba(168, 85, 247, 0.3);
+}
+
+.pill-redflag {
+  background: rgba(220, 38, 38, 0.15);
+  color: var(--dark-red);
+  border: 1px solid rgba(220, 38, 38, 0.3);
+}
+
+/* ── Red Flag Breakdown ── */
+.redflag-section {
+  margin-bottom: 64px;
+}
+
+.redflag-row {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+  opacity: 0;
+  animation: fadeInLeft 0.5s ease-out forwards;
+}
+
+.redflag-name {
+  font-size: 0.82rem;
+  font-weight: 500;
+  text-align: right;
+  text-transform: capitalize;
+  color: var(--text);
+}
+
+.stacked-bar {
+  display: flex;
+  height: 30px;
+  border-radius: 4px;
+  overflow: hidden;
+  gap: 1px;
+}
+
+.stacked-segment {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #fff;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+  min-width: 0;
+  transition: flex-basis 0.8s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.stacked-segment span {
+  position: relative;
+  z-index: 1;
+}
+
+.stacked-segment.too-small span { display: none; }
+
+.rf-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.rf-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.75rem;
+  color: var(--text-dim);
+}
+
+.rf-legend-swatch {
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+/* ── Insight Callout ── */
+.insight {
+  border-left: 4px solid var(--dark-red);
+  background: rgba(220, 38, 38, 0.06);
+  padding: 24px 28px;
+  border-radius: 0 8px 8px 0;
+  margin-bottom: 64px;
+  font-size: 0.9rem;
+  line-height: 1.8;
+  color: var(--text-dim);
+  animation: fadeIn 0.8s ease-out;
+}
+
+.insight strong {
+  color: var(--text);
+}
+
+/* ── Methodology ── */
+.methodology {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 32px;
+  margin-bottom: 64px;
+  animation: fadeIn 0.8s ease-out;
+}
+
+.methodology h3 {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  color: var(--text);
+}
+
+.method-list {
+  list-style: none;
+  margin-bottom: 20px;
+}
+
+.method-list li {
+  padding: 8px 0;
+  padding-left: 28px;
+  position: relative;
+  font-size: 0.875rem;
+  color: var(--text-dim);
+  line-height: 1.6;
+}
+
+.method-list li::before {
+  content: attr(data-num);
+  position: absolute;
+  left: 0;
+  top: 8px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: rgba(255, 59, 92, 0.15);
+  color: var(--red);
+  font-size: 0.7rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.method-list li strong {
+  color: var(--text);
+}
+
+.quality-filter {
+  background: rgba(96, 165, 250, 0.06);
+  border: 1px solid rgba(96, 165, 250, 0.15);
+  border-radius: 8px;
+  padding: 16px 20px;
+  font-size: 0.85rem;
+  color: var(--text-dim);
+  line-height: 1.7;
+}
+
+.quality-filter strong {
+  color: var(--blue);
+}
+
+/* ── Detail Table ── */
+.table-section {
+  margin-bottom: 64px;
+  overflow-x: auto;
+  animation: fadeIn 0.8s ease-out;
+}
+
+.table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.detail-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.75rem;
+  min-width: 1050px;
+}
+
+.detail-table thead th {
+  background: var(--bg-card);
+  color: var(--text-dim);
+  font-weight: 600;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 10px 8px;
+  text-align: right;
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+  position: sticky;
+  top: 0;
+  z-index: 5;
+}
+
+.detail-table thead th:first-child {
+  text-align: left;
+  padding-left: 14px;
+}
+
+.detail-table tbody td {
+  padding: 8px 8px;
+  text-align: right;
+  border-bottom: 1px solid rgba(30, 32, 48, 0.5);
+  color: var(--text-dim);
+  font-variant-numeric: tabular-nums;
+}
+
+.detail-table tbody td:first-child {
+  text-align: left;
+  font-weight: 500;
+  color: var(--text);
+  text-transform: capitalize;
+  padding-left: 14px;
+  white-space: nowrap;
+}
+
+.detail-table tbody tr {
+  transition: background 0.2s;
+}
+
+.detail-table tbody tr:hover {
+  background: rgba(255,255,255,0.03) !important;
+}
+
+.td-highlight {
+  color: var(--text) !important;
+  font-weight: 600;
+}
+
+/* ── Footer ── */
+.footer {
+  text-align: center;
+  padding: 32px 0 0;
+  border-top: 1px solid var(--border);
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+/* ── Animations ── */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInLeft {
+  from { opacity: 0; transform: translateX(-16px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes barGrow {
+  from { width: 0; }
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .container { padding: 24px 16px 60px; }
+
+  .bar-row {
+    grid-template-columns: 110px 1fr;
+    gap: 8px;
+  }
+
+  .bar-meta {
+    grid-column: 1 / -1;
+    min-width: 0;
+    justify-content: flex-end;
+    margin-bottom: 4px;
+  }
+
+  .redflag-row {
+    grid-template-columns: 110px 1fr;
+  }
+
+  .legend { gap: 10px; }
+
+  .insight { padding: 16px 18px; font-size: 0.82rem; }
+
+  .methodology { padding: 20px; }
+}
+
+@media (max-width: 480px) {
+  .bar-row {
+    grid-template-columns: 90px 1fr;
+  }
+
+  .redflag-row {
+    grid-template-columns: 90px 1fr;
+  }
+
+  .bar-name, .redflag-name { font-size: 0.72rem; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- HEADER -->
+  <header class="header">
+    <h1>Epstein Files &mdash; Concern Factor Analysis</h1>
+    <p class="subtitle">Measuring actual connection to the Epstein case through five verified signals: Epstein-proximity, witness testimony, relationship language, legal filings, and red flag content. Incidental co-occurrence in compilation documents is filtered out.</p>
+  </header>
+
+  <!-- SECTION 1: MAIN CHART -->
+  <section class="chart-section">
+    <h2 class="section-title">Concern Score by Individual</h2>
+    <p class="section-desc">Horizontal bars sorted by composite concern score (0&ndash;100). Higher = more verified signals of actual Epstein connection.</p>
+
+    <div class="legend">
+      <div class="legend-item"><div class="legend-swatch" style="background:#dc2626"></div>75+ Deeply Connected</div>
+      <div class="legend-item"><div class="legend-swatch" style="background:#ff3b5c"></div>50&ndash;74 Significantly Connected</div>
+      <div class="legend-item"><div class="legend-swatch" style="background:#f59e0b"></div>25&ndash;49 Notable Connections</div>
+      <div class="legend-item"><div class="legend-swatch" style="background:#60a5fa"></div>5&ndash;24 Minimal Connection</div>
+      <div class="legend-item"><div class="legend-swatch" style="background:#4b5563"></div>0&ndash;4 Incidental Only</div>
+    </div>
+
+    <div id="mainChart"></div>
+  </section>
+
+  <!-- SECTION 2: RED FLAG BREAKDOWN -->
+  <section class="redflag-section">
+    <h2 class="section-title">Red Flag Breakdown &mdash; What the documents describe</h2>
+    <p class="section-desc">Stacked breakdown of red flag categories for the top 10 highest-scoring individuals. Each count represents a mention alongside the named category while in Epstein-proximate context.</p>
+
+    <div class="rf-legend">
+      <div class="rf-legend-item"><div class="rf-legend-swatch" style="background:#dc2626"></div>Sexual Assault</div>
+      <div class="rf-legend-item"><div class="rf-legend-swatch" style="background:#ff3b5c"></div>Minors / Underage</div>
+      <div class="rf-legend-item"><div class="rf-legend-swatch" style="background:#f59e0b"></div>Trafficking</div>
+      <div class="rf-legend-item"><div class="rf-legend-swatch" style="background:#a855f7"></div>Blackmail / Kompromat</div>
+      <div class="rf-legend-item"><div class="rf-legend-swatch" style="background:#e8eaed; border:1px solid #4b5563"></div>Murder / Threats</div>
+      <div class="rf-legend-item"><div class="rf-legend-swatch" style="background:#22c55e"></div>Financial Crimes</div>
+    </div>
+
+    <div id="redflagChart"></div>
+  </section>
+
+  <!-- SECTION 3: KEY INSIGHT -->
+  <section>
+    <div class="insight">
+      <strong>Trump (89)</strong> and <strong>Prince Andrew (89)</strong> are tied at the top &mdash; both appear in 50+ witness testimonies and have hundreds of Epstein-proximate mentions across legal filings, victim depositions, and investigative documents. Trump&rsquo;s 294 total red flags include 88 mentions near &ldquo;minors/underage,&rdquo; 107 near financial crimes, and 41 near trafficking. <strong>Obama (3)</strong> and <strong>Biden (1)</strong> have zero witness testimony, zero relationship language, and near-zero Epstein proximity &mdash; their few &ldquo;hits&rdquo; are incidental co-occurrences in DOJ newsletter compilations, not evidence of any connection.
+    </div>
+  </section>
+
+  <!-- SECTION 4: METHODOLOGY -->
+  <section class="methodology">
+    <h3>Methodology</h3>
+    <ul class="method-list">
+      <li data-num="1"><strong>Epstein Proximity</strong> &mdash; Name appears in actual Epstein case context (not just the same compilation document). Measured by co-occurrence within 500 characters of &ldquo;Epstein&rdquo; or case-specific terms.</li>
+      <li data-num="2"><strong>Witness Testimony</strong> &mdash; Appears in depositions, sworn testimony, or victim statements. These carry the highest evidentiary weight.</li>
+      <li data-num="3"><strong>Relationship Language</strong> &mdash; Described as &ldquo;friend,&rdquo; &ldquo;associate,&rdquo; &ldquo;guest,&rdquo; &ldquo;socialized with,&rdquo; or similar relational terms within Epstein context.</li>
+      <li data-num="4"><strong>Legal Context</strong> &mdash; Named in lawsuits, complaints, court filings, or other formal legal documents related to the Epstein case.</li>
+      <li data-num="5"><strong>Red Flags</strong> &mdash; Mentioned alongside sexual assault, minors, trafficking, blackmail, murder, or financial crimes. Only counted when the mention also occurs in Epstein-proximate context.</li>
+    </ul>
+    <div class="quality-filter">
+      <strong>Quality Filter:</strong> Without at least 2 witness testimonies OR 3+ relationship mentions OR 3+ legal mentions OR 5+ red flags, proximity hits are treated as noise (likely coincidental co-occurrence in large documents). This is why Obama (3) and Biden (1) score near zero despite having some keyword co-occurrences.
+    </div>
+  </section>
+
+  <!-- SECTION 5: DETAIL TABLE -->
+  <section class="table-section">
+    <h2 class="section-title">Full Detail Table</h2>
+    <p class="section-desc">All individuals sorted by concern score. Row background indicates tier.</p>
+    <div class="table-wrap">
+      <table class="detail-table" id="detailTable">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Score</th>
+            <th>Total Mentions</th>
+            <th>Ep-Proximate</th>
+            <th>Witness</th>
+            <th>Relationship</th>
+            <th>Legal</th>
+            <th>Sexual&nbsp;Assault</th>
+            <th>Minors</th>
+            <th>Trafficking</th>
+            <th>Blackmail</th>
+            <th>Murder/Threats</th>
+            <th>Financial</th>
+            <th>Total Red&nbsp;Flags</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    Data: 62,000+ findings from 800,000+ FOIA documents &nbsp;|&nbsp; Scores validated against actual document context to filter false positives
+  </footer>
+
+</div>
+
+<script>
+// ── Embedded Data ──
+var DATA = [
+  {"term":"trump","total":6353,"epstein_proximate":589,"epstein_proximate_pct":9.3,"witness_testimony":51,"relationship_language":77,"legal_context":27,"red_flags":{"sexual_assault":27,"minors":88,"blackmail_kompromat":1,"trafficking":41,"murder_threats":30,"financial_crimes":107},"total_red_flags":294,"max_severity_proximate":19,"concern_score":89},
+  {"term":"prince andrew","total":794,"epstein_proximate":562,"epstein_proximate_pct":70.8,"witness_testimony":55,"relationship_language":138,"legal_context":25,"red_flags":{"sexual_assault":19,"minors":70,"blackmail_kompromat":0,"trafficking":53,"murder_threats":6,"financial_crimes":8},"total_red_flags":156,"max_severity_proximate":17,"concern_score":89},
+  {"term":"dershowitz","total":901,"epstein_proximate":355,"epstein_proximate_pct":39.4,"witness_testimony":32,"relationship_language":69,"legal_context":97,"red_flags":{"sexual_assault":11,"minors":52,"blackmail_kompromat":7,"trafficking":39,"murder_threats":5,"financial_crimes":10},"total_red_flags":124,"max_severity_proximate":16,"concern_score":87},
+  {"term":"acosta","total":1079,"epstein_proximate":635,"epstein_proximate_pct":58.9,"witness_testimony":34,"relationship_language":17,"legal_context":47,"red_flags":{"sexual_assault":14,"minors":82,"blackmail_kompromat":1,"trafficking":32,"murder_threats":2,"financial_crimes":11},"total_red_flags":142,"max_severity_proximate":13,"concern_score":83},
+  {"term":"sarah kellen","total":109,"epstein_proximate":103,"epstein_proximate_pct":94.5,"witness_testimony":17,"relationship_language":28,"legal_context":68,"red_flags":{"sexual_assault":13,"minors":45,"blackmail_kompromat":0,"trafficking":5,"murder_threats":0,"financial_crimes":0},"total_red_flags":63,"max_severity_proximate":8,"concern_score":74},
+  {"term":"brunel","total":437,"epstein_proximate":242,"epstein_proximate_pct":55.4,"witness_testimony":22,"relationship_language":36,"legal_context":12,"red_flags":{"sexual_assault":28,"minors":75,"blackmail_kompromat":0,"trafficking":9,"murder_threats":1,"financial_crimes":0},"total_red_flags":113,"max_severity_proximate":14,"concern_score":71},
+  {"term":"clinton","total":897,"epstein_proximate":187,"epstein_proximate_pct":20.8,"witness_testimony":15,"relationship_language":39,"legal_context":11,"red_flags":{"sexual_assault":10,"minors":59,"blackmail_kompromat":1,"trafficking":13,"murder_threats":9,"financial_crimes":1},"total_red_flags":93,"max_severity_proximate":15,"concern_score":64},
+  {"term":"wexner","total":166,"epstein_proximate":112,"epstein_proximate_pct":67.5,"witness_testimony":5,"relationship_language":17,"legal_context":6,"red_flags":{"sexual_assault":5,"minors":23,"blackmail_kompromat":1,"trafficking":4,"murder_threats":3,"financial_crimes":0},"total_red_flags":36,"max_severity_proximate":15,"concern_score":56},
+  {"term":"bill richardson","total":523,"epstein_proximate":131,"epstein_proximate_pct":25.0,"witness_testimony":19,"relationship_language":2,"legal_context":6,"red_flags":{"sexual_assault":1,"minors":10,"blackmail_kompromat":0,"trafficking":0,"murder_threats":0,"financial_crimes":49},"total_red_flags":60,"max_severity_proximate":8,"concern_score":55},
+  {"term":"kushner","total":1032,"epstein_proximate":203,"epstein_proximate_pct":19.7,"witness_testimony":3,"relationship_language":126,"legal_context":3,"red_flags":{"sexual_assault":0,"minors":0,"blackmail_kompromat":0,"trafficking":4,"murder_threats":7,"financial_crimes":97},"total_red_flags":108,"max_severity_proximate":10,"concern_score":54},
+  {"term":"leon black","total":1332,"epstein_proximate":337,"epstein_proximate_pct":25.3,"witness_testimony":6,"relationship_language":22,"legal_context":7,"red_flags":{"sexual_assault":2,"minors":2,"blackmail_kompromat":0,"trafficking":1,"murder_threats":12,"financial_crimes":29},"total_red_flags":46,"max_severity_proximate":13,"concern_score":53},
+  {"term":"jes staley","total":687,"epstein_proximate":257,"epstein_proximate_pct":37.4,"witness_testimony":2,"relationship_language":8,"legal_context":2,"red_flags":{"sexual_assault":1,"minors":19,"blackmail_kompromat":9,"trafficking":5,"murder_threats":6,"financial_crimes":0},"total_red_flags":40,"max_severity_proximate":13,"concern_score":51},
+  {"term":"gates","total":757,"epstein_proximate":223,"epstein_proximate_pct":29.5,"witness_testimony":3,"relationship_language":10,"legal_context":0,"red_flags":{"sexual_assault":2,"minors":7,"blackmail_kompromat":0,"trafficking":2,"murder_threats":0,"financial_crimes":0},"total_red_flags":11,"max_severity_proximate":14,"concern_score":43},
+  {"term":"ehud barak","total":771,"epstein_proximate":205,"epstein_proximate_pct":26.6,"witness_testimony":0,"relationship_language":5,"legal_context":0,"red_flags":{"sexual_assault":0,"minors":6,"blackmail_kompromat":1,"trafficking":2,"murder_threats":0,"financial_crimes":0},"total_red_flags":9,"max_severity_proximate":7,"concern_score":40},
+  {"term":"woody allen","total":1629,"epstein_proximate":402,"epstein_proximate_pct":24.7,"witness_testimony":0,"relationship_language":1,"legal_context":0,"red_flags":{"sexual_assault":1,"minors":7,"blackmail_kompromat":0,"trafficking":0,"murder_threats":0,"financial_crimes":0},"total_red_flags":8,"max_severity_proximate":7,"concern_score":38},
+  {"term":"spacey","total":23,"epstein_proximate":15,"epstein_proximate_pct":65.2,"witness_testimony":0,"relationship_language":4,"legal_context":0,"red_flags":{"sexual_assault":1,"minors":4,"blackmail_kompromat":0,"trafficking":1,"murder_threats":0,"financial_crimes":0},"total_red_flags":6,"max_severity_proximate":10,"concern_score":36},
+  {"term":"musk","total":109,"epstein_proximate":43,"epstein_proximate_pct":39.4,"witness_testimony":0,"relationship_language":5,"legal_context":0,"red_flags":{"sexual_assault":0,"minors":2,"blackmail_kompromat":0,"trafficking":0,"murder_threats":0,"financial_crimes":0},"total_red_flags":2,"max_severity_proximate":7,"concern_score":35},
+  {"term":"george mitchell","total":38,"epstein_proximate":14,"epstein_proximate_pct":36.8,"witness_testimony":2,"relationship_language":4,"legal_context":1,"red_flags":{"sexual_assault":2,"minors":4,"blackmail_kompromat":0,"trafficking":0,"murder_threats":0,"financial_crimes":0},"total_red_flags":6,"max_severity_proximate":9,"concern_score":34},
+  {"term":"chris tucker","total":23,"epstein_proximate":12,"epstein_proximate_pct":52.2,"witness_testimony":0,"relationship_language":1,"legal_context":0,"red_flags":{"sexual_assault":0,"minors":0,"blackmail_kompromat":0,"trafficking":0,"murder_threats":0,"financial_crimes":0},"total_red_flags":0,"max_severity_proximate":9,"concern_score":4},
+  {"term":"obama","total":483,"epstein_proximate":10,"epstein_proximate_pct":2.1,"witness_testimony":0,"relationship_language":0,"legal_context":0,"red_flags":{"sexual_assault":0,"minors":0,"blackmail_kompromat":0,"trafficking":0,"murder_threats":1,"financial_crimes":0},"total_red_flags":1,"max_severity_proximate":10,"concern_score":3},
+  {"term":"bush","total":136,"epstein_proximate":7,"epstein_proximate_pct":5.1,"witness_testimony":0,"relationship_language":2,"legal_context":1,"red_flags":{"sexual_assault":0,"minors":2,"blackmail_kompromat":0,"trafficking":1,"murder_threats":0,"financial_crimes":0},"total_red_flags":3,"max_severity_proximate":13,"concern_score":2},
+  {"term":"biden","total":496,"epstein_proximate":3,"epstein_proximate_pct":0.6,"witness_testimony":0,"relationship_language":1,"legal_context":1,"red_flags":{"sexual_assault":0,"minors":0,"blackmail_kompromat":0,"trafficking":0,"murder_threats":0,"financial_crimes":0},"total_red_flags":0,"max_severity_proximate":12,"concern_score":1},
+  {"term":"naomi campbell","total":2,"epstein_proximate":2,"epstein_proximate_pct":100.0,"witness_testimony":0,"relationship_language":0,"legal_context":0,"red_flags":{"sexual_assault":0,"minors":0,"blackmail_kompromat":0,"trafficking":0,"murder_threats":0,"financial_crimes":0},"total_red_flags":0,"max_severity_proximate":0,"concern_score":1},
+  {"term":"pence","total":84,"epstein_proximate":3,"epstein_proximate_pct":3.6,"witness_testimony":0,"relationship_language":0,"legal_context":0,"red_flags":{"sexual_assault":0,"minors":0,"blackmail_kompromat":0,"trafficking":0,"murder_threats":0,"financial_crimes":0},"total_red_flags":0,"max_severity_proximate":0,"concern_score":1},
+  {"term":"desantis","total":38,"epstein_proximate":3,"epstein_proximate_pct":7.9,"witness_testimony":0,"relationship_language":0,"legal_context":0,"red_flags":{"sexual_assault":1,"minors":1,"blackmail_kompromat":0,"trafficking":1,"murder_threats":0,"financial_crimes":0},"total_red_flags":3,"max_severity_proximate":5,"concern_score":1}
+];
+
+// ── Helpers ──
+function tierColor(score) {
+  if (score >= 75) return '#dc2626';
+  if (score >= 50) return '#ff3b5c';
+  if (score >= 25) return '#f59e0b';
+  if (score >= 5) return '#60a5fa';
+  return '#4b5563';
+}
+
+function tierBg(score) {
+  if (score >= 75) return 'rgba(220,38,38,0.08)';
+  if (score >= 50) return 'rgba(255,59,92,0.06)';
+  if (score >= 25) return 'rgba(245,158,11,0.05)';
+  if (score >= 5) return 'rgba(96,165,250,0.05)';
+  return 'rgba(75,85,99,0.04)';
+}
+
+function capitalize(str) {
+  return str.replace(/\b\w/g, function(c) { return c.toUpperCase(); });
+}
+
+// ── Filter & Sort ──
+var filtered = DATA.filter(function(d) { return d.concern_score > 0; })
+  .sort(function(a, b) { return b.concern_score - a.concern_score; });
+var maxScore = 100;
+
+// ═══════ SECTION 1: Main Chart ═══════
+(function renderMainChart() {
+  var container = document.getElementById('mainChart');
+  filtered.forEach(function(d, i) {
+    var row = document.createElement('div');
+    row.className = 'bar-row';
+    row.style.animationDelay = (i * 0.06) + 's';
+
+    var pct = (d.concern_score / maxScore) * 100;
+    var color = tierColor(d.concern_score);
+
+    var metaHTML = '';
+    if (d.witness_testimony > 0) {
+      metaHTML += '<span class="pill pill-witness">' + d.witness_testimony + ' testimonies</span>';
+    }
+    if (d.total_red_flags > 0) {
+      metaHTML += '<span class="pill pill-redflag">' + d.total_red_flags + ' red flags</span>';
+    }
+
+    row.innerHTML =
+      '<div class="bar-name">' + capitalize(d.term) + '</div>' +
+      '<div class="bar-track">' +
+        '<div class="bar-fill" style="width:' + pct + '%;background:' + color + ';animation-delay:' + (i * 0.06 + 0.3) + 's">' +
+          '<span class="bar-score">' + d.concern_score + '</span>' +
+        '</div>' +
+      '</div>' +
+      '<div class="bar-meta">' + metaHTML + '</div>';
+
+    container.appendChild(row);
+  });
+})();
+
+// ═══════ SECTION 2: Red Flag Breakdown ═══════
+(function renderRedFlags() {
+  var container = document.getElementById('redflagChart');
+  var top10 = filtered.slice(0, 10);
+  var categories = [
+    { key: 'sexual_assault', color: '#dc2626', label: 'Sexual Assault' },
+    { key: 'minors', color: '#ff3b5c', label: 'Minors' },
+    { key: 'trafficking', color: '#f59e0b', label: 'Trafficking' },
+    { key: 'blackmail_kompromat', color: '#a855f7', label: 'Blackmail' },
+    { key: 'murder_threats', color: '#e8eaed', label: 'Murder' },
+    { key: 'financial_crimes', color: '#22c55e', label: 'Financial' }
+  ];
+
+  var globalMax = 0;
+  top10.forEach(function(d) {
+    if (d.total_red_flags > globalMax) globalMax = d.total_red_flags;
+  });
+
+  top10.forEach(function(d, i) {
+    if (d.total_red_flags === 0) return;
+
+    var row = document.createElement('div');
+    row.className = 'redflag-row';
+    row.style.animationDelay = (i * 0.08) + 's';
+
+    var barWidthPct = (d.total_red_flags / globalMax) * 100;
+
+    var segmentsHTML = '';
+    categories.forEach(function(cat) {
+      var val = d.red_flags[cat.key];
+      if (val === 0) return;
+      var segPct = (val / d.total_red_flags) * 100;
+      var isMurder = cat.key === 'murder_threats';
+      var style = isMurder
+        ? 'background:rgba(30,32,48,0.9);border:1px solid #4b5563;color:#e8eaed;'
+        : 'background:' + cat.color + ';';
+      var tooSmall = segPct < 6 ? ' too-small' : '';
+      segmentsHTML += '<div class="stacked-segment' + tooSmall + '" style="flex:' + val + ';' + style + '" title="' + cat.label + ': ' + val + '"><span>' + val + '</span></div>';
+    });
+
+    row.innerHTML =
+      '<div class="redflag-name">' + capitalize(d.term) + ' <span style="color:#5f6368;font-size:0.7rem">(' + d.total_red_flags + ')</span></div>' +
+      '<div style="width:' + barWidthPct + '%;min-width:80px">' +
+        '<div class="stacked-bar">' + segmentsHTML + '</div>' +
+      '</div>';
+
+    container.appendChild(row);
+  });
+})();
+
+// ═══════ SECTION 5: Detail Table ═══════
+(function renderTable() {
+  var tbody = document.getElementById('tableBody');
+  filtered.forEach(function(d) {
+    var tr = document.createElement('tr');
+    tr.style.background = tierBg(d.concern_score);
+
+    var rf = d.red_flags;
+    var cells = [
+      capitalize(d.term),
+      d.concern_score,
+      d.total.toLocaleString(),
+      d.epstein_proximate,
+      d.witness_testimony,
+      d.relationship_language,
+      d.legal_context,
+      rf.sexual_assault,
+      rf.minors,
+      rf.trafficking,
+      rf.blackmail_kompromat,
+      rf.murder_threats,
+      rf.financial_crimes,
+      d.total_red_flags
+    ];
+
+    cells.forEach(function(val, ci) {
+      var td = document.createElement('td');
+      td.textContent = val;
+      if (ci === 1 || ci === 13) td.className = 'td-highlight';
+      tr.appendChild(td);
+    });
+
+    tbody.appendChild(tr);
+  });
+})();
+</script>
+</body>
+</html>
