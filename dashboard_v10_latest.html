@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Epstein Files Investigation Dashboard v10.79 — DS1-8 + DS10 Complete + All Sources (186,118 findings)</title>
+<title>Epstein Files Investigation Dashboard v10.80 — DS1-8 + DS10 Complete + All Sources (186,130 findings)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -940,7 +940,7 @@ body {
   <div class="nav-inner">
     <div class="nav-brand">
       <span class="dot"></span>
-      <span>Epstein Files v10.79</span>
+      <span>Epstein Files v10.80</span>
     </div>
     <ul class="nav-links">
       <li><a href="#network">Network</a></li>
@@ -975,14 +975,14 @@ body {
   <div class="hero-content">
     <div class="hero-badge">
       <span class="pulse-dot"></span>
-      DS1-8 + DS9 + DS10 + Local Batch Complete — 186,118 Findings
+      DS1-8 + DS9 + DS10 + Local Batch Complete — 186,130 Findings
     </div>
     <h1>Epstein Files Investigation</h1>
-    <p class="subtitle">Comprehensive document analysis across 15 sources. Automated extraction and severity scoring of 186,118 findings from 108,608+ documents including DS1-8 (14,693 PDFs, 50,932 findings), DS9 (92,639 docs, 58,648 findings), DS10 (200 recovered PDFs, 2,345 findings), local batch (174 PDFs, 11,326 findings), and federal archives. 263,193+ pages scanned.</p>
+    <p class="subtitle">Comprehensive document analysis across 15 sources. Automated extraction and severity scoring of 186,130 findings from 108,608+ documents including DS1-8 (14,693 PDFs, 50,932 findings), DS9 (92,639 docs, 58,648 findings), DS10 (200 recovered PDFs, 2,345 findings), local batch (174 PDFs, 11,326 findings), and federal archives. 263,193+ pages scanned.</p>
 
     <div class="stats-row">
       <div class="stat-pill">
-        <span class="stat-number" data-target="186118" data-suffix="">0</span>
+        <span class="stat-number" data-target="186130" data-suffix="">0</span>
         <span class="stat-label">Total Findings</span>
       </div>
       <div class="stat-pill">
@@ -1007,7 +1007,7 @@ body {
       </div>
     </div>
 
-    <p class="meta-line">Last updated: 2026-02-02 // DS1-8 Local Batch: 14,693 PDFs, 35,397 pages, 50,932 findings // DS9: 92,639 docs, 218,766 pages, 58,648 findings // DS10 (Recovered): 200 PDFs, 4,025 pages, 2,345 findings // Local Batch: 174 PDFs, 2,651 pages, 11,326 findings // Total: 186,118 findings across 108,608 documents // DS9+DS11 Wayback processing ~770K remaining CDX-validated PDFs</p>
+    <p class="meta-line">Last updated: 2026-02-02 // DS1-8 Local Batch: 14,693 PDFs, 35,397 pages, 50,932 findings // DS9: 92,639 docs, 218,766 pages, 58,648 findings // DS10 (Recovered): 200 PDFs, 4,025 pages, 2,345 findings // Local Batch: 174 PDFs, 2,651 pages, 11,326 findings // Total: 186,130 findings across 108,608 documents // DS9+DS11 Wayback processing ~770K remaining CDX-validated PDFs</p>
   </div>
 </section>
 
@@ -1480,7 +1480,7 @@ body {
   <div class="section-header reveal">
     <div class="section-tag">Frequency Analysis</div>
     <h2>Term Occurrence Counts</h2>
-    <p>Final composite scores (v4) across all processed datasets (186,118 total findings from DS1-8 + DS9 + DS10 + local batch + original corpus)</p>
+    <p>Final composite scores (v4) across all processed datasets (186,130 total findings from DS1-8 + DS9 + DS10 + local batch + original corpus)</p>
   </div>
   <div class="bar-chart-container reveal" id="barChart">
     <!-- Populated by JS -->
@@ -1513,12 +1513,12 @@ body {
 
 <!-- FOOTER -->
 <footer class="footer">
-  <div class="footer-brand">Epstein Files Investigation Dashboard v10.79 — DS1-8 + DS9 + DS10 + Local Batch Complete</div>
+  <div class="footer-brand">Epstein Files Investigation Dashboard v10.80 — DS1-8 + DS9 + DS10 + Local Batch Complete</div>
   <p>
     Generated: 2026-02-02 UTC<br>
     Methodology: Automated keyword extraction with context-aware severity scoring and composite score integration across all pipelines.<br>
     Sources: FOIA releases, court filings (SDNY), justice.gov EFTA archives (DS9: 92,639 docs), DS1-8 local batch (14,693 PDFs, 50,932 findings), DS10 recovered (200 PDFs, 2,345 findings from sealed SDNY documents), local batch (174 PDFs: DS12, Maxwell proffer, OPR/OIG memoranda), financial disclosures.<br>
-    186,118 findings from 108,608 documents across 15 sources. 263,193 pages scanned. DS1-8 complete. DS9 pipeline complete. DS10 recovered. Local batch integrated.<br>
+    186,130 findings from 108,608 documents across 15 sources. 263,193 pages scanned. DS1-8 complete. DS9 pipeline complete. DS10 recovered. Local batch integrated.<br>
     DS9 + DS11 background processing active: ~770K CDX-validated PDFs from Wayback Machine queued.<br>
     <span style="color: var(--text-dim); font-size: 11px;">All findings are extracted quotes from public documents. No editorial content.</span>
   </p>
@@ -2911,19 +2911,19 @@ const FINDINGS_DATA = [
       tags: ['epstein-emails', 'vicky-ward', 'media-monitoring', 'indyke', 'groff', 'daily-beast']
     }
 ,
-  {id:'tir-hamilton-defense-witness-tecs-lie',dataset:'DS9-TIR',pages:4,severity:7,keywords:['maxwell','hamilton','defense witness','tecs'],summary:'FBI TIR: Roderic Alexander Innes Hamilton, potential Maxwell defense witness, claimed to observe victim on plane to LA in 2019/2020 — but TECS records show his last US entry was February 2016. Director of Releev Limited, London. Demonstrates FBI actively catching defense witnesses in material inconsistencies using border records. [v10.79]',date:'2022-02-23',type:'fbi-intelligence'},
-  {id:'sdny-fbi-csam-discovery-lsj-computer',dataset:'DS9-DOJ',pages:3,severity:8,keywords:['csam','little st james','jpmorgan','deutsche bank','evidence'],summary:'HIGH: April 2023 — Epstein Estate document reviewers (Patterson Belknap) discovered potential CHILD PORNOGRAPHY on video during JPMorgan/Deutsche Bank litigation review. SDNY Public Corruption Unit connected estate attorneys with lead FBI SA and NYPD Detective for formal CSAM reporting. Separately, estate seeking HP Slim Tower computer from GENERATOR ROOM on Little St. James island. Shows ongoing evidence coordination in 2023. [v10.79]',date:'2023-04-19',type:'law-enforcement'},
-  {id:'mlat-uk-degeorgiou-unredacted-draft',dataset:'DS9-DOJ',pages:12,severity:10,keywords:['maxwell','uk','mlat','collingham college','oxford','de georgiou'],summary:'CRITICAL: DOJ MLAT to UK (Aug 2021) — DRAFT version UNREDACTED reveals cooperating victim identity: De Georgiou (DOB 04 Mar 1977). Schools named: Collingham College (London SW5) and University of Oxford. Groomed by Maxwell in London 1994-1995. Contains tracked editorial changes showing internal DOJ deliberations. Final version (EFTA00093025) has all names redacted — this draft reveals what was hidden. Trial date Nov 29, 2021. [v10.79]',date:'2021-08-04',type:'legal-filing'},
-  {id:'cvra-discovery-clinton-prince-andrew-agents',dataset:'DS9-Court',pages:13,severity:8,keywords:['bill clinton','prince andrew','dershowitz','ken starr','bruce reinhart','npa','cvra'],summary:'HIGH: Victims Jane Doe #1/#2 discovery request (Case 08-80736, SD FL, Oct 2011). Demands full FBI case file, 82-page prosecution memo, 53-page draft indictment. Names Bill Clinton and Prince Andrew as "agents acting in support of Epstein." Request #8 demands docs on lobbying by Clinton, Prince Andrew, Dershowitz, Ken Starr, Roy Black, Jay Lefkowitz. Request #16 seeks evidence prosecutor Bruce Reinhart joined Epstein payroll despite sworn denials. [v10.79]',date:'2011-10-03',type:'court-filing'},
-  {id:'bop-psych-reconstruction-epstein-death',dataset:'DS9-BOP',pages:16,severity:9,keywords:['death','suicide','tartaglione','mcc','fbi','video','suicide watch'],summary:'CRITICAL: BOP official Psychological Reconstruction of Epstein death (Sep 17, 2019 — INTERIM). FBI CONFISCATED surveillance video before BOP review. Cellmate Nicholas Tartaglione transferred OUT Aug 9 — no replacement. Suicide watch ended after ONLY 31 HOURS (Jul 24). Attorney depositing funds into cellmate commissary. Self-mutilation incident report INEXPLICABLY EXPUNGED. Staff interviews not conducted. Less-redacted variant names Tartaglione, Efrain Reyes (#85993-054), Patrick Avila (#86710-054). [v10.79]',date:'2019-09-17',type:'bop-document'}
+  {id:'tir-hamilton-defense-witness-tecs-lie',dataset:'DS9-TIR',pages:4,severity:7,keywords:['maxwell','hamilton','defense witness','tecs'],summary:'FBI TIR: Roderic Alexander Innes Hamilton, potential Maxwell defense witness, claimed to observe victim on plane to LA in 2019/2020 — but TECS records show his last US entry was February 2016. Director of Releev Limited, London. Demonstrates FBI actively catching defense witnesses in material inconsistencies using border records. [v10.80]',date:'2022-02-23',type:'fbi-intelligence'},
+  {id:'sdny-fbi-csam-discovery-lsj-computer',dataset:'DS9-DOJ',pages:3,severity:8,keywords:['csam','little st james','jpmorgan','deutsche bank','evidence'],summary:'HIGH: April 2023 — Epstein Estate document reviewers (Patterson Belknap) discovered potential CHILD PORNOGRAPHY on video during JPMorgan/Deutsche Bank litigation review. SDNY Public Corruption Unit connected estate attorneys with lead FBI SA and NYPD Detective for formal CSAM reporting. Separately, estate seeking HP Slim Tower computer from GENERATOR ROOM on Little St. James island. Shows ongoing evidence coordination in 2023. [v10.80]',date:'2023-04-19',type:'law-enforcement'},
+  {id:'mlat-uk-degeorgiou-unredacted-draft',dataset:'DS9-DOJ',pages:12,severity:10,keywords:['maxwell','uk','mlat','collingham college','oxford','de georgiou'],summary:'CRITICAL: DOJ MLAT to UK (Aug 2021) — DRAFT version UNREDACTED reveals cooperating victim identity: De Georgiou (DOB 04 Mar 1977). Schools named: Collingham College (London SW5) and University of Oxford. Groomed by Maxwell in London 1994-1995. Contains tracked editorial changes showing internal DOJ deliberations. Final version (EFTA00093025) has all names redacted — this draft reveals what was hidden. Trial date Nov 29, 2021. [v10.80]',date:'2021-08-04',type:'legal-filing'},
+  {id:'cvra-discovery-clinton-prince-andrew-agents',dataset:'DS9-Court',pages:13,severity:8,keywords:['bill clinton','prince andrew','dershowitz','ken starr','bruce reinhart','npa','cvra'],summary:'HIGH: Victims Jane Doe #1/#2 discovery request (Case 08-80736, SD FL, Oct 2011). Demands full FBI case file, 82-page prosecution memo, 53-page draft indictment. Names Bill Clinton and Prince Andrew as "agents acting in support of Epstein." Request #8 demands docs on lobbying by Clinton, Prince Andrew, Dershowitz, Ken Starr, Roy Black, Jay Lefkowitz. Request #16 seeks evidence prosecutor Bruce Reinhart joined Epstein payroll despite sworn denials. [v10.80]',date:'2011-10-03',type:'court-filing'},
+  {id:'bop-psych-reconstruction-epstein-death',dataset:'DS9-BOP',pages:16,severity:9,keywords:['death','suicide','tartaglione','mcc','fbi','video','suicide watch'],summary:'CRITICAL: BOP official Psychological Reconstruction of Epstein death (Sep 17, 2019 — INTERIM). FBI CONFISCATED surveillance video before BOP review. Cellmate Nicholas Tartaglione transferred OUT Aug 9 — no replacement. Suicide watch ended after ONLY 31 HOURS (Jul 24). Attorney depositing funds into cellmate commissary. Self-mutilation incident report INEXPLICABLY EXPUNGED. Staff interviews not conducted. Less-redacted variant names Tartaglione, Efrain Reyes (#85993-054), Patrick Avila (#86710-054). [v10.80]',date:'2019-09-17',type:'bop-document'}
 ,
-  {id:'sealed-fbi-declaration-computers-evidence-destruction',dataset:'DS9-FBI',pages:15,severity:9,keywords:['maxwell','computers','evidence destruction','jege','palm beach','money laundering'],summary:'HIGH: Sealed 2007 FBI Agent declaration — 3 computers REMOVED from Epstein home before search warrant. Surveillance cameras disconnected. PI Paul Lavery delivered computers to Riley Kiraly firm (Roy Black). Maxwell arranged nude photography sessions of siblings age 9-10 — 7 photos WENT MISSING. Victims recruited from FIVE Palm Beach County high schools. $250K/day laundered through JEGE Inc (Boeing 727 entity). Grand jury investigating sex trafficking + money laundering. [v10.79]',date:'2007-07-01',type:'fbi-intelligence'},
-  {id:'vcp-claim-dershowitz-brin-wojcicki-witness-tampering',dataset:'DS9-VCP',pages:22,severity:9,keywords:['dershowitz','brin','wojcicki','island','witness tampering','escape'],summary:'HIGH: VCP victim claim (2006-2007). Raped daily on island, passport taken. Forced sex with ALAN DERSHOWITZ at mansion. Met SERGEY BRIN and ANN WOJCICKI on island Jan 1, 2007 — "they observed traumatized mute victims, said nothing." Igor Zinoviev witnessed victim attempt to SWIM OFF ISLAND to escape. Epstein paid $350,000 to silence fact witnesses ($250K + $100K), later discovered by US Government. [v10.79]',date:'2020-01-01',type:'victim-statement'},
-  {id:'sworn-declarations-prince-andrew-dershowitz-blackmail',dataset:'DS9-Court',pages:37,severity:9,keywords:['prince andrew','dershowitz','brunel','clinton','blackmail','scotland yard'],summary:'CRITICAL: Sworn declarations under penalty of perjury (Jan/Feb 2015) + Scotland Yard letter. PRINCE ANDREW: sex 3 times (London Club Tramp, NYC, island orgy with ~8 girls). DERSHOWITZ: sex "at least 6 times" starting age 16 at 5 locations. BRUNEL: Epstein "slept with over 1,000 of Brunel girls" ages 12-24. CLINTON explicitly exculpated. Blackmail motive: "they would owe him, be in his pocket." Hidden video surveillance confirmed. FBI agents appeared "blocked from doing what they wanted." Thailand hotel receipts billed to "J. EPSTEIN." [v10.79]',date:'2015-05-04',type:'court-filing'},
-  {id:'epstein-5th-amendment-discovery-scope',dataset:'DS9-Court',pages:37,severity:6,keywords:['npa','fifth amendment','kellen','marcinkova','maxwell','brunel','mc2'],summary:'Epstein invokes 5th/6th/14th Amendments to refuse ALL interrogatories (Case 08-CV-80119, SD FL, 2009). Reveals scope of suppressed evidence: flight logs, phone records, Palm Beach surveillance videos, communications with Kellen/Marcinkova/Maxwell/Brunel/MC2 Models, list of individuals USAO prepared to name as victims, full NPA and plea agreement. Confirms NPA expiration late 2010. [v10.79]',date:'2009-03-25',type:'court-filing'},
-  {id:'epstein-email-daily-beast-sarnoff-articles',dataset:'DS9-Email',pages:10,severity:5,keywords:['brunel','mc2','acosta','palm beach','money laundering'],summary:'Epstein email (jeevacation@gmail.com, Apr 3, 2011) forwarding Conchita Sarnoff Daily Beast articles. Articles detail: sealed 53-page federal indictment, $1M payment to Brunel/MC2, allegations of 12yo French girls as birthday gift, Palm Beach Chief Reiter 9-hour deposition, Epstein moving assets out of US. Shows Epstein actively monitoring media coverage. [v10.79]',date:'2011-04-03',type:'epstein-email'}
+  {id:'sealed-fbi-declaration-computers-evidence-destruction',dataset:'DS9-FBI',pages:15,severity:9,keywords:['maxwell','computers','evidence destruction','jege','palm beach','money laundering'],summary:'HIGH: Sealed 2007 FBI Agent declaration — 3 computers REMOVED from Epstein home before search warrant. Surveillance cameras disconnected. PI Paul Lavery delivered computers to Riley Kiraly firm (Roy Black). Maxwell arranged nude photography sessions of siblings age 9-10 — 7 photos WENT MISSING. Victims recruited from FIVE Palm Beach County high schools. $250K/day laundered through JEGE Inc (Boeing 727 entity). Grand jury investigating sex trafficking + money laundering. [v10.80]',date:'2007-07-01',type:'fbi-intelligence'},
+  {id:'vcp-claim-dershowitz-brin-wojcicki-witness-tampering',dataset:'DS9-VCP',pages:22,severity:9,keywords:['dershowitz','brin','wojcicki','island','witness tampering','escape'],summary:'HIGH: VCP victim claim (2006-2007). Raped daily on island, passport taken. Forced sex with ALAN DERSHOWITZ at mansion. Met SERGEY BRIN and ANN WOJCICKI on island Jan 1, 2007 — "they observed traumatized mute victims, said nothing." Igor Zinoviev witnessed victim attempt to SWIM OFF ISLAND to escape. Epstein paid $350,000 to silence fact witnesses ($250K + $100K), later discovered by US Government. [v10.80]',date:'2020-01-01',type:'victim-statement'},
+  {id:'sworn-declarations-prince-andrew-dershowitz-blackmail',dataset:'DS9-Court',pages:37,severity:9,keywords:['prince andrew','dershowitz','brunel','clinton','blackmail','scotland yard'],summary:'CRITICAL: Sworn declarations under penalty of perjury (Jan/Feb 2015) + Scotland Yard letter. PRINCE ANDREW: sex 3 times (London Club Tramp, NYC, island orgy with ~8 girls). DERSHOWITZ: sex "at least 6 times" starting age 16 at 5 locations. BRUNEL: Epstein "slept with over 1,000 of Brunel girls" ages 12-24. CLINTON explicitly exculpated. Blackmail motive: "they would owe him, be in his pocket." Hidden video surveillance confirmed. FBI agents appeared "blocked from doing what they wanted." Thailand hotel receipts billed to "J. EPSTEIN." [v10.80]',date:'2015-05-04',type:'court-filing'},
+  {id:'epstein-5th-amendment-discovery-scope',dataset:'DS9-Court',pages:37,severity:6,keywords:['npa','fifth amendment','kellen','marcinkova','maxwell','brunel','mc2'],summary:'Epstein invokes 5th/6th/14th Amendments to refuse ALL interrogatories (Case 08-CV-80119, SD FL, 2009). Reveals scope of suppressed evidence: flight logs, phone records, Palm Beach surveillance videos, communications with Kellen/Marcinkova/Maxwell/Brunel/MC2 Models, list of individuals USAO prepared to name as victims, full NPA and plea agreement. Confirms NPA expiration late 2010. [v10.80]',date:'2009-03-25',type:'court-filing'},
+  {id:'epstein-email-daily-beast-sarnoff-articles',dataset:'DS9-Email',pages:10,severity:5,keywords:['brunel','mc2','acosta','palm beach','money laundering'],summary:'Epstein email (jeevacation@gmail.com, Apr 3, 2011) forwarding Conchita Sarnoff Daily Beast articles. Articles detail: sealed 53-page federal indictment, $1M payment to Brunel/MC2, allegations of 12yo French girls as birthday gift, Palm Beach Chief Reiter 9-hour deposition, Epstein moving assets out of US. Shows Epstein actively monitoring media coverage. [v10.80]',date:'2011-04-03',type:'epstein-email'}
 ,
-// === v10.79 Batch Y/Z/AA: SDNY banking emails, OIG death investigation interviews, child victim letter, DB KYC ===
+// === v10.80 Batch Y/Z/AA: SDNY banking emails, OIG death investigation interviews, child victim letter, DB KYC ===
 {
   id: "sdny-hsbc-jpmc-db-banking",
   title: "SDNY Internal Email Chain: HSBC Inquiry re Epstein Victim Funds — Confirms Banking at JPMC and Deutsche Bank",
@@ -2990,7 +2990,7 @@ const FINDINGS_DATA = [
   batesNumbers: ["EFTA00166775"]
 }
 ,
-// === v10.79 Batches AB/AC/AD: OIG death investigation interview tranche, camera system timeline ===
+// === v10.80 Batches AB/AC/AD: OIG death investigation interview tranche, camera system timeline ===
 {
   id: "oig-mark-epstein-autopsy-photos",
   title: "OIG Interview of Mark Epstein (Brother) — Proactively Contacted OIG, Provided Autopsy Photographs",
@@ -3063,7 +3063,7 @@ const FINDINGS_DATA = [
 {doc_id:"EFTA00065837",title:"DOJ Attache London — Prince Andrew Diplomatic Strain, UKCA 'Suspect' Question",category:"DOJ",severity:8,date:"2021-08-12",summary:"DOJ London Attache reports US Ambassador concerned about Prince Andrew non-cooperation. UK Central Authority asked whether Andrew's status changed from 'witness' to 'suspect.' MLA treaty request 'not effective.' State Dept NYT quote 'unhelpful' from 'someone spouting off on European Desk.' Active cooperator debrief happening same day. Judge Nathan Rule 23.1 gag order shared.",tags:["doj","london","prince-andrew","mla","ambassador","ukca","diplomatic","cooperator","gag-order"]},
 {doc_id:"EFTA00167011",title:"Deutsche Bank KYC — Gratitude America Foundation, $330M in DB Assets",category:"Financial",severity:8,date:"2015-02",summary:"Deutsche Bank Private Wealth Management KYC for 'Gratitude America Ltd.' — Epstein's 501(c)(3) foundation. Grand jury evidence (Rule 6(e)). Net worth $100-500M, annual income $10M, $330M in DB assets. Foundation 'has not yet started distributing funds.' DB compliance noted criminal history was 'previously approved.' Approved Feb 2015 by Paul Morris and Kimberly Hart.",tags:["deutsche-bank","kyc","gratitude-america","foundation","grand-jury","indyke","kellerhals","wexner"]}
 ,
-// === v10.79 Batches AN/AO/AP: Rodriguez FD-302, Berman chain, PBPD op plan, VCP earliest victim ===
+// === v10.80 Batches AN/AO/AP: Rodriguez FD-302, Berman chain, PBPD op plan, VCP earliest victim ===
 {id:"F260",date:"2025-01-30",source:"DS9",doc:"EFTA00108668",severity:9,category:"FBI Investigation",
 title:"FBI FD-302 — Alfredo Rodriguez (Black Book Custodian)",
 summary:"FBI interview of Epstein house manager who possessed the 'black book' (seized 11/03/2009, had since 2004). Maxwell told Rodriguez 'not to discuss what occurred in the house' (obstruction). Payment pipeline: Epstein→bank→Maxwell→girls. Jean-Luc Brunel 'flew girls in from overseas.' Photos of naked underage girls in collages on walls. Sex toys/handcuffs/condoms cleaned after twice-daily massages. Rodriguez arrested for trying to sell the black book.",
@@ -3090,7 +3090,7 @@ summary:"Victim Claims Program submission documenting earliest known Epstein/Max
 persons:["Jeffrey Epstein","Ghislaine Maxwell","Darren Indyke"],
 redactionLevel:"heavy",pageCount:10}
 ,
-// === v10.79 Batches AQ/AR/AS: DOJ MLAT Prince Andrew, FBI TIR FinCEN, USVI v JPMorgan ===
+// === v10.80 Batches AQ/AR/AS: DOJ MLAT Prince Andrew, FBI TIR FinCEN, USVI v JPMorgan ===
 {id:"F265",date:"2025-01-30",source:"DS9",doc:"EFTA00099391",severity:10,category:"International Legal",
 title:"DOJ MLAT Request to UK — Prince Andrew Compelled Testimony",
 summary:"DOJ Criminal Division formal MLAT treaty request (Apr 3, 2020) to UK Central Authority seeking voluntary or compelled interview of Prince Andrew regarding two ongoing investigations (Epstein + Nygard). Prince Andrew (61 mentions), Maxwell (70), Epstein (92), Peter Nygard (27). Detailed questions about payments, trafficking connections. Classified SBU/Law Enforcement Sensitive. Produced in triplicate.",
@@ -3107,7 +3107,7 @@ summary:"USVI government complaint (Apr 2023) alleging JPMorgan knowingly facili
 persons:["Jeffrey Epstein","James Edward Staley","Ghislaine Maxwell","Jean-Luc Brunel"],
 redactionLevel:"none",pageCount:50}
 ,
-// === v10.79 Batches AT/AU/AV: FBI FD-302s, Maxwell $57M financial intel, Prince Andrew CBP, Cassell/Scotland Yard ===
+// === v10.80 Batches AT/AU/AV: FBI FD-302s, Maxwell $57M financial intel, Prince Andrew CBP, Cassell/Scotland Yard ===
 {id:"F268",date:"2025-01-30",source:"DS9",doc:"EFTA00090773",severity:8,category:"FBI Investigation",
 title:"FBI FD-302 — Polish Model/Associate Proffer Interview",
 summary:"FBI proffer interviews of Polish-born former model in Epstein orbit (39 pages). 'EPSTEIN introduced MELANIA TRUMP to DONALD TRUMP.' Brunel sent girls from Elite Models. Prince Andrew had breakfast with Epstein. Leslie Groff scheduled massage appointments via Citrix system. Girls ages 16-24. Andrew Farkas introduced Sultan from Dubai to Epstein.",
@@ -3139,7 +3139,7 @@ summary:"Bradley Edwards Statement of Undisputed Facts (Case 9:08-cv-80736-KAM).
 persons:["Jeffrey Epstein","Bradley Edwards"],
 redactionLevel:"partial",pageCount:20}
 ,
-// v10.79 — Batches AW/AX/AY: CVRA mega-document, sealed FBI warrant, France MLAT
+// v10.80 — Batches AW/AX/AY: CVRA mega-document, sealed FBI warrant, France MLAT
 {id: 276, date: "2026-02-03", severity: "critical", category: "Court Filing", title: "CVRA Litigation Mega-Document — Trump Message Pads, Mar-a-Lago Recruitment, Mark Epstein Testimony",
  summary: "Doe v. United States CVRA case compilation. Epstein message pads show Trump called Palm Beach mansion. Victim-102 recruited by Maxwell at Mar-a-Lago. Mark Epstein testified Trump rode Epstein plane with young girls. 14 Trump phone numbers in Epstein computer. Dershowitz 329 mentions, Prince Andrew 47, Maxwell 101.",
  source: "EFTA00188608", dataset: "DS9", persons: ["Donald Trump","Mark Epstein","Alan Dershowitz","Prince Andrew","Ghislaine Maxwell","Jean-Luc Brunel","Virginia Giuffre"], docType: "CVRA Compilation"},
@@ -3161,6 +3161,44 @@ redactionLevel:"partial",pageCount:20}
 {id: 280, date: "2026-02-03", severity: "low", category: "Court Filing", title: "Maxwell v. Epstein Estate — USVI Employment/Financial Relationship 1999-2006",
  summary: "USVI civil complaint by Maxwell against Epstein Estate detailing employment and financial relationship from 1999-2006.",
  source: "EFTA00076593", dataset: "DS9", persons: ["Ghislaine Maxwell","Jeffrey Epstein"], docType: "Civil Complaint"}
+,
+// v10.80 — Batches AZ/BA/BB: BOP death investigation documents, grand jury materials, FBI case summary
+{id: 282, date: "2026-02-03", severity: "critical", category: "BOP Document", title: "BOP Psychological Reconstruction of Epstein Death — DOJ Blocked Interviews, FBI Seized Video",
+ summary: "Official BOP 'Psychological Reconstruction of Inmate Death' by Robert Nagle. DOJ blocked formal interviews; FBI confiscated all video before BOP could review. July 23: Epstein claimed cellmate tried to kill him — investigation 'undetermined'. Guards admitted falsifying rounds. Attorney depositing funds into cellmate's commissary. Unrecorded phone calls on critical dates. Incident report 'expunged' — unclear why.",
+ source: "EFTA00056410", dataset: "DS9", persons: ["Jeffrey Epstein","Ghislaine Maxwell","Nick Tartaglione","Efrain Reyes"], docType: "BOP Psychological Reconstruction"},
+{id: 285, date: "2026-02-03", severity: "critical", category: "BOP Document", title: "BOP Death Investigation Archive — Epstein Called 'Deceased Mother' Night Before Death",
+ summary: "1000-page BOP internal archive. Night before death: Epstein told staff he was calling his mother — public records show she had been deceased since 2004. Attorney depositing funds into cellmate Reyes's commissary. 179/183 round signatures missing. Drug Treatment Specialist falsified suicide watch entries by hand-copying into different log book.",
+ source: "EFTA00041963", dataset: "DS9", persons: ["Jeffrey Epstein","Efrain Reyes","William Barr"], docType: "BOP Internal Archive"},
+{id: 288, date: "2026-02-03", severity: "critical", category: "FBI Document", title: "FBI/SDNY Case Initiation Summary — Leon Black & Jes Staley Rape, CSAM on Devices, No Hidden Cameras",
+ summary: "Extraordinary chronological summary of entire Epstein/Maxwell investigation Dec 2018-June 2022. Leon Black: victim ran from room after he 'initiated sexual contact'. Jes Staley: 'forced her to touch his genitals and raped her'. CSAM found on Epstein's devices. Contrary to reports, no cameras found in bedrooms/massage rooms. No victim corroborated 'lending out' claims. Clinton Africa trip doctor confirmed no minors.",
+ source: "EFTA00174356", dataset: "DS9", persons: ["Leon Black","Jes Staley","Bill Clinton","Nick Tartaglione","Les Wexner","Ghislaine Maxwell","Harvey Weinstein","Jean-Luc Brunel"], docType: "FBI Case Summary"},
+{id: 283, date: "2026-02-03", severity: "high", category: "BOP Document", title: "BOP Death Timeline — Hard Drives Removed from SHU Night of Death",
+ summary: "Minute-by-minute death timeline Aug 9-10, 2019. At 10:15pm Aug 10, Computer Services Manager removed hard drives from SHU and replaced with new ones. Medical exam July 23: erythema/friction marks on neck. Post-death: BOP wardens 'defaulting to leaving inmates on suicide watch longer than psychologists advise'.",
+ source: "EFTA00045963", dataset: "DS9", persons: ["Jeffrey Epstein","Efrain Reyes"], docType: "BOP Email Archive"},
+{id: 286, date: "2026-02-03", severity: "high", category: "Court Filing", title: "Federal Grand Jury Materials — FBI Testimony, Clinton Praise, AUSA Strategy Emails",
+ summary: "Grand jury subpoenas (2006-07), FBI agent testimony ('over 25 girls', 'penetrated her'), AUSA prosecution strategy emails opposing defense meetings. Clinton quoted in Lefcourt defense letter: 'committed philanthropist'. Epstein 'part of original group that conceived Clinton Global Initiative'. Steven Pinker linguistic analysis for defense. Dershowitz co-signed defense letters.",
+ source: "EFTA00226396", dataset: "DS9", persons: ["Bill Clinton","Alan Dershowitz","Steven Pinker","Gerald Lefcourt","Nadia Marcinkova","Prince Andrew"], docType: "Grand Jury Materials"},
+{id: 284, date: "2026-02-03", severity: "high", category: "BOP Document", title: "BOP Archive — SDNY Leadership (Berman, Strauss) Visited Epstein's Cell Aug 13",
+ summary: "Geoffrey Berman, Audrey Strauss, and 3 AUSAs visited Epstein's cell and suicide watch area. 'Will not speak to guards given ongoing investigations'. Tartaglione scheduling in same facility (Aug 7). Missing July surveillance video confirmed in BOP email chain.",
+ source: "EFTA00044963", dataset: "DS9", persons: ["Geoffrey Berman","Audrey Strauss","Nick Tartaglione","Jeffrey Epstein"], docType: "BOP Email Archive"},
+{id: 289, date: "2026-02-03", severity: "high", category: "DOJ Document", title: "OIG Investigation Report — DVR Failure, Falsified Records, Medical Examiner Findings",
+ summary: "Full DOJ OIG report (23-085, June 2023). DVR malfunction July 29 — only half cameras recording; discovered Aug 8, not repaired before death. Staff criminally charged for falsifying records. ME: injuries 'more consistent with suicide by hanging than homicide by strangulation'. No evidence of foul play on surviving video.",
+ source: "EFTA00039025", dataset: "DS9", persons: ["Jeffrey Epstein","Tova Noel","Michael Thomas"], docType: "OIG Report"},
+{id: 287, date: "2026-02-03", severity: "high", category: "Court Filing", title: "Giuffre v. Dershowitz Amended Complaint — Specific Sexual Assault Allegation",
+ summary: "SDNY filing (1:19-cv-3377). Specific allegation: Dershowitz 'entered bedroom after Epstein abuse, engaged in sexual intercourse' late 2000/early 2001. Alleges Dershowitz helped draft NPA co-conspirator protection while being a co-conspirator. Documents 25+ public defamation instances. Wiretapping claim.",
+ source: "EFTA00092647", dataset: "DS9", persons: ["Virginia Giuffre","Alan Dershowitz","Jeffrey Epstein","Ghislaine Maxwell","David Boies","Les Wexner","Prince Andrew"], docType: "Civil Complaint"},
+{id: 292, date: "2026-02-03", severity: "moderate", category: "Court Filing", title: "Maxwell Bail Motion + Government Opposition with Victim Impact Statements",
+ summary: "Second Circuit (Case 21-770). Government: 'Maxwell exploited young victims as young as 14'. Defense 'Epstein Effect' argument. Victim statement: 'subjected to dehumanizing abuse'. Maxwell detention: 'equivalent of solitary confinement' for 280+ days, awakened every 15 minutes.",
+ source: "EFTA00093044", dataset: "DS9", persons: ["Ghislaine Maxwell","Jeffrey Epstein"], docType: "Court Filing"},
+{id: 293, date: "2026-02-03", severity: "moderate", category: "BOP Document", title: "BOP Email Archive — Judge Caproni Correspondence, Trump '28 Girls' Party Embedded",
+ summary: "BOP internal emails with Judge Caproni about investigation status. OIG interview requests Aug 16. Contains embedded WaPo Daily 202 with Trump party '28 girls' at Mar-a-Lago with Epstein, and 2002 Trump quote about Epstein liking 'younger' women.",
+ source: "EFTA00042963", dataset: "DS9", persons: ["Jeffrey Epstein","Donald Trump","William Barr","Alexander Acosta"], docType: "BOP Email Archive"},
+{id: 290, date: "2026-02-03", severity: "low", category: "FBI Document", title: "FBI TIR — Malcolm Grumbridge, Maxwell Family Solicitor (Money Laundering)",
+ summary: "FBI TIR Mar 2022. Grumbridge managed Maxwell finances, custodian of 44 Kinnerton St, Belgravia. Removed from Roll of Solicitors by SRA for money laundering and terrorist financing concerns. Traveled to US Oct 2019 after Epstein's death.",
+ source: "EFTA00174257", dataset: "DS9", persons: ["Malcolm Grumbridge","Ghislaine Maxwell","Kevin Maxwell","Ian Maxwell"], docType: "FBI TIR"},
+{id: 291, date: "2026-02-03", severity: "low", category: "FBI Document", title: "FBI TIR — Redacted Maxwell Defense Witness (TerraMar Project Director)",
+ summary: "FBI TIR Feb 2022. Redacted person — director of TerraMar Project, appeared in Epstein/Maxwell 'black book', girlfriend of Maxwell brother. Background in art/design, London-based.",
+ source: "EFTA00174290", dataset: "DS9", persons: ["Ghislaine Maxwell"], docType: "FBI TIR"}
 ];
   const TIMELINE_DATA = [
   { date: "1953", title: "Jeffrey Epstein Born", desc: "Born January 20, 1953 in Brooklyn, New York." },
@@ -3186,7 +3224,7 @@ redactionLevel:"partial",pageCount:20}
   { date: "2025-02-02", title: "Final Merged Dashboard v10", desc: "Comprehensive analysis complete: 120,187 total findings from 123,846 documents across 12 datasets. Composite scoring integrates DS9 pipeline, original corpus, and OPR/OIG materials. DS11 (331,655 PDFs) staged for future processing." },
   { date: "2026-02-02", title: "Local Batch Processed + v10.1", desc: "174 local PDFs (2,651 pages) processed: DS12 (152), Maxwell proffer transcripts (5), DOJ memoranda (12), first phase (3), VOL00009 (2). 11,326 new findings extracted. Critical documents: OPR Report on Acosta plea deal (2,228 hits, sev 17), OIG Memo on Epstein death (443 hits, sev 16), Maxwell proffer transcripts (Day 1: 1,681 hits, Day 2: 956 hits)." },
   { date: "2026-02-02", title: "DS1-8 Full Extraction + v10.2", desc: "Full local batch extraction of Datasets 1-8 completed: 14,693 PDFs (35,397 pages), 50,932 new findings. Key documents: EFTA00010819 (122pg, sev 10: Acosta/Bannon/Clinton), EFTA00011039 (7pg, sev 12: Bannon/Biden/conspiracy/Israel/Maxwell), EFTA00009809 (14pg, sev 10: trafficking/minor/victim). Total now 183,616 findings across 108,208 documents. DS9+DS11 Wayback pipelines continue (~770K PDFs)." },
-  { date: "2026-02-02", title: "DS10 Recovery + v10.3", desc: "200 PDFs recovered from truncated DS10 ZIP using 7zip. 2,345 findings across 4,025 pages. EFTA range 01262805-01266807. Contains sealed SDNY court documents: FBI search warrant affidavit for 9 East 71st Street, warrant for CDs from Epstein safe (labeled Nudes 00-24, Girl Pics Nude, etc.), warrant for iPhone/iPad/hard drives, Little Saint James Island raid warrant (27 electronic devices), pen register/trap-and-trace application, Giuffre v. Maxwell grand jury unsealing, and sealed protective order modification. Composite scores updated to v4 (114 terms). Grand total: 186,118 findings from 108,608 documents across 263,193 pages." },
+  { date: "2026-02-02", title: "DS10 Recovery + v10.3", desc: "200 PDFs recovered from truncated DS10 ZIP using 7zip. 2,345 findings across 4,025 pages. EFTA range 01262805-01266807. Contains sealed SDNY court documents: FBI search warrant affidavit for 9 East 71st Street, warrant for CDs from Epstein safe (labeled Nudes 00-24, Girl Pics Nude, etc.), warrant for iPhone/iPad/hard drives, Little Saint James Island raid warrant (27 electronic devices), pen register/trap-and-trace application, Giuffre v. Maxwell grand jury unsealing, and sealed protective order modification. Composite scores updated to v4 (114 terms). Grand total: 186,130 findings from 108,608 documents across 263,193 pages." },
   { date: "2026-02-02", title: "Intelligence Analysis v10.4", desc: "Deep analysis of 4 intelligence-linked documents from DS9 pipeline. FBI FD-1023 CHS report (EFTA00090314) reveals Epstein described as 'co-opted Mossad Agent' who 'belonged to both U.S. and allied intelligence services.' Sworn declaration (EFTA00098456) details blackmail operation with video surveillance. Intelligence methodology compilation (EFTA00103831) documents MI5 parallel. Kompromat reference (EFTA00080475) confirms terminology. Sev-18 false positives identified: FBI Public Affairs news briefings inflating severity scores." },
   { date: "2026-02-02", title: "Deep Analysis v10.5", desc: "DS9 Batch 2 analysis: USVI AG Denise George FBI interview reveals Indyke/Kahn as trafficking co-conspirators. BOP Psychological Reconstruction: FBI took all video, 179/183 missing observation signatures. MCC RAID crash documented Aug 8, 2019. Epstein trust document reveals shell corp structure and $100M+ to Shuliak. FBI complaint form documents Trump/Epstein allegations. DS11 characterized as 331K email archive (2017-2018) with Barak/Black/Thiel meetings and Russia recruitment pipeline. DS8 spreadsheets: FBI Maxwell financial subpoena tracker, victim compensation program tracker, 4 fully redacted CSV files." },
   { date: "2026-02-02", title: "MCC Camera Failure Cluster v10.6", desc: "6 DOJ OIG documents (415+ pages) documenting complete surveillance failure: cameras stopped July 29, RAID crash Aug 8, only 1 camera recording, fix scheduled for day of death" },
