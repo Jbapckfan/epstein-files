@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Epstein Files Investigation Dashboard v10.66 — DS1-8 + DS10 Complete + All Sources (186,053 findings)</title>
+<title>Epstein Files Investigation Dashboard v10.67 — DS1-8 + DS10 Complete + All Sources (186,056 findings)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -940,7 +940,7 @@ body {
   <div class="nav-inner">
     <div class="nav-brand">
       <span class="dot"></span>
-      <span>Epstein Files v10.66</span>
+      <span>Epstein Files v10.67</span>
     </div>
     <ul class="nav-links">
       <li><a href="#network">Network</a></li>
@@ -975,14 +975,14 @@ body {
   <div class="hero-content">
     <div class="hero-badge">
       <span class="pulse-dot"></span>
-      DS1-8 + DS9 + DS10 + Local Batch Complete — 186,053 Findings
+      DS1-8 + DS9 + DS10 + Local Batch Complete — 186,056 Findings
     </div>
     <h1>Epstein Files Investigation</h1>
-    <p class="subtitle">Comprehensive document analysis across 15 sources. Automated extraction and severity scoring of 186,053 findings from 108,608+ documents including DS1-8 (14,693 PDFs, 50,932 findings), DS9 (92,639 docs, 58,648 findings), DS10 (200 recovered PDFs, 2,345 findings), local batch (174 PDFs, 11,326 findings), and federal archives. 263,193+ pages scanned.</p>
+    <p class="subtitle">Comprehensive document analysis across 15 sources. Automated extraction and severity scoring of 186,056 findings from 108,608+ documents including DS1-8 (14,693 PDFs, 50,932 findings), DS9 (92,639 docs, 58,648 findings), DS10 (200 recovered PDFs, 2,345 findings), local batch (174 PDFs, 11,326 findings), and federal archives. 263,193+ pages scanned.</p>
 
     <div class="stats-row">
       <div class="stat-pill">
-        <span class="stat-number" data-target="186053" data-suffix="">0</span>
+        <span class="stat-number" data-target="186056" data-suffix="">0</span>
         <span class="stat-label">Total Findings</span>
       </div>
       <div class="stat-pill">
@@ -1007,7 +1007,7 @@ body {
       </div>
     </div>
 
-    <p class="meta-line">Last updated: 2026-02-02 // DS1-8 Local Batch: 14,693 PDFs, 35,397 pages, 50,932 findings // DS9: 92,639 docs, 218,766 pages, 58,648 findings // DS10 (Recovered): 200 PDFs, 4,025 pages, 2,345 findings // Local Batch: 174 PDFs, 2,651 pages, 11,326 findings // Total: 186,053 findings across 108,608 documents // DS9+DS11 Wayback processing ~770K remaining CDX-validated PDFs</p>
+    <p class="meta-line">Last updated: 2026-02-02 // DS1-8 Local Batch: 14,693 PDFs, 35,397 pages, 50,932 findings // DS9: 92,639 docs, 218,766 pages, 58,648 findings // DS10 (Recovered): 200 PDFs, 4,025 pages, 2,345 findings // Local Batch: 174 PDFs, 2,651 pages, 11,326 findings // Total: 186,056 findings across 108,608 documents // DS9+DS11 Wayback processing ~770K remaining CDX-validated PDFs</p>
   </div>
 </section>
 
@@ -1480,7 +1480,7 @@ body {
   <div class="section-header reveal">
     <div class="section-tag">Frequency Analysis</div>
     <h2>Term Occurrence Counts</h2>
-    <p>Final composite scores (v4) across all processed datasets (186,053 total findings from DS1-8 + DS9 + DS10 + local batch + original corpus)</p>
+    <p>Final composite scores (v4) across all processed datasets (186,056 total findings from DS1-8 + DS9 + DS10 + local batch + original corpus)</p>
   </div>
   <div class="bar-chart-container reveal" id="barChart">
     <!-- Populated by JS -->
@@ -1513,12 +1513,12 @@ body {
 
 <!-- FOOTER -->
 <footer class="footer">
-  <div class="footer-brand">Epstein Files Investigation Dashboard v10.66 — DS1-8 + DS9 + DS10 + Local Batch Complete</div>
+  <div class="footer-brand">Epstein Files Investigation Dashboard v10.67 — DS1-8 + DS9 + DS10 + Local Batch Complete</div>
   <p>
     Generated: 2026-02-02 UTC<br>
     Methodology: Automated keyword extraction with context-aware severity scoring and composite score integration across all pipelines.<br>
     Sources: FOIA releases, court filings (SDNY), justice.gov EFTA archives (DS9: 92,639 docs), DS1-8 local batch (14,693 PDFs, 50,932 findings), DS10 recovered (200 PDFs, 2,345 findings from sealed SDNY documents), local batch (174 PDFs: DS12, Maxwell proffer, OPR/OIG memoranda), financial disclosures.<br>
-    186,053 findings from 108,608 documents across 15 sources. 263,193 pages scanned. DS1-8 complete. DS9 pipeline complete. DS10 recovered. Local batch integrated.<br>
+    186,056 findings from 108,608 documents across 15 sources. 263,193 pages scanned. DS1-8 complete. DS9 pipeline complete. DS10 recovered. Local batch integrated.<br>
     DS9 + DS11 background processing active: ~770K CDX-validated PDFs from Wayback Machine queued.<br>
     <span style="color: var(--text-dim); font-size: 11px;">All findings are extracted quotes from public documents. No editorial content.</span>
   </p>
@@ -2800,6 +2800,43 @@ const FINDINGS_DATA = [
       dateRange: 'September 2022',
       tags: ['survivor-testimony', 'brin', 'wojcicki', 'google', '23andme', 'clinton', 'south-africa', 'boies', 'attorney-conflicts']
     }
+,
+    {
+      id: 'EFTA00174257',
+      title: 'FBI TIR: Malcolm Grumbridge — Maxwell Family Financial Manager, Removed from UK Solicitors Roll for Money Laundering',
+      category: 'law-enforcement',
+      severity: 7,
+      source: 'DS9',
+      summary: 'FBI Tactical Intelligence Report profiling Malcolm Grumbridge, a Maxwell defense witness identified during the trial. Grumbridge managed Maxwell family finances and was custodian of Ghislaine\'s Belgravia residence (44 Kinnerton St). Removed from UK Solicitors Roll in 2020 after SRA investigation into money laundering, failure to verify client identities, and terrorist financing regulation violations. TECS records show last US travel was a 4-day trip in October 2019.',
+      keyEntities: ['Malcolm Grumbridge', 'Ghislaine Maxwell', 'Kevin Maxwell', 'Ian Maxwell'],
+      documentType: 'FBI Tactical Intelligence Report',
+      dateRange: 'March 2022',
+      tags: ['fbi-tir', 'grumbridge', 'money-laundering', 'sra', 'maxwell-finances', 'belgravia', 'defense-witness']
+    },
+    {
+      id: 'EFTA00436114',
+      title: 'Epstein Email Chain: Indyke Urgently Sharing Annotated Daily Beast Articles with "Les" (Wexner)',
+      category: 'financial',
+      severity: 7,
+      source: 'DS9',
+      summary: 'Epstein personal email chain (April 3, 2011) with attorney Darren Indyke urgently trying to fax "highlighted" (annotated) Daily Beast investigative articles to "Les" (likely Leslie Wexner). Epstein CC\'d at jeevacation@gmail.com. Multiple attempts to fax involving "Bella" to set up e-fax. Embedded articles detail Epstein\'s abuse patterns, the Non-Prosecution Agreement, and the Jean-Luc Brunel/MC2 trafficking pipeline. Shows Epstein\'s inner circle actively monitoring and annotating investigative journalism.',
+      keyEntities: ['Jeffrey Epstein', 'Darren Indyke', 'Leslie Wexner', 'Jean-Luc Brunel'],
+      documentType: 'Epstein Personal Email Chain',
+      dateRange: 'April 2011',
+      tags: ['epstein-emails', 'indyke', 'wexner', 'media-monitoring', 'daily-beast', 'annotations', 'mc2']
+    },
+    {
+      id: 'EFTA00436905',
+      title: 'Epstein Email: Robert Neal/Skellig Partners Forwarding Maxwell Media Coverage',
+      category: 'financial',
+      severity: 4,
+      source: 'DS9',
+      summary: 'Email from Robert Neal of Skellig Partners LP to Epstein (March 11, 2011) forwarding Telegraph article "Whatever Happened to the Maxwells?" with the note "your pals." CC\'d to Lesley Groff (Epstein\'s executive assistant). Reply from "David" (Epstein alias, via Blackberry): "Rob, Resend this to me and lesley." Identifies Robert Neal/Skellig Partners as part of Epstein\'s financial network actively monitoring media coverage.',
+      keyEntities: ['Robert Neal', 'Skellig Partners', 'Jeffrey Epstein', 'Lesley Groff', 'Ghislaine Maxwell'],
+      documentType: 'Epstein Personal Email',
+      dateRange: 'March 2011',
+      tags: ['epstein-emails', 'skellig-partners', 'robert-neal', 'media-monitoring', 'groff']
+    }
 ];
   const TIMELINE_DATA = [
   { date: "1953", title: "Jeffrey Epstein Born", desc: "Born January 20, 1953 in Brooklyn, New York." },
@@ -2825,7 +2862,7 @@ const FINDINGS_DATA = [
   { date: "2025-02-02", title: "Final Merged Dashboard v10", desc: "Comprehensive analysis complete: 120,187 total findings from 123,846 documents across 12 datasets. Composite scoring integrates DS9 pipeline, original corpus, and OPR/OIG materials. DS11 (331,655 PDFs) staged for future processing." },
   { date: "2026-02-02", title: "Local Batch Processed + v10.1", desc: "174 local PDFs (2,651 pages) processed: DS12 (152), Maxwell proffer transcripts (5), DOJ memoranda (12), first phase (3), VOL00009 (2). 11,326 new findings extracted. Critical documents: OPR Report on Acosta plea deal (2,228 hits, sev 17), OIG Memo on Epstein death (443 hits, sev 16), Maxwell proffer transcripts (Day 1: 1,681 hits, Day 2: 956 hits)." },
   { date: "2026-02-02", title: "DS1-8 Full Extraction + v10.2", desc: "Full local batch extraction of Datasets 1-8 completed: 14,693 PDFs (35,397 pages), 50,932 new findings. Key documents: EFTA00010819 (122pg, sev 10: Acosta/Bannon/Clinton), EFTA00011039 (7pg, sev 12: Bannon/Biden/conspiracy/Israel/Maxwell), EFTA00009809 (14pg, sev 10: trafficking/minor/victim). Total now 183,616 findings across 108,208 documents. DS9+DS11 Wayback pipelines continue (~770K PDFs)." },
-  { date: "2026-02-02", title: "DS10 Recovery + v10.3", desc: "200 PDFs recovered from truncated DS10 ZIP using 7zip. 2,345 findings across 4,025 pages. EFTA range 01262805-01266807. Contains sealed SDNY court documents: FBI search warrant affidavit for 9 East 71st Street, warrant for CDs from Epstein safe (labeled Nudes 00-24, Girl Pics Nude, etc.), warrant for iPhone/iPad/hard drives, Little Saint James Island raid warrant (27 electronic devices), pen register/trap-and-trace application, Giuffre v. Maxwell grand jury unsealing, and sealed protective order modification. Composite scores updated to v4 (114 terms). Grand total: 186,053 findings from 108,608 documents across 263,193 pages." },
+  { date: "2026-02-02", title: "DS10 Recovery + v10.3", desc: "200 PDFs recovered from truncated DS10 ZIP using 7zip. 2,345 findings across 4,025 pages. EFTA range 01262805-01266807. Contains sealed SDNY court documents: FBI search warrant affidavit for 9 East 71st Street, warrant for CDs from Epstein safe (labeled Nudes 00-24, Girl Pics Nude, etc.), warrant for iPhone/iPad/hard drives, Little Saint James Island raid warrant (27 electronic devices), pen register/trap-and-trace application, Giuffre v. Maxwell grand jury unsealing, and sealed protective order modification. Composite scores updated to v4 (114 terms). Grand total: 186,056 findings from 108,608 documents across 263,193 pages." },
   { date: "2026-02-02", title: "Intelligence Analysis v10.4", desc: "Deep analysis of 4 intelligence-linked documents from DS9 pipeline. FBI FD-1023 CHS report (EFTA00090314) reveals Epstein described as 'co-opted Mossad Agent' who 'belonged to both U.S. and allied intelligence services.' Sworn declaration (EFTA00098456) details blackmail operation with video surveillance. Intelligence methodology compilation (EFTA00103831) documents MI5 parallel. Kompromat reference (EFTA00080475) confirms terminology. Sev-18 false positives identified: FBI Public Affairs news briefings inflating severity scores." },
   { date: "2026-02-02", title: "Deep Analysis v10.5", desc: "DS9 Batch 2 analysis: USVI AG Denise George FBI interview reveals Indyke/Kahn as trafficking co-conspirators. BOP Psychological Reconstruction: FBI took all video, 179/183 missing observation signatures. MCC RAID crash documented Aug 8, 2019. Epstein trust document reveals shell corp structure and $100M+ to Shuliak. FBI complaint form documents Trump/Epstein allegations. DS11 characterized as 331K email archive (2017-2018) with Barak/Black/Thiel meetings and Russia recruitment pipeline. DS8 spreadsheets: FBI Maxwell financial subpoena tracker, victim compensation program tracker, 4 fully redacted CSV files." },
   { date: "2026-02-02", title: "MCC Camera Failure Cluster v10.6", desc: "6 DOJ OIG documents (415+ pages) documenting complete surveillance failure: cameras stopped July 29, RAID crash Aug 8, only 1 camera recording, fix scheduled for day of death" },
