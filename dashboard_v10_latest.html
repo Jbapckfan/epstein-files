@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Epstein Files Investigation Dashboard v10.63 — DS1-8 + DS10 Complete + All Sources (186,044 findings)</title>
+<title>Epstein Files Investigation Dashboard v10.64 — DS1-8 + DS10 Complete + All Sources (186,045 findings)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -940,7 +940,7 @@ body {
   <div class="nav-inner">
     <div class="nav-brand">
       <span class="dot"></span>
-      <span>Epstein Files v10.63</span>
+      <span>Epstein Files v10.64</span>
     </div>
     <ul class="nav-links">
       <li><a href="#network">Network</a></li>
@@ -975,14 +975,14 @@ body {
   <div class="hero-content">
     <div class="hero-badge">
       <span class="pulse-dot"></span>
-      DS1-8 + DS9 + DS10 + Local Batch Complete — 186,044 Findings
+      DS1-8 + DS9 + DS10 + Local Batch Complete — 186,045 Findings
     </div>
     <h1>Epstein Files Investigation</h1>
-    <p class="subtitle">Comprehensive document analysis across 15 sources. Automated extraction and severity scoring of 186,044 findings from 108,608+ documents including DS1-8 (14,693 PDFs, 50,932 findings), DS9 (92,639 docs, 58,648 findings), DS10 (200 recovered PDFs, 2,345 findings), local batch (174 PDFs, 11,326 findings), and federal archives. 263,193+ pages scanned.</p>
+    <p class="subtitle">Comprehensive document analysis across 15 sources. Automated extraction and severity scoring of 186,045 findings from 108,608+ documents including DS1-8 (14,693 PDFs, 50,932 findings), DS9 (92,639 docs, 58,648 findings), DS10 (200 recovered PDFs, 2,345 findings), local batch (174 PDFs, 11,326 findings), and federal archives. 263,193+ pages scanned.</p>
 
     <div class="stats-row">
       <div class="stat-pill">
-        <span class="stat-number" data-target="186044" data-suffix="">0</span>
+        <span class="stat-number" data-target="186045" data-suffix="">0</span>
         <span class="stat-label">Total Findings</span>
       </div>
       <div class="stat-pill">
@@ -1007,7 +1007,7 @@ body {
       </div>
     </div>
 
-    <p class="meta-line">Last updated: 2026-02-02 // DS1-8 Local Batch: 14,693 PDFs, 35,397 pages, 50,932 findings // DS9: 92,639 docs, 218,766 pages, 58,648 findings // DS10 (Recovered): 200 PDFs, 4,025 pages, 2,345 findings // Local Batch: 174 PDFs, 2,651 pages, 11,326 findings // Total: 186,044 findings across 108,608 documents // DS9+DS11 Wayback processing ~770K remaining CDX-validated PDFs</p>
+    <p class="meta-line">Last updated: 2026-02-02 // DS1-8 Local Batch: 14,693 PDFs, 35,397 pages, 50,932 findings // DS9: 92,639 docs, 218,766 pages, 58,648 findings // DS10 (Recovered): 200 PDFs, 4,025 pages, 2,345 findings // Local Batch: 174 PDFs, 2,651 pages, 11,326 findings // Total: 186,045 findings across 108,608 documents // DS9+DS11 Wayback processing ~770K remaining CDX-validated PDFs</p>
   </div>
 </section>
 
@@ -1480,7 +1480,7 @@ body {
   <div class="section-header reveal">
     <div class="section-tag">Frequency Analysis</div>
     <h2>Term Occurrence Counts</h2>
-    <p>Final composite scores (v4) across all processed datasets (186,044 total findings from DS1-8 + DS9 + DS10 + local batch + original corpus)</p>
+    <p>Final composite scores (v4) across all processed datasets (186,045 total findings from DS1-8 + DS9 + DS10 + local batch + original corpus)</p>
   </div>
   <div class="bar-chart-container reveal" id="barChart">
     <!-- Populated by JS -->
@@ -1513,12 +1513,12 @@ body {
 
 <!-- FOOTER -->
 <footer class="footer">
-  <div class="footer-brand">Epstein Files Investigation Dashboard v10.63 — DS1-8 + DS9 + DS10 + Local Batch Complete</div>
+  <div class="footer-brand">Epstein Files Investigation Dashboard v10.64 — DS1-8 + DS9 + DS10 + Local Batch Complete</div>
   <p>
     Generated: 2026-02-02 UTC<br>
     Methodology: Automated keyword extraction with context-aware severity scoring and composite score integration across all pipelines.<br>
     Sources: FOIA releases, court filings (SDNY), justice.gov EFTA archives (DS9: 92,639 docs), DS1-8 local batch (14,693 PDFs, 50,932 findings), DS10 recovered (200 PDFs, 2,345 findings from sealed SDNY documents), local batch (174 PDFs: DS12, Maxwell proffer, OPR/OIG memoranda), financial disclosures.<br>
-    186,044 findings from 108,608 documents across 15 sources. 263,193 pages scanned. DS1-8 complete. DS9 pipeline complete. DS10 recovered. Local batch integrated.<br>
+    186,045 findings from 108,608 documents across 15 sources. 263,193 pages scanned. DS1-8 complete. DS9 pipeline complete. DS10 recovered. Local batch integrated.<br>
     DS9 + DS11 background processing active: ~770K CDX-validated PDFs from Wayback Machine queued.<br>
     <span style="color: var(--text-dim); font-size: 11px;">All findings are extracted quotes from public documents. No editorial content.</span>
   </p>
@@ -2689,6 +2689,19 @@ const FINDINGS_DATA = [
   names: ["Ghislaine Maxwell", "Jeffrey Epstein", "Lesley Groff", "Alexander Acosta"],
   tags: ["FBI TIR", "SAR", "financial intelligence", "TECS", "travel records", "pistol permit", "visa pipeline", "recruitment", "TerraMar"]
 }
+,
+{
+  id: "EFTA00129035",
+  title: "FBI FD-302: USVI AG Denise George — Governor Obstructed Epstein Probe, Executors Were Trafficking Participants",
+  severity: "CRITICAL",
+  category: "FBI Interview/FD-302",
+  date: "October 2, 2023",
+  source: "DS9",
+  pages: "4",
+  summary: "FBI FD-302 of former USVI Attorney General Denise George. Governor Albert Bryan actively obstructed the Epstein estate investigation — initially said 'He's dead, go for it' but changed to 'End it quickly' and told George he was 'sick of her not doing what she was told to do.' Epstein executors Richard Kahn and Darren Indyke described as 'participants in the human trafficking operation' — Indyke specifically 'was in charge of coordinating female to female marriages to gain immigration status' with threats against victims who attempted divorce. Epstein employees had NDAs instructing them to 'say nothing to law enforcement and alert Kellerhals.' George was fired 4 days after filing against JP Morgan (Dec 27→Dec 31, 2022). Bryan pressured George to settle for $80M and sent Carlton Dowe to convince her. Former Governor De Jongh allegedly pressured prior AG to grant Epstein a sex offender reporting waiver. George received intimidation after media interviews — cease and desist letter plus unknown man at her home.",
+  names: ["Denise George", "Albert Bryan", "Richard Kahn", "Darren Indyke", "Erika Kellerhals", "John De Jongh", "David Bornn", "Carlton Dowe"],
+  tags: ["FD-302", "USVI", "Governor obstruction", "trafficking participants", "sham marriages", "immigration fraud", "JP Morgan", "NDA", "intimidation"]
+}
 ];
   const TIMELINE_DATA = [
   { date: "1953", title: "Jeffrey Epstein Born", desc: "Born January 20, 1953 in Brooklyn, New York." },
@@ -2714,7 +2727,7 @@ const FINDINGS_DATA = [
   { date: "2025-02-02", title: "Final Merged Dashboard v10", desc: "Comprehensive analysis complete: 120,187 total findings from 123,846 documents across 12 datasets. Composite scoring integrates DS9 pipeline, original corpus, and OPR/OIG materials. DS11 (331,655 PDFs) staged for future processing." },
   { date: "2026-02-02", title: "Local Batch Processed + v10.1", desc: "174 local PDFs (2,651 pages) processed: DS12 (152), Maxwell proffer transcripts (5), DOJ memoranda (12), first phase (3), VOL00009 (2). 11,326 new findings extracted. Critical documents: OPR Report on Acosta plea deal (2,228 hits, sev 17), OIG Memo on Epstein death (443 hits, sev 16), Maxwell proffer transcripts (Day 1: 1,681 hits, Day 2: 956 hits)." },
   { date: "2026-02-02", title: "DS1-8 Full Extraction + v10.2", desc: "Full local batch extraction of Datasets 1-8 completed: 14,693 PDFs (35,397 pages), 50,932 new findings. Key documents: EFTA00010819 (122pg, sev 10: Acosta/Bannon/Clinton), EFTA00011039 (7pg, sev 12: Bannon/Biden/conspiracy/Israel/Maxwell), EFTA00009809 (14pg, sev 10: trafficking/minor/victim). Total now 183,616 findings across 108,208 documents. DS9+DS11 Wayback pipelines continue (~770K PDFs)." },
-  { date: "2026-02-02", title: "DS10 Recovery + v10.3", desc: "200 PDFs recovered from truncated DS10 ZIP using 7zip. 2,345 findings across 4,025 pages. EFTA range 01262805-01266807. Contains sealed SDNY court documents: FBI search warrant affidavit for 9 East 71st Street, warrant for CDs from Epstein safe (labeled Nudes 00-24, Girl Pics Nude, etc.), warrant for iPhone/iPad/hard drives, Little Saint James Island raid warrant (27 electronic devices), pen register/trap-and-trace application, Giuffre v. Maxwell grand jury unsealing, and sealed protective order modification. Composite scores updated to v4 (114 terms). Grand total: 186,044 findings from 108,608 documents across 263,193 pages." },
+  { date: "2026-02-02", title: "DS10 Recovery + v10.3", desc: "200 PDFs recovered from truncated DS10 ZIP using 7zip. 2,345 findings across 4,025 pages. EFTA range 01262805-01266807. Contains sealed SDNY court documents: FBI search warrant affidavit for 9 East 71st Street, warrant for CDs from Epstein safe (labeled Nudes 00-24, Girl Pics Nude, etc.), warrant for iPhone/iPad/hard drives, Little Saint James Island raid warrant (27 electronic devices), pen register/trap-and-trace application, Giuffre v. Maxwell grand jury unsealing, and sealed protective order modification. Composite scores updated to v4 (114 terms). Grand total: 186,045 findings from 108,608 documents across 263,193 pages." },
   { date: "2026-02-02", title: "Intelligence Analysis v10.4", desc: "Deep analysis of 4 intelligence-linked documents from DS9 pipeline. FBI FD-1023 CHS report (EFTA00090314) reveals Epstein described as 'co-opted Mossad Agent' who 'belonged to both U.S. and allied intelligence services.' Sworn declaration (EFTA00098456) details blackmail operation with video surveillance. Intelligence methodology compilation (EFTA00103831) documents MI5 parallel. Kompromat reference (EFTA00080475) confirms terminology. Sev-18 false positives identified: FBI Public Affairs news briefings inflating severity scores." },
   { date: "2026-02-02", title: "Deep Analysis v10.5", desc: "DS9 Batch 2 analysis: USVI AG Denise George FBI interview reveals Indyke/Kahn as trafficking co-conspirators. BOP Psychological Reconstruction: FBI took all video, 179/183 missing observation signatures. MCC RAID crash documented Aug 8, 2019. Epstein trust document reveals shell corp structure and $100M+ to Shuliak. FBI complaint form documents Trump/Epstein allegations. DS11 characterized as 331K email archive (2017-2018) with Barak/Black/Thiel meetings and Russia recruitment pipeline. DS8 spreadsheets: FBI Maxwell financial subpoena tracker, victim compensation program tracker, 4 fully redacted CSV files." },
   { date: "2026-02-02", title: "MCC Camera Failure Cluster v10.6", desc: "6 DOJ OIG documents (415+ pages) documenting complete surveillance failure: cameras stopped July 29, RAID crash Aug 8, only 1 camera recording, fix scheduled for day of death" },
