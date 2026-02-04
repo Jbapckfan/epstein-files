@@ -159,9 +159,60 @@ header{padding:32px 0 16px;position:relative;z-index:10}
 .stat-card:nth-child(5) .stat-value{color:var(--green)}
 .stat-label{font-size:13px;color:var(--text-dim);margin-top:4px}
 
-/* Heatmap */
-#heatmap-container{width:100%;overflow-x:auto;padding:4px}
-#heatmap-svg{display:block;margin:0 auto}
+/* Connection Explorer */
+#conn-explorer{display:flex;gap:0;min-height:560px;border-radius:10px;overflow:hidden}
+#conn-people{
+  width:240px;flex-shrink:0;background:rgba(0,0,0,0.3);
+  border-right:1px solid rgba(255,255,255,0.06);overflow-y:auto;
+}
+.cp-item{
+  display:flex;align-items:center;gap:10px;padding:12px 16px;
+  cursor:pointer;transition:all 0.2s;border-left:3px solid transparent;
+}
+.cp-item:hover{background:rgba(255,255,255,0.04)}
+.cp-item.active{background:rgba(255,59,92,0.08);border-left-color:var(--red)}
+.cp-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.cp-name{font-size:13px;font-weight:600;color:var(--text)}
+.cp-score{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-dim);margin-left:auto}
+#conn-detail{
+  flex:1;padding:28px 32px;overflow-y:auto;
+}
+.cd-header{margin-bottom:24px}
+.cd-name{font-size:24px;font-weight:800;margin-bottom:4px}
+.cd-meta{font-size:12px;color:var(--text-dim);font-family:'JetBrains Mono',monospace}
+.cd-subtitle{font-size:13px;color:var(--text-dim);margin-bottom:20px;font-weight:500}
+.cd-row{
+  display:flex;align-items:center;gap:12px;padding:10px 0;
+  border-bottom:1px solid rgba(255,255,255,0.04);transition:background 0.2s;
+}
+.cd-row:hover{background:rgba(255,255,255,0.02);margin:0 -8px;padding:10px 8px}
+.cd-rank{
+  font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text-dim);
+  width:20px;text-align:right;flex-shrink:0;
+}
+.cd-rdot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.cd-rname{font-size:14px;font-weight:600;min-width:140px;flex-shrink:0}
+.cd-bar-track{flex:1;height:8px;background:rgba(255,255,255,0.04);border-radius:4px;overflow:hidden;min-width:60px}
+.cd-bar-fill{height:100%;border-radius:4px;transition:width 0.5s cubic-bezier(0.4,0,0.2,1)}
+.cd-val{
+  font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;
+  min-width:40px;text-align:right;flex-shrink:0;
+}
+.cd-empty{color:var(--text-dim);font-size:15px;padding:40px 0;text-align:center}
+.cd-summary{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:24px;
+}
+.cd-stat-box{
+  background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);
+  border-radius:8px;padding:14px;text-align:center;
+}
+.cd-stat-num{font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:700}
+.cd-stat-lbl{font-size:10px;color:var(--text-dim);text-transform:uppercase;letter-spacing:1px;margin-top:2px}
+@media(max-width:768px){
+  #conn-explorer{flex-direction:column;min-height:auto}
+  #conn-people{width:100%;max-height:200px;border-right:none;border-bottom:1px solid rgba(255,255,255,0.06)}
+  .cd-summary{grid-template-columns:repeat(2,1fr)}
+}
 
 /* Chord */
 #chord-container{width:100%;display:flex;justify-content:center;padding:20px 0}
@@ -300,15 +351,20 @@ footer a:hover{text-decoration:underline}
   </div>
 </section>
 
-<!-- Heatmap (full-width) -->
+<!-- Connection Explorer -->
 <section class="section">
-  <div class="section-label fade-up">02 &mdash; Co-occurrence Matrix</div>
-  <h2 class="section-title fade-up delay-1">Document Heatmap</h2>
-  <p class="section-desc fade-up delay-2">How often do these individuals appear together across unsealed documents?</p>
+  <div class="section-label fade-up">02 &mdash; Connection Strength</div>
+  <h2 class="section-title fade-up delay-1">Connection Explorer</h2>
+  <p class="section-desc fade-up delay-2">Select any individual to see who they're most connected to in the case files. Bar length shows co-occurrence strength — how often two people appear together across unsealed documents.</p>
   <div class="glass-card fade-up delay-3" style="max-width:1100px;margin:0 auto;">
     <div class="scanline"></div>
-    <div class="card-body" id="heatmap-container">
-      <svg id="heatmap-svg"></svg>
+    <div class="card-body" style="padding:0">
+      <div id="conn-explorer">
+        <div id="conn-people"></div>
+        <div id="conn-detail">
+          <div class="cd-empty">Select a person from the list to explore their connections</div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -836,79 +892,111 @@ document.querySelectorAll('[data-count]').forEach(el=>{
 })();
 
 // =============================================
-// HEATMAP (SVG)
+// CONNECTION EXPLORER
 // =============================================
 (function(){
+  const allEntities=[...PERSONS,...INSTITUTIONS];
+  const entityMap={};allEntities.forEach(e=>entityMap[e.id]=e);
+
+  // Build adjacency from edges
+  const adj={};
+  EDGES.forEach(([a,b,w])=>{
+    if(!adj[a])adj[a]=[];
+    if(!adj[b])adj[b]=[];
+    adj[a].push({id:b,weight:w});
+    adj[b].push({id:a,weight:w});
+  });
+
+  // Build people list (top 15)
   const top15=PERSONS.slice(0,15);
-  const n=top15.length;
-  const cellSize=52;
-  const labelW=160;
-  const margin={top:220,left:labelW,right:20,bottom:20};
-  const svgW=margin.left+n*cellSize+margin.right;
-  const svgH=margin.top+n*cellSize+margin.bottom;
+  const peopleEl=document.getElementById('conn-people');
+  const detailEl=document.getElementById('conn-detail');
 
-  const svg=document.getElementById('heatmap-svg');
-  svg.setAttribute('viewBox',`0 0 ${svgW} ${svgH}`);
-  svg.setAttribute('width',svgW);
-  svg.setAttribute('height',svgH);
-  svg.style.maxWidth='100%';svg.style.height='auto';
+  let html='';
+  top15.forEach((p,i)=>{
+    const col=CAT_COLORS[p.cat]||'#888';
+    html+=`<div class="cp-item" data-id="${p.id}" onclick="selectPerson('${p.id}')">
+      <div class="cp-dot" style="background:${col}"></div>
+      <div class="cp-name">${p.name}</div>
+      <div class="cp-score">${(p.score/1000).toFixed(0)}k</div>
+    </div>`;
+  });
+  peopleEl.innerHTML=html;
 
-  // Build co-occurrence matrix
-  const edgeMap={};
-  EDGES.forEach(([a,b,w])=>{edgeMap[a+'|'+b]=w;edgeMap[b+'|'+a]=w});
-  const matrix=[];
-  for(let i=0;i<n;i++){
-    matrix[i]=[];
-    for(let j=0;j<n;j++){
-      if(i===j)matrix[i][j]=top15[i].score/1000;
-      else matrix[i][j]=edgeMap[top15[i].id+'|'+top15[j].id]||0;
+  // Make selectPerson global
+  window.selectPerson=function(id){
+    // Highlight active
+    document.querySelectorAll('.cp-item').forEach(el=>{
+      el.classList.toggle('active',el.dataset.id===id);
+    });
+
+    const person=entityMap[id];
+    if(!person)return;
+    const col=CAT_COLORS[person.cat]||'#888';
+    const connections=(adj[id]||[]).slice().sort((a,b)=>b.weight-a.weight);
+    const maxW=connections.length?connections[0].weight:1;
+    const totalW=connections.reduce((s,c)=>s+c.weight,0);
+    const personConns=connections.filter(c=>PERSONS.some(p=>p.id===c.id));
+    const instConns=connections.filter(c=>INSTITUTIONS.some(p=>p.id===c.id));
+
+    let d=`<div class="cd-header">
+      <div class="cd-name" style="color:${col}">${person.name}</div>
+      <div class="cd-meta">${person.cat.toUpperCase()} // Document score: ${person.score.toLocaleString()}</div>
+    </div>`;
+
+    d+=`<div class="cd-summary">
+      <div class="cd-stat-box"><div class="cd-stat-num" style="color:${col}">${connections.length}</div><div class="cd-stat-lbl">Connections</div></div>
+      <div class="cd-stat-box"><div class="cd-stat-num" style="color:${col}">${totalW.toLocaleString()}</div><div class="cd-stat-lbl">Total Weight</div></div>
+      <div class="cd-stat-box"><div class="cd-stat-num" style="color:${col}">${maxW}</div><div class="cd-stat-lbl">Strongest Link</div></div>
+    </div>`;
+
+    if(personConns.length){
+      d+=`<div class="cd-subtitle">Connections to Individuals</div>`;
+      personConns.forEach((c,i)=>{
+        const e=entityMap[c.id];
+        if(!e)return;
+        const ec=CAT_COLORS[e.cat]||'#888';
+        const pct=Math.max((c.weight/maxW)*100,3);
+        d+=`<div class="cd-row">
+          <div class="cd-rank">${i+1}</div>
+          <div class="cd-rdot" style="background:${ec}"></div>
+          <div class="cd-rname" style="color:${ec}">${e.name}</div>
+          <div class="cd-bar-track"><div class="cd-bar-fill" style="width:${pct}%;background:${ec}"></div></div>
+          <div class="cd-val" style="color:${ec}">${c.weight}</div>
+        </div>`;
+      });
     }
-  }
-  const maxVal=800;
 
-  // Color scale
-  function heatColor(v){
-    const t=clamp(v/maxVal,0,1);
-    if(t<0.01)return'rgba(255,255,255,0.02)';
-    const r=Math.round(lerp(30,255,t));
-    const g=Math.round(lerp(15,59,t*0.5));
-    const b=Math.round(lerp(40,92,t));
-    return`rgb(${r},${g},${b})`;
-  }
-
-  let svgHTML='<defs><filter id="glow-h"><feGaussianBlur stdDeviation="2" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>';
-
-  // Column labels (rotated)
-  for(let j=0;j<n;j++){
-    const x=margin.left+j*cellSize+cellSize/2;
-    const y=margin.top-8;
-    const label=top15[j].name;
-    svgHTML+=`<text x="${x}" y="${y}" fill="${CAT_COLORS[top15[j].cat]||'#888'}" font-size="12" font-family="Inter,sans-serif" font-weight="600" text-anchor="start" dominant-baseline="middle" transform="rotate(-70,${x},${y})">${label}</text>`;
-  }
-
-  // Row labels
-  for(let i=0;i<n;i++){
-    const y=margin.top+i*cellSize+cellSize/2+5;
-    const label=top15[i].name;
-    svgHTML+=`<text x="${margin.left-10}" y="${y}" fill="${CAT_COLORS[top15[i].cat]||'#888'}" font-size="13" font-family="Inter,sans-serif" font-weight="600" text-anchor="end">${label}</text>`;
-  }
-
-  // Cells
-  for(let i=0;i<n;i++){
-    for(let j=0;j<n;j++){
-      const x=margin.left+j*cellSize;
-      const y=margin.top+i*cellSize;
-      const v=matrix[i][j];
-      const color=i===j?CAT_COLORS[top15[i].cat]||'#444':heatColor(v);
-      const opacity=i===j?0.3:1;
-      svgHTML+=`<rect x="${x+1}" y="${y+1}" width="${cellSize-2}" height="${cellSize-2}" rx="5" fill="${color}" opacity="${opacity}"><title>${top15[i].name} × ${top15[j].name}: ${i===j?'self':v}</title></rect>`;
-      if(v>50&&i!==j){
-        svgHTML+=`<text x="${x+cellSize/2}" y="${y+cellSize/2+4}" fill="white" font-size="11" font-family="JetBrains Mono,monospace" text-anchor="middle" opacity="0.85">${v}</text>`;
-      }
+    if(instConns.length){
+      d+=`<div class="cd-subtitle" style="margin-top:24px">Connections to Institutions</div>`;
+      instConns.forEach((c,i)=>{
+        const e=entityMap[c.id];
+        if(!e)return;
+        const ec=CAT_COLORS[e.cat]||'#888';
+        const pct=Math.max((c.weight/maxW)*100,3);
+        d+=`<div class="cd-row">
+          <div class="cd-rank">${i+1}</div>
+          <div class="cd-rdot" style="background:${ec}"></div>
+          <div class="cd-rname" style="color:${ec}">${e.name}</div>
+          <div class="cd-bar-track"><div class="cd-bar-fill" style="width:${pct}%;background:${ec}"></div></div>
+          <div class="cd-val" style="color:${ec}">${c.weight}</div>
+        </div>`;
+      });
     }
-  }
 
-  svg.innerHTML=svgHTML;
+    detailEl.innerHTML=d;
+
+    // Animate bars
+    requestAnimationFrame(()=>{
+      detailEl.querySelectorAll('.cd-bar-fill').forEach(bar=>{
+        const w=bar.style.width;bar.style.width='0%';
+        requestAnimationFrame(()=>{bar.style.width=w});
+      });
+    });
+  };
+
+  // Auto-select Maxwell (highest score)
+  selectPerson('maxwell');
 })();
 
 // =============================================
