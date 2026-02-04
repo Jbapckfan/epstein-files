@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Epstein Files Investigation Dashboard v11.09 — DS1-8 + DS10 Complete + All Sources (186,173 findings)</title>
+<title>Epstein Files Investigation Dashboard — 816 Discoveries from 108,608+ Documents</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -561,6 +561,109 @@ body {
   margin-top: 8px;
 }
 
+/* ======= SECTION NAV GUIDE ======= */
+.section-guide {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 60px 32px 80px;
+}
+.section-guide-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+.section-guide-header h2 {
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  margin-bottom: 8px;
+}
+.section-guide-header p {
+  color: var(--text-secondary);
+  font-size: 15px;
+}
+.guide-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+}
+.guide-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 24px;
+  transition: var(--transition);
+  cursor: pointer;
+  text-decoration: none;
+  display: block;
+  position: relative;
+  overflow: hidden;
+}
+.guide-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  opacity: 0;
+  transition: var(--transition);
+}
+.guide-card:hover {
+  border-color: var(--border-active);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+}
+.guide-card:hover::before { opacity: 1; }
+.guide-card.gc-red::before { background: var(--red); }
+.guide-card.gc-blue::before { background: var(--blue); }
+.guide-card.gc-green::before { background: var(--green); }
+.guide-card.gc-orange::before { background: var(--orange); }
+.guide-card.gc-purple::before { background: var(--purple); }
+.guide-card.gc-cyan::before { background: var(--cyan); }
+.guide-card.gc-yellow::before { background: var(--yellow); }
+.guide-card.gc-pink::before { background: var(--pink); }
+.gc-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.gc-red .gc-label { color: var(--red); }
+.gc-blue .gc-label { color: var(--blue); }
+.gc-green .gc-label { color: var(--green); }
+.gc-orange .gc-label { color: var(--orange); }
+.gc-purple .gc-label { color: var(--purple); }
+.gc-cyan .gc-label { color: var(--cyan); }
+.gc-yellow .gc-label { color: var(--yellow); }
+.gc-pink .gc-label { color: var(--pink); }
+.gc-title {
+  font-weight: 700;
+  font-size: 16px;
+  margin-bottom: 8px;
+  color: var(--text-primary);
+}
+.gc-desc {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+.gc-stat {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--text-dim);
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+}
+
+/* ======= SECTION DIVIDERS ======= */
+.section-divider {
+  max-width: 1200px;
+  margin: 0 auto;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border-active), transparent);
+}
+
 /* ======= FINDINGS ======= */
 .findings-controls {
   display: flex;
@@ -826,14 +929,21 @@ body {
 /* ======= FOOTER ======= */
 .footer {
   text-align: center;
-  padding: 48px 32px;
+  padding: 60px 32px;
   border-top: 1px solid var(--border);
   margin-top: 40px;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
 }
 .footer p {
   color: var(--text-dim);
   font-size: 13px;
   line-height: 1.8;
+  text-align: left;
+}
+.footer p strong {
+  color: var(--text-secondary);
 }
 .footer .footer-brand {
   font-weight: 700;
@@ -841,7 +951,7 @@ body {
   letter-spacing: 1px;
   text-transform: uppercase;
   font-size: 14px;
-  margin-bottom: 8px;
+  margin-bottom: 16px;
 }
 
 /* ======= NODE DETAIL PANEL ======= */
@@ -953,7 +1063,7 @@ body {
   <div class="nav-inner">
     <div class="nav-brand">
       <span class="dot"></span>
-      <span>Epstein Files v11.09</span>
+      <span>Epstein Files v11.26</span>
     </div>
     <ul class="nav-links">
       <li><a href="#network">Network</a></li>
@@ -988,10 +1098,10 @@ body {
   <div class="hero-content">
     <div class="hero-badge">
       <span class="pulse-dot"></span>
-      DS1-8 + DS9 + DS10 + Local Batch Complete — 186,173 Findings
+      Active Investigation — 816 Discoveries Cataloged
     </div>
     <h1>Epstein Files Investigation</h1>
-    <p class="subtitle">Comprehensive document analysis across 15 sources. Automated extraction and severity scoring of 186,173 findings from 108,608+ documents including DS1-8 (14,693 PDFs, 50,932 findings), DS9 (92,639 docs, 58,648 findings), DS10 (200 recovered PDFs, 2,345 findings), local batch (174 PDFs, 11,326 findings), and federal archives. 263,193+ pages scanned.</p>
+    <p class="subtitle">An open-source, automated analysis of the publicly released Jeffrey Epstein case files. This dashboard tracks every document released by the DOJ, FBI, and federal courts — extracting names, evidence of crimes, and connections across 108,608+ documents and 263,193+ pages. Every finding links back to its source PDF.</p>
 
     <div class="stats-row">
       <div class="stat-pill">
@@ -1003,16 +1113,16 @@ body {
         <span class="stat-label">Documents Scanned</span>
       </div>
       <div class="stat-pill">
-        <span class="stat-number" data-target="67" data-suffix="">0</span>
-        <span class="stat-label">Terms Tracked</span>
-      </div>
-      <div class="stat-pill">
-        <span class="stat-number" data-target="1914" data-suffix="">0</span>
-        <span class="stat-label">Media Files</span>
+        <span class="stat-number" data-target="816" data-suffix="">0</span>
+        <span class="stat-label">Discoveries</span>
       </div>
       <div class="stat-pill">
         <span class="stat-number" data-target="263193" data-suffix="">0</span>
         <span class="stat-label">Pages Scanned</span>
+      </div>
+      <div class="stat-pill">
+        <span class="stat-number" data-target="67" data-suffix="">0</span>
+        <span class="stat-label">Terms Tracked</span>
       </div>
       <div class="stat-pill">
         <span class="stat-number" data-target="14" data-suffix="">0</span>
@@ -1020,17 +1130,78 @@ body {
       </div>
     </div>
 
-    <p class="meta-line">Last updated: 2026-02-02 // DS1-8 Local Batch: 14,693 PDFs, 35,397 pages, 50,932 findings // DS9: 92,639 docs, 218,766 pages, 58,648 findings // DS10 (Recovered): 200 PDFs, 4,025 pages, 2,345 findings // Local Batch: 174 PDFs, 2,651 pages, 11,326 findings // Total: 186,173 findings across 108,608 documents // DS9+DS11 Wayback processing ~770K remaining CDX-validated PDFs</p>
+    <p class="meta-line">Last updated: 2026-02-04 // 14 data sources // 186,173 keyword findings // 816 classified discoveries // All documents sourced from justice.gov and archive.org</p>
   </div>
 </section>
 
+<!-- SECTION NAVIGATION GUIDE -->
+<div class="section-divider"></div>
+<div class="section-guide">
+  <div class="section-guide-header">
+    <h2>What's in This Dashboard</h2>
+    <p>Navigate to any section below. Each section provides a different lens on the Epstein case files.</p>
+  </div>
+  <div class="guide-grid">
+    <a href="#network" class="guide-card gc-purple">
+      <div class="gc-label">Interactive</div>
+      <div class="gc-title">Entity Network Graph</div>
+      <div class="gc-desc">Visual map showing how people mentioned in the case files are connected. Drag and click nodes to explore relationships between Epstein, Maxwell, and dozens of named individuals.</div>
+      <div class="gc-stat">Force-directed graph of co-occurrence data</div>
+    </a>
+    <a href="#findings" class="guide-card gc-red">
+      <div class="gc-label">Core Evidence</div>
+      <div class="gc-title">Document Discoveries</div>
+      <div class="gc-desc">Every significant document we've identified, ranked by severity. Grand jury testimony, FBI interview transcripts, victim statements, sealed warrants, and intelligence reports — each with a link to the source PDF.</div>
+      <div class="gc-stat">816 classified discoveries with source links</div>
+    </a>
+    <a href="#status" class="guide-card gc-green">
+      <div class="gc-label">Progress</div>
+      <div class="gc-title">Processing Pipeline Status</div>
+      <div class="gc-desc">Real-time status of our document processing pipelines. Shows how many documents from each dataset have been scanned, how many findings were extracted, and what's still being processed.</div>
+      <div class="gc-stat">14 datasets, 108,608+ documents tracked</div>
+    </a>
+    <a href="#ds9intel" class="guide-card gc-cyan">
+      <div class="gc-label">DS9 Analysis</div>
+      <div class="gc-title">Justice.gov EFTA Archive</div>
+      <div class="gc-desc">Key intelligence extracted from the 92,639-document justice.gov release — the largest single source in the case. Includes FBI FD-302 interviews, grand jury materials, and financial records.</div>
+      <div class="gc-stat">92,639 documents, 58,648 findings</div>
+    </a>
+    <a href="#terms" class="guide-card gc-orange">
+      <div class="gc-label">Frequency</div>
+      <div class="gc-title">Name & Term Occurrence Counts</div>
+      <div class="gc-desc">How often each tracked name and term appears across all documents. Shows which individuals and topics are most heavily referenced in the case files — from "Maxwell" (548K hits) to specific financial institutions.</div>
+      <div class="gc-stat">67 terms tracked across all datasets</div>
+    </a>
+    <a href="#timeline" class="guide-card gc-blue">
+      <div class="gc-label">Chronology</div>
+      <div class="gc-title">Investigation Timeline</div>
+      <div class="gc-desc">Key dates in the Epstein case from initial investigation through document releases. Tracks when evidence was gathered, destroyed, or revealed, and when this analysis project reached milestones.</div>
+      <div class="gc-stat">Critical dates and milestones</div>
+    </a>
+    <a href="#ds18intel" class="guide-card gc-yellow">
+      <div class="gc-label">DS1-8 Analysis</div>
+      <div class="gc-title">Full Local Extraction (14,693 PDFs)</div>
+      <div class="gc-desc">Analysis of Datasets 1 through 8, covering the original document releases. Includes FBI case files, court filings, Maxwell trial evidence, and prosecution memoranda.</div>
+      <div class="gc-stat">14,693 PDFs, 50,932 findings</div>
+    </a>
+    <a href="#datasets" class="guide-card gc-pink">
+      <div class="gc-label">Sources</div>
+      <div class="gc-title">Dataset Inventory</div>
+      <div class="gc-desc">Complete catalog of every document collection under analysis. Details the origin, size, and content of each dataset — from federal court records to recovered sealed documents.</div>
+      <div class="gc-stat">14 distinct data sources</div>
+    </a>
+  </div>
+</div>
+<div class="section-divider"></div>
+
 <!-- NETWORK GRAPH -->
+<div class="section-divider"></div>
 <section class="network-section" id="network">
   <div class="network-container">
     <div class="section-header reveal">
       <div class="section-tag">Connection Analysis</div>
       <h2>Entity Network Graph</h2>
-      <p>Interactive force-directed visualization of co-occurrence relationships. Drag nodes, hover for details, click for deep-dive.</p>
+      <p>Interactive map of people and organizations mentioned in the Epstein case files. Lines between nodes indicate they appear in the same documents. Larger nodes have more connections. Drag to rearrange, hover for details, click for a deep-dive into any individual's document references.</p>
     </div>
     <canvas id="networkCanvas"></canvas>
     <div class="network-legend">
@@ -1080,8 +1251,8 @@ body {
 <section class="section" id="status">
   <div class="section-header reveal">
     <div class="section-tag">Pipeline Status</div>
-    <h2>Processing Overview</h2>
-    <p>Status across all data pipelines — DS1-8 complete (50,932 findings), DS9 complete, DS10 recovered (2,345 findings), local batch integrated, DS9+DS11 background processing active</p>
+    <h2>Document Processing Status</h2>
+    <p>Each card below represents one of our automated processing pipelines. Green means all documents in that source have been scanned. Yellow indicates active processing. Each pipeline extracts text from PDFs, searches for 67 tracked terms, and scores every match by severity.</p>
   </div>
   <div class="status-grid">
     <div class="status-card reveal">
@@ -1472,8 +1643,8 @@ body {
 <section class="section" id="findings">
   <div class="section-header reveal">
     <div class="section-tag">Evidence Analysis</div>
-    <h2>Top Severity Findings</h2>
-    <p>Highest-severity document matches ranked by investigative significance</p>
+    <h2>Document Discoveries</h2>
+    <p>Every significant document identified in the case files, classified by severity. Click any card to expand the full summary. Each entry links to the original source PDF on archive.org. Filter by severity level using the buttons below.</p>
   </div>
 
   <div class="findings-controls reveal">
@@ -1492,8 +1663,8 @@ body {
 <section class="section" id="terms">
   <div class="section-header reveal">
     <div class="section-tag">Frequency Analysis</div>
-    <h2>Term Occurrence Counts</h2>
-    <p>Final composite scores (v4) across all processed datasets (186,173 total findings from DS1-8 + DS9 + DS10 + local batch + original corpus)</p>
+    <h2>Name & Term Occurrence Counts</h2>
+    <p>How frequently each tracked name and term appears across all 108,608+ documents. Higher bars indicate more mentions in FBI reports, court filings, victim statements, and financial records. These counts help identify the most heavily referenced individuals and institutions in the case.</p>
   </div>
   <div class="bar-chart-container reveal" id="barChart">
     <!-- Populated by JS -->
@@ -1504,8 +1675,8 @@ body {
 <section class="section" id="timeline">
   <div class="section-header reveal">
     <div class="section-tag">Chronology</div>
-    <h2>Key Events Timeline</h2>
-    <p>Critical dates in the Epstein investigation and associated events</p>
+    <h2>Investigation Timeline</h2>
+    <p>Key dates spanning the original FBI investigation, the non-prosecution agreement, Epstein's arrest and death, Maxwell's trial, and the ongoing document releases. Includes milestones from this analysis project.</p>
   </div>
   <div class="timeline-container reveal" id="timelineContainer">
     <!-- Populated by JS -->
@@ -1517,7 +1688,7 @@ body {
   <div class="section-header reveal">
     <div class="section-tag">Data Sources</div>
     <h2>Dataset Inventory</h2>
-    <p>Complete inventory of document collections under analysis</p>
+    <p>Every document collection being analyzed, with its origin, size, and processing status. Sources include justice.gov FOIA releases, federal court records, sealed documents obtained through legal proceedings, and Wayback Machine archives.</p>
   </div>
   <div class="ds-grid" id="dsGrid">
     <!-- Populated by JS -->
@@ -1526,14 +1697,13 @@ body {
 
 <!-- FOOTER -->
 <footer class="footer">
-  <div class="footer-brand">Epstein Files Investigation Dashboard v11.09 — DS1-8 + DS9 + DS10 + Local Batch Complete</div>
+  <div class="footer-brand">Epstein Files Investigation Dashboard v11.26</div>
   <p>
-    Generated: 2026-02-02 UTC<br>
-    Methodology: Automated keyword extraction with context-aware severity scoring and composite score integration across all pipelines.<br>
-    Sources: FOIA releases, court filings (SDNY), justice.gov EFTA archives (DS9: 92,639 docs), DS1-8 local batch (14,693 PDFs, 50,932 findings), DS10 recovered (200 PDFs, 2,345 findings from sealed SDNY documents), local batch (174 PDFs: DS12, Maxwell proffer, OPR/OIG memoranda), financial disclosures.<br>
-    186,173 findings from 108,608 documents across 15 sources. 263,193 pages scanned. DS1-8 complete. DS9 pipeline complete. DS10 recovered. Local batch integrated.<br>
-    DS9 + DS11 background processing active: ~770K CDX-validated PDFs from Wayback Machine queued.<br>
-    <span style="color: var(--text-dim); font-size: 11px;">All findings are extracted quotes from public documents. No editorial content.</span>
+    Last updated: 2026-02-04 // 816 discoveries cataloged<br>
+    <strong>Methodology:</strong> Automated text extraction from PDFs, keyword search across 67 tracked terms, context-aware severity scoring (1-10 scale), and AI-assisted document classification. Every finding links to its source PDF.<br>
+    <strong>Sources:</strong> DOJ FOIA releases, SDNY court filings, justice.gov EFTA archives (92,639 docs), federal datasets 1-12, Maxwell proffer transcripts, OPR/OIG memoranda, sealed SDNY documents (DS10), and Wayback Machine archives.<br>
+    <strong>Scope:</strong> 186,173 keyword findings from 108,608 documents across 14 sources. 263,193+ pages scanned.<br>
+    <span style="color: var(--text-dim); font-size: 11px;">All findings are extracted from publicly released government documents. This is an open-source research project. No editorial content has been added to the document summaries.</span>
   </p>
 </footer>
 
