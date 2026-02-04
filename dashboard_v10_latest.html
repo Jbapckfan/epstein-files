@@ -638,10 +638,23 @@ body {
   font-size: 13px;
   color: var(--text-secondary);
   line-height: 1.5;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
   max-width: 580px;
+}
+.fc-doc-link {
+  display: inline-block;
+  margin-top: 8px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--cyan);
+  text-decoration: none;
+  padding: 3px 8px;
+  border: 1px solid rgba(34,211,238,0.3);
+  border-radius: var(--radius-xs);
+  transition: var(--transition);
+}
+.fc-doc-link:hover {
+  background: rgba(34,211,238,0.15);
+  border-color: var(--cyan);
 }
 .fc-expand-icon {
   color: var(--text-dim);
@@ -6928,12 +6941,12 @@ function handleSearch(query) {
   const q = query.toLowerCase();
   // Search terms
   const termMatches = TERM_DATA.filter(t => t.term.toLowerCase().includes(q));
-  // Search findings
-  const findingMatches = FINDINGS_DATA.filter(f =>
-    f.term.toLowerCase().includes(q) ||
-    f.preview.toLowerCase().includes(q) ||
-    f.citation.toLowerCase().includes(q)
-  );
+  // Search findings — handle all entry formats
+  const findingMatches = FINDINGS_DATA.filter(f => {
+    const searchFields = [f.term, f.title, f.preview, f.summary, f.citation, f.doc_id, f.flag,
+      typeof f.id === 'string' ? f.id : '', (f.persons||[]).join(' '), (f.tags||[]).join(' '), (f.keywords||[]).join(' ')];
+    return searchFields.some(s => s && s.toLowerCase().includes(q));
+  });
 
   let html = '';
   termMatches.forEach(t => {
@@ -6943,9 +6956,12 @@ function handleSearch(query) {
     </div>`;
   });
   findingMatches.forEach(f => {
+    const title = f.title || f.term || 'Untitled';
+    const cite = f.doc_id || f.citation || f.source || (typeof f.id === 'string' ? f.id : '');
+    const snippet = f.summary || f.preview || f.flag || '';
     html += `<div class="search-result-item" onclick="closeSearch(); document.getElementById('findings').scrollIntoView({behavior:'smooth'})">
-      <span class="sr-term">[${f.severity}] ${f.term}</span><span class="sr-count">${f.citation}</span>
-      <div class="sr-snippet">${f.preview}</div>
+      <span class="sr-term">[${f.severity}] ${title}</span><span class="sr-count">${cite}</span>
+      <div class="sr-snippet">${snippet}</div>
     </div>`;
   });
 
@@ -6957,27 +6973,50 @@ function handleSearch(query) {
    RENDER: FINDINGS
    ============================================================ */
 
+function normSev(s) {
+  if (typeof s === 'number') return s;
+  if (s === 'critical') return 15;
+  if (s === 'high') return 10;
+  if (s === 'moderate') return 6;
+  if (s === 'low') return 3;
+  return parseInt(s) || 0;
+}
+function getDocUrl(f) {
+  const docId = f.doc_id || f.citation || f.source || (typeof f.id === 'string' && f.id.startsWith('EFTA') ? f.id : null);
+  if (!docId) return null;
+  const eftaMatch = docId.match(/(EFTA\d+)/);
+  if (!eftaMatch) return null;
+  return 'https://web.archive.org/web/2025/https://www.justice.gov/d9/2025-01/' + eftaMatch[1] + '.pdf';
+}
 function renderFindings(filter) {
   const list = document.getElementById('findingsList');
-  let data = FINDINGS_DATA;
-  if (filter === 'critical') data = data.filter(f => f.severity >= 15);
-  else if (filter === 'high') data = data.filter(f => f.severity >= 10 && f.severity < 15);
-  else if (filter === 'medium') data = data.filter(f => f.severity >= 5 && f.severity < 10);
+  let data = FINDINGS_DATA.map(f => ({...f, _sev: normSev(f.severity)}));
+  if (filter === 'critical') data = data.filter(f => f._sev >= 15);
+  else if (filter === 'high') data = data.filter(f => f._sev >= 10 && f._sev < 15);
+  else if (filter === 'medium') data = data.filter(f => f._sev >= 5 && f._sev < 10);
 
   list.innerHTML = data.map(f => {
-    const sevClass = f.severity >= 15 ? 'sev-critical' : f.severity >= 10 ? 'sev-high' : 'sev-medium';
+    const sev = f._sev;
+    const sevClass = sev >= 15 ? 'sev-critical' : sev >= 10 ? 'sev-high' : 'sev-medium';
+    const title = f.title || f.term || 'Untitled';
+    const cite = f.doc_id || f.citation || f.source || (typeof f.id === 'string' ? f.id : (f.id ? '#'+f.id : ''));
+    const preview = f.summary || f.preview || f.flag || '';
+    const body = f.context || f.summary || f.flag || preview;
+    const docUrl = getDocUrl(f);
+    const linkHtml = docUrl ? '<a class="fc-doc-link" href="' + docUrl + '" target="_blank" rel="noopener" onclick="event.stopPropagation()">View Source PDF &#8599;</a>' : '';
     return `<div class="finding-card" onclick="this.classList.toggle('expanded')">
       <div class="fc-header">
         <div class="severity-badge ${sevClass}">${f.severity}</div>
         <div class="fc-info">
-          <div class="fc-term">${f.term}</div>
-          <div class="fc-citation">${f.citation}</div>
+          <div class="fc-term">${title}</div>
+          <div class="fc-citation">${cite}</div>
         </div>
-        <div class="fc-preview">${f.preview}</div>
+        <div class="fc-preview">${preview}</div>
         <div class="fc-expand-icon">&#9660;</div>
       </div>
       <div class="fc-body">
-        <div class="fc-context">${f.context}</div>
+        <div class="fc-context">${body}</div>
+        ${linkHtml}
       </div>
     </div>`;
   }).join('');
