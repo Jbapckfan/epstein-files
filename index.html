@@ -4,32 +4,459 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Epstein Files — Investigation Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-body { background: #08090d; color: #e8eaed; font-family: Inter, -apple-system, sans-serif; display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 100vh; padding: 40px 20px; }
-h1 { font-size: 28px; margin-bottom: 8px; }
-p { color: #9aa0b0; margin-bottom: 30px; font-size: 14px; }
-.links { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
-a { display: inline-block; padding: 14px 28px; background: rgba(255,59,92,0.1); border: 1px solid rgba(255,59,92,0.3); border-radius: 12px; color: #ff3b5c; text-decoration: none; font-weight: 600; font-size: 15px; transition: all 0.3s; }
-a:hover { background: rgba(255,59,92,0.2); transform: translateY(-2px); }
-a.secondary { background: rgba(96,165,250,0.1); border-color: rgba(96,165,250,0.3); color: #60a5fa; }
-a.secondary:hover { background: rgba(96,165,250,0.2); }
-a.tertiary { background: rgba(250,204,21,0.1); border-color: rgba(250,204,21,0.3); color: #facc15; }
-a.tertiary:hover { background: rgba(250,204,21,0.2); }
-a.danger { background: rgba(220,38,38,0.15); border-color: rgba(220,38,38,0.4); color: #ef4444; }
-a.danger:hover { background: rgba(220,38,38,0.25); }
-.stat { color: #5a6070; font-size: 12px; margin-top: 30px; }
+:root {
+  --bg-primary: #08090d;
+  --bg-secondary: #0f1117;
+  --bg-card: #151720;
+  --bg-card-hover: #1c1f2e;
+  --border: rgba(255,255,255,0.06);
+  --border-active: rgba(255,255,255,0.14);
+  --text-primary: #e8eaed;
+  --text-secondary: #9aa0b0;
+  --text-dim: #5a6070;
+  --red: #ff3b5c;
+  --orange: #ff7b42;
+  --yellow: #ffc53d;
+  --green: #34d399;
+  --blue: #60a5fa;
+  --purple: #a78bfa;
+  --pink: #f472b6;
+  --cyan: #22d3ee;
+  --radius: 16px;
+  --radius-sm: 10px;
+  --radius-xs: 6px;
+  --shadow: 0 4px 24px rgba(0,0,0,0.4);
+  --shadow-lg: 0 8px 48px rgba(0,0,0,0.6);
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  line-height: 1.6;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--bg-primary); }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 4px; }
+
+/* ======= HERO ======= */
+.hero {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 24px 40px;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -50%; left: -50%;
+  width: 200%; height: 200%;
+  background:
+    radial-gradient(ellipse at 30% 50%, rgba(255,59,92,0.06) 0%, transparent 50%),
+    radial-gradient(ellipse at 70% 30%, rgba(96,165,250,0.04) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 80%, rgba(167,139,250,0.03) 0%, transparent 50%);
+  animation: heroBg 20s ease-in-out infinite alternate;
+}
+@keyframes heroBg { 0% { transform: rotate(0deg) scale(1); } 100% { transform: rotate(3deg) scale(1.02); } }
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 800px;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 18px;
+  background: rgba(255,59,92,0.1);
+  border: 1px solid rgba(255,59,92,0.25);
+  border-radius: 24px;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--red);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 28px;
+}
+.pulse-dot {
+  width: 8px; height: 8px;
+  background: var(--red);
+  border-radius: 50%;
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(255,59,92,0.4); }
+  50% { opacity: 0.7; box-shadow: 0 0 0 8px rgba(255,59,92,0); }
+}
+
+.hero h1 {
+  font-size: clamp(36px, 5vw, 64px);
+  font-weight: 900;
+  letter-spacing: -2px;
+  line-height: 1.05;
+  margin-bottom: 18px;
+  background: linear-gradient(135deg, #ffffff 0%, #8890a0 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero .subtitle {
+  font-size: 17px;
+  color: var(--text-secondary);
+  max-width: 620px;
+  margin: 0 auto 36px;
+  font-weight: 300;
+  line-height: 1.7;
+}
+
+/* ======= STATS ======= */
+.stats-row {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+.stat-pill {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 18px 28px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  min-width: 130px;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+.stat-pill::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--red), transparent);
+  opacity: 0;
+  transition: var(--transition);
+}
+.stat-pill:hover::before { opacity: 1; }
+.stat-pill:hover { border-color: var(--border-active); transform: translateY(-2px); }
+.stat-number {
+  font-size: 26px;
+  font-weight: 800;
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: -1px;
+  background: linear-gradient(135deg, #fff, var(--red));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.stat-label {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-top: 4px;
+}
+
+/* ======= DIVIDER ======= */
+.divider {
+  max-width: 1100px;
+  margin: 0 auto;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border-active), transparent);
+}
+
+/* ======= PAGES SECTION ======= */
+.pages-section {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 60px 24px;
+}
+.pages-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+.pages-header h2 {
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  margin-bottom: 8px;
+}
+.pages-header p {
+  color: var(--text-secondary);
+  font-size: 15px;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.pages-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 20px;
+}
+
+.page-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 32px;
+  transition: var(--transition);
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+.page-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  opacity: 0;
+  transition: var(--transition);
+}
+.page-card:hover {
+  border-color: var(--border-active);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+.page-card:hover::before { opacity: 1; }
+
+.page-card.pc-red::before { background: var(--red); }
+.page-card.pc-blue::before { background: var(--blue); }
+.page-card.pc-green::before { background: var(--green); }
+.page-card.pc-purple::before { background: var(--purple); }
+.page-card.pc-yellow::before { background: var(--yellow); }
+
+.pc-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+.pc-red .pc-label { color: var(--red); }
+.pc-blue .pc-label { color: var(--blue); }
+.pc-green .pc-label { color: var(--green); }
+.pc-purple .pc-label { color: var(--purple); }
+.pc-yellow .pc-label { color: var(--yellow); }
+
+.pc-title {
+  font-weight: 700;
+  font-size: 20px;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+  line-height: 1.3;
+}
+
+.pc-desc {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  flex: 1;
+}
+
+.pc-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+}
+.pc-stat {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--text-dim);
+}
+.pc-arrow {
+  font-size: 18px;
+  color: var(--text-dim);
+  transition: var(--transition);
+}
+.page-card:hover .pc-arrow {
+  color: var(--text-primary);
+  transform: translateX(4px);
+}
+
+/* ======= ABOUT SECTION ======= */
+.about-section {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px 24px 60px;
+}
+.about-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 32px;
+}
+.about-card h3 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+.about-card p {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.8;
+  margin-bottom: 12px;
+}
+.about-card p:last-child { margin-bottom: 0; }
+
+/* ======= FOOTER ======= */
+.footer {
+  text-align: center;
+  padding: 40px 24px;
+  border-top: 1px solid var(--border);
+}
+.footer p {
+  font-size: 12px;
+  color: var(--text-dim);
+  line-height: 1.6;
+}
+
+/* ======= RESPONSIVE ======= */
+@media (max-width: 768px) {
+  .hero { padding: 60px 16px 30px; }
+  .hero h1 { font-size: 32px; letter-spacing: -1px; }
+  .pages-grid { grid-template-columns: 1fr; }
+  .stat-pill { padding: 14px 20px; min-width: 100px; }
+  .stat-number { font-size: 22px; }
+}
 </style>
 </head>
 <body>
-<h1>Epstein Files Investigation</h1>
-<p>Comprehensive analysis of FOIA document releases — 186,027 findings across 108,608+ documents, 263,193+ pages</p>
-<div class="links">
-  <a href="hidden_connections.html">Hidden Connections (Force Graph + Heatmap)</a>
-  <a href="epstein_interactive.html">Interactive Dashboard (Network Graph)</a>
-  <a href="dashboard_v10_latest.html" class="secondary">Dataset Overview + All Findings</a>
-  <a href="concern_analysis.html" class="tertiary">Concern Factor Analysis</a>
-  <a href="red_flag_deepdive.html" class="danger">Red Flag Deep Dive</a>
+
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">
+      <span class="pulse-dot"></span>
+      Active Investigation — Updated Feb 4, 2026
+    </div>
+    <h1>Epstein Files Investigation</h1>
+    <p class="subtitle">An open-source, automated analysis of the publicly released Jeffrey Epstein case files. Every document released by the DOJ, FBI, and federal courts — scanned, indexed, and classified.</p>
+
+    <div class="stats-row">
+      <div class="stat-pill">
+        <span class="stat-number">186,173</span>
+        <span class="stat-label">Findings</span>
+      </div>
+      <div class="stat-pill">
+        <span class="stat-number">108,608</span>
+        <span class="stat-label">Documents</span>
+      </div>
+      <div class="stat-pill">
+        <span class="stat-number">816</span>
+        <span class="stat-label">Discoveries</span>
+      </div>
+      <div class="stat-pill">
+        <span class="stat-number">263,193</span>
+        <span class="stat-label">Pages Scanned</span>
+      </div>
+      <div class="stat-pill">
+        <span class="stat-number">14</span>
+        <span class="stat-label">Data Sources</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<div class="pages-section">
+  <div class="pages-header">
+    <h2>Explore the Data</h2>
+    <p>Each page below provides a different view into the Epstein case files. Start with the main dashboard for the full picture.</p>
+  </div>
+
+  <div class="pages-grid">
+    <a href="dashboard_v10_latest.html" class="page-card pc-red">
+      <div class="pc-label">Main Dashboard</div>
+      <div class="pc-title">Dataset Overview + All Discoveries</div>
+      <div class="pc-desc">The primary investigation dashboard. Browse all 816 classified discoveries with severity ratings, read document summaries, view the entity network graph, and access source PDFs. Includes processing pipeline status, term frequency analysis, and investigation timeline.</div>
+      <div class="pc-footer">
+        <span class="pc-stat">816 discoveries // 186,173 findings // Source PDF links</span>
+        <span class="pc-arrow">&#8594;</span>
+      </div>
+    </a>
+
+    <a href="hidden_connections.html" class="page-card pc-purple">
+      <div class="pc-label">Network Analysis</div>
+      <div class="pc-title">Hidden Connections (Force Graph + Heatmap)</div>
+      <div class="pc-desc">Interactive force-directed graph and heatmap visualization showing how individuals named in the case files are connected. See who appears in the same documents, how often, and through which intermediaries. Drag, zoom, and click to explore relationship clusters.</div>
+      <div class="pc-footer">
+        <span class="pc-stat">Co-occurrence analysis across all documents</span>
+        <span class="pc-arrow">&#8594;</span>
+      </div>
+    </a>
+
+    <a href="epstein_interactive.html" class="page-card pc-blue">
+      <div class="pc-label">Interactive View</div>
+      <div class="pc-title">Interactive Dashboard (Network Graph)</div>
+      <div class="pc-desc">Alternative interactive network visualization with detailed node information. Click any person to see their document references, connection strength to other individuals, and the specific files where they appear. Includes full citation links.</div>
+      <div class="pc-footer">
+        <span class="pc-stat">Entity-level deep dive with citations</span>
+        <span class="pc-arrow">&#8594;</span>
+      </div>
+    </a>
+
+    <a href="concern_analysis.html" class="page-card pc-yellow">
+      <div class="pc-label">Risk Analysis</div>
+      <div class="pc-title">Concern Factor Analysis</div>
+      <div class="pc-desc">Quantitative scoring of individuals based on the nature of their document references. Weights different types of mentions (victim testimony, financial records, flight logs, surveillance) to produce a composite concern score for each named person.</div>
+      <div class="pc-footer">
+        <span class="pc-stat">Weighted multi-factor scoring model</span>
+        <span class="pc-arrow">&#8594;</span>
+      </div>
+    </a>
+
+    <a href="red_flag_deepdive.html" class="page-card pc-green">
+      <div class="pc-label">Deep Dive</div>
+      <div class="pc-title">Red Flag Deep Dive</div>
+      <div class="pc-desc">Focused analysis of the most alarming patterns in the case files. Examines document clusters around specific themes: surveillance system failures, financial flows, international trafficking routes, and evidence of institutional complicity or cover-up.</div>
+      <div class="pc-footer">
+        <span class="pc-stat">Pattern analysis of critical evidence</span>
+        <span class="pc-arrow">&#8594;</span>
+      </div>
+    </a>
+  </div>
 </div>
-<p class="stat">Last updated: February 2, 2026 — DS1-8 Complete: 14,693 PDFs, 50,932 findings | DS9 Complete: 92,639 docs, 58,648 findings | DS10 Recovered: 200 PDFs, 2,345 findings (sealed SDNY) | Local Batch: 174 PDFs, 11,326 findings | Total: 186,027 findings | DS9+DS11 Wayback processing ~770K PDFs</p>
+
+<div class="divider"></div>
+
+<div class="about-section">
+  <div class="about-card">
+    <h3>About This Project</h3>
+    <p>This is an automated analysis of publicly released documents from the Jeffrey Epstein case. Every document published by the Department of Justice, FBI, and federal courts has been downloaded, converted to text, and searched against 67 tracked terms covering named individuals, institutions, and key concepts.</p>
+    <p>Each document that produces matches is classified by severity on a 1-10 scale based on its content: direct evidence of crimes against minors (10), law enforcement records (8-9), financial records (6-7), and administrative materials (1-5). All findings link back to the original source PDFs hosted on archive.org.</p>
+    <p style="color: var(--text-dim); font-size: 13px;">All content is extracted from publicly released government documents. No editorial content has been added. This is an open-source research project.</p>
+  </div>
+</div>
+
+<footer class="footer">
+  <p>Epstein Files Investigation Dashboard v11.26 // Last updated: February 4, 2026 // Sources: justice.gov, archive.org, federal court records</p>
+</footer>
+
 </body>
 </html>
