@@ -326,6 +326,15 @@
       "recoverability": "Likely recoverable from archive re-download/path reconciliation",
       "accessPath": "dataset8_extracted + trump_hits text corpus",
       "lastCheck": "2026-02-05"
+    },
+    {
+      "source": "Current priority review batch (HV)",
+      "issueMetric": "7/13 IDs lacked local PDF binaries; OCR/text fallback used",
+      "totalScopeLabel": "Batch HV",
+      "status": "partial",
+      "recoverability": "Likely recoverable from archive re-download/path reconciliation",
+      "accessPath": "dataset8_extracted + trump_hits text corpus",
+      "lastCheck": "2026-02-05"
     }
   ]
 }
