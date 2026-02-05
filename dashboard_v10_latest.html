@@ -744,6 +744,95 @@
       gap: 16px;
     }
 
+    .tracker-completion-matrix {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .completion-row {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px 12px;
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .completion-row-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+
+    .completion-metric {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      font-size: 12px;
+      margin-top: 6px;
+      margin-bottom: 6px;
+    }
+
+    .completion-metric .label {
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .completion-metric .value {
+      color: var(--text-primary);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .split-progress {
+      display: flex;
+      height: 8px;
+      width: 100%;
+      border-radius: 999px;
+      overflow: hidden;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .split-progress .done {
+      background: linear-gradient(90deg, #1a9960, var(--green));
+    }
+
+    .split-progress .todo {
+      background: linear-gradient(90deg, #9d1f34, var(--red));
+    }
+
+    .split-progress .unknown {
+      background: repeating-linear-gradient(45deg,
+          rgba(37, 99, 235, 0.9),
+          rgba(37, 99, 235, 0.9) 6px,
+          rgba(30, 58, 138, 0.9) 6px,
+          rgba(30, 58, 138, 0.9) 12px);
+    }
+
+    .completion-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-size: 11px;
+      color: var(--text-secondary);
+      margin-top: 10px;
+    }
+
+    .legend-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .legend-chip i {
+      width: 10px;
+      height: 10px;
+      display: inline-block;
+      border-radius: 2px;
+    }
+
     .tracker-row {
       display: flex;
       justify-content: space-between;
@@ -833,6 +922,12 @@
       color: var(--green);
       background: rgba(52, 211, 153, 0.12);
       border-color: rgba(52, 211, 153, 0.28);
+    }
+
+    .tracker-pill.partial {
+      color: var(--blue);
+      background: rgba(37, 99, 235, 0.14);
+      border-color: rgba(37, 99, 235, 0.3);
     }
 
     /* ======= FINDINGS ======= */
@@ -1610,6 +1705,22 @@
 
     <div class="tracker-section-grid" id="trackerSectionGrid">
       <!-- Populated by JS -->
+    </div>
+
+    <div class="status-card reveal" style="margin-top:16px;">
+      <div class="sc-header">
+        <span class="sc-name">Completed vs Remaining (Exact)</span>
+        <span class="status-badge badge-pending">Files + Pages</span>
+      </div>
+      <div class="sc-detail">Per-section visual split of exactly completed versus not-yet-completed scope.</div>
+      <div class="completion-legend">
+        <span class="legend-chip"><i style="background:linear-gradient(90deg,#1a9960,var(--green));"></i>Completed</span>
+        <span class="legend-chip"><i style="background:linear-gradient(90deg,#9d1f34,var(--red));"></i>Not Completed</span>
+        <span class="legend-chip"><i style="background:repeating-linear-gradient(45deg,rgba(37,99,235,0.9),rgba(37,99,235,0.9) 6px,rgba(30,58,138,0.9) 6px,rgba(30,58,138,0.9) 12px);"></i>Remaining Unknown</span>
+      </div>
+      <div class="tracker-completion-matrix" id="trackerCompletionMatrix">
+        <!-- Populated by JS -->
+      </div>
     </div>
 
     <div class="status-card reveal" style="margin-top:16px;">
@@ -4411,9 +4522,10 @@
     function renderProgressTracker() {
       const summaryGrid = document.getElementById('trackerSummaryGrid');
       const sectionGrid = document.getElementById('trackerSectionGrid');
+      const completionMatrix = document.getElementById('trackerCompletionMatrix');
       const inaccessibleBody = document.getElementById('inaccessibleTrackerBody');
       const stamp = document.getElementById('trackerDataStamp');
-      if (!summaryGrid || !sectionGrid || !inaccessibleBody) return;
+      if (!summaryGrid || !sectionGrid || !completionMatrix || !inaccessibleBody) return;
 
       const toPct = (part, total) => (typeof part === 'number' && typeof total === 'number' && total > 0)
         ? Math.min((part / total) * 100, 100)
@@ -4500,10 +4612,72 @@
         `;
       }).join('');
 
+      completionMatrix.innerHTML = REVIEW_PROGRESS_DATA_ACTIVE.map(row => {
+        const doneFiles = Math.max(row.reviewedFiles || 0, 0);
+        const totalFiles = Math.max(row.totalFiles || 0, 0);
+        const remainingFiles = Math.max(totalFiles - doneFiles, 0);
+        const doneFilePct = totalFiles > 0 ? Math.min((doneFiles / totalFiles) * 100, 100) : 0;
+        const remainingFilePct = totalFiles > 0 ? Math.min((remainingFiles / totalFiles) * 100, 100) : 0;
+
+        const donePages = Math.max(row.reviewedPages || 0, 0);
+        const hasKnownPageTotal = typeof row.totalPages === 'number' && row.totalPages >= 0;
+        const totalPages = hasKnownPageTotal ? row.totalPages : null;
+        const remainingPages = hasKnownPageTotal ? Math.max(totalPages - donePages, 0) : null;
+        const donePagePct = hasKnownPageTotal && totalPages > 0
+          ? Math.min((donePages / totalPages) * 100, 100)
+          : 100;
+        const remainingPagePct = hasKnownPageTotal && totalPages > 0
+          ? Math.min((remainingPages / totalPages) * 100, 100)
+          : 0;
+
+        const pageValue = hasKnownPageTotal
+          ? `${n(donePages)} completed | ${n(remainingPages)} remaining (of ${n(totalPages)})`
+          : `${n(donePages)} completed | remaining unknown`;
+
+        const pageBar = hasKnownPageTotal
+          ? `
+            <div class="split-progress">
+              <span class="done" style="width:${donePagePct.toFixed(2)}%"></span>
+              <span class="todo" style="width:${remainingPagePct.toFixed(2)}%"></span>
+            </div>
+          `
+          : `
+            <div class="split-progress">
+              <span class="done" style="width:72%"></span>
+              <span class="unknown" style="width:28%"></span>
+            </div>
+          `;
+
+        return `
+          <div class="completion-row">
+            <div class="completion-row-title">${row.section}</div>
+            <div class="completion-metric">
+              <span class="label">Files</span>
+              <span class="value">${n(doneFiles)} completed | ${n(remainingFiles)} remaining (of ${n(totalFiles)})</span>
+            </div>
+            <div class="split-progress">
+              <span class="done" style="width:${doneFilePct.toFixed(2)}%"></span>
+              <span class="todo" style="width:${remainingFilePct.toFixed(2)}%"></span>
+            </div>
+            <div class="completion-metric">
+              <span class="label">Pages</span>
+              <span class="value">${pageValue}</span>
+            </div>
+            ${pageBar}
+          </div>
+        `;
+      }).join('');
+
       inaccessibleBody.innerHTML = INACCESSIBLE_FILES_DATA_ACTIVE.map(row => {
         const issue = row.issueMetric || n(row.inaccessibleCount);
         const scope = row.totalScopeLabel || n(row.totalScope);
-        const statusClass = row.status === 'unavailable' ? 'unavailable' : row.status === 'degraded' ? 'degraded' : 'stable';
+        const statusClass = row.status === 'unavailable'
+          ? 'unavailable'
+          : row.status === 'degraded'
+            ? 'degraded'
+            : row.status === 'partial'
+              ? 'partial'
+              : 'stable';
         return `
           <tr>
             <td>${row.source}</td>

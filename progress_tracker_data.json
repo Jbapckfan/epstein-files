@@ -83,6 +83,60 @@
       "recoverability": "n/a",
       "accessPath": "Local processing",
       "lastCheck": "2026-02-05"
+    },
+    {
+      "source": "Current priority review batch (GT)",
+      "issueMetric": "7/13 IDs lacked local PDF binaries; OCR/text fallback used",
+      "totalScopeLabel": "Batch GT",
+      "status": "partial",
+      "recoverability": "Likely recoverable from archive re-download/path reconciliation",
+      "accessPath": "dataset8_extracted + trump_hits text corpus",
+      "lastCheck": "2026-02-05"
+    },
+    {
+      "source": "Current priority review batch (GU)",
+      "issueMetric": "8/13 IDs lacked local PDF binaries; OCR/text fallback used",
+      "totalScopeLabel": "Batch GU",
+      "status": "partial",
+      "recoverability": "Likely recoverable from archive re-download/path reconciliation",
+      "accessPath": "dataset8_extracted + trump_hits text corpus",
+      "lastCheck": "2026-02-05"
+    },
+    {
+      "source": "Current priority review batch (GV)",
+      "issueMetric": "7/13 IDs lacked local PDF binaries; OCR/text fallback used",
+      "totalScopeLabel": "Batch GV",
+      "status": "partial",
+      "recoverability": "Likely recoverable from archive re-download/path reconciliation",
+      "accessPath": "dataset8_extracted + trump_hits text corpus",
+      "lastCheck": "2026-02-05"
+    },
+    {
+      "source": "Current priority review batch (GW)",
+      "issueMetric": "6/13 IDs lacked local PDF binaries; OCR/text fallback used",
+      "totalScopeLabel": "Batch GW",
+      "status": "partial",
+      "recoverability": "Likely recoverable from archive re-download/path reconciliation",
+      "accessPath": "dataset8_extracted + trump_hits text corpus",
+      "lastCheck": "2026-02-05"
+    },
+    {
+      "source": "Current priority review batch (GX)",
+      "issueMetric": "3/13 IDs lacked local PDF binaries; OCR/text fallback used",
+      "totalScopeLabel": "Batch GX",
+      "status": "partial",
+      "recoverability": "Likely recoverable from archive re-download/path reconciliation",
+      "accessPath": "dataset8_extracted + trump_hits text corpus",
+      "lastCheck": "2026-02-05"
+    },
+    {
+      "source": "Current priority review batch (GY)",
+      "issueMetric": "4/13 IDs lacked local PDF binaries; OCR/text fallback used",
+      "totalScopeLabel": "Batch GY",
+      "status": "partial",
+      "recoverability": "Likely recoverable from archive re-download/path reconciliation",
+      "accessPath": "dataset8_extracted + trump_hits text corpus",
+      "lastCheck": "2026-02-05"
     }
   ]
 }
