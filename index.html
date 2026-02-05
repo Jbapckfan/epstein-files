@@ -5,31 +5,212 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Epstein Files — Investigation Dashboard</title>
 <style>
-body { background: #08090d; color: #e8eaed; font-family: Inter, -apple-system, sans-serif; display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 100vh; padding: 40px 20px; }
-h1 { font-size: 28px; margin-bottom: 8px; }
-p { color: #9aa0b0; margin-bottom: 30px; font-size: 14px; }
-.links { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
-a { display: inline-block; padding: 14px 28px; background: rgba(255,59,92,0.1); border: 1px solid rgba(255,59,92,0.3); border-radius: 12px; color: #ff3b5c; text-decoration: none; font-weight: 600; font-size: 15px; transition: all 0.3s; }
-a:hover { background: rgba(255,59,92,0.2); transform: translateY(-2px); }
-a.secondary { background: rgba(96,165,250,0.1); border-color: rgba(96,165,250,0.3); color: #60a5fa; }
-a.secondary:hover { background: rgba(96,165,250,0.2); }
-a.tertiary { background: rgba(250,204,21,0.1); border-color: rgba(250,204,21,0.3); color: #facc15; }
-a.tertiary:hover { background: rgba(250,204,21,0.2); }
-a.danger { background: rgba(220,38,38,0.15); border-color: rgba(220,38,38,0.4); color: #ef4444; }
-a.danger:hover { background: rgba(220,38,38,0.25); }
-.stat { color: #5a6070; font-size: 12px; margin-top: 30px; }
+  :root {
+    --bg: #080d14;
+    --panel: rgba(14, 24, 38, 0.86);
+    --line: rgba(130, 163, 199, 0.24);
+    --text: #e6f2ff;
+    --muted: #9db3c9;
+    --teal: #4dd0e1;
+    --amber: #ffb74d;
+    --rose: #ff5d7a;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: "Space Grotesk", "IBM Plex Sans", "Avenir Next", sans-serif;
+    color: var(--text);
+    background:
+      radial-gradient(circle at 12% 18%, rgba(77, 208, 225, 0.2), transparent 42%),
+      radial-gradient(circle at 86% 10%, rgba(255, 93, 122, 0.19), transparent 40%),
+      linear-gradient(145deg, #060a11, #0a121d 52%, #0b1624);
+    display: grid;
+    place-items: center;
+    padding: 28px;
+  }
+
+  .shell {
+    width: min(1040px, 100%);
+    border: 1px solid var(--line);
+    border-radius: 22px;
+    padding: clamp(20px, 3vw, 34px);
+    background: var(--panel);
+    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.42);
+    backdrop-filter: blur(6px);
+  }
+
+  .kicker {
+    margin: 0 0 8px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-size: 11px;
+    color: var(--teal);
+    font-weight: 700;
+  }
+
+  h1 {
+    margin: 0;
+    line-height: 1.05;
+    font-size: clamp(30px, 5vw, 62px);
+    font-weight: 700;
+    max-width: 14ch;
+  }
+
+  .lede {
+    margin: 14px 0 0;
+    color: var(--muted);
+    font-size: clamp(14px, 2vw, 18px);
+    max-width: 70ch;
+    line-height: 1.6;
+  }
+
+  .actions {
+    margin-top: 24px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .btn {
+    text-decoration: none;
+    font-weight: 700;
+    border-radius: 999px;
+    padding: 12px 18px;
+    border: 1px solid transparent;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  }
+
+  .btn:hover {
+    transform: translateY(-1px);
+  }
+
+  .btn-main {
+    color: #041019;
+    background: linear-gradient(135deg, #58e2f4, #86e6b4);
+    box-shadow: 0 10px 30px rgba(77, 208, 225, 0.3);
+  }
+
+  .btn-alt {
+    color: var(--text);
+    background: rgba(139, 170, 204, 0.12);
+    border-color: rgba(139, 170, 204, 0.28);
+  }
+
+  .grid {
+    margin-top: 26px;
+    display: grid;
+    gap: 12px;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  }
+
+  .card {
+    text-decoration: none;
+    color: inherit;
+    border-radius: 14px;
+    padding: 14px;
+    border: 1px solid rgba(133, 161, 194, 0.2);
+    background: rgba(8, 18, 31, 0.58);
+    transition: border-color 0.2s ease, transform 0.2s ease;
+  }
+
+  .card:hover {
+    border-color: rgba(133, 161, 194, 0.5);
+    transform: translateY(-1px);
+  }
+
+  .card h2 {
+    margin: 0;
+    font-size: 15px;
+    font-weight: 700;
+  }
+
+  .card p {
+    margin: 6px 0 0;
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.45;
+  }
+
+  .meta {
+    margin-top: 16px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    color: var(--muted);
+    font-size: 12px;
+  }
+
+  .tag {
+    border-radius: 999px;
+    padding: 6px 10px;
+    border: 1px solid rgba(130, 163, 199, 0.22);
+    background: rgba(10, 22, 37, 0.58);
+  }
+
+  .tag.hot {
+    border-color: rgba(255, 183, 77, 0.4);
+    color: var(--amber);
+  }
+
+  .tag.alert {
+    border-color: rgba(255, 93, 122, 0.4);
+    color: var(--rose);
+  }
+
+  @media (max-width: 640px) {
+    body {
+      padding: 14px;
+    }
+    .shell {
+      border-radius: 16px;
+      padding: 18px;
+    }
+  }
 </style>
 </head>
 <body>
-<h1>Epstein Files Investigation</h1>
-<p>Comprehensive analysis of FOIA document releases — 186,027 findings across 108,608+ documents, 263,193+ pages</p>
-<div class="links">
-  <a href="hidden_connections.html">Hidden Connections (Force Graph + Heatmap)</a>
-  <a href="epstein_interactive.html">Interactive Dashboard (Network Graph)</a>
-  <a href="dashboard_v10_latest.html" class="secondary">Dataset Overview + All Findings</a>
-  <a href="concern_analysis.html" class="tertiary">Concern Factor Analysis</a>
-  <a href="red_flag_deepdive.html" class="danger">Red Flag Deep Dive</a>
-</div>
-<p class="stat">Last updated: February 2, 2026 — DS1-8 Complete: 14,693 PDFs, 50,932 findings | DS9 Complete: 92,639 docs, 58,648 findings | DS10 Recovered: 200 PDFs, 2,345 findings (sealed SDNY) | Local Batch: 174 PDFs, 11,326 findings | Total: 186,027 findings | DS9+DS11 Wayback processing ~770K PDFs</p>
+  <main class="shell">
+    <p class="kicker">Epstein Files</p>
+    <h1>Main Investigation Dashboard</h1>
+    <p class="lede">
+      Start with the latest consolidated dashboard, then branch into hidden-network mapping,
+      timeline views, and source-specific deep dives.
+    </p>
+
+    <div class="actions">
+      <a class="btn btn-main" href="dashboard_v10_latest.html">Open Latest Dashboard</a>
+      <a class="btn btn-alt" href="epstein_interactive.html">Open Interactive Network</a>
+    </div>
+
+    <section class="grid">
+      <a class="card" href="hidden_connections.html">
+        <h2>Hidden Connections</h2>
+        <p>Force graph, heatmap, and relationship clusters.</p>
+      </a>
+      <a class="card" href="epstein_interactive.html">
+        <h2>Interactive Dashboard</h2>
+        <p>Explore entities, links, and network neighborhoods.</p>
+      </a>
+      <a class="card" href="concern_analysis.html">
+        <h2>Concern Analysis</h2>
+        <p>Term concentration and weighted concern scoring.</p>
+      </a>
+      <a class="card" href="red_flag_deepdive.html">
+        <h2>Red Flag Deep Dive</h2>
+        <p>Focused breakdown of highest-risk signals.</p>
+      </a>
+    </section>
+
+    <div class="meta">
+      <span class="tag">Updated: February 5, 2026</span>
+      <span class="tag hot">Current: Batch discoveries through #853</span>
+      <span class="tag alert">Primary entry: dashboard_v10_latest.html</span>
+    </div>
+  </main>
 </body>
 </html>
