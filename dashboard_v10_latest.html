@@ -709,6 +709,132 @@
       margin-top: 8px;
     }
 
+    /* ======= REVIEW PROGRESS TRACKER ======= */
+    .tracker-summary-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .tracker-kpi {
+      font-size: 26px;
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 6px;
+      color: var(--text-primary);
+    }
+
+    .tracker-label {
+      font-size: 12px;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 10px;
+    }
+
+    .tracker-note {
+      font-size: 12px;
+      color: var(--text-dim);
+    }
+
+    .tracker-section-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+      gap: 16px;
+    }
+
+    .tracker-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 10px;
+      margin-top: 6px;
+      margin-bottom: 6px;
+    }
+
+    .tracker-row .label {
+      font-size: 12px;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .tracker-row .value {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: var(--text-primary);
+    }
+
+    .tracker-subtle {
+      margin-top: 8px;
+      font-size: 12px;
+      color: var(--text-dim);
+    }
+
+    .inaccessible-wrap {
+      overflow-x: auto;
+      margin-top: 12px;
+    }
+
+    .inaccessible-table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 820px;
+    }
+
+    .inaccessible-table th {
+      text-align: left;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .inaccessible-table td {
+      vertical-align: top;
+      font-size: 12px;
+      color: var(--text-primary);
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .inaccessible-table td.muted {
+      color: var(--text-secondary);
+    }
+
+    .tracker-pill {
+      display: inline-block;
+      padding: 3px 9px;
+      border-radius: 999px;
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 700;
+      border: 1px solid transparent;
+    }
+
+    .tracker-pill.unavailable {
+      color: var(--red);
+      background: rgba(255, 59, 92, 0.12);
+      border-color: rgba(255, 59, 92, 0.28);
+    }
+
+    .tracker-pill.degraded {
+      color: var(--yellow);
+      background: rgba(255, 197, 61, 0.12);
+      border-color: rgba(255, 197, 61, 0.28);
+    }
+
+    .tracker-pill.stable {
+      color: var(--green);
+      background: rgba(52, 211, 153, 0.12);
+      border-color: rgba(52, 211, 153, 0.28);
+    }
+
     /* ======= FINDINGS ======= */
     .findings-controls {
       display: flex;
@@ -1245,6 +1371,7 @@
       <ul class="nav-links">
         <li><a href="#network">Network</a></li>
         <li><a href="#status">Status</a></li>
+        <li><a href="#progress-tracker">Tracker</a></li>
         <li><a href="#ds9intel">DS9 Intel</a></li>
         <li><a href="#localbatch">Local Batch</a></li>
         <li><a href="#ds18intel">DS1-8</a></li>
@@ -1381,20 +1508,20 @@
     <div class="section-header reveal">
       <div class="section-tag">Pipeline Status</div>
       <h2>Processing Overview</h2>
-      <p>Status across all data pipelines — DS1-8 complete (50,932 findings), DS9 complete, DS10 recovered (2,345
-        findings), local batch integrated, DS9+DS11 background processing active</p>
+      <p>Status across all data pipelines — DS1-8 complete (50,932 findings), DS10 recovered (2,345 findings), local
+        batch integrated, DS9 and DS11 Wayback processing active</p>
     </div>
     <div class="status-grid">
       <div class="status-card reveal">
         <div class="sc-header">
-          <span class="sc-name">Dataset 9 (justice.gov)</span>
-          <span class="status-badge badge-complete">Complete</span>
+          <span class="sc-name">Dataset 9 (Wayback Pipeline)</span>
+          <span class="status-badge badge-pending">Processing</span>
         </div>
-        <div class="sc-detail">92,639 / 92,639 documents processed</div>
+        <div class="sc-detail">102,587 / 531,307 documents processed (12.5%)</div>
         <div class="progress-bar-bg">
-          <div class="progress-bar-fill fill-green" style="width: 0%" data-width="100%"></div>
+          <div class="progress-bar-fill fill-yellow" style="width: 0%" data-width="12.5%"></div>
         </div>
-        <div class="sc-meta">57,488 findings // 218,766 pages scanned // 9,232 docs with hits // Complete</div>
+        <div class="sc-meta">75,986 findings // 264,062 pages scanned // Wayback extraction in progress</div>
       </div>
       <div class="status-card reveal">
         <div class="sc-header">
@@ -1411,16 +1538,14 @@
       </div>
       <div class="status-card reveal">
         <div class="sc-header">
-          <span class="sc-name">Dataset 11 + DS9 Remaining (Wayback Machine)</span>
-          <span class="status-badge badge-active"
-            style="background:rgba(255,197,61,0.15);color:#ffc53d;">Processing</span>
+          <span class="sc-name">Combined Wayback Queue (DS9 + DS11)</span>
+          <span class="status-badge badge-pending">Processing</span>
         </div>
-        <div class="sc-detail">~770K CDX-validated PDFs in background processing queue</div>
+        <div class="sc-detail">112,809 / 862,945 documents processed (13.1%)</div>
         <div class="progress-bar-bg">
-          <div class="progress-bar-fill fill-yellow" style="width: 0%" data-width="2%"></div>
+          <div class="progress-bar-fill fill-yellow" style="width: 0%" data-width="13.1%"></div>
         </div>
-        <div class="sc-meta">DS9 + DS11 download pipelines active // 331,655 DS11 PDFs + remaining DS9 Wayback URLs //
-          Background processing ongoing</div>
+        <div class="sc-meta">~750K documents remain queued // DS9 + DS11 retry/backoff pipelines active</div>
       </div>
       <div class="status-card reveal">
         <div class="sc-header">
@@ -1439,11 +1564,11 @@
           <span class="sc-name">Dataset 10</span>
           <span class="status-badge badge-complete">Complete</span>
         </div>
-        <div class="sc-detail">3 / 3 PDFs analyzed</div>
+        <div class="sc-detail">200 / 200 PDFs analyzed — 2,345 findings from 4,025 pages</div>
         <div class="progress-bar-bg">
           <div class="progress-bar-fill fill-green" style="width: 0%" data-width="100%"></div>
         </div>
-        <div class="sc-meta">Initial batch // Complete</div>
+        <div class="sc-meta">Recovered from truncated ZIP // Sealed SDNY documents integrated</div>
       </div>
       <div class="status-card reveal">
         <div class="sc-header">
@@ -1466,6 +1591,49 @@
           <div class="progress-bar-fill fill-blue" style="width: 0%" data-width="100%"></div>
         </div>
         <div class="sc-meta">1,529 AVI // 255 MP4 // 78 M4A audio // 52 other</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEW PROGRESS TRACKER -->
+  <section class="section" id="progress-tracker">
+    <div class="section-header reveal">
+      <div class="section-tag">Operational Tracking</div>
+      <h2>Review Progress Tracker</h2>
+      <p>Section-level file/page progress and a dedicated tracker for inaccessible or currently unreachable files.</p>
+    </div>
+
+    <div class="tracker-summary-grid" id="trackerSummaryGrid">
+      <!-- Populated by JS -->
+    </div>
+
+    <div class="tracker-section-grid" id="trackerSectionGrid">
+      <!-- Populated by JS -->
+    </div>
+
+    <div class="status-card reveal" style="margin-top:16px;">
+      <div class="sc-header">
+        <span class="sc-name">Inaccessible / Unreachable Files</span>
+        <span class="status-badge badge-pending">Tracked</span>
+      </div>
+      <div class="sc-detail">Live issue register for direct-source removals and retryable access failures.</div>
+      <div class="inaccessible-wrap">
+        <table class="inaccessible-table">
+          <thead>
+            <tr>
+              <th>Source</th>
+              <th>Inaccessible / Failed</th>
+              <th>Scope</th>
+              <th>Status</th>
+              <th>Recoverability</th>
+              <th>Current Access Path</th>
+              <th>Last Check</th>
+            </tr>
+          </thead>
+          <tbody id="inaccessibleTrackerBody">
+            <!-- Populated by JS -->
+          </tbody>
+        </table>
       </div>
     </div>
   </section>
@@ -3714,6 +3882,93 @@
       { name: "DS9 Media", status: "cataloged", desc: "Surveillance footage and audio from seized devices and properties.", stat: "1,914 files: 1,529 AVI, 255 MP4, 78 M4A" }
     ];
 
+    const REVIEW_PROGRESS_DATA = [
+      {
+        section: "DS1-8 Local Batch",
+        status: "complete",
+        reviewedFiles: 14693,
+        totalFiles: 14693,
+        reviewedPages: 35397,
+        totalPages: 35397,
+        notes: "All local DS1-8 PDFs processed and merged."
+      },
+      {
+        section: "DS9 Wayback Pipeline",
+        status: "active",
+        reviewedFiles: 102587,
+        totalFiles: 531307,
+        reviewedPages: 264062,
+        totalPages: null,
+        notes: "CDX-validated corpus; retry/backoff still running."
+      },
+      {
+        section: "DS10 Recovered (Sealed SDNY Set)",
+        status: "complete",
+        reviewedFiles: 200,
+        totalFiles: 200,
+        reviewedPages: 4025,
+        totalPages: 4025,
+        notes: "Recovered from truncated ZIP and fully integrated."
+      },
+      {
+        section: "DS11 Wayback Pipeline",
+        status: "active",
+        reviewedFiles: 10222,
+        totalFiles: 331638,
+        reviewedPages: 18009,
+        totalPages: null,
+        notes: "Early-stage queue processing with heavy throttling windows."
+      },
+      {
+        section: "Local Batch (DS12 + Proffer + Memos)",
+        status: "complete",
+        reviewedFiles: 174,
+        totalFiles: 174,
+        reviewedPages: 2651,
+        totalPages: 2651,
+        notes: "Integrated in composite totals."
+      }
+    ];
+
+    const INACCESSIBLE_FILES_DATA = [
+      {
+        source: "DS9 direct justice.gov links",
+        inaccessibleCount: 531307,
+        totalScope: 531307,
+        status: "unavailable",
+        recoverability: "Via archive mirrors only",
+        accessPath: "Wayback CDX snapshots",
+        lastCheck: "2026-02-05"
+      },
+      {
+        source: "DS11 direct justice.gov links",
+        inaccessibleCount: 331638,
+        totalScope: 331638,
+        status: "unavailable",
+        recoverability: "Via archive mirrors only",
+        accessPath: "Wayback CDX snapshots",
+        lastCheck: "2026-02-05"
+      },
+      {
+        source: "DS9 + DS11 Wayback fetch attempts",
+        issueMetric: "~83% transient fetch failure rate",
+        totalScopeLabel: "~750K queued URLs",
+        status: "degraded",
+        recoverability: "Yes (retry/backoff)",
+        accessPath: "Background pipeline retries",
+        lastCheck: "2026-02-05"
+      },
+      {
+        source: "Local extraction pipeline",
+        issueMetric: "0 persistently unreadable files currently flagged",
+        totalScopeLabel: "15 local datasets",
+        status: "stable",
+        recoverability: "n/a",
+        accessPath: "Local processing",
+        lastCheck: "2026-02-05"
+      }
+    ];
+
     /* ============================================================
        NETWORK GRAPH DATA
        ============================================================ */
@@ -3962,10 +4217,11 @@
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(e => {
           if (e.isIntersecting) {
-            const fill = e.target.querySelector('.progress-bar-fill');
-            if (fill && fill.dataset.width) {
-              setTimeout(() => { fill.style.width = fill.dataset.width; }, 300);
-            }
+            e.target.querySelectorAll('.progress-bar-fill').forEach((fill, i) => {
+              if (fill.dataset.width) {
+                setTimeout(() => { fill.style.width = fill.dataset.width; }, 250 + (i * 120));
+              }
+            });
           }
         });
       }, { threshold: 0.3 });
@@ -4123,8 +4379,111 @@
         return `<div class="ds-card reveal">
       <div class="ds-title">${d.name} <span class="status-badge ${badgeClass}">${statusLabel}</span></div>
       <div class="ds-desc">${d.desc}</div>
-      <div class="ds-stat">${d.stat}</div>
+        <div class="ds-stat">${d.stat}</div>
     </div>`;
+      }).join('');
+    }
+
+    function renderProgressTracker() {
+      const summaryGrid = document.getElementById('trackerSummaryGrid');
+      const sectionGrid = document.getElementById('trackerSectionGrid');
+      const inaccessibleBody = document.getElementById('inaccessibleTrackerBody');
+      if (!summaryGrid || !sectionGrid || !inaccessibleBody) return;
+
+      const toPct = (part, total) => (typeof part === 'number' && typeof total === 'number' && total > 0)
+        ? Math.min((part / total) * 100, 100)
+        : null;
+      const n = (v) => (typeof v === 'number' ? v.toLocaleString() : v);
+
+      const totalReviewedFiles = REVIEW_PROGRESS_DATA.reduce((sum, row) => sum + row.reviewedFiles, 0);
+      const totalKnownFiles = REVIEW_PROGRESS_DATA.reduce((sum, row) => sum + row.totalFiles, 0);
+      const totalReviewedPages = REVIEW_PROGRESS_DATA.reduce((sum, row) => sum + row.reviewedPages, 0);
+      const knownPageRows = REVIEW_PROGRESS_DATA.filter(row => typeof row.totalPages === 'number');
+      const totalKnownPages = knownPageRows.reduce((sum, row) => sum + row.totalPages, 0);
+      const completeSections = REVIEW_PROGRESS_DATA.filter(row => row.status === 'complete').length;
+      const directUnavailable = INACCESSIBLE_FILES_DATA.reduce((sum, row) => sum + (row.inaccessibleCount || 0), 0);
+
+      summaryGrid.innerHTML = `
+        <div class="status-card reveal">
+          <div class="tracker-label">Tracked Files Progress</div>
+          <div class="tracker-kpi">${n(totalReviewedFiles)} / ${n(totalKnownFiles)}</div>
+          <div class="progress-bar-bg"><div class="progress-bar-fill fill-blue" style="width:0%" data-width="${toPct(totalReviewedFiles, totalKnownFiles).toFixed(1)}%"></div></div>
+          <div class="tracker-note">${toPct(totalReviewedFiles, totalKnownFiles).toFixed(1)}% of known file scope reviewed</div>
+        </div>
+        <div class="status-card reveal">
+          <div class="tracker-label">Tracked Pages Reviewed</div>
+          <div class="tracker-kpi">${n(totalReviewedPages)}+</div>
+          <div class="progress-bar-bg"><div class="progress-bar-fill fill-green" style="width:0%" data-width="${toPct(totalKnownPages, totalKnownPages).toFixed(1)}%"></div></div>
+          <div class="tracker-note">${n(totalKnownPages)} pages fully closed in measured sections; DS9/DS11 totals are open-ended</div>
+        </div>
+        <div class="status-card reveal">
+          <div class="tracker-label">Section Completion</div>
+          <div class="tracker-kpi">${completeSections} / ${REVIEW_PROGRESS_DATA.length}</div>
+          <div class="progress-bar-bg"><div class="progress-bar-fill fill-yellow" style="width:0%" data-width="${toPct(completeSections, REVIEW_PROGRESS_DATA.length).toFixed(1)}%"></div></div>
+          <div class="tracker-note">${REVIEW_PROGRESS_DATA.length - completeSections} sections still actively processing</div>
+        </div>
+        <div class="status-card reveal">
+          <div class="tracker-label">Direct Source Unavailable</div>
+          <div class="tracker-kpi">${n(directUnavailable)}</div>
+          <div class="progress-bar-bg"><div class="progress-bar-fill fill-red" style="width:0%" data-width="100%"></div></div>
+          <div class="tracker-note">Direct justice.gov links removed; retrieval path is archive mirrors + retry queue</div>
+        </div>
+      `;
+
+      sectionGrid.innerHTML = REVIEW_PROGRESS_DATA.map(row => {
+        const filePct = toPct(row.reviewedFiles, row.totalFiles);
+        const pagePct = toPct(row.reviewedPages, row.totalPages);
+        const statusClass = row.status === 'complete' ? 'badge-complete' : 'badge-pending';
+        const statusLabel = row.status === 'complete' ? 'Complete' : 'Processing';
+
+        const pageLine = (typeof row.totalPages === 'number')
+          ? `
+            <div class="tracker-row">
+              <span class="label">Pages</span>
+              <span class="value">${n(row.reviewedPages)} / ${n(row.totalPages)} (${pagePct.toFixed(1)}%)</span>
+            </div>
+            <div class="progress-bar-bg"><div class="progress-bar-fill ${row.status === 'complete' ? 'fill-green' : 'fill-blue'}" style="width:0%" data-width="${pagePct.toFixed(1)}%"></div></div>
+          `
+          : `
+            <div class="tracker-row">
+              <span class="label">Pages</span>
+              <span class="value">${n(row.reviewedPages)} / total unknown</span>
+            </div>
+            <div class="tracker-subtle">Total page count is not fixed yet for this section.</div>
+          `;
+
+        return `
+          <div class="status-card reveal">
+            <div class="sc-header">
+              <span class="sc-name">${row.section}</span>
+              <span class="status-badge ${statusClass}">${statusLabel}</span>
+            </div>
+            <div class="tracker-row">
+              <span class="label">Files</span>
+              <span class="value">${n(row.reviewedFiles)} / ${n(row.totalFiles)} (${filePct.toFixed(1)}%)</span>
+            </div>
+            <div class="progress-bar-bg"><div class="progress-bar-fill ${row.status === 'complete' ? 'fill-green' : 'fill-yellow'}" style="width:0%" data-width="${filePct.toFixed(1)}%"></div></div>
+            ${pageLine}
+            <div class="tracker-subtle">${row.notes}</div>
+          </div>
+        `;
+      }).join('');
+
+      inaccessibleBody.innerHTML = INACCESSIBLE_FILES_DATA.map(row => {
+        const issue = row.issueMetric || n(row.inaccessibleCount);
+        const scope = row.totalScopeLabel || n(row.totalScope);
+        const statusClass = row.status === 'unavailable' ? 'unavailable' : row.status === 'degraded' ? 'degraded' : 'stable';
+        return `
+          <tr>
+            <td>${row.source}</td>
+            <td>${issue}</td>
+            <td class="muted">${scope}</td>
+            <td><span class="tracker-pill ${statusClass}">${row.status}</span></td>
+            <td class="muted">${row.recoverability}</td>
+            <td class="muted">${row.accessPath}</td>
+            <td class="muted">${row.lastCheck}</td>
+          </tr>
+        `;
       }).join('');
     }
 
@@ -4579,6 +4938,7 @@
       renderBarChart();
       renderTimeline();
       renderDatasets();
+      renderProgressTracker();
       initScrollReveal();
       animateProgressBars();
 
