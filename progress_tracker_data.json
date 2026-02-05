@@ -1,0 +1,88 @@
+{
+  "updated_at": "2026-02-05",
+  "sections": [
+    {
+      "section": "DS1-8 Local Batch",
+      "status": "complete",
+      "reviewedFiles": 14693,
+      "totalFiles": 14693,
+      "reviewedPages": 35397,
+      "totalPages": 35397,
+      "notes": "All local DS1-8 PDFs processed and merged."
+    },
+    {
+      "section": "DS9 Wayback Pipeline",
+      "status": "active",
+      "reviewedFiles": 102587,
+      "totalFiles": 531307,
+      "reviewedPages": 264062,
+      "totalPages": null,
+      "notes": "CDX-validated corpus; retry/backoff still running."
+    },
+    {
+      "section": "DS10 Recovered (Sealed SDNY Set)",
+      "status": "complete",
+      "reviewedFiles": 200,
+      "totalFiles": 200,
+      "reviewedPages": 4025,
+      "totalPages": 4025,
+      "notes": "Recovered from truncated ZIP and fully integrated."
+    },
+    {
+      "section": "DS11 Wayback Pipeline",
+      "status": "active",
+      "reviewedFiles": 10222,
+      "totalFiles": 331638,
+      "reviewedPages": 18009,
+      "totalPages": null,
+      "notes": "Early-stage queue processing with heavy throttling windows."
+    },
+    {
+      "section": "Local Batch (DS12 + Proffer + Memos)",
+      "status": "complete",
+      "reviewedFiles": 174,
+      "totalFiles": 174,
+      "reviewedPages": 2651,
+      "totalPages": 2651,
+      "notes": "Integrated in composite totals."
+    }
+  ],
+  "inaccessible": [
+    {
+      "source": "DS9 direct justice.gov links",
+      "inaccessibleCount": 531307,
+      "totalScope": 531307,
+      "status": "unavailable",
+      "recoverability": "Via archive mirrors only",
+      "accessPath": "Wayback CDX snapshots",
+      "lastCheck": "2026-02-05"
+    },
+    {
+      "source": "DS11 direct justice.gov links",
+      "inaccessibleCount": 331638,
+      "totalScope": 331638,
+      "status": "unavailable",
+      "recoverability": "Via archive mirrors only",
+      "accessPath": "Wayback CDX snapshots",
+      "lastCheck": "2026-02-05"
+    },
+    {
+      "source": "DS9 + DS11 Wayback fetch attempts",
+      "issueMetric": "~83% transient fetch failure rate",
+      "totalScopeLabel": "~750K queued URLs",
+      "status": "degraded",
+      "recoverability": "Yes (retry/backoff)",
+      "accessPath": "Background pipeline retries",
+      "lastCheck": "2026-02-05"
+    },
+    {
+      "source": "Local extraction pipeline",
+      "issueMetric": "0 persistently unreadable files currently flagged",
+      "totalScopeLabel": "15 local datasets",
+      "status": "stable",
+      "recoverability": "n/a",
+      "accessPath": "Local processing",
+      "lastCheck": "2026-02-05"
+    }
+  ]
+}

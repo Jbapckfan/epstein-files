@@ -1601,6 +1601,7 @@
       <div class="section-tag">Operational Tracking</div>
       <h2>Review Progress Tracker</h2>
       <p>Section-level file/page progress and a dedicated tracker for inaccessible or currently unreachable files.</p>
+      <p class="tracker-subtle" id="trackerDataStamp">Tracker data source updated: loading...</p>
     </div>
 
     <div class="tracker-summary-grid" id="trackerSummaryGrid">
@@ -3882,7 +3883,7 @@
       { name: "DS9 Media", status: "cataloged", desc: "Surveillance footage and audio from seized devices and properties.", stat: "1,914 files: 1,529 AVI, 255 MP4, 78 M4A" }
     ];
 
-    const REVIEW_PROGRESS_DATA = [
+    const DEFAULT_REVIEW_PROGRESS_DATA = [
       {
         section: "DS1-8 Local Batch",
         status: "complete",
@@ -3930,7 +3931,7 @@
       }
     ];
 
-    const INACCESSIBLE_FILES_DATA = [
+    const DEFAULT_INACCESSIBLE_FILES_DATA = [
       {
         source: "DS9 direct justice.gov links",
         inaccessibleCount: 531307,
@@ -3968,6 +3969,10 @@
         lastCheck: "2026-02-05"
       }
     ];
+
+    let REVIEW_PROGRESS_DATA_ACTIVE = DEFAULT_REVIEW_PROGRESS_DATA.slice();
+    let INACCESSIBLE_FILES_DATA_ACTIVE = DEFAULT_INACCESSIBLE_FILES_DATA.slice();
+    let TRACKER_UPDATED_AT = "2026-02-05";
 
     /* ============================================================
        NETWORK GRAPH DATA
@@ -4384,43 +4389,69 @@
       }).join('');
     }
 
+    async function loadProgressTrackerData() {
+      try {
+        const res = await fetch('./progress_tracker_data.json', { cache: 'no-store' });
+        if (!res.ok) return;
+        const payload = await res.json();
+        if (Array.isArray(payload.sections)) {
+          REVIEW_PROGRESS_DATA_ACTIVE = payload.sections;
+        }
+        if (Array.isArray(payload.inaccessible)) {
+          INACCESSIBLE_FILES_DATA_ACTIVE = payload.inaccessible;
+        }
+        if (typeof payload.updated_at === 'string' && payload.updated_at.trim()) {
+          TRACKER_UPDATED_AT = payload.updated_at.trim();
+        }
+      } catch (err) {
+        console.warn('Progress tracker JSON load failed, using embedded defaults.', err);
+      }
+    }
+
     function renderProgressTracker() {
       const summaryGrid = document.getElementById('trackerSummaryGrid');
       const sectionGrid = document.getElementById('trackerSectionGrid');
       const inaccessibleBody = document.getElementById('inaccessibleTrackerBody');
+      const stamp = document.getElementById('trackerDataStamp');
       if (!summaryGrid || !sectionGrid || !inaccessibleBody) return;
 
       const toPct = (part, total) => (typeof part === 'number' && typeof total === 'number' && total > 0)
         ? Math.min((part / total) * 100, 100)
         : null;
+      const pctText = (p) => (typeof p === 'number' ? p.toFixed(1) : '0.0');
       const n = (v) => (typeof v === 'number' ? v.toLocaleString() : v);
 
-      const totalReviewedFiles = REVIEW_PROGRESS_DATA.reduce((sum, row) => sum + row.reviewedFiles, 0);
-      const totalKnownFiles = REVIEW_PROGRESS_DATA.reduce((sum, row) => sum + row.totalFiles, 0);
-      const totalReviewedPages = REVIEW_PROGRESS_DATA.reduce((sum, row) => sum + row.reviewedPages, 0);
-      const knownPageRows = REVIEW_PROGRESS_DATA.filter(row => typeof row.totalPages === 'number');
+      const totalReviewedFiles = REVIEW_PROGRESS_DATA_ACTIVE.reduce((sum, row) => sum + row.reviewedFiles, 0);
+      const totalKnownFiles = REVIEW_PROGRESS_DATA_ACTIVE.reduce((sum, row) => sum + row.totalFiles, 0);
+      const totalReviewedPages = REVIEW_PROGRESS_DATA_ACTIVE.reduce((sum, row) => sum + row.reviewedPages, 0);
+      const knownPageRows = REVIEW_PROGRESS_DATA_ACTIVE.filter(row => typeof row.totalPages === 'number');
+      const totalReviewedKnownPages = knownPageRows.reduce((sum, row) => sum + row.reviewedPages, 0);
       const totalKnownPages = knownPageRows.reduce((sum, row) => sum + row.totalPages, 0);
-      const completeSections = REVIEW_PROGRESS_DATA.filter(row => row.status === 'complete').length;
-      const directUnavailable = INACCESSIBLE_FILES_DATA.reduce((sum, row) => sum + (row.inaccessibleCount || 0), 0);
+      const completeSections = REVIEW_PROGRESS_DATA_ACTIVE.filter(row => row.status === 'complete').length;
+      const directUnavailable = INACCESSIBLE_FILES_DATA_ACTIVE.reduce((sum, row) => sum + (row.inaccessibleCount || 0), 0);
+
+      if (stamp) {
+        stamp.textContent = `Tracker data source updated: ${TRACKER_UPDATED_AT}`;
+      }
 
       summaryGrid.innerHTML = `
         <div class="status-card reveal">
           <div class="tracker-label">Tracked Files Progress</div>
           <div class="tracker-kpi">${n(totalReviewedFiles)} / ${n(totalKnownFiles)}</div>
-          <div class="progress-bar-bg"><div class="progress-bar-fill fill-blue" style="width:0%" data-width="${toPct(totalReviewedFiles, totalKnownFiles).toFixed(1)}%"></div></div>
-          <div class="tracker-note">${toPct(totalReviewedFiles, totalKnownFiles).toFixed(1)}% of known file scope reviewed</div>
+          <div class="progress-bar-bg"><div class="progress-bar-fill fill-blue" style="width:0%" data-width="${pctText(toPct(totalReviewedFiles, totalKnownFiles))}%"></div></div>
+          <div class="tracker-note">${pctText(toPct(totalReviewedFiles, totalKnownFiles))}% of known file scope reviewed</div>
         </div>
         <div class="status-card reveal">
           <div class="tracker-label">Tracked Pages Reviewed</div>
           <div class="tracker-kpi">${n(totalReviewedPages)}+</div>
-          <div class="progress-bar-bg"><div class="progress-bar-fill fill-green" style="width:0%" data-width="${toPct(totalKnownPages, totalKnownPages).toFixed(1)}%"></div></div>
-          <div class="tracker-note">${n(totalKnownPages)} pages fully closed in measured sections; DS9/DS11 totals are open-ended</div>
+          <div class="progress-bar-bg"><div class="progress-bar-fill fill-green" style="width:0%" data-width="${pctText(toPct(totalReviewedKnownPages, totalKnownPages))}%"></div></div>
+          <div class="tracker-note">${n(totalReviewedKnownPages)} / ${n(totalKnownPages)} pages closed in measured sections; DS9/DS11 totals are open-ended</div>
         </div>
         <div class="status-card reveal">
           <div class="tracker-label">Section Completion</div>
-          <div class="tracker-kpi">${completeSections} / ${REVIEW_PROGRESS_DATA.length}</div>
-          <div class="progress-bar-bg"><div class="progress-bar-fill fill-yellow" style="width:0%" data-width="${toPct(completeSections, REVIEW_PROGRESS_DATA.length).toFixed(1)}%"></div></div>
-          <div class="tracker-note">${REVIEW_PROGRESS_DATA.length - completeSections} sections still actively processing</div>
+          <div class="tracker-kpi">${completeSections} / ${REVIEW_PROGRESS_DATA_ACTIVE.length}</div>
+          <div class="progress-bar-bg"><div class="progress-bar-fill fill-yellow" style="width:0%" data-width="${pctText(toPct(completeSections, REVIEW_PROGRESS_DATA_ACTIVE.length))}%"></div></div>
+          <div class="tracker-note">${REVIEW_PROGRESS_DATA_ACTIVE.length - completeSections} sections still actively processing</div>
         </div>
         <div class="status-card reveal">
           <div class="tracker-label">Direct Source Unavailable</div>
@@ -4430,7 +4461,7 @@
         </div>
       `;
 
-      sectionGrid.innerHTML = REVIEW_PROGRESS_DATA.map(row => {
+      sectionGrid.innerHTML = REVIEW_PROGRESS_DATA_ACTIVE.map(row => {
         const filePct = toPct(row.reviewedFiles, row.totalFiles);
         const pagePct = toPct(row.reviewedPages, row.totalPages);
         const statusClass = row.status === 'complete' ? 'badge-complete' : 'badge-pending';
@@ -4460,16 +4491,16 @@
             </div>
             <div class="tracker-row">
               <span class="label">Files</span>
-              <span class="value">${n(row.reviewedFiles)} / ${n(row.totalFiles)} (${filePct.toFixed(1)}%)</span>
+              <span class="value">${n(row.reviewedFiles)} / ${n(row.totalFiles)} (${pctText(filePct)}%)</span>
             </div>
-            <div class="progress-bar-bg"><div class="progress-bar-fill ${row.status === 'complete' ? 'fill-green' : 'fill-yellow'}" style="width:0%" data-width="${filePct.toFixed(1)}%"></div></div>
+            <div class="progress-bar-bg"><div class="progress-bar-fill ${row.status === 'complete' ? 'fill-green' : 'fill-yellow'}" style="width:0%" data-width="${pctText(filePct)}%"></div></div>
             ${pageLine}
             <div class="tracker-subtle">${row.notes}</div>
           </div>
         `;
       }).join('');
 
-      inaccessibleBody.innerHTML = INACCESSIBLE_FILES_DATA.map(row => {
+      inaccessibleBody.innerHTML = INACCESSIBLE_FILES_DATA_ACTIVE.map(row => {
         const issue = row.issueMetric || n(row.inaccessibleCount);
         const scope = row.totalScopeLabel || n(row.totalScope);
         const statusClass = row.status === 'unavailable' ? 'unavailable' : row.status === 'degraded' ? 'degraded' : 'stable';
@@ -4933,7 +4964,8 @@
        INIT
        ============================================================ */
 
-    document.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener('DOMContentLoaded', async () => {
+      await loadProgressTrackerData();
       renderFindings('all');
       renderBarChart();
       renderTimeline();
