@@ -443,6 +443,24 @@
       "recoverability": "Likely recoverable from archive re-download/path reconciliation",
       "accessPath": "dataset8_extracted + trump_hits text corpus",
       "lastCheck": "2026-02-06"
+    },
+    {
+      "source": "Current priority review batch (II)",
+      "issueMetric": "13/13 IDs lacked local PDF binaries; OCR/text fallback used",
+      "totalScopeLabel": "Batch II",
+      "status": "partial",
+      "recoverability": "Likely recoverable from archive re-download/path reconciliation",
+      "accessPath": "dataset8_extracted + trump_hits text corpus",
+      "lastCheck": "2026-02-06"
+    },
+    {
+      "source": "Current priority review batch (IJ)",
+      "issueMetric": "13/13 IDs lacked local PDF binaries; OCR/text fallback used",
+      "totalScopeLabel": "Batch IJ",
+      "status": "partial",
+      "recoverability": "Likely recoverable from archive re-download/path reconciliation",
+      "accessPath": "dataset8_extracted + trump_hits text corpus",
+      "lastCheck": "2026-02-06"
     }
   ]
 }
