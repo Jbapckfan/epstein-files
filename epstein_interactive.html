@@ -665,6 +665,11 @@ footer a { color: var(--blue); text-decoration: none; }
   <button class="nav-btn" data-target="intel">Intelligence</button>
   <button class="nav-btn" data-target="political">Political</button>
   <button class="nav-btn" data-target="docs">Documents</button>
+  <span style="width:1px;height:24px;background:rgba(255,255,255,0.1);flex-shrink:0;margin:0 4px"></span>
+  <button class="nav-btn sev-filter active" data-sev="all" onclick="filterBySeverity('all',this)">All</button>
+  <button class="nav-btn sev-filter" data-sev="red" onclick="filterBySeverity('red',this)" style="color:var(--red)">Critical</button>
+  <button class="nav-btn sev-filter" data-sev="orange" onclick="filterBySeverity('orange',this)" style="color:var(--orange)">High</button>
+  <button class="nav-btn sev-filter" data-sev="yellow" onclick="filterBySeverity('yellow',this)" style="color:var(--yellow)">Medium</button>
   <div class="search-box">
     <input type="text" id="globalSearch" placeholder="Search all findings...">
     <span class="kbd">⌘K</span>
@@ -1537,10 +1542,23 @@ window.addEventListener('scroll', () => {
   sections.forEach(s => {
     if (window.scrollY >= s.offsetTop - 100) current = s.id;
   });
-  document.querySelectorAll('.nav-btn').forEach(b => {
+  document.querySelectorAll('.nav-btn:not(.sev-filter)').forEach(b => {
     b.classList.toggle('active', b.dataset.target === current);
   });
 });
+
+// ======= SEVERITY FILTER =======
+function filterBySeverity(sev, btn) {
+  document.querySelectorAll('.sev-filter').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.cards-grid .card').forEach(card => {
+    if (sev === 'all') {
+      card.style.display = '';
+    } else {
+      card.style.display = card.classList.contains('c-' + sev) ? '' : 'none';
+    }
+  });
+}
 </script>
 </body>
 </html>

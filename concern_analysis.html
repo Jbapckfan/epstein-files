@@ -381,7 +381,13 @@ body {
   position: sticky;
   top: 0;
   z-index: 5;
+  cursor: pointer;
+  user-select: none;
+  transition: color 0.2s;
 }
+.detail-table thead th:hover { color: var(--accent, #ff3b5c); }
+.detail-table thead th .sort-arrow { font-size: 9px; margin-left: 3px; opacity: 0.4; }
+.detail-table thead th.sorted .sort-arrow { opacity: 1; color: var(--accent, #ff3b5c); }
 
 .detail-table thead th:first-child {
   text-align: left;
@@ -561,20 +567,20 @@ body {
       <table class="detail-table" id="detailTable">
         <thead>
           <tr>
-            <th>Name</th>
-            <th>Score</th>
-            <th>Total Mentions</th>
-            <th>Ep-Proximate</th>
-            <th>Witness</th>
-            <th>Relationship</th>
-            <th>Legal</th>
-            <th>Sexual&nbsp;Assault</th>
-            <th>Minors</th>
-            <th>Trafficking</th>
-            <th>Blackmail</th>
-            <th>Murder/Threats</th>
-            <th>Financial</th>
-            <th>Total Red&nbsp;Flags</th>
+            <th data-col="0" onclick="sortTable(0,'str')">Name <span class="sort-arrow">&#9650;</span></th>
+            <th data-col="1" onclick="sortTable(1,'num')" class="sorted">Score <span class="sort-arrow">&#9660;</span></th>
+            <th data-col="2" onclick="sortTable(2,'num')">Total Mentions <span class="sort-arrow">&#9650;</span></th>
+            <th data-col="3" onclick="sortTable(3,'num')">Ep-Proximate <span class="sort-arrow">&#9650;</span></th>
+            <th data-col="4" onclick="sortTable(4,'num')">Witness <span class="sort-arrow">&#9650;</span></th>
+            <th data-col="5" onclick="sortTable(5,'num')">Relationship <span class="sort-arrow">&#9650;</span></th>
+            <th data-col="6" onclick="sortTable(6,'num')">Legal <span class="sort-arrow">&#9650;</span></th>
+            <th data-col="7" onclick="sortTable(7,'num')">Sexual&nbsp;Assault <span class="sort-arrow">&#9650;</span></th>
+            <th data-col="8" onclick="sortTable(8,'num')">Minors <span class="sort-arrow">&#9650;</span></th>
+            <th data-col="9" onclick="sortTable(9,'num')">Trafficking <span class="sort-arrow">&#9650;</span></th>
+            <th data-col="10" onclick="sortTable(10,'num')">Blackmail <span class="sort-arrow">&#9650;</span></th>
+            <th data-col="11" onclick="sortTable(11,'num')">Murder/Threats <span class="sort-arrow">&#9650;</span></th>
+            <th data-col="12" onclick="sortTable(12,'num')">Financial <span class="sort-arrow">&#9650;</span></th>
+            <th data-col="13" onclick="sortTable(13,'num')">Total Red&nbsp;Flags <span class="sort-arrow">&#9650;</span></th>
           </tr>
         </thead>
         <tbody id="tableBody"></tbody>
@@ -584,7 +590,9 @@ body {
 
   <!-- FOOTER -->
   <footer class="footer">
-    Data: 62,000+ findings from 800,000+ FOIA documents &nbsp;|&nbsp; Scores validated against actual document context to filter false positives
+    <div>Concern Analysis Dashboard v11.38 &nbsp;&bull;&nbsp; Updated: February 10, 2026</div>
+    <div style="margin-top:4px">Data: 196,750+ findings from 122,830+ FOIA documents &nbsp;|&nbsp; Scores validated against actual document context</div>
+    <div style="margin-top:4px">All citations reference EFTA document numbers from the Jan 30, 2026 release &nbsp;|&nbsp; <a href="https://github.com/Jbapckfan/epstein-files" target="_blank" style="color:var(--accent,#ff3b5c);text-decoration:none">GitHub</a></div>
   </footer>
 
 </div>
@@ -728,40 +736,80 @@ var maxScore = 100;
 })();
 
 // ═══════ SECTION 5: Detail Table ═══════
-(function renderTable() {
+var _sortCol = 1;
+var _sortDir = 'desc';
+
+function getRowData(d) {
+  var rf = d.red_flags;
+  return [
+    capitalize(d.term),
+    d.concern_score,
+    d.total,
+    d.epstein_proximate,
+    d.witness_testimony,
+    d.relationship_language,
+    d.legal_context,
+    rf.sexual_assault,
+    rf.minors,
+    rf.trafficking,
+    rf.blackmail_kompromat,
+    rf.murder_threats,
+    rf.financial_crimes,
+    d.total_red_flags
+  ];
+}
+
+function renderTable() {
+  var sorted = filtered.slice().sort(function(a, b) {
+    var aVals = getRowData(a);
+    var bVals = getRowData(b);
+    var av = aVals[_sortCol], bv = bVals[_sortCol];
+    if (typeof av === 'string') {
+      var cmp = av.localeCompare(bv);
+      return _sortDir === 'asc' ? cmp : -cmp;
+    }
+    return _sortDir === 'asc' ? av - bv : bv - av;
+  });
+
   var tbody = document.getElementById('tableBody');
-  filtered.forEach(function(d) {
+  tbody.innerHTML = '';
+  sorted.forEach(function(d) {
     var tr = document.createElement('tr');
     tr.style.background = tierBg(d.concern_score);
-
-    var rf = d.red_flags;
-    var cells = [
-      capitalize(d.term),
-      d.concern_score,
-      d.total.toLocaleString(),
-      d.epstein_proximate,
-      d.witness_testimony,
-      d.relationship_language,
-      d.legal_context,
-      rf.sexual_assault,
-      rf.minors,
-      rf.trafficking,
-      rf.blackmail_kompromat,
-      rf.murder_threats,
-      rf.financial_crimes,
-      d.total_red_flags
-    ];
-
+    var cells = getRowData(d);
     cells.forEach(function(val, ci) {
       var td = document.createElement('td');
-      td.textContent = val;
+      td.textContent = (ci === 2 && typeof val === 'number') ? val.toLocaleString() : val;
       if (ci === 1 || ci === 13) td.className = 'td-highlight';
       tr.appendChild(td);
     });
-
     tbody.appendChild(tr);
   });
-})();
+}
+
+function sortTable(col, type) {
+  if (_sortCol === col) {
+    _sortDir = _sortDir === 'desc' ? 'asc' : 'desc';
+  } else {
+    _sortCol = col;
+    _sortDir = type === 'str' ? 'asc' : 'desc';
+  }
+  // Update header indicators
+  document.querySelectorAll('.detail-table thead th').forEach(function(th) {
+    th.classList.remove('sorted');
+    var arrow = th.querySelector('.sort-arrow');
+    if (arrow) arrow.innerHTML = '&#9650;';
+  });
+  var activeTh = document.querySelector('.detail-table thead th[data-col="' + col + '"]');
+  if (activeTh) {
+    activeTh.classList.add('sorted');
+    var arrow = activeTh.querySelector('.sort-arrow');
+    if (arrow) arrow.innerHTML = _sortDir === 'desc' ? '&#9660;' : '&#9650;';
+  }
+  renderTable();
+}
+
+renderTable();
 </script>
 </body>
 </html>
