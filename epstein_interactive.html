@@ -291,6 +291,28 @@ body {
   gap: 16px;
 }
 @media (max-width: 900px) { .cards-grid { grid-template-columns: 1fr; } }
+@media (max-width: 768px) {
+  .nav-btn { padding: 5px 12px; font-size: 12px; }
+  .nav-inner { gap: 8px; height: 48px; }
+  .search-box { display: none; }
+  #networkCanvas { height: 400px !important; }
+}
+@media (max-width: 480px) {
+  .hero h1 { font-size: clamp(22px, 6vw, 32px); }
+  .hero .subtitle { font-size: 13px; }
+  .hero-stats { gap: 12px; }
+  .hero-stats .stat { min-width: 70px; }
+  .hero-stats .stat-num { font-size: 20px; }
+  .hero-stats .stat-label { font-size: 10px; }
+  .nav-bar { padding: 0 12px; }
+  .nav-btn { padding: 4px 10px; font-size: 11px; }
+  .card-header { padding: 14px; }
+  .card-body { padding: 0 14px 14px; }
+  .card-title { font-size: 14px; }
+  .card-summary { font-size: 12px; }
+  #networkCanvas { height: 300px !important; }
+  .container { padding: 0 10px; }
+}
 
 /* Finding Card */
 .card {

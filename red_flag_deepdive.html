@@ -592,6 +592,30 @@ body::after{
   .hero-stats{gap:24px}
   .hero-stat .stat-num{font-size:24px}
   .excerpt-card::before{display:none}
+  .legend-box{padding:10px 14px;gap:10px}
+  .legend-item{font-size:11px}
+  .bar-score{width:40px;font-size:12px}
+  .bar-rank{font-size:10px;width:22px}
+  .threat-pills{gap:4px}
+  .threat-pill{font-size:9px;padding:2px 6px}
+  .matrix table{font-size:11px}
+}
+@media(max-width:480px){
+  .container{padding:16px 8px 50px}
+  .hero{padding:50px 0 30px}
+  .hero h1{font-size:clamp(22px,6vw,32px)}
+  .hero-stats{gap:16px}
+  .hero-stat .stat-num{font-size:20px}
+  .hero-stat .stat-label{font-size:10px}
+  .bar-name,.mini-bar-name,.threat-name,.intel-name{width:70px;font-size:10px}
+  .bar-rank{display:none}
+  .bar-score{width:34px;font-size:11px}
+  .section-header h2{font-size:clamp(16px,5vw,22px)}
+  .legend-box{flex-direction:column;gap:6px;padding:8px 12px}
+  .context-card{padding:14px}
+  .excerpt-card{padding:14px}
+  .home-btn{padding:8px 12px;font-size:12px}
+  .home-btn span{display:none}
 }
 </style>
 </head>
