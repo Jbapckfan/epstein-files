@@ -424,6 +424,18 @@ body {
   font-weight: 600;
 }
 
+.bar-row { cursor: pointer; }
+.bar-row:hover { opacity: 0.85; }
+
+.detail-table tbody tr.row-highlight {
+  background: rgba(255, 59, 92, 0.15) !important;
+  outline: 1px solid rgba(255, 59, 92, 0.4);
+}
+.detail-table tbody tr.row-highlight td:first-child {
+  color: var(--red);
+  font-weight: 700;
+}
+
 /* ── Footer ── */
 .footer {
   text-align: center;
@@ -660,6 +672,7 @@ var maxScore = 100;
     var row = document.createElement('div');
     row.className = 'bar-row';
     row.style.animationDelay = (i * 0.06) + 's';
+    row.dataset.term = d.term.toLowerCase();
 
     var pct = (d.concern_score / maxScore) * 100;
     var color = tierColor(d.concern_score);
@@ -681,6 +694,7 @@ var maxScore = 100;
       '</div>' +
       '<div class="bar-meta">' + metaHTML + '</div>';
 
+    row.addEventListener('click', function() { highlightTableRow(d.term); });
     container.appendChild(row);
   });
 })();
@@ -759,6 +773,21 @@ function getRowData(d) {
   ];
 }
 
+function highlightTableRow(term) {
+  var key = term.toLowerCase();
+  // Clear previous highlights
+  document.querySelectorAll('.detail-table tbody tr.row-highlight').forEach(function(r) {
+    r.classList.remove('row-highlight');
+  });
+  var target = document.querySelector('.detail-table tbody tr[data-term="' + key + '"]');
+  if (target) {
+    target.classList.add('row-highlight');
+    target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    // Auto-clear after 4 seconds
+    setTimeout(function() { target.classList.remove('row-highlight'); }, 4000);
+  }
+}
+
 function renderTable() {
   var sorted = filtered.slice().sort(function(a, b) {
     var aVals = getRowData(a);
@@ -775,6 +804,7 @@ function renderTable() {
   tbody.innerHTML = '';
   sorted.forEach(function(d) {
     var tr = document.createElement('tr');
+    tr.dataset.term = d.term.toLowerCase();
     tr.style.background = tierBg(d.concern_score);
     var cells = getRowData(d);
     cells.forEach(function(val, ci) {

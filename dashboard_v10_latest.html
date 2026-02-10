@@ -58,6 +58,11 @@
       box-sizing: border-box;
     }
 
+    *:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
     html {
       scroll-behavior: smooth;
     }
@@ -1594,7 +1599,7 @@
   <div class="search-overlay" id="searchOverlay">
     <div class="search-modal">
       <input type="text" id="searchInput" placeholder="Search terms, documents, findings..."
-        oninput="handleSearch(this.value)">
+        oninput="handleSearch(this.value)" aria-label="Search across all findings, terms, and documents">
       <div class="search-results" id="searchResults">
         <div class="search-empty">Type to search across all findings</div>
       </div>
@@ -1625,7 +1630,7 @@
           <span class="stat-label">Documents Scanned</span>
         </div>
         <div class="stat-pill">
-          <span class="stat-number" data-target="67" data-suffix="">0</span>
+          <span class="stat-number" id="statTerms" data-target="67" data-suffix="">0</span>
           <span class="stat-label">Terms Tracked</span>
         </div>
         <div class="stat-pill">
@@ -1637,7 +1642,7 @@
           <span class="stat-label">Pages Scanned</span>
         </div>
         <div class="stat-pill">
-          <span class="stat-number" data-target="14" data-suffix="">0</span>
+          <span class="stat-number" id="statSources" data-target="14" data-suffix="">0</span>
           <span class="stat-label">Data Sources</span>
         </div>
       </div>
@@ -1659,7 +1664,7 @@
         <p>Interactive force-directed visualization of co-occurrence relationships. Drag nodes, hover for details, click
           for deep-dive.</p>
       </div>
-      <canvas id="networkCanvas"></canvas>
+      <canvas id="networkCanvas" role="img" aria-label="Interactive network graph showing entity connections in the Epstein investigation. Drag nodes to rearrange, hover for details, click for deep-dive."></canvas>
       <div class="network-legend">
         <div class="legend-item"><span class="legend-dot" style="background:var(--red)"></span> Core</div>
         <div class="legend-item"><span class="legend-dot" style="background:var(--green)"></span> Politicians</div>
@@ -6795,6 +6800,12 @@
       renderProgressTracker();
       initScrollReveal();
       animateProgressBars();
+
+      // Auto-compute stats from data arrays
+      const elTerms = document.getElementById('statTerms');
+      const elSources = document.getElementById('statSources');
+      if (elTerms) elTerms.dataset.target = TERM_DATA.length;
+      if (elSources) elSources.dataset.target = DATASETS_DATA.length;
 
       // Start counter animation when hero is visible
       const heroObserver = new IntersectionObserver((entries) => {

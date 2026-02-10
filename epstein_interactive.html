@@ -42,6 +42,7 @@
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
+*:focus-visible { outline: 2px solid var(--red); outline-offset: 2px; }
 html { scroll-behavior: smooth; }
 body {
   background: var(--bg-primary);
@@ -671,7 +672,7 @@ footer a { color: var(--blue); text-decoration: none; }
   <button class="nav-btn sev-filter" data-sev="orange" onclick="filterBySeverity('orange',this)" style="color:var(--orange)">High</button>
   <button class="nav-btn sev-filter" data-sev="yellow" onclick="filterBySeverity('yellow',this)" style="color:var(--yellow)">Medium</button>
   <div class="search-box">
-    <input type="text" id="globalSearch" placeholder="Search all findings...">
+    <input type="text" id="globalSearch" placeholder="Search all findings..." aria-label="Search all investigation findings">
     <span class="kbd">⌘K</span>
   </div>
 </div>
@@ -688,7 +689,7 @@ footer a { color: var(--blue); text-decoration: none; }
     <span class="count-badge" style="background:var(--purple-glow);color:var(--purple);">Interactive</span>
   </div>
   <div class="network-container">
-    <canvas id="networkCanvas" height="500"></canvas>
+    <canvas id="networkCanvas" height="500" role="img" aria-label="Interactive network graph showing 51 entities and their connections in the Epstein investigation."></canvas>
     <div class="network-tooltip" id="netTooltip"></div>
     <div class="network-legend">
       <div class="legend-item"><div class="legend-dot" style="background:var(--red)"></div>Epstein/Maxwell</div>
@@ -1369,6 +1370,27 @@ nodes[1].x = cx + 60; nodes[1].y = cy - 30;
 let hoveredNode = null;
 let selectedNode = null;
 
+// Zoom/pan state
+let netScale = 1;
+let netOffX = 0, netOffY = 0;
+let isPanning = false;
+let panStartX = 0, panStartY = 0;
+let lastTouchDist = 0;
+let lastTouchMid = { x: 0, y: 0 };
+
+function screenToNet(sx, sy) {
+  return { x: (sx - netOffX) / netScale, y: (sy - netOffY) / netScale };
+}
+function getNodeAtNet(sx, sy) {
+  const p = screenToNet(sx, sy);
+  for (let i = nodes.length - 1; i >= 0; i--) {
+    const n = nodes[i];
+    const d = Math.sqrt((p.x - n.x) ** 2 + (p.y - n.y) ** 2);
+    if (d < n.r + 5) return n;
+  }
+  return null;
+}
+
 function simulate() {
   // Force simulation
   nodes.forEach(n => { n.vx *= 0.9; n.vy *= 0.9; });
@@ -1412,6 +1434,9 @@ function simulate() {
 
 function drawNetwork() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.save();
+  ctx.translate(netOffX, netOffY);
+  ctx.scale(netScale, netScale);
   // Draw edges
   edges.forEach(e => {
     const a = nodes.find(n => n.id === e.from);
@@ -1422,7 +1447,7 @@ function drawNetwork() {
     ctx.moveTo(a.x, a.y);
     ctx.lineTo(b.x, b.y);
     ctx.strokeStyle = isHighlighted ? 'rgba(255,255,255,0.2)' : 'rgba(255,255,255,0.04)';
-    ctx.lineWidth = isHighlighted ? 1.5 : 0.5;
+    ctx.lineWidth = (isHighlighted ? 1.5 : 0.5) / netScale;
     ctx.stroke();
   });
   // Draw nodes
@@ -1446,35 +1471,141 @@ function drawNetwork() {
     ctx.fillStyle = n.color + (alpha < 1 ? '30' : '');
     ctx.fill();
     ctx.strokeStyle = n.color + (alpha < 1 ? '30' : '80');
-    ctx.lineWidth = isHovered ? 2 : 1;
+    ctx.lineWidth = (isHovered ? 2 : 1) / netScale;
     ctx.stroke();
 
     // Label
-    ctx.font = `${isHovered ? '600 12px' : '400 10px'} Inter, sans-serif`;
+    const fontSize = Math.max(8, (isHovered ? 12 : 10) / netScale);
+    ctx.font = `${isHovered ? '600' : '400'} ${fontSize}px Inter, sans-serif`;
     ctx.fillStyle = alpha < 1 ? 'rgba(255,255,255,0.15)' : 'rgba(255,255,255,0.8)';
     ctx.textAlign = 'center';
     ctx.fillText(n.label, n.x, n.y + n.r + 14);
   });
+  ctx.restore();
+
+  // Zoom level indicator
+  if (netScale !== 1) {
+    ctx.fillStyle = 'rgba(255,255,255,0.3)';
+    ctx.font = '11px Inter, sans-serif';
+    ctx.textAlign = 'right';
+    ctx.fillText(Math.round(netScale * 100) + '%', canvas.width - 12, canvas.height - 10);
+  }
 }
 
 canvas.addEventListener('mousemove', e => {
   const rect = canvas.getBoundingClientRect();
   const mx = e.clientX - rect.left;
   const my = e.clientY - rect.top;
-  hoveredNode = null;
-  nodes.forEach(n => {
-    const d = Math.sqrt((mx - n.x) ** 2 + (my - n.y) ** 2);
-    if (d < n.r + 5) hoveredNode = n;
-  });
-  canvas.style.cursor = hoveredNode ? 'pointer' : 'default';
+  if (isPanning) {
+    netOffX += mx - panStartX;
+    netOffY += my - panStartY;
+    panStartX = mx; panStartY = my;
+    canvas.style.cursor = 'grabbing';
+    return;
+  }
+  hoveredNode = getNodeAtNet(mx, my);
+  canvas.style.cursor = hoveredNode ? 'pointer' : 'grab';
   if (hoveredNode) {
     tooltip.style.display = 'block';
-    tooltip.style.left = (e.clientX - rect.left + 16) + 'px';
-    tooltip.style.top = (e.clientY - rect.top - 10) + 'px';
+    tooltip.style.left = (mx + 16) + 'px';
+    tooltip.style.top = (my - 10) + 'px';
     const conns = edges.filter(ed => ed.from === hoveredNode.id || ed.to === hoveredNode.id).length;
     tooltip.textContent = `${hoveredNode.label} — ${conns} connections`;
   } else {
     tooltip.style.display = 'none';
+  }
+});
+
+// Pan: mousedown on empty space
+canvas.addEventListener('mousedown', e => {
+  const rect = canvas.getBoundingClientRect();
+  const mx = e.clientX - rect.left;
+  const my = e.clientY - rect.top;
+  if (!getNodeAtNet(mx, my)) {
+    isPanning = true;
+    panStartX = mx; panStartY = my;
+    canvas.style.cursor = 'grabbing';
+  }
+});
+window.addEventListener('mouseup', () => { isPanning = false; });
+
+// Zoom: mouse wheel
+canvas.addEventListener('wheel', e => {
+  e.preventDefault();
+  const rect = canvas.getBoundingClientRect();
+  const mx = e.clientX - rect.left;
+  const my = e.clientY - rect.top;
+  const delta = e.deltaY > 0 ? 0.9 : 1.1;
+  const newScale = Math.max(0.3, Math.min(4, netScale * delta));
+  netOffX = mx - (mx - netOffX) * (newScale / netScale);
+  netOffY = my - (my - netOffY) * (newScale / netScale);
+  netScale = newScale;
+}, { passive: false });
+
+// Touch: pinch-zoom + single-finger pan
+canvas.addEventListener('touchstart', e => {
+  if (e.touches.length === 1) {
+    const rect = canvas.getBoundingClientRect();
+    const sx = e.touches[0].clientX - rect.left;
+    const sy = e.touches[0].clientY - rect.top;
+    if (!getNodeAtNet(sx, sy)) {
+      isPanning = true;
+      panStartX = sx; panStartY = sy;
+    }
+  }
+  if (e.touches.length === 2) {
+    e.preventDefault();
+    lastTouchDist = Math.hypot(
+      e.touches[0].clientX - e.touches[1].clientX,
+      e.touches[0].clientY - e.touches[1].clientY
+    );
+    const rect = canvas.getBoundingClientRect();
+    lastTouchMid = {
+      x: (e.touches[0].clientX + e.touches[1].clientX) / 2 - rect.left,
+      y: (e.touches[0].clientY + e.touches[1].clientY) / 2 - rect.top
+    };
+  }
+}, { passive: false });
+
+canvas.addEventListener('touchmove', e => {
+  if (e.touches.length === 1 && isPanning) {
+    e.preventDefault();
+    const rect = canvas.getBoundingClientRect();
+    const sx = e.touches[0].clientX - rect.left;
+    const sy = e.touches[0].clientY - rect.top;
+    netOffX += sx - panStartX;
+    netOffY += sy - panStartY;
+    panStartX = sx; panStartY = sy;
+  }
+  if (e.touches.length === 2) {
+    e.preventDefault();
+    const dist = Math.hypot(
+      e.touches[0].clientX - e.touches[1].clientX,
+      e.touches[0].clientY - e.touches[1].clientY
+    );
+    const rect = canvas.getBoundingClientRect();
+    const mid = {
+      x: (e.touches[0].clientX + e.touches[1].clientX) / 2 - rect.left,
+      y: (e.touches[0].clientY + e.touches[1].clientY) / 2 - rect.top
+    };
+    const delta = dist / lastTouchDist;
+    const newScale = Math.max(0.3, Math.min(4, netScale * delta));
+    netOffX = mid.x - (mid.x - netOffX) * (newScale / netScale);
+    netOffY = mid.y - (mid.y - netOffY) * (newScale / netScale);
+    netScale = newScale;
+    netOffX += mid.x - lastTouchMid.x;
+    netOffY += mid.y - lastTouchMid.y;
+    lastTouchDist = dist;
+    lastTouchMid = mid;
+  }
+}, { passive: false });
+
+canvas.addEventListener('touchend', () => { isPanning = false; });
+
+// Double-click to reset zoom
+canvas.addEventListener('dblclick', e => {
+  if (!getNodeAtNet(e.clientX - canvas.getBoundingClientRect().left, e.clientY - canvas.getBoundingClientRect().top)) {
+    netScale = 1; netOffX = 0; netOffY = 0;
   }
 });
 
