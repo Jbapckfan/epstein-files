@@ -284,6 +284,24 @@
       flex-direction: column;
     }
   }
+
+  @media print {
+    body { background: #fff !important; color: #000 !important; padding: 0; }
+    .shell { border: none; box-shadow: none; background: #fff; backdrop-filter: none; padding: 20px 0; }
+    .kicker { color: #333; }
+    h1, .lede { color: #000; }
+    .actions { display: none; }
+    .card { border-color: #ccc; background: #fff; color: #000; }
+    .card p { color: #444; }
+    .kpi-box { border-color: #ccc; background: #f9f9f9; }
+    .kpi-num { color: #000 !important; }
+    .kpi-label, .severity-legend { color: #444; }
+    .donut-wrap canvas { display: none; }
+    .donut-labels { color: #000; }
+    .version-card { border-color: #ccc; background: #f9f9f9; }
+    .version-card .vc-label { color: #666; }
+    .version-card .vc-val { color: #000 !important; }
+  }
 </style>
 </head>
 <body>

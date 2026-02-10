@@ -1559,6 +1559,29 @@
     }
     .scroll-top-btn.visible { opacity: 1; pointer-events: auto; transform: translateY(0); }
     .scroll-top-btn:hover { background: rgba(255,59,92,0.2); border-color: rgba(255,59,92,0.4); color: var(--accent); }
+
+    @media print {
+      body { background: #fff !important; color: #000 !important; }
+      .hero { background: none !important; }
+      .hero h1, .hero .subtitle, .hero .meta-line { color: #000; }
+      .stat-pill { border-color: #ccc; background: #f9f9f9; }
+      .stat-pill .stat-number, .stat-pill .stat-label { color: #000; }
+      nav, .scroll-top-btn, .bar-toggle, .tl-era-filters, #searchInput { display: none !important; }
+      .findings-pagination { display: none; }
+      .section { break-inside: avoid; }
+      .finding-card { border-color: #ccc; background: #fff; color: #000; }
+      .finding-card .finding-title { color: #000; }
+      .finding-card .finding-preview { color: #333; }
+      .bar-fill { animation: none !important; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+      .tl-card { border-color: #ccc; background: #fff; color: #000; }
+      .tl-card .tl-title { color: #000; }
+      .tl-card .tl-desc { color: #333; }
+      #networkCanvas { display: none; }
+      .ds-card { border-color: #ccc; background: #fff; color: #000; }
+      .progress-bar-fill { print-color-adjust: exact; -webkit-print-color-adjust: exact; animation: none !important; }
+      .footer { display: none; }
+      .animate { animation: none !important; opacity: 1 !important; }
+    }
   </style>
 </head>
 
@@ -5868,6 +5891,7 @@
     });
 
     function handleSearch(query) {
+      _updateURLParams();
       const results = document.getElementById('searchResults');
       if (!query.trim()) {
         results.innerHTML = '<div class="search-empty">Type to search across all findings</div>';
@@ -5998,6 +6022,16 @@
       btn.classList.add('active');
       _findingsPage = 1;
       renderFindings(filter);
+      _updateURLParams();
+    }
+
+    function _updateURLParams() {
+      const params = new URLSearchParams();
+      if (_findingsFilter && _findingsFilter !== 'all') params.set('severity', _findingsFilter);
+      const searchEl = document.getElementById('searchInput');
+      if (searchEl && searchEl.value.trim()) params.set('search', searchEl.value.trim());
+      const qs = params.toString();
+      history.replaceState(null, '', qs ? '?' + qs : location.pathname);
     }
 
     /* ============================================================
@@ -6800,6 +6834,19 @@
       renderProgressTracker();
       initScrollReveal();
       animateProgressBars();
+
+      // Apply URL params on load
+      const urlParams = new URLSearchParams(location.search);
+      const paramSev = urlParams.get('severity');
+      if (paramSev && ['critical','high','medium'].includes(paramSev)) {
+        const btn = document.querySelector(`.filter-btn[data-filter="${paramSev}"]`);
+        if (btn) filterFindings(paramSev, btn);
+      }
+      const paramSearch = urlParams.get('search');
+      if (paramSearch) {
+        const searchEl = document.getElementById('searchInput');
+        if (searchEl) { searchEl.value = paramSearch; handleSearch(paramSearch); }
+      }
 
       // Auto-compute stats from data arrays
       const elTerms = document.getElementById('statTerms');

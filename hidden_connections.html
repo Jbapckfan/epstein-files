@@ -240,6 +240,20 @@ footer{
 }
 footer a{color:var(--red);text-decoration:none}
 footer a:hover{text-decoration:underline}
+
+@media print {
+  body { background: #fff !important; color: #000 !important; }
+  .bg-grid, .bg-gradient { display: none; }
+  .glass-card { background: #fff; border-color: #ccc; backdrop-filter: none; }
+  .glass-card h2 { color: #000; }
+  .glass-card p { color: #444; }
+  #force-canvas { display: none; }
+  #force-canvas + p::after { content: '[Network graph — view in browser]'; display: block; color: #666; font-style: italic; }
+  .heatmap-table th, .heatmap-table td { color: #000; border: 1px solid #ccc; }
+  .heatmap-table td { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+  .controls, .btn-group { display: none; }
+  footer { display: none; }
+}
 </style>
 </head>
 <body>

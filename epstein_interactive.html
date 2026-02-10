@@ -462,12 +462,33 @@ body {
   gap: 6px;
   font-size: 11px;
   color: var(--text-dim);
+  cursor: pointer;
+  transition: opacity 0.2s;
+  user-select: none;
 }
+.legend-item:hover { opacity: 0.8; }
+.legend-item.dimmed { opacity: 0.3; }
 .legend-dot {
   width: 10px;
   height: 10px;
   border-radius: 50%;
 }
+.net-reset-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  padding: 6px 14px;
+  background: rgba(15,17,23,0.8);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 8px;
+  color: var(--text-dim);
+  font: 600 11px Inter, sans-serif;
+  cursor: pointer;
+  transition: all 0.2s;
+  z-index: 5;
+  backdrop-filter: blur(6px);
+}
+.net-reset-btn:hover { color: var(--red); border-color: rgba(255,59,92,0.3); }
 .network-tooltip {
   display: none;
   position: absolute;
@@ -625,6 +646,30 @@ footer a { color: var(--blue); text-decoration: none; }
 .animate.d3 { animation-delay: 0.3s; }
 .animate.d4 { animation-delay: 0.4s; }
 .animate.d5 { animation-delay: 0.5s; }
+
+@media print {
+  body { background: #fff !important; color: #000 !important; }
+  #homeNav, .severity-filters, .scroll-top-btn { display: none !important; }
+  .hero { background: none !important; }
+  .hero h1, .hero p { color: #000; }
+  .hero-badge { color: #333; border-color: #999; }
+  .hero-badge .pulse { display: none; }
+  .stat-pill { border-color: #ccc; background: #f9f9f9; }
+  .stat-pill .num, .stat-pill .lbl { color: #000; }
+  .nav-bar { display: none; }
+  .network-container canvas { display: none; }
+  .network-container::after { content: '[Network graph — view in browser]'; display: block; color: #666; font-style: italic; padding: 20px; }
+  .section-block { break-inside: avoid; }
+  .card { border-color: #ccc; background: #fff; color: #000; }
+  .card h3 { color: #000; }
+  .card-body p { color: #333; }
+  .cite-tag { border-color: #999; color: #333; background: #f0f0f0; }
+  table { border-collapse: collapse; }
+  table th, table td { border: 1px solid #ccc; color: #000; background: #fff !important; }
+  table th { background: #eee !important; }
+  .footer { display: none; }
+  .animate { animation: none !important; opacity: 1 !important; }
+}
 </style>
 </head>
 <body>
@@ -691,13 +736,14 @@ footer a { color: var(--blue); text-decoration: none; }
   <div class="network-container">
     <canvas id="networkCanvas" height="500" role="img" aria-label="Interactive network graph showing 51 entities and their connections in the Epstein investigation."></canvas>
     <div class="network-tooltip" id="netTooltip"></div>
+    <button class="net-reset-btn" id="netResetBtn" title="Reset zoom and pan (R)">&#8634; Reset View</button>
     <div class="network-legend">
-      <div class="legend-item"><div class="legend-dot" style="background:var(--red)"></div>Epstein/Maxwell</div>
-      <div class="legend-item"><div class="legend-dot" style="background:var(--yellow)"></div>Named Abusers</div>
-      <div class="legend-item"><div class="legend-dot" style="background:var(--blue)"></div>Financial</div>
-      <div class="legend-item"><div class="legend-dot" style="background:var(--green)"></div>Political</div>
-      <div class="legend-item"><div class="legend-dot" style="background:var(--purple)"></div>Intelligence</div>
-      <div class="legend-item"><div class="legend-dot" style="background:var(--orange)"></div>Science/Tech</div>
+      <div class="legend-item" data-group="core" onclick="toggleGroup('core',this)"><div class="legend-dot" style="background:var(--red)"></div>Epstein/Maxwell</div>
+      <div class="legend-item" data-group="abuser" onclick="toggleGroup('abuser',this)"><div class="legend-dot" style="background:var(--yellow)"></div>Named Abusers</div>
+      <div class="legend-item" data-group="financial" onclick="toggleGroup('financial',this)"><div class="legend-dot" style="background:var(--blue)"></div>Financial</div>
+      <div class="legend-item" data-group="political" onclick="toggleGroup('political',this)"><div class="legend-dot" style="background:var(--green)"></div>Political</div>
+      <div class="legend-item" data-group="intel" onclick="toggleGroup('intel',this)"><div class="legend-dot" style="background:var(--purple)"></div>Intelligence</div>
+      <div class="legend-item" data-group="science" onclick="toggleGroup('science',this)"><div class="legend-dot" style="background:var(--orange)"></div>Science/Tech</div>
     </div>
   </div>
 </div>
@@ -1443,10 +1489,11 @@ function drawNetwork() {
     const b = nodes.find(n => n.id === e.to);
     if (!a || !b) return;
     const isHighlighted = hoveredNode && (hoveredNode.id === e.from || hoveredNode.id === e.to);
+    const edgeDimmed = hiddenGroups.has(a.group) || hiddenGroups.has(b.group);
     ctx.beginPath();
     ctx.moveTo(a.x, a.y);
     ctx.lineTo(b.x, b.y);
-    ctx.strokeStyle = isHighlighted ? 'rgba(255,255,255,0.2)' : 'rgba(255,255,255,0.04)';
+    ctx.strokeStyle = edgeDimmed ? 'rgba(255,255,255,0.01)' : isHighlighted ? 'rgba(255,255,255,0.2)' : 'rgba(255,255,255,0.04)';
     ctx.lineWidth = (isHighlighted ? 1.5 : 0.5) / netScale;
     ctx.stroke();
   });
@@ -1456,7 +1503,8 @@ function drawNetwork() {
     const isConnected = hoveredNode && edges.some(e =>
       (e.from === hoveredNode.id && e.to === n.id) || (e.to === hoveredNode.id && e.from === n.id)
     );
-    const alpha = hoveredNode ? (isHovered || isConnected ? 1 : 0.15) : 0.85;
+    const groupHidden = hiddenGroups.has(n.group);
+    const alpha = groupHidden ? 0.08 : hoveredNode ? (isHovered || isConnected ? 1 : 0.15) : 0.85;
 
     // Glow
     if (isHovered) {
@@ -1616,6 +1664,32 @@ function animate() {
 }
 animate();
 
+// ======= LEGEND TOGGLE & RESET =======
+const hiddenGroups = new Set();
+
+function toggleGroup(group, el) {
+  if (hiddenGroups.has(group)) {
+    hiddenGroups.delete(group);
+    el.classList.remove('dimmed');
+  } else {
+    hiddenGroups.add(group);
+    el.classList.add('dimmed');
+  }
+}
+
+function resetNetView() {
+  netScale = 1; netOffX = 0; netOffY = 0;
+  hiddenGroups.clear();
+  document.querySelectorAll('.legend-item.dimmed').forEach(el => el.classList.remove('dimmed'));
+}
+
+document.getElementById('netResetBtn').addEventListener('click', resetNetView);
+document.addEventListener('keydown', e => {
+  if (e.key === 'r' && !e.ctrlKey && !e.metaKey && document.activeElement.tagName !== 'INPUT') {
+    resetNetView();
+  }
+});
+
 // ======= NAV =======
 document.querySelectorAll('.nav-btn').forEach(btn => {
   btn.onclick = () => {
@@ -1635,6 +1709,7 @@ document.addEventListener('keydown', e => {
 
 globalSearch.addEventListener('input', function() {
   const q = this.value.trim().toLowerCase();
+  if (typeof _updateInteractiveURL === 'function') _updateInteractiveURL();
   if (!q || q.length < 2) {
     document.querySelectorAll('.section-block').forEach(s => s.style.display = '');
     document.querySelectorAll('mark').forEach(m => m.outerHTML = m.textContent);
@@ -1689,7 +1764,32 @@ function filterBySeverity(sev, btn) {
       card.style.display = card.classList.contains('c-' + sev) ? '' : 'none';
     }
   });
+  _updateInteractiveURL();
 }
+
+function _updateInteractiveURL() {
+  const params = new URLSearchParams();
+  const activeFilter = document.querySelector('.sev-filter.active');
+  if (activeFilter && activeFilter.dataset.sev !== 'all') params.set('severity', activeFilter.dataset.sev);
+  if (globalSearch.value.trim()) params.set('search', globalSearch.value.trim());
+  const qs = params.toString();
+  history.replaceState(null, '', qs ? '?' + qs : location.pathname);
+}
+
+// URL params on load
+(function() {
+  const params = new URLSearchParams(location.search);
+  const sev = params.get('severity');
+  if (sev) {
+    const btn = document.querySelector(`.sev-filter[data-sev="${sev}"]`);
+    if (btn) filterBySeverity(sev, btn);
+  }
+  const search = params.get('search');
+  if (search) {
+    globalSearch.value = search;
+    globalSearch.dispatchEvent(new Event('input'));
+  }
+})();
 </script>
 </body>
 </html>

@@ -504,6 +504,26 @@ body {
 
   .bar-name, .redflag-name { font-size: 0.72rem; }
 }
+
+@media print {
+  body { background: #fff !important; color: #000 !important; }
+  .container { padding: 10px 0; }
+  .header h1, .header .subtitle { color: #000; }
+  .header .subtitle { color: #444; }
+  .section-title { color: #000; border-color: #ccc; }
+  .bar-row { animation: none !important; cursor: default; }
+  .bar-name { color: #000; }
+  .bar-fill { animation: none !important; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+  .bar-score { color: #000; }
+  .bar-meta .pill { border-color: #999; color: #333; background: #f0f0f0; }
+  .redflag-row { animation: none !important; }
+  .redflag-name { color: #000; }
+  .detail-table { font-size: 9px; }
+  .detail-table thead th { background: #eee !important; color: #000; border-color: #ccc; }
+  .detail-table tbody td { color: #000; border-color: #ddd; }
+  .detail-table tbody tr { background: #fff !important; }
+  .footer { display: none; }
+}
 </style>
 </head>
 <body>
@@ -662,8 +682,8 @@ function capitalize(str) {
 
 // ── Filter & Sort ──
 var filtered = DATA.filter(function(d) { return d.concern_score > 0; })
-  .sort(function(a, b) { return b.concern_score - a.concern_score; });
-var maxScore = 100;
+  .sort(function(a, b) { return b.concern_score - a.concern_score || b.total_red_flags - a.total_red_flags; });
+var maxScore = Math.max.apply(null, filtered.map(function(d) { return d.concern_score; })) || 100;
 
 // ═══════ SECTION 1: Main Chart ═══════
 (function renderMainChart() {
@@ -797,7 +817,9 @@ function renderTable() {
       var cmp = av.localeCompare(bv);
       return _sortDir === 'asc' ? cmp : -cmp;
     }
-    return _sortDir === 'asc' ? av - bv : bv - av;
+    var primary = _sortDir === 'asc' ? av - bv : bv - av;
+    if (primary !== 0) return primary;
+    return b.total_red_flags - a.total_red_flags;
   });
 
   var tbody = document.getElementById('tableBody');

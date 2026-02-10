@@ -617,6 +617,23 @@ body::after{
   .home-btn{padding:8px 12px;font-size:12px}
   .home-btn span{display:none}
 }
+
+@media print {
+  body { background: #fff !important; color: #000 !important; }
+  .home-btn, .scroll-top-btn { display: none !important; }
+  .hero { background: none !important; }
+  .hero h1, .hero .subtitle { color: #000; }
+  .hero .lead { color: #444; }
+  section { break-inside: avoid; }
+  .comp-bar-fill, .threat-fill, .matrix-cell { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+  .comp-bar-fill { animation: none !important; }
+  .stat-value { color: #000 !important; }
+  .stat-label { color: #444; }
+  .context-card, .excerpt-card { border-color: #ccc; background: #f9f9f9; color: #000; }
+  .context-card p, .excerpt-card p { color: #333; }
+  .section-title { color: #000; }
+  .footer { display: none; }
+}
 </style>
 </head>
 <body>
