@@ -1447,6 +1447,41 @@
       opacity: 1;
       transform: translateY(0);
     }
+
+    /* === TIMELINE ERA GROUPING === */
+    .tl-era-filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; }
+    .tl-era-btn { background: rgba(255,255,255,0.06); border: 1px solid rgba(130,163,199,0.22); color: var(--muted); padding: 6px 14px; border-radius: 999px; cursor: pointer; font-size: 13px; transition: all 0.2s; }
+    .tl-era-btn:hover, .tl-era-btn.active { background: rgba(77,208,225,0.15); border-color: var(--teal); color: var(--teal); }
+    .tl-group-header { display: flex; align-items: center; gap: 10px; padding: 14px 0 8px; cursor: pointer; user-select: none; border-bottom: 1px solid rgba(130,163,199,0.12); margin-bottom: 10px; }
+    .tl-group-header h3 { margin: 0; font-size: 16px; color: var(--teal); }
+    .tl-group-count { background: rgba(77,208,225,0.15); color: var(--teal); font-size: 11px; padding: 2px 8px; border-radius: 999px; font-weight: 700; }
+    .tl-group-toggle { color: var(--muted); font-size: 12px; margin-left: auto; transition: transform 0.2s; }
+    .tl-group.collapsed .tl-group-toggle { transform: rotate(-90deg); }
+    .tl-group.collapsed .tl-group-items { display: none; }
+    .tl-source { font-size: 11px; color: var(--muted); margin-top: 4px; font-style: italic; }
+    .tl-category { display: inline-block; font-size: 10px; padding: 1px 7px; border-radius: 999px; background: rgba(255,183,77,0.12); color: var(--amber); margin-left: 8px; vertical-align: middle; }
+    .tl-show-more { background: rgba(77,208,225,0.1); border: 1px dashed rgba(77,208,225,0.3); color: var(--teal); padding: 8px 16px; border-radius: 8px; cursor: pointer; font-size: 13px; margin-top: 8px; width: 100%; text-align: center; }
+    .tl-show-more:hover { background: rgba(77,208,225,0.2); }
+
+    /* === FINDINGS PAGINATION === */
+    .findings-pagination { display: flex; align-items: center; justify-content: center; gap: 12px; margin-top: 16px; padding: 12px 0; }
+    .findings-page-btn { background: rgba(255,255,255,0.06); border: 1px solid rgba(130,163,199,0.22); color: var(--muted); padding: 8px 16px; border-radius: 8px; cursor: pointer; font-size: 13px; transition: all 0.2s; }
+    .findings-page-btn:hover:not(:disabled) { background: rgba(77,208,225,0.15); color: var(--teal); border-color: var(--teal); }
+    .findings-page-btn:disabled { opacity: 0.3; cursor: default; }
+    .findings-page-info { color: var(--muted); font-size: 13px; }
+    .findings-showing { color: var(--muted); font-size: 12px; text-align: center; margin-top: 8px; }
+    .filter-btn .count { font-size: 11px; opacity: 0.7; margin-left: 4px; }
+    .tag-pill { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 999px; background: rgba(77,208,225,0.1); color: var(--teal); border: 1px solid rgba(77,208,225,0.2); margin: 2px 2px 2px 0; }
+    .trump-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 999px; background: rgba(255,93,122,0.15); color: var(--rose); border: 1px solid rgba(255,93,122,0.25); margin-left: 6px; font-weight: 700; }
+
+    /* === BAR CHART TOGGLE === */
+    .bar-toggle { display: flex; gap: 8px; margin-bottom: 14px; }
+    .bar-toggle-btn { background: rgba(255,255,255,0.06); border: 1px solid rgba(130,163,199,0.22); color: var(--muted); padding: 6px 14px; border-radius: 999px; cursor: pointer; font-size: 13px; transition: all 0.2s; }
+    .bar-toggle-btn:hover, .bar-toggle-btn.active { background: rgba(77,208,225,0.15); border-color: var(--teal); color: var(--teal); }
+    .bar-row { position: relative; }
+    .bar-tooltip { display: none; position: absolute; right: 8px; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.85); color: #fff; padding: 3px 8px; border-radius: 4px; font-size: 11px; pointer-events: none; z-index: 2; }
+    .bar-row:hover .bar-tooltip { display: block; }
+    .bar-row:hover .bar-fill { filter: brightness(1.3); }
   </style>
 </head>
 
@@ -2231,16 +2266,18 @@
       <p>Highest-severity document matches ranked by investigative significance</p>
     </div>
 
-    <div class="findings-controls reveal">
-      <button class="filter-btn active" onclick="filterFindings('all', this)">All</button>
-      <button class="filter-btn" onclick="filterFindings('critical', this)">Critical (15+)</button>
-      <button class="filter-btn" onclick="filterFindings('high', this)">High (10-14)</button>
-      <button class="filter-btn" onclick="filterFindings('medium', this)">Medium (5-9)</button>
+    <div class="findings-controls reveal" id="findingsControls">
+      <button class="filter-btn active" data-filter="all" onclick="filterFindings('all', this)">All <span class="count"></span></button>
+      <button class="filter-btn" data-filter="critical" onclick="filterFindings('critical', this)">Critical <span class="count"></span></button>
+      <button class="filter-btn" data-filter="high" onclick="filterFindings('high', this)">High <span class="count"></span></button>
+      <button class="filter-btn" data-filter="medium" onclick="filterFindings('medium', this)">Medium <span class="count"></span></button>
     </div>
 
     <div class="findings-list" id="findingsList">
       <!-- Populated by JS -->
     </div>
+    <div class="findings-pagination" id="findingsPagination"></div>
+    <div class="findings-showing" id="findingsShowing"></div>
   </section>
 
   <!-- TERM FREQUENCY -->
@@ -2250,6 +2287,10 @@
       <h2>Term Occurrence Counts</h2>
       <p>Final composite scores (v4) across all processed datasets (186,027 total findings from DS1-8 + DS9 + DS10 +
         local batch + original corpus)</p>
+    </div>
+    <div class="bar-toggle reveal">
+      <button class="bar-toggle-btn active" onclick="renderBarChart(15, this)">Top 15</button>
+      <button class="bar-toggle-btn" onclick="renderBarChart(0, this)">All Terms</button>
     </div>
     <div class="bar-chart-container reveal" id="barChart">
       <!-- Populated by JS -->
@@ -2262,6 +2303,14 @@
       <div class="section-tag">Chronology</div>
       <h2>Key Events Timeline</h2>
       <p>Critical dates in the Epstein investigation and associated events</p>
+    </div>
+    <div class="tl-era-filters reveal" id="tlEraFilters">
+      <button class="tl-era-btn active" onclick="filterTimeline('all', this)">All Eras</button>
+      <button class="tl-era-btn" onclick="filterTimeline('1953-2006', this)">1953–2006</button>
+      <button class="tl-era-btn" onclick="filterTimeline('2007-2018', this)">2007–2018</button>
+      <button class="tl-era-btn" onclick="filterTimeline('2019', this)">2019</button>
+      <button class="tl-era-btn" onclick="filterTimeline('2020-2024', this)">2020–2024</button>
+      <button class="tl-era-btn" onclick="filterTimeline('2025-2026', this)">2025–2026</button>
     </div>
     <div class="timeline-container reveal" id="timelineContainer">
       <!-- Populated by JS -->
@@ -5778,35 +5827,93 @@
        RENDER: FINDINGS
        ============================================================ */
 
-    function renderFindings(filter) {
-      const list = document.getElementById('findingsList');
-      let data = FINDINGS_DATA;
-      if (filter === 'critical') data = data.filter(f => f.severity >= 15);
-      else if (filter === 'high') data = data.filter(f => f.severity >= 10 && f.severity < 15);
-      else if (filter === 'medium') data = data.filter(f => f.severity >= 5 && f.severity < 10);
+    let _findingsPage = 1;
+    const _findingsPerPage = 25;
+    let _findingsFilter = 'all';
 
-      list.innerHTML = data.map(f => {
-        const sevClass = f.severity >= 15 ? 'sev-critical' : f.severity >= 10 ? 'sev-high' : 'sev-medium';
+    function _normSev(s) {
+      if (typeof s === 'number') return s;
+      const map = { critical: 18, high: 12, medium: 7, moderate: 7, low: 3 };
+      return map[String(s).toLowerCase()] || 5;
+    }
+
+    function _getFilteredFindings(filter) {
+      const data = FINDINGS_DATA.map(f => ({ ...f, _sev: _normSev(f.severity) }));
+      if (filter === 'critical') return data.filter(f => f._sev >= 15);
+      if (filter === 'high') return data.filter(f => f._sev >= 10 && f._sev < 15);
+      if (filter === 'medium') return data.filter(f => f._sev >= 5 && f._sev < 10);
+      return data;
+    }
+
+    function _updateFindingsCounts() {
+      const all = FINDINGS_DATA.map(f => ({ _sev: _normSev(f.severity) }));
+      const counts = {
+        all: all.length,
+        critical: all.filter(f => f._sev >= 15).length,
+        high: all.filter(f => f._sev >= 10 && f._sev < 15).length,
+        medium: all.filter(f => f._sev >= 5 && f._sev < 10).length
+      };
+      document.querySelectorAll('.filter-btn[data-filter]').forEach(btn => {
+        const f = btn.dataset.filter;
+        const span = btn.querySelector('.count');
+        if (span && counts[f] !== undefined) span.textContent = '(' + counts[f] + ')';
+      });
+    }
+
+    function renderFindings(filter, page) {
+      if (filter !== undefined) _findingsFilter = filter;
+      if (page !== undefined) _findingsPage = page;
+      const data = _getFilteredFindings(_findingsFilter);
+      const total = data.length;
+      const totalPages = Math.max(1, Math.ceil(total / _findingsPerPage));
+      if (_findingsPage > totalPages) _findingsPage = totalPages;
+      const start = (_findingsPage - 1) * _findingsPerPage;
+      const end = Math.min(start + _findingsPerPage, total);
+      const pageData = data.slice(start, end);
+
+      const list = document.getElementById('findingsList');
+      list.innerHTML = pageData.map(f => {
+        const sev = f._sev;
+        const sevClass = sev >= 15 ? 'sev-critical' : sev >= 10 ? 'sev-high' : 'sev-medium';
+        const heading = f.term || f.title || '';
+        const cite = f.citation || f.id || '';
+        const preview = f.preview || f.summary || '';
+        const body = f.context || f.summary || f.description || '';
+        const tagsHtml = (f.tags && f.tags.length) ? '<div style="margin-top:6px">' + f.tags.map(t => `<span class="tag-pill">${t}</span>`).join('') + '</div>' : '';
+        const trumpHtml = f.trumpAdmin ? '<span class="trump-badge">Trump Admin</span>' : '';
         return `<div class="finding-card" onclick="this.classList.toggle('expanded')">
       <div class="fc-header">
-        <div class="severity-badge ${sevClass}">${f.severity}</div>
+        <div class="severity-badge ${sevClass}">${sev}</div>
         <div class="fc-info">
-          <div class="fc-term">${f.term}</div>
-          <div class="fc-citation">${f.citation}</div>
+          <div class="fc-term">${heading}${trumpHtml}</div>
+          <div class="fc-citation">${cite}</div>
         </div>
-        <div class="fc-preview">${f.preview}</div>
+        <div class="fc-preview">${preview}</div>
         <div class="fc-expand-icon">&#9660;</div>
       </div>
       <div class="fc-body">
-        <div class="fc-context">${f.context}</div>
+        <div class="fc-context">${body}</div>${tagsHtml}
       </div>
     </div>`;
       }).join('');
+
+      // Pagination controls
+      const pag = document.getElementById('findingsPagination');
+      if (pag) {
+        pag.innerHTML = `<button class="findings-page-btn" onclick="renderFindings(undefined, ${_findingsPage - 1})" ${_findingsPage <= 1 ? 'disabled' : ''}>&laquo; Prev</button>
+          <span class="findings-page-info">Page ${_findingsPage} of ${totalPages}</span>
+          <button class="findings-page-btn" onclick="renderFindings(undefined, ${_findingsPage + 1})" ${_findingsPage >= totalPages ? 'disabled' : ''}>Next &raquo;</button>`;
+      }
+      const showing = document.getElementById('findingsShowing');
+      if (showing) showing.textContent = `Showing ${start + 1}–${end} of ${total}`;
+
+      _updateFindingsCounts();
     }
 
     function filterFindings(filter, btn) {
       document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
+      _findingsPage = 1;
       renderFindings(filter);
     }
 
@@ -5814,11 +5921,18 @@
        RENDER: BAR CHART
        ============================================================ */
 
-    function renderBarChart() {
+    function renderBarChart(limit, btn) {
+      if (btn) {
+        document.querySelectorAll('.bar-toggle-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      }
       const container = document.getElementById('barChart');
+      const data = limit ? TERM_DATA.slice(0, limit) : TERM_DATA;
       const maxCount = TERM_DATA[0].count;
-      container.innerHTML = TERM_DATA.map(t => {
+      const totalCount = TERM_DATA.reduce((s, t) => s + t.count, 0);
+      container.innerHTML = data.map(t => {
         const pct = Math.max((t.count / maxCount) * 100, 2);
+        const pctTotal = ((t.count / totalCount) * 100).toFixed(1);
         return `<div class="bar-row">
       <div class="bar-label">${t.term}</div>
       <div class="bar-track">
@@ -5826,35 +5940,115 @@
           <span class="bar-value">${t.count.toLocaleString()}</span>
         </div>
       </div>
+      <div class="bar-tooltip">${pctTotal}% of total</div>
     </div>`;
       }).join('');
 
-      // Animate bars on scroll
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(e => {
-          if (e.isIntersecting) {
-            container.querySelectorAll('.bar-fill').forEach((bar, i) => {
-              setTimeout(() => { bar.style.width = bar.dataset.width; }, i * 40);
-            });
-          }
+      // Animate bars
+      requestAnimationFrame(() => {
+        container.querySelectorAll('.bar-fill').forEach((bar, i) => {
+          setTimeout(() => { bar.style.width = bar.dataset.width; }, i * 40);
         });
-      }, { threshold: 0.1 });
-      observer.observe(container);
+      });
     }
 
     /* ============================================================
        RENDER: TIMELINE
        ============================================================ */
 
-    function renderTimeline() {
+    let _tlActiveEra = 'all';
+
+    function _getEra(dateStr) {
+      const y = parseInt(dateStr);
+      if (y <= 2006) return '1953-2006';
+      if (y <= 2018) return '2007-2018';
+      if (y === 2019 || dateStr.startsWith('2019')) return '2019';
+      if (y <= 2024) return '2020-2024';
+      return '2025-2026';
+    }
+
+    const _eraLabels = {
+      '1953-2006': 'Origins & Early Investigation (1953–2006)',
+      '2007-2018': 'NPA Era & Civil Litigation (2007–2018)',
+      '2019': 'SDNY Prosecution & Death (2019)',
+      '2020-2024': 'Maxwell Trial & Aftermath (2020–2024)',
+      '2025-2026': 'Full Disclosure & Trump Admin (2025–2026)'
+    };
+
+    function renderTimeline(eraFilter) {
+      if (eraFilter !== undefined) _tlActiveEra = eraFilter;
       const container = document.getElementById('timelineContainer');
-      container.innerHTML = TIMELINE_DATA.map(t =>
-        `<div class="tl-item">
-      <div class="tl-date">${t.date}</div>
-      <div class="tl-title">${t.title}</div>
-      <div class="tl-desc">${t.desc}</div>
-    </div>`
-      ).join('');
+
+      // Normalize all entries
+      const entries = TIMELINE_DATA.map(t => ({
+        date: t.date || '',
+        heading: t.title || t.event || '',
+        desc: t.desc || '',
+        source: t.source || t.doc || '',
+        category: t.category || '',
+        era: _getEra(t.date || '')
+      })).sort((a, b) => a.date.localeCompare(b.date));
+
+      // Group by era
+      const eras = {};
+      const eraOrder = ['1953-2006', '2007-2018', '2019', '2020-2024', '2025-2026'];
+      eraOrder.forEach(e => { eras[e] = []; });
+      entries.forEach(e => { if (eras[e.era]) eras[e.era].push(e); });
+
+      // Filter
+      const visibleEras = _tlActiveEra === 'all' ? eraOrder : [_tlActiveEra];
+
+      let html = '';
+      visibleEras.forEach(era => {
+        const items = eras[era];
+        if (!items || !items.length) return;
+        const limit = 30;
+        const showAll = items.length <= limit;
+
+        html += `<div class="tl-group" id="tl-era-${era}">
+          <div class="tl-group-header" onclick="this.parentElement.classList.toggle('collapsed')">
+            <h3>${_eraLabels[era] || era}</h3>
+            <span class="tl-group-count">${items.length}</span>
+            <span class="tl-group-toggle">&#9660;</span>
+          </div>
+          <div class="tl-group-items">`;
+
+        const visible = showAll ? items : items.slice(0, limit);
+        visible.forEach(t => {
+          const srcHtml = t.source ? `<div class="tl-source">${t.source}</div>` : '';
+          const catHtml = t.category ? `<span class="tl-category">${t.category}</span>` : '';
+          html += `<div class="tl-item">
+            <div class="tl-date">${t.date}${catHtml}</div>
+            <div class="tl-title">${t.heading}</div>
+            <div class="tl-desc">${t.desc}</div>${srcHtml}
+          </div>`;
+        });
+
+        if (!showAll) {
+          html += `<button class="tl-show-more" onclick="this.style.display='none'; this.nextElementSibling.style.display='block';">Show ${items.length - limit} more entries</button>`;
+          html += `<div style="display:none">`;
+          items.slice(limit).forEach(t => {
+            const srcHtml = t.source ? `<div class="tl-source">${t.source}</div>` : '';
+            const catHtml = t.category ? `<span class="tl-category">${t.category}</span>` : '';
+            html += `<div class="tl-item">
+              <div class="tl-date">${t.date}${catHtml}</div>
+              <div class="tl-title">${t.heading}</div>
+              <div class="tl-desc">${t.desc}</div>${srcHtml}
+            </div>`;
+          });
+          html += `</div>`;
+        }
+
+        html += `</div></div>`;
+      });
+
+      container.innerHTML = html;
+    }
+
+    function filterTimeline(era, btn) {
+      document.querySelectorAll('.tl-era-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderTimeline(era);
     }
 
     /* ============================================================
@@ -6515,7 +6709,7 @@
     document.addEventListener('DOMContentLoaded', async () => {
       await loadProgressTrackerData();
       renderFindings('all');
-      renderBarChart();
+      renderBarChart(15);
       renderTimeline();
       renderDatasets();
       renderProgressTracker();
