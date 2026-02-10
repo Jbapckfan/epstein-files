@@ -52,6 +52,30 @@
       --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
+    body.light-theme {
+      --bg-primary: #f4f5f7;
+      --bg-secondary: #ffffff;
+      --bg-card: #ffffff;
+      --bg-card-hover: #f0f1f4;
+      --bg-glass: rgba(255,255,255,0.92);
+      --border: rgba(0,0,0,0.08);
+      --border-active: rgba(0,0,0,0.18);
+      --text-primary: #1a1a2e;
+      --text-secondary: #555770;
+      --text-dim: #8a8da0;
+      --shadow: 0 4px 24px rgba(0,0,0,0.08);
+      --shadow-lg: 0 8px 48px rgba(0,0,0,0.12);
+    }
+    .theme-toggle {
+      position: fixed; top: 12px; right: 12px; z-index: 99999;
+      width: 36px; height: 36px; border-radius: 50%;
+      background: var(--bg-secondary); border: 1px solid var(--border);
+      color: var(--text-secondary); font-size: 18px; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.3s; backdrop-filter: blur(8px);
+    }
+    .theme-toggle:hover { border-color: var(--red); color: var(--red); }
+
     * {
       margin: 0;
       padding: 0;
@@ -684,6 +708,22 @@
       background: rgba(255, 255, 255, 0.06);
       border-radius: 3px;
       overflow: hidden;
+      position: relative;
+    }
+    .progress-bar-bg:hover::after {
+      content: attr(data-tooltip);
+      position: absolute;
+      top: -28px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0,0,0,0.85);
+      color: #fff;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      white-space: nowrap;
+      pointer-events: none;
+      z-index: 10;
     }
 
     .progress-bar-fill {
@@ -1586,6 +1626,17 @@
 </head>
 
 <body>
+  <button class="theme-toggle" id="themeToggle" title="Toggle light/dark theme">&#9790;</button>
+  <script>
+    (function(){var t=localStorage.getItem('epstein-theme');if(t==='light')document.body.classList.add('light-theme');
+    document.getElementById('themeToggle').addEventListener('click',function(){
+      document.body.classList.toggle('light-theme');
+      var isLight=document.body.classList.contains('light-theme');
+      localStorage.setItem('epstein-theme',isLight?'light':'dark');
+      this.innerHTML=isLight?'&#9788;':'&#9790;';
+    });
+    if(t==='light')document.getElementById('themeToggle').innerHTML='&#9788;';})();
+  </script>
   <button class="scroll-top-btn" id="scrollTopBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to top">&#9650;</button>
   <div id="homeNav" style="position:fixed;top:12px;left:12px;z-index:99999;"><a href="index.html"
       style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;background:rgba(15,17,23,0.85);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.1);border-radius:8px;color:#9aa0b0;text-decoration:none;font:600 13px Inter,-apple-system,sans-serif;transition:all 0.3s;"
@@ -6834,6 +6885,15 @@
       renderProgressTracker();
       initScrollReveal();
       animateProgressBars();
+
+      // Auto-populate progress bar tooltips from adjacent detail text
+      document.querySelectorAll('.progress-bar-bg').forEach(bg => {
+        const fill = bg.querySelector('.progress-bar-fill');
+        const detail = bg.parentElement.querySelector('.sc-detail');
+        if (fill && fill.dataset.width) {
+          bg.dataset.tooltip = fill.dataset.width + (detail ? ' — ' + detail.textContent.trim() : '');
+        }
+      });
 
       // Apply URL params on load
       const urlParams = new URLSearchParams(location.search);

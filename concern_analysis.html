@@ -25,6 +25,20 @@
   --white: #e8eaed;
 }
 
+body.light-theme {
+  --bg: #f4f5f7; --bg-card: #ffffff; --bg-card-hover: #f0f1f4;
+  --border: #dde0e4; --text: #1a1a2e; --text-dim: #555770; --text-muted: #8a8da0; --white: #1a1a2e;
+}
+.theme-toggle {
+  position: fixed; top: 12px; right: 12px; z-index: 99999;
+  width: 36px; height: 36px; border-radius: 50%;
+  background: var(--bg-card); border: 1px solid var(--border);
+  color: var(--text-dim); font-size: 18px; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.3s; backdrop-filter: blur(8px);
+}
+.theme-toggle:hover { border-color: var(--red); color: var(--red); }
+
 html { scroll-behavior: smooth; }
 
 body {
@@ -354,6 +368,25 @@ body {
   overflow-x: auto;
   animation: fadeIn 0.8s ease-out;
 }
+.table-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+.export-btn {
+  padding: 8px 16px;
+  background: rgba(255,59,92,0.1);
+  border: 1px solid rgba(255,59,92,0.3);
+  border-radius: 8px;
+  color: var(--red);
+  font: 600 12px Inter, sans-serif;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.export-btn:hover { background: rgba(255,59,92,0.2); }
 
 .table-wrap {
   overflow-x: auto;
@@ -527,6 +560,8 @@ body {
 </style>
 </head>
 <body>
+<button class="theme-toggle" id="themeToggle" title="Toggle light/dark theme">&#9790;</button>
+<script>(function(){var t=localStorage.getItem('epstein-theme');if(t==='light'){document.body.classList.add('light-theme');document.getElementById('themeToggle').innerHTML='&#9788;';}document.getElementById('themeToggle').addEventListener('click',function(){document.body.classList.toggle('light-theme');var l=document.body.classList.contains('light-theme');localStorage.setItem('epstein-theme',l?'light':'dark');this.innerHTML=l?'&#9788;':'&#9790;';});})();</script>
 <div id="homeNav" style="position:fixed;top:12px;left:12px;z-index:99999;"><a href="index.html" style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;background:rgba(15,17,23,0.85);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.1);border-radius:8px;color:#9aa0b0;text-decoration:none;font:600 13px Inter,-apple-system,sans-serif;transition:all 0.3s;" onmouseover="this.style.color='#ff3b5c';this.style.borderColor='rgba(255,59,92,0.3)'" onmouseout="this.style.color='#9aa0b0';this.style.borderColor='rgba(255,255,255,0.1)'">← Home</a></div>
 <div class="container">
 
@@ -593,8 +628,13 @@ body {
 
   <!-- SECTION 5: DETAIL TABLE -->
   <section class="table-section">
-    <h2 class="section-title">Full Detail Table</h2>
-    <p class="section-desc">All individuals sorted by concern score. Row background indicates tier.</p>
+    <div class="table-header">
+      <div>
+        <h2 class="section-title" style="margin-bottom:0">Full Detail Table</h2>
+        <p class="section-desc">All individuals sorted by concern score. Row background indicates tier.</p>
+      </div>
+      <button class="export-btn" onclick="exportCSV()">&#8615; Export CSV</button>
+    </div>
     <div class="table-wrap">
       <table class="detail-table" id="detailTable">
         <thead>
@@ -862,6 +902,25 @@ function sortTable(col, type) {
 }
 
 renderTable();
+
+function exportCSV() {
+  var headers = ['Name','Concern Score','Total Mentions','Epstein-Proximate','Witness Testimony',
+    'Relationship Language','Legal Context','Sexual Assault','Minors','Trafficking',
+    'Blackmail/Kompromat','Murder/Threats','Financial Crimes','Total Red Flags'];
+  var rows = [headers.join(',')];
+  filtered.forEach(function(d) {
+    var vals = getRowData(d).map(function(v) {
+      return typeof v === 'string' ? '"' + v.replace(/"/g, '""') + '"' : v;
+    });
+    rows.push(vals.join(','));
+  });
+  var blob = new Blob([rows.join('\n')], { type: 'text/csv;charset=utf-8;' });
+  var link = document.createElement('a');
+  link.href = URL.createObjectURL(blob);
+  link.download = 'epstein_concern_analysis.csv';
+  link.click();
+  URL.revokeObjectURL(link.href);
+}
 </script>
 </body>
 </html>
