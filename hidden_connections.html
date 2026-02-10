@@ -836,21 +836,21 @@ document.querySelectorAll('[data-count]').forEach(el=>{
 })();
 
 // =============================================
-// HEATMAP (SVG)
+// HEATMAP (SVG) — Redesigned
 // =============================================
 (function(){
   const top15=PERSONS.slice(0,15);
   const n=top15.length;
-  const cellSize=36;
-  const labelW=110;
-  const margin={top:120,left:labelW,right:20,bottom:20};
+  const cellSize=42;
+  const labelW=100;
+  const margin={top:100,left:labelW,right:10,bottom:10};
   const svgW=margin.left+n*cellSize+margin.right;
   const svgH=margin.top+n*cellSize+margin.bottom;
 
   const svg=document.getElementById('heatmap-svg');
   svg.setAttribute('viewBox',`0 0 ${svgW} ${svgH}`);
-  svg.setAttribute('width',Math.min(svgW,700));
-  svg.setAttribute('height',Math.min(svgH,700));
+  svg.setAttribute('width',svgW);
+  svg.setAttribute('height',svgH);
   svg.style.maxWidth='100%';svg.style.height='auto';
 
   // Build co-occurrence matrix
@@ -860,37 +860,60 @@ document.querySelectorAll('[data-count]').forEach(el=>{
   for(let i=0;i<n;i++){
     matrix[i]=[];
     for(let j=0;j<n;j++){
-      if(i===j)matrix[i][j]=top15[i].score/1000;
+      if(i===j)matrix[i][j]=-1;
       else matrix[i][j]=edgeMap[top15[i].id+'|'+top15[j].id]||0;
     }
   }
   const maxVal=800;
 
-  // Color scale
+  // Color scale: black → deep blue → teal → amber → bright white
   function heatColor(v){
+    if(v===0)return'rgba(255,255,255,0.03)';
     const t=clamp(v/maxVal,0,1);
-    if(t<0.01)return'rgba(255,255,255,0.02)';
-    const r=Math.round(lerp(30,255,t));
-    const g=Math.round(lerp(15,59,t*0.5));
-    const b=Math.round(lerp(40,92,t));
-    return`rgb(${r},${g},${b})`;
+    if(t<0.15){
+      const s=t/0.15;
+      return`rgb(${Math.round(lerp(15,20,s))},${Math.round(lerp(15,50,s))},${Math.round(lerp(25,90,s))})`;
+    }
+    if(t<0.4){
+      const s=(t-0.15)/0.25;
+      return`rgb(${Math.round(lerp(20,40,s))},${Math.round(lerp(50,160,s))},${Math.round(lerp(90,180,s))})`;
+    }
+    if(t<0.7){
+      const s=(t-0.4)/0.3;
+      return`rgb(${Math.round(lerp(40,245,s))},${Math.round(lerp(160,180,s))},${Math.round(lerp(180,60,s))})`;
+    }
+    const s=(t-0.7)/0.3;
+    return`rgb(${Math.round(lerp(245,255,s))},${Math.round(lerp(180,240,s))},${Math.round(lerp(60,120,s))})`;
   }
 
-  let svgHTML='<defs><filter id="glow-h"><feGaussianBlur stdDeviation="2" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>';
+  let svgHTML=`<defs>
+    <style>
+      .hm-cell:hover{stroke:#fff;stroke-width:2;filter:brightness(1.3)}
+      .hm-label{font-family:'Inter',sans-serif;font-weight:600}
+    </style>
+  </defs>`;
 
-  // Column labels (rotated)
+  // Background grid lines
+  for(let i=0;i<=n;i++){
+    const x=margin.left+i*cellSize;
+    const y=margin.top+i*cellSize;
+    svgHTML+=`<line x1="${margin.left}" y1="${y}" x2="${margin.left+n*cellSize}" y2="${y}" stroke="rgba(255,255,255,0.04)" stroke-width="0.5"/>`;
+    svgHTML+=`<line x1="${x}" y1="${margin.top}" x2="${x}" y2="${margin.top+n*cellSize}" stroke="rgba(255,255,255,0.04)" stroke-width="0.5"/>`;
+  }
+
+  // Column labels (rotated -45)
   for(let j=0;j<n;j++){
     const x=margin.left+j*cellSize+cellSize/2;
-    const y=margin.top-8;
+    const y=margin.top-10;
     const shortName=top15[j].name.split(' ').pop();
-    svgHTML+=`<text x="${x}" y="${y}" fill="${CAT_COLORS[top15[j].cat]||'#888'}" font-size="10" font-family="Inter,sans-serif" font-weight="600" text-anchor="end" transform="rotate(-50,${x},${y})">${shortName}</text>`;
+    svgHTML+=`<text class="hm-label" x="${x}" y="${y}" fill="${CAT_COLORS[top15[j].cat]||'#888'}" font-size="11" text-anchor="end" transform="rotate(-45,${x},${y})">${shortName}</text>`;
   }
 
   // Row labels
   for(let i=0;i<n;i++){
     const y=margin.top+i*cellSize+cellSize/2+4;
     const shortName=top15[i].name.split(' ').pop();
-    svgHTML+=`<text x="${margin.left-8}" y="${y}" fill="${CAT_COLORS[top15[i].cat]||'#888'}" font-size="10" font-family="Inter,sans-serif" font-weight="600" text-anchor="end">${shortName}</text>`;
+    svgHTML+=`<text class="hm-label" x="${margin.left-10}" y="${y}" fill="${CAT_COLORS[top15[i].cat]||'#888'}" font-size="11" text-anchor="end">${shortName}</text>`;
   }
 
   // Cells
@@ -899,11 +922,18 @@ document.querySelectorAll('[data-count]').forEach(el=>{
       const x=margin.left+j*cellSize;
       const y=margin.top+i*cellSize;
       const v=matrix[i][j];
-      const color=i===j?CAT_COLORS[top15[i].cat]||'#444':heatColor(v);
-      const opacity=i===j?0.3:1;
-      svgHTML+=`<rect x="${x+1}" y="${y+1}" width="${cellSize-2}" height="${cellSize-2}" rx="4" fill="${color}" opacity="${opacity}"><title>${top15[i].name.split(' ').pop()} × ${top15[j].name.split(' ').pop()}: ${i===j?'self':v}</title></rect>`;
-      if(v>100&&i!==j){
-        svgHTML+=`<text x="${x+cellSize/2}" y="${y+cellSize/2+3}" fill="white" font-size="8" font-family="JetBrains Mono,monospace" text-anchor="middle" opacity="0.8">${v}</text>`;
+      const isDiag=v===-1;
+      const color=isDiag?CAT_COLORS[top15[i].cat]||'#444':heatColor(v);
+      const opacity=isDiag?0.18:1;
+      const rn=top15[i].name.split(' ').pop();
+      const cn=top15[j].name.split(' ').pop();
+      const title=isDiag?`${rn} (self)`:`${rn} × ${cn}: ${v}`;
+      svgHTML+=`<rect class="hm-cell" x="${x+1}" y="${y+1}" width="${cellSize-2}" height="${cellSize-2}" rx="3" fill="${color}" opacity="${opacity}"><title>${title}</title></rect>`;
+      // Show value in cell
+      if(!isDiag&&v>0){
+        const textColor=v>350?'rgba(0,0,0,0.8)':'rgba(255,255,255,0.85)';
+        const fontSize=v>=100?9:8;
+        svgHTML+=`<text x="${x+cellSize/2}" y="${y+cellSize/2+3}" fill="${textColor}" font-size="${fontSize}" font-family="JetBrains Mono,monospace" font-weight="500" text-anchor="middle" pointer-events="none">${v}</text>`;
       }
     }
   }
@@ -912,22 +942,28 @@ document.querySelectorAll('[data-count]').forEach(el=>{
 })();
 
 // =============================================
-// CHORD DIAGRAM (SVG)
+// CHORD DIAGRAM (SVG) — Redesigned
 // =============================================
 (function(){
   const svg=document.getElementById('chord-svg');
-  const size=480;const cx=size/2;const cy=size/2;const outerR=size/2-50;const innerR=outerR-18;
+  const size=540;const cx=size/2;const cy=size/2;const outerR=size/2-60;const innerR=outerR-14;
   svg.setAttribute('viewBox',`0 0 ${size} ${size}`);
   svg.setAttribute('width',size);svg.setAttribute('height',size);
   svg.style.maxWidth='100%';svg.style.height='auto';
 
-  // Financial nodes: persons with finance connections + institutions
+  // Financial nodes
   const finPersons=['black','staley','wexner','gates','barak','maxwell','trump','kushner'];
   const finInst=['jpmorgan','deutsche','hapoalim','signature'];
   const chordNodes=[...finPersons,...finInst];
   const n=chordNodes.length;
 
-  // Lookup
+  // Short display names (avoid duplicate "Bank")
+  const DISPLAY_NAMES={
+    black:'L. Black',staley:'Staley',wexner:'Wexner',gates:'Gates',
+    barak:'Barak',maxwell:'Maxwell',trump:'Trump',kushner:'Kushner',
+    jpmorgan:'JPMorgan',deutsche:'Deutsche Bk',hapoalim:'Hapoalim',signature:'Signature'
+  };
+
   const allEntities=[...PERSONS,...INSTITUTIONS];
   const entityMap={};allEntities.forEach(e=>entityMap[e.id]=e);
 
@@ -947,17 +983,18 @@ document.querySelectorAll('[data-count]').forEach(el=>{
     }
   }
 
-  // Compute arc sizes proportional to total connections
-  const totals=mat.map(row=>row.reduce((s,v)=>s+v,0));
-  const grandTotal=totals.reduce((s,v)=>s+v,0)||1;
-  const gap=0.03;
+  // Use sqrt-scaled totals so Maxwell doesn't dominate
+  const rawTotals=mat.map(row=>row.reduce((s,v)=>s+v,0));
+  const scaledTotals=rawTotals.map(t=>Math.sqrt(t));
+  const grandScaled=scaledTotals.reduce((s,v)=>s+v,0)||1;
+  const gap=0.05;
   const totalGap=gap*n;
   const available=Math.PI*2-totalGap;
 
   const arcs=[];
-  let angle=0;
+  let angle=-Math.PI/2; // start from top
   for(let i=0;i<n;i++){
-    const span=Math.max(available*(totals[i]/grandTotal),0.02);
+    const span=Math.max(available*(scaledTotals[i]/grandScaled),0.06);
     arcs.push({start:angle,end:angle+span,id:chordNodes[i]});
     angle+=span+gap;
   }
@@ -969,40 +1006,69 @@ document.querySelectorAll('[data-count]').forEach(el=>{
     return`M${x1},${y1} A${r},${r} 0 ${large} 1 ${x2},${y2}`;
   }
 
-  let html='<defs><filter id="glow-c"><feGaussianBlur stdDeviation="3" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>';
+  // Unique gradient IDs for chords
+  let gradCount=0;
+  let html=`<defs>
+    <style>.chord-path:hover{opacity:0.6!important;stroke-width:1.5!important}</style>
+    <filter id="glow-c2"><feGaussianBlur stdDeviation="2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>`;
 
-  // Outer arcs
+  // Center circle background
+  html+=`<circle cx="${cx}" cy="${cy}" r="${innerR}" fill="rgba(255,255,255,0.015)" stroke="rgba(255,255,255,0.04)" stroke-width="0.5"/>`;
+
+  // Outer arcs with subtle gradient
   for(let i=0;i<n;i++){
     const e=entityMap[chordNodes[i]];
     const col=CAT_COLORS[e?.cat]||'#888';
-    html+=`<path d="${arcPath(arcs[i].start,arcs[i].end,outerR)} L${cx+Math.cos(arcs[i].end)*innerR},${cy+Math.sin(arcs[i].end)*innerR} ${arcPath(arcs[i].end,arcs[i].start,innerR).replace('M','L')} Z" fill="${col}" opacity="0.7"/>`;
-    // Label
+    const arcId=`arc-${i}`;
+    // Arc band
+    html+=`<path d="${arcPath(arcs[i].start,arcs[i].end,outerR)} L${cx+Math.cos(arcs[i].end)*innerR},${cy+Math.sin(arcs[i].end)*innerR} ${arcPath(arcs[i].end,arcs[i].start,innerR).replace('M','L')} Z" fill="${col}" opacity="0.8" stroke="rgba(255,255,255,0.15)" stroke-width="0.5"/>`;
+
+    // Label - always readable (never upside down)
     const midA=(arcs[i].start+arcs[i].end)/2;
-    const lR=outerR+16;
+    const lR=outerR+22;
     const lx=cx+Math.cos(midA)*lR,ly=cy+Math.sin(midA)*lR;
-    const rot=midA*180/Math.PI+(midA>Math.PI/2&&midA<Math.PI*1.5?180:0);
-    const anchor=midA>Math.PI/2&&midA<Math.PI*1.5?'end':'start';
-    const shortName=e?e.name.split(' ').pop():chordNodes[i];
-    html+=`<text x="${lx}" y="${ly}" fill="${col}" font-size="9" font-family="Inter,sans-serif" font-weight="600" text-anchor="${anchor}" transform="rotate(${rot},${lx},${ly})">${shortName}</text>`;
+    // Normalize angle to 0-2PI
+    let normA=((midA%(Math.PI*2))+(Math.PI*2))%(Math.PI*2);
+    const isBottom=normA>Math.PI/2&&normA<Math.PI*1.5;
+    const rot=(midA*180/Math.PI)+(isBottom?180:0);
+    const anchor=isBottom?'end':'start';
+    const displayName=DISPLAY_NAMES[chordNodes[i]]||chordNodes[i];
+    html+=`<text x="${lx}" y="${ly}" fill="${col}" font-size="11" font-family="Inter,sans-serif" font-weight="700" text-anchor="${anchor}" dominant-baseline="central" transform="rotate(${rot},${lx},${ly})">${displayName}</text>`;
   }
 
-  // Chords
+  // Chords with gradient fills
   for(let i=0;i<n;i++){
     for(let j=i+1;j<n;j++){
       if(mat[i][j]===0)continue;
       const w=mat[i][j];
-      const aFrac=totals[i]>0?w/totals[i]:0;
-      const bFrac=totals[j]>0?w/totals[j]:0;
-      const a1=arcs[i].start,a2=arcs[i].start+(arcs[i].end-arcs[i].start)*aFrac;
-      const b1=arcs[j].start,b2=arcs[j].start+(arcs[j].end-arcs[j].start)*bFrac;
+      const maxW=800;
+      const intensity=clamp(w/maxW,0.05,1);
+
+      // Chord endpoints on arcs
+      const aFrac=rawTotals[i]>0?w/rawTotals[i]:0;
+      const bFrac=rawTotals[j]>0?w/rawTotals[j]:0;
+      const a1=arcs[i].start,a2=arcs[i].start+(arcs[i].end-arcs[i].start)*Math.min(aFrac*1.2,0.95);
+      const b1=arcs[j].start,b2=arcs[j].start+(arcs[j].end-arcs[j].start)*Math.min(bFrac*1.2,0.95);
+
       const ax1=cx+Math.cos(a1)*innerR,ay1=cy+Math.sin(a1)*innerR;
       const ax2=cx+Math.cos(a2)*innerR,ay2=cy+Math.sin(a2)*innerR;
       const bx1=cx+Math.cos(b1)*innerR,by1=cy+Math.sin(b1)*innerR;
       const bx2=cx+Math.cos(b2)*innerR,by2=cy+Math.sin(b2)*innerR;
-      const la=a2-a1>Math.PI?1:0;
-      const lb=b2-b1>Math.PI?1:0;
-      const col=CAT_COLORS[entityMap[chordNodes[i]]?.cat]||'#888';
-      html+=`<path d="M${ax1},${ay1} A${innerR},${innerR} 0 ${la} 1 ${ax2},${ay2} Q${cx},${cy} ${bx1},${by1} A${innerR},${innerR} 0 ${lb} 1 ${bx2},${by2} Q${cx},${cy} ${ax1},${ay1}" fill="${col}" opacity="0.15" stroke="${col}" stroke-width="0.5" stroke-opacity="0.3" filter="url(#glow-c)"><title>${entityMap[chordNodes[i]]?.name} — ${entityMap[chordNodes[j]]?.name}: ${w}</title></path>`;
+
+      const la=Math.abs(a2-a1)>Math.PI?1:0;
+      const lb=Math.abs(b2-b1)>Math.PI?1:0;
+
+      // Create gradient from source to target color
+      const colI=CAT_COLORS[entityMap[chordNodes[i]]?.cat]||'#888';
+      const colJ=CAT_COLORS[entityMap[chordNodes[j]]?.cat]||'#888';
+      const gid=`cg${gradCount++}`;
+      html+=`<linearGradient id="${gid}" x1="${ax1/size}" y1="${ay1/size}" x2="${bx1/size}" y2="${by1/size}" gradientUnits="objectBoundingBox"><stop offset="0%" stop-color="${colI}" stop-opacity="${intensity*0.45}"/><stop offset="100%" stop-color="${colJ}" stop-opacity="${intensity*0.45}"/></linearGradient>`;
+
+      const opacity=lerp(0.12,0.4,intensity);
+      const nameI=entityMap[chordNodes[i]]?.name||chordNodes[i];
+      const nameJ=entityMap[chordNodes[j]]?.name||chordNodes[j];
+      html+=`<path class="chord-path" d="M${ax1},${ay1} A${innerR},${innerR} 0 ${la} 1 ${ax2},${ay2} Q${cx},${cy} ${bx1},${by1} A${innerR},${innerR} 0 ${lb} 1 ${bx2},${by2} Q${cx},${cy} ${ax1},${ay1}" fill="url(#${gid})" opacity="${opacity}" stroke="${colI}" stroke-width="0.7" stroke-opacity="0.4"><title>${nameI} — ${nameJ}: ${w}</title></path>`;
     }
   }
 
