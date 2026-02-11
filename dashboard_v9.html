@@ -545,7 +545,7 @@ body.light-theme .search-box { background: var(--bg-card); border-color: var(--b
 body.light-theme ::-webkit-scrollbar-track { background: var(--bg-primary); }
 body.light-theme ::-webkit-scrollbar-thumb { background: #bbb; }
 
-.theme-toggle { position: fixed; top: 12px; right: 12px; z-index: 99999; width: 36px; height: 36px; border-radius: 50%; background: var(--bg-secondary); border: 1px solid var(--border-subtle); color: var(--text-secondary); font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.3s; }
+.theme-toggle { position: fixed; top: 12px; right: 12px; z-index: 99999; width: 44px; height: 44px; border-radius: 50%; background: var(--bg-secondary); border: 1px solid var(--border-subtle); color: var(--text-secondary); font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.3s; }
 .theme-toggle:hover { border-color: var(--red); color: var(--red); }
 
 html { scroll-behavior: smooth; }
@@ -576,6 +576,7 @@ html { scroll-behavior: smooth; }
 </style>
 </head>
 <body>
+<noscript><div style="background:#2a0a0a;color:#ff9999;border-bottom:2px solid #ff3b5c;padding:12px 20px;text-align:center;font:14px/1.5 system-ui,sans-serif"><strong>JavaScript Required</strong> — This analysis dashboard requires JavaScript for collapsible sections, search, and filtering.</div></noscript>
 <a href="#main-content" class="skip-link">Skip to main content</a>
 <button class="theme-toggle" id="themeToggle" title="Toggle light/dark theme">&#9790;</button>
 <script>(function(){var t=localStorage.getItem('epstein-theme');if(!t&&window.matchMedia){t=window.matchMedia('(prefers-color-scheme:light)').matches?'light':'dark';}if(t==='light'){document.body.classList.add('light-theme');document.getElementById('themeToggle').innerHTML='&#9788;';}document.getElementById('themeToggle').addEventListener('click',function(){document.body.classList.toggle('light-theme');var l=document.body.classList.contains('light-theme');localStorage.setItem('epstein-theme',l?'light':'dark');this.innerHTML=l?'&#9788;':'&#9790;';});})();</script>
