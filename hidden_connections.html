@@ -573,7 +573,7 @@ function dist(a,b){return Math.hypot(a.x-b.x,a.y-b.y)}
         }
       }
     }
-    requestAnimationFrame(draw);
+    if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches) requestAnimationFrame(draw);
   }
   draw();
 })();
