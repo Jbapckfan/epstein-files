@@ -6553,6 +6553,7 @@
     let mouseX = 0, mouseY = 0;
     let graphFilter = 'all';
     let animFrame;
+    let _graphCanvasVisible = true;
     let offsetX = 0, offsetY = 0;
     let scale = 1;
 
@@ -6602,6 +6603,12 @@
       canvas.addEventListener('touchend', onTouchEnd);
 
       window.addEventListener('resize', resizeCanvas);
+
+      (new IntersectionObserver(function(entries){
+        var vis=entries[0].isIntersecting;
+        if(vis&&!_graphCanvasVisible){_graphCanvasVisible=true;simulate();}
+        else if(!vis){_graphCanvasVisible=false;if(animFrame){cancelAnimationFrame(animFrame);animFrame=null;}}
+      },{threshold:0})).observe(canvas);
 
       simulate();
     }
@@ -6891,7 +6898,7 @@
       });
 
       draw();
-      animFrame = requestAnimationFrame(simulate);
+      if(_graphCanvasVisible) animFrame = requestAnimationFrame(simulate);
     }
 
     function draw() {
