@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Page not found — Epstein Files Investigation Dashboard">
+<meta property="og:title" content="Epstein Files — Page Not Found">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%23ff3b5c'/%3E%3Ctext x='50' y='58' font-size='50' font-family='sans-serif' font-weight='bold' fill='white' text-anchor='middle'%3EE%3C/text%3E%3C/svg%3E">
+<title>404 — Epstein Files</title>
+<style>
+:root {
+  --bg: #080d14;
+  --panel: rgba(14, 24, 38, 0.86);
+  --line: rgba(130, 163, 199, 0.24);
+  --text: #e6f2ff;
+  --muted: #9db3c9;
+  --teal: #4dd0e1;
+  --rose: #ff5d7a;
+}
+body.light-theme {
+  --bg: #f0f2f5;
+  --panel: rgba(255,255,255,0.92);
+  --line: rgba(0,0,0,0.1);
+  --text: #1a1a2e;
+  --muted: #555770;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  min-height: 100vh;
+  font-family: "Space Grotesk", "IBM Plex Sans", "Avenir Next", -apple-system, sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(circle at 12% 18%, rgba(77, 208, 225, 0.2), transparent 42%),
+    radial-gradient(circle at 86% 10%, rgba(255, 93, 122, 0.19), transparent 40%),
+    linear-gradient(145deg, #060a11, #0a121d 52%, #0b1624);
+  display: grid;
+  place-items: center;
+  padding: 28px;
+}
+body.light-theme { background: var(--bg); }
+.shell {
+  width: min(600px, 100%);
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  padding: clamp(30px, 4vw, 50px);
+  background: var(--panel);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.42);
+  backdrop-filter: blur(6px);
+  text-align: center;
+}
+.code {
+  font-size: clamp(60px, 12vw, 120px);
+  font-weight: 700;
+  line-height: 1;
+  color: var(--rose);
+  opacity: 0.8;
+}
+h1 {
+  margin: 16px 0 8px;
+  font-size: clamp(20px, 3vw, 28px);
+  font-weight: 700;
+}
+p {
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+.btn {
+  display: inline-block;
+  text-decoration: none;
+  font-weight: 700;
+  border-radius: 999px;
+  padding: 12px 24px;
+  color: #041019;
+  background: linear-gradient(135deg, #58e2f4, #86e6b4);
+  box-shadow: 0 10px 30px rgba(77, 208, 225, 0.3);
+  transition: transform 0.2s ease;
+}
+.btn:hover { transform: translateY(-1px); }
+.links {
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  font-size: 13px;
+}
+.links a {
+  color: var(--teal);
+  text-decoration: none;
+  padding: 6px 12px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  transition: all 0.2s;
+}
+.links a:hover { border-color: var(--teal); }
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:0.01ms!important;transition-duration:0.01ms!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<div class="shell">
+  <div class="code">404</div>
+  <h1>Page Not Found</h1>
+  <p>This document may have been redacted, moved, or never existed. The investigation continues elsewhere.</p>
+  <a class="btn" href="index.html">Return to Dashboard</a>
+  <div class="links">
+    <a href="dashboard_v10_latest.html">Latest Dashboard</a>
+    <a href="epstein_interactive.html">Interactive Network</a>
+    <a href="hidden_connections.html">Hidden Connections</a>
+    <a href="concern_analysis.html">Concern Analysis</a>
+  </div>
+</div>
+<script>(function(){var t=localStorage.getItem('epstein-theme');if(!t&&window.matchMedia){t=window.matchMedia('(prefers-color-scheme:light)').matches?'light':'dark';}if(t==='light')document.body.classList.add('light-theme');})();</script>
+</body>
+</html>
