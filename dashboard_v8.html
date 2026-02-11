@@ -138,7 +138,7 @@ body.light-theme header h1{color:var(--text)}
 
 <!-- SEARCH -->
 <div class="sbar">
-  <input type="text" id="si" aria-label="Search findings, names, EFTA numbers, keywords" placeholder="Search findings, names, EFTA numbers, keywords..." oninput="doSearch()">
+  <input type="text" id="si" aria-label="Search findings, names, EFTA numbers, keywords" placeholder="Search findings, names, EFTA numbers, keywords..." oninput="doSearch()" autocomplete="off">
   <div class="ss" id="ss">Showing all findings</div>
   <button class="fb ac" onclick="doFilter('all',this)">All</button>
   <button class="fb" onclick="doFilter('cr',this)">Critical</button>
