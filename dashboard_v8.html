@@ -82,10 +82,26 @@ header .cls{background:var(--accent2);color:#fff;display:inline-block;padding:4p
 .dt tr:hover{background:var(--bg3)}
 .dt .ef{font-family:'Courier New',monospace;color:var(--accent3)}
 footer{text-align:center;padding:30px;color:var(--text2);font-size:.8em;border-top:1px solid var(--border);margin-top:30px}
+body.light-theme{--bg:#f4f5f7;--bg2:#ffffff;--bg3:#ebedf0;--bg4:#dde0e4;--text:#1a1a2e;--text2:#555770;--border:#ccc;--accent:#c0392b;--accent2:#e74c3c;--accent3:#b8860b;--accent4:#c46600;--sc:#d32f2f;--sh:#c46600;--sm:#a07800;--sl:#1a6fb5}
+body.light-theme header{background:linear-gradient(135deg,#e8eaed 0%,#f5e6e6 50%,#e8eaed 100%)}
+body.light-theme .sec{border-color:var(--border)}
+body.light-theme .sh{background:var(--bg3)}
+body.light-theme .sh:hover{background:var(--bg4)}
+body.light-theme .fd{background:var(--bg2);border-left-color:var(--border)}
+body.light-theme .sbar{background:var(--bg2);border-color:var(--border)}
+body.light-theme .sbar input{background:var(--bg);border-color:var(--border);color:var(--text)}
+body.light-theme .sc{background:var(--bg2);border-color:var(--border)}
+body.light-theme a{color:var(--accent3)}
+.theme-toggle{position:fixed;top:12px;right:12px;z-index:99999;width:36px;height:36px;border-radius:50%;background:var(--bg2);border:1px solid var(--border);color:var(--text2);font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .3s}
+.theme-toggle:hover{border-color:var(--accent);color:var(--accent)}
 @media(max-width:768px){header h1{font-size:1.4em}.stats{grid-template-columns:repeat(2,1fr)}.fd{padding:12px}.ctr{padding:10px}}
 </style>
 </head>
 <body>
+<button class="theme-toggle" id="themeToggle" title="Toggle light/dark theme">&#9790;</button>
+<script>(function(){var t=localStorage.getItem('epstein-theme');if(t==='light'){document.body.classList.add('light-theme');document.getElementById('themeToggle').innerHTML='&#9788;';}document.getElementById('themeToggle').addEventListener('click',function(){document.body.classList.toggle('light-theme');var l=document.body.classList.contains('light-theme');localStorage.setItem('epstein-theme',l?'light':'dark');this.innerHTML=l?'&#9788;':'&#9790;';});})();</script>
+<div id="homeNav" style="position:fixed;top:12px;left:12px;z-index:99999;"><a id="homeLink" href="index.html" style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;backdrop-filter:blur(8px);border-radius:8px;text-decoration:none;font:600 13px Inter,-apple-system,sans-serif;transition:all 0.3s;" onmouseover="this.style.color='#ff3b5c';this.style.borderColor='rgba(255,59,92,0.3)'" onmouseout="var l=document.body.classList.contains('light-theme');this.style.color=l?'#555770':'#9aa0b0';this.style.borderColor=l?'rgba(0,0,0,0.1)':'rgba(255,255,255,0.1)'">← Home</a></div>
+<script>(function(){var a=document.getElementById('homeLink');function u(){var l=document.body.classList.contains('light-theme');a.style.background=l?'rgba(244,245,247,0.9)':'rgba(15,17,23,0.85)';a.style.border='1px solid '+(l?'rgba(0,0,0,0.1)':'rgba(255,255,255,0.1)');a.style.color=l?'#555770':'#9aa0b0';}u();new MutationObserver(u).observe(document.body,{attributes:true,attributeFilter:['class']});})()</script>
 <header>
   <div class="ver">v8.0</div>
   <h1>Epstein Document <span>Analysis Dashboard</span></h1>
@@ -844,6 +860,7 @@ function tog(h){var c=h.nextElementSibling,t=h.querySelector('.tg');c.classList.
 function doSearch(){var q=document.getElementById('si').value.toLowerCase();var els=document.querySelectorAll('.fd,.jb,.ti,.dt tbody tr');var v=0,t=els.length;els.forEach(function(e){var tx=e.textContent.toLowerCase();if(!q||tx.indexOf(q)!==-1){e.style.display='';v++}else{e.style.display='none'}});if(q){document.querySelectorAll('.scn').forEach(function(s){var vis=s.querySelectorAll('.fd:not([style*="display: none"]),.jb:not([style*="display: none"]),.ti:not([style*="display: none"]),.dt tbody tr:not([style*="display: none"])');if(vis.length>0){s.classList.add('op');s.previousElementSibling.querySelector('.tg').classList.add('op')}})}document.getElementById('ss').textContent=q?'Showing '+v+' of '+t+' items for "'+q+'"':'Showing all findings'}
 function doFilter(l,btn){document.querySelectorAll('.fb').forEach(function(b){b.classList.remove('ac')});btn.classList.add('ac');var fds=document.querySelectorAll('.fd');fds.forEach(function(f){if(l==='all'){f.style.display=''}else{f.style.display=f.getAttribute('data-s')===l?'':'none'}});var vis=document.querySelectorAll('.fd:not([style*="display: none"])').length;document.getElementById('ss').textContent=l==='all'?'Showing all findings':'Showing '+vis+' of '+fds.length+' ('+l+' severity)'}
 document.addEventListener('keydown',function(e){if(e.key==='Escape'){document.getElementById('si').value='';doSearch()}});
+document.querySelectorAll('.sh').forEach(function(el){el.setAttribute('tabindex','0');el.setAttribute('role','button');el.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();tog(this)}})});
 </script>
 </body>
 </html>
