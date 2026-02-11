@@ -1082,7 +1082,18 @@
       font-size: 11px;
       color: var(--text-dim);
       margin-top: 2px;
+      cursor: pointer;
+      transition: color 0.2s;
     }
+    .fc-info .fc-citation:hover { color: var(--blue); }
+    .copy-toast {
+      position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(20px);
+      background: rgba(15,17,23,0.92); border: 1px solid rgba(96,165,250,0.3);
+      color: var(--blue); padding: 8px 18px; border-radius: 8px;
+      font: 600 12px 'JetBrains Mono', monospace; backdrop-filter: blur(8px);
+      opacity: 0; transition: all 0.3s; pointer-events: none; z-index: 99999;
+    }
+    .copy-toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
     .fc-preview {
       font-size: 13px;
@@ -1562,6 +1573,31 @@
     .tl-category { display: inline-block; font-size: 10px; padding: 1px 7px; border-radius: 999px; background: rgba(255,183,77,0.12); color: var(--amber); margin-left: 8px; vertical-align: middle; }
     .tl-show-more { background: rgba(77,208,225,0.1); border: 1px dashed rgba(77,208,225,0.3); color: var(--teal); padding: 8px 16px; border-radius: 8px; cursor: pointer; font-size: 13px; margin-top: 8px; width: 100%; text-align: center; }
     .tl-show-more:hover { background: rgba(77,208,225,0.2); }
+
+    /* === TIMELINE MINI-SCRUBBER === */
+    .tl-scrubber { display: flex; align-items: flex-end; gap: 1px; height: 44px; margin-bottom: 14px; padding: 0 2px; background: rgba(0,0,0,0.15); border-radius: 8px; overflow: hidden; }
+    .tl-scrub-bar { flex: 1; min-width: 4px; background: rgba(77,208,225,0.25); border-radius: 2px 2px 0 0; cursor: pointer; position: relative; transition: background 0.15s; }
+    .tl-scrub-bar:hover, .tl-scrub-bar.active { background: var(--teal); }
+    .tl-scrub-bar .scrub-tip { position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%); background: var(--bg-card); border: 1px solid var(--border); padding: 3px 8px; border-radius: 6px; font-size: 10px; color: var(--text-primary); white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity 0.15s; z-index: 5; }
+    .tl-scrub-bar:hover .scrub-tip { opacity: 1; }
+    .tl-scrub-labels { display: flex; justify-content: space-between; font-size: 10px; color: var(--muted); margin-top: 2px; padding: 0 2px; }
+
+    /* === SEARCH HIGHLIGHT === */
+    .search-highlight { background: rgba(255,197,61,0.35); color: var(--yellow); border-radius: 2px; padding: 0 1px; }
+
+    /* === COLLAPSIBLE SECTIONS === */
+    .section-collapse-btn { background: none; border: 1px solid rgba(130,163,199,0.18); color: var(--muted); font-size: 11px; padding: 4px 10px; border-radius: 6px; cursor: pointer; margin-left: 12px; transition: all 0.2s; vertical-align: middle; }
+    .section-collapse-btn:hover { border-color: var(--teal); color: var(--teal); }
+    .section-collapse-btn::after { content: ' ▲'; font-size: 9px; }
+    .section.collapsed-sec .section-collapse-btn::after { content: ' ▼'; }
+    .section.collapsed-sec > *:not(.section-header) { display: none !important; }
+
+    /* === SKELETON SHIMMER === */
+    .skeleton { background: linear-gradient(90deg, rgba(255,255,255,0.04) 25%, rgba(255,255,255,0.08) 50%, rgba(255,255,255,0.04) 75%); background-size: 200% 100%; animation: shimmer 1.5s infinite; border-radius: 8px; }
+    @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+    .skeleton-bar { height: 28px; margin-bottom: 6px; }
+    .skeleton-card { height: 120px; margin-bottom: 12px; }
+    .skeleton-line { height: 14px; margin-bottom: 8px; width: 80%; }
 
     /* === FINDINGS PAGINATION === */
     .findings-pagination { display: flex; align-items: center; justify-content: center; gap: 12px; margin-top: 16px; padding: 12px 0; }
@@ -2426,7 +2462,7 @@
     </div>
 
     <div class="findings-list" id="findingsList">
-      <!-- Populated by JS -->
+      <div class="skeleton skeleton-card"></div><div class="skeleton skeleton-card"></div><div class="skeleton skeleton-card"></div>
     </div>
     <div class="findings-pagination" id="findingsPagination"></div>
     <div class="findings-showing" id="findingsShowing"></div>
@@ -2445,7 +2481,7 @@
       <button class="bar-toggle-btn" onclick="renderBarChart(0, this)">All Terms</button>
     </div>
     <div class="bar-chart-container reveal" id="barChart">
-      <!-- Populated by JS -->
+      <div class="skeleton skeleton-bar" style="width:90%"></div><div class="skeleton skeleton-bar" style="width:75%"></div><div class="skeleton skeleton-bar" style="width:60%"></div><div class="skeleton skeleton-bar" style="width:50%"></div><div class="skeleton skeleton-bar" style="width:40%"></div>
     </div>
   </section>
 
@@ -2464,8 +2500,10 @@
       <button class="tl-era-btn" onclick="filterTimeline('2020-2024', this)">2020–2024</button>
       <button class="tl-era-btn" onclick="filterTimeline('2025-2026', this)">2025–2026</button>
     </div>
+    <div class="tl-scrubber reveal" id="tlScrubber"></div>
+    <div class="tl-scrub-labels reveal" id="tlScrubLabels"></div>
     <div class="timeline-container reveal" id="timelineContainer">
-      <!-- Populated by JS -->
+      <div class="skeleton skeleton-line"></div><div class="skeleton skeleton-line" style="width:65%"></div><div class="skeleton skeleton-line" style="width:50%"></div>
     </div>
   </section>
 
@@ -5931,6 +5969,8 @@
       document.getElementById('searchOverlay').classList.remove('active');
       document.getElementById('searchInput').value = '';
       document.getElementById('searchResults').innerHTML = '<div class="search-empty">Type to search across all findings</div>';
+      _searchHighlight = '';
+      renderFindings();
     }
 
     document.addEventListener('keydown', (e) => {
@@ -5943,8 +5983,12 @@
 
     function handleSearch(query) {
       _updateURLParams();
+      _searchHighlight = query.trim();
+      renderFindings();
       const results = document.getElementById('searchResults');
       if (!query.trim()) {
+        _searchHighlight = '';
+        renderFindings();
         results.innerHTML = '<div class="search-empty">Type to search across all findings</div>';
         return;
       }
@@ -5988,6 +6032,14 @@
     let _findingsPage = 1;
     const _findingsPerPage = 25;
     let _findingsFilter = 'all';
+
+    let _searchHighlight = '';
+
+    function _hl(text) {
+      if (!_searchHighlight || !text) return text;
+      const escaped = _searchHighlight.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      return text.replace(new RegExp('(' + escaped + ')', 'gi'), '<span class="search-highlight">$1</span>');
+    }
 
     function _normSev(s) {
       if (typeof s === 'number') return s;
@@ -6033,10 +6085,10 @@
       list.innerHTML = pageData.map(f => {
         const sev = f._sev;
         const sevClass = sev >= 15 ? 'sev-critical' : sev >= 10 ? 'sev-high' : 'sev-medium';
-        const heading = f.term || f.title || '';
+        const heading = _hl(f.term || f.title || '');
         const cite = f.citation || f.id || '';
-        const preview = f.preview || f.summary || '';
-        const body = f.context || f.summary || f.description || '';
+        const preview = _hl(f.preview || f.summary || '');
+        const body = _hl(f.context || f.summary || f.description || '');
         const tagsHtml = (f.tags && f.tags.length) ? '<div style="margin-top:6px">' + f.tags.map(t => `<span class="tag-pill">${t}</span>`).join('') + '</div>' : '';
         const trumpHtml = f.trumpAdmin ? '<span class="trump-badge">Trump Admin</span>' : '';
         return `<div class="finding-card" onclick="this.classList.toggle('expanded')">
@@ -6211,6 +6263,37 @@
       });
 
       container.innerHTML = html;
+      _renderScrubber(entries);
+    }
+
+    function _renderScrubber(entries) {
+      const scrubber = document.getElementById('tlScrubber');
+      const labels = document.getElementById('tlScrubLabels');
+      if (!scrubber) return;
+      const yearCounts = {};
+      entries.forEach(e => {
+        const y = parseInt(e.date) || 0;
+        if (y > 1900) { yearCounts[y] = (yearCounts[y] || 0) + 1; }
+      });
+      const years = Object.keys(yearCounts).map(Number).sort((a, b) => a - b);
+      if (!years.length) return;
+      const maxC = Math.max(...years.map(y => yearCounts[y]));
+      scrubber.innerHTML = years.map(y => {
+        const h = Math.max(8, (yearCounts[y] / maxC) * 38);
+        const active = _tlActiveEra !== 'all' && _getEra(String(y)) === _tlActiveEra ? ' active' : '';
+        return `<div class="tl-scrub-bar${active}" style="height:${h}px" data-year="${y}" onclick="_scrubToYear(${y})" title="${y}: ${yearCounts[y]} events"><div class="scrub-tip">${y}: ${yearCounts[y]}</div></div>`;
+      }).join('');
+      labels.innerHTML = `<span>${years[0]}</span><span>${years[years.length - 1]}</span>`;
+    }
+
+    function _scrubToYear(year) {
+      const era = _getEra(String(year));
+      const eraBtn = Array.from(document.querySelectorAll('.tl-era-btn')).find(b => b.textContent.includes(era.split('-')[0]));
+      if (eraBtn) filterTimeline(era, eraBtn);
+      setTimeout(() => {
+        const eraEl = document.getElementById('tl-era-' + era);
+        if (eraEl) eraEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 100);
     }
 
     function filterTimeline(era, btn) {
@@ -6945,6 +7028,45 @@
         });
       }, { rootMargin: '-20% 0px -60% 0px' });
       sections.forEach(s => navObserver.observe(s));
+
+      // Collapsible sections
+      document.querySelectorAll('.section[id]').forEach(sec => {
+        const hdr = sec.querySelector('.section-header h2');
+        if (!hdr) return;
+        const btn = document.createElement('button');
+        btn.className = 'section-collapse-btn';
+        btn.textContent = 'Collapse';
+        btn.onclick = function(e) {
+          e.stopPropagation();
+          sec.classList.toggle('collapsed-sec');
+          btn.textContent = sec.classList.contains('collapsed-sec') ? 'Expand' : 'Collapse';
+          localStorage.setItem('sec-' + sec.id, sec.classList.contains('collapsed-sec') ? '1' : '');
+        };
+        hdr.appendChild(btn);
+        if (localStorage.getItem('sec-' + sec.id) === '1') {
+          sec.classList.add('collapsed-sec');
+          btn.textContent = 'Expand';
+        }
+      });
+
+      // EFTA citation copy-to-clipboard
+      document.addEventListener('click', function(e) {
+        var el = e.target.closest('.fc-citation');
+        if (!el) return;
+        var text = el.textContent.trim();
+        var match = text.match(/EFTA\d+/);
+        if (match) {
+          navigator.clipboard.writeText(match[0]).then(function() {
+            var toast = document.createElement('div');
+            toast.className = 'copy-toast';
+            toast.textContent = 'Copied ' + match[0];
+            document.body.appendChild(toast);
+            requestAnimationFrame(function() { toast.style.opacity = '1'; toast.style.transform = 'translateX(-50%) translateY(0)'; });
+            setTimeout(function() { toast.style.opacity = '0'; toast.style.transform = 'translateX(-50%) translateY(10px)'; setTimeout(function() { toast.remove(); }, 300); }, 1800);
+          });
+          e.stopPropagation();
+        }
+      });
     });
   </script>
 </body>

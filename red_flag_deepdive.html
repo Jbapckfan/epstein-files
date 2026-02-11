@@ -243,6 +243,16 @@ body::after{
 .bar-seg-inv{background:linear-gradient(180deg,#fbbf24,#d97706) !important}
 .bar-seg-obs{background:linear-gradient(180deg,#93c5fd,#3b82f6) !important}
 
+/* Category isolate filter */
+.seg-filter-bar{display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap}
+.seg-filter-btn{padding:5px 12px;border-radius:20px;font-size:11px;font-weight:700;cursor:pointer;border:1px solid var(--border);background:var(--glass);color:var(--text2);transition:all 0.2s}
+.seg-filter-btn:hover,.seg-filter-btn.active{color:#fff;border-color:currentColor}
+.seg-filter-btn[data-cat="crim"].active{color:#ef4444;background:rgba(239,68,68,0.15)}
+.seg-filter-btn[data-cat="blk"].active{color:#a855f7;background:rgba(168,85,247,0.15)}
+.seg-filter-btn[data-cat="inv"].active{color:#f59e0b;background:rgba(245,158,11,0.15)}
+.seg-filter-btn[data-cat="obs"].active{color:#60a5fa;background:rgba(96,165,250,0.15)}
+.bar-seg.dimmed-seg{opacity:0.12 !important}
+
 /* ============================================ */
 /* THREAT METER — Section 2                      */
 /* ============================================ */
@@ -435,7 +445,17 @@ body::after{
   font-size:10px;font-weight:600;color:var(--text3);
   font-family:'JetBrains Mono',monospace;
   background:rgba(255,255,255,0.04);padding:2px 8px;border-radius:4px;
+  cursor:pointer;transition:all 0.2s;
 }
+.excerpt-doc:hover{background:rgba(96,165,250,0.15);color:var(--blue,#60a5fa)}
+.copy-toast{
+  position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);
+  background:rgba(15,17,23,0.92);border:1px solid rgba(96,165,250,0.3);
+  color:#60a5fa;padding:8px 18px;border-radius:8px;
+  font:600 12px 'JetBrains Mono',monospace;backdrop-filter:blur(8px);
+  opacity:0;transition:all 0.3s;pointer-events:none;z-index:99999;
+}
+.copy-toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 .excerpt-sev{
   font-size:9px;font-weight:800;padding:2px 8px;border-radius:12px;text-transform:uppercase;
   letter-spacing:0.5px;
@@ -708,6 +728,13 @@ body::after{
     <div class="legend-item"><div class="legend-dot" style="background:linear-gradient(135deg,#93c5fd,#3b82f6)"></div>Obstruction / Cover-up</div>
   </div>
 
+  <div class="seg-filter-bar" id="segFilterBar">
+    <button class="seg-filter-btn active" data-cat="all" onclick="_filterSeg('all',this)">All Categories</button>
+    <button class="seg-filter-btn" data-cat="crim" onclick="_filterSeg('crim',this)">Criminal</button>
+    <button class="seg-filter-btn" data-cat="blk" onclick="_filterSeg('blk',this)">Blackmail</button>
+    <button class="seg-filter-btn" data-cat="inv" onclick="_filterSeg('inv',this)">Involvement</button>
+    <button class="seg-filter-btn" data-cat="obs" onclick="_filterSeg('obs',this)">Obstruction</button>
+  </div>
   <div id="severityBars"></div>
 
   <div class="note">Note: Ghislaine Maxwell (484,187 composite) is excluded from all charts as a core case figure &mdash; her score dwarfs all associates by orders of magnitude.</div>
@@ -1008,6 +1035,22 @@ function positionTooltip(e) {
     row.addEventListener('mouseleave', hideTooltip);
   });
 })();
+
+// Category segment filter
+var _segMap = {crim:'bar-seg-crim', blk:'bar-seg-blk', inv:'bar-seg-inv', obs:'bar-seg-obs'};
+function _filterSeg(cat, btn) {
+  document.querySelectorAll('.seg-filter-btn').forEach(function(b){b.classList.remove('active')});
+  btn.classList.add('active');
+  var segs = document.querySelectorAll('#severityBars .bar-seg');
+  if (cat === 'all') {
+    segs.forEach(function(s){s.classList.remove('dimmed-seg')});
+  } else {
+    var cls = _segMap[cat];
+    segs.forEach(function(s){
+      s.classList.toggle('dimmed-seg', !s.classList.contains(cls));
+    });
+  }
+}
 
 // ============================================================
 // SECTION 2: Blackmail & Kompromat Risk
@@ -1410,6 +1453,23 @@ setTimeout(function() {
 
   document.querySelectorAll('.section').forEach(function(s) {
     navObserver.observe(s);
+  });
+})();
+
+// Citation copy-to-clipboard
+(function(){
+  var toast=document.createElement('div');toast.className='copy-toast';document.body.appendChild(toast);
+  var timer;
+  document.addEventListener('click',function(e){
+    var el=e.target.closest('.excerpt-doc');
+    if(!el)return;
+    var match=el.textContent.match(/EFTA\d+/);
+    if(match){
+      navigator.clipboard.writeText(match[0]).then(function(){
+        toast.textContent='Copied: '+match[0];toast.classList.add('show');
+        clearTimeout(timer);timer=setTimeout(function(){toast.classList.remove('show')},2000);
+      });
+    }
   });
 })();
 </script>

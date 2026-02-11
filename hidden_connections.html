@@ -313,6 +313,10 @@ footer a:hover{text-decoration:underline}
   <div class="section-label fade-up">01 &mdash; Network Graph</div>
   <h2 class="section-title fade-up delay-1">Force-Directed Relationship Map</h2>
   <p class="section-desc fade-up delay-2">Nodes sized by composite document score. Edges weighted by co-occurrence in shared documents. Drag nodes to explore. Click to isolate connections.</p>
+  <div style="margin-bottom:10px;display:flex;gap:8px;align-items:center" class="fade-up delay-2">
+    <input type="text" id="nodeSearch" placeholder="Search nodes..." style="padding:8px 14px;background:var(--card);border:1px solid var(--card-border);border-radius:8px;color:var(--text);font-size:13px;width:240px;font-family:inherit;outline:none;transition:border-color 0.2s" onfocus="this.style.borderColor='var(--cyan)'" onblur="this.style.borderColor='var(--card-border)'">
+    <span id="nodeSearchCount" style="font-size:11px;color:var(--text-dim)"></span>
+  </div>
   <div class="glass-card fade-up delay-3">
     <div class="scanline"></div>
     <div id="force-graph-container">
@@ -581,6 +585,7 @@ document.querySelectorAll('[data-count]').forEach(el=>{
   const ctx=canvas.getContext('2d');
   const tooltip=document.getElementById('graph-tooltip');
   let W,H,dpr;
+  let _nodeSearchQ='';
 
   function resize(){
     const rect=container.getBoundingClientRect();
@@ -723,7 +728,8 @@ document.querySelectorAll('[data-count]').forEach(el=>{
       const isSelected=selectedNode===n;
       const isConnected=selectedNode&&edges.some(e=>(e.source===selectedNode&&e.target===n)||(e.target===selectedNode&&e.source===n));
       const isHovered=hoverNode===n;
-      const dimmed=selectedNode&&!isSelected&&!isConnected;
+      const isSearchMatch=_nodeSearchQ&&n.name.toLowerCase().includes(_nodeSearchQ);
+      const dimmed=(selectedNode&&!isSelected&&!isConnected)||(_nodeSearchQ&&!isSearchMatch);
 
       // Glow
       if(isHovered||isSelected){
@@ -740,6 +746,14 @@ document.querySelectorAll('[data-count]').forEach(el=>{
         ctx.beginPath();ctx.arc(n.x,n.y,pulseR,0,Math.PI*2);
         ctx.strokeStyle=n.color.replace(')',',0.4)').replace('rgb','rgba');
         ctx.lineWidth=1.5/zoom;ctx.stroke();
+      }
+
+      // Search match glow
+      if(isSearchMatch&&!isSelected){
+        const sr=n.r+4+Math.sin(animTime*4)*2;
+        ctx.beginPath();ctx.arc(n.x,n.y,sr,0,Math.PI*2);
+        ctx.strokeStyle='rgba(34,211,238,0.7)';
+        ctx.lineWidth=2/zoom;ctx.stroke();
       }
 
       // Node circle
@@ -873,6 +887,19 @@ document.querySelectorAll('[data-count]').forEach(el=>{
     dragNode.x=w.x;dragNode.y=w.y;dragNode.vx=0;dragNode.vy=0;
   },{passive:false});
   canvas.addEventListener('touchend',()=>{if(dragNode){dragNode.pinned=false;dragNode=null}touchId=null});
+
+  // Node search
+  const _nsInput=document.getElementById('nodeSearch');
+  const _nsCount=document.getElementById('nodeSearchCount');
+  if(_nsInput){
+    _nsInput.addEventListener('input',function(){
+      _nodeSearchQ=this.value.trim().toLowerCase();
+      if(_nodeSearchQ){
+        const ct=nodes.filter(n=>n.name.toLowerCase().includes(_nodeSearchQ)).length;
+        _nsCount.textContent=ct+' match'+(ct!==1?'es':'');
+      } else { _nsCount.textContent=''; }
+    });
+  }
 
   draw();
 })();
@@ -1197,7 +1224,7 @@ document.querySelectorAll('[data-count]').forEach(el=>{
         const ry=rn.y+rn.h/2;
         const cpx1=ln.x+nodeW+(colData[c+1].x-ln.x-nodeW)*0.4;
         const cpx2=ln.x+nodeW+(colData[c+1].x-ln.x-nodeW)*0.6;
-        html+=`<path d="M${ln.x+nodeW},${ly} C${cpx1},${ly} ${cpx2},${ry} ${rn.x},${ry}" fill="none" stroke="url(#${gradId})" stroke-width="${thickness}" filter="url(#glow-s)"/>`;
+        html+=`<path class="sankey-link" d="M${ln.x+nodeW},${ly} C${cpx1},${ly} ${cpx2},${ry} ${rn.x},${ry}" fill="none" stroke="url(#${gradId})" stroke-width="${thickness}" filter="url(#glow-s)" data-from="${ln.name}" data-to="${rn.name}" data-flow="${Math.round(flow)}"><title>${ln.name} → ${rn.name}: ${Math.round(flow)}</title></path>`;
       }
     }
   }
@@ -1205,10 +1232,10 @@ document.querySelectorAll('[data-count]').forEach(el=>{
   // Node rectangles
   for(const col of colData){
     for(const n of col.nodes){
-      html+=`<rect x="${n.x}" y="${n.y}" width="${n.w}" height="${n.h}" rx="6" fill="${n.color}" opacity="0.2" stroke="${n.color}" stroke-width="1" stroke-opacity="0.5"/>`;
-      html+=`<rect x="${n.x}" y="${n.y}" width="3" height="${n.h}" rx="1.5" fill="${n.color}" opacity="0.8"/>`;
+      html+=`<rect class="sankey-node" x="${n.x}" y="${n.y}" width="${n.w}" height="${n.h}" rx="6" fill="${n.color}" opacity="0.2" stroke="${n.color}" stroke-width="1" stroke-opacity="0.5" data-name="${n.name}" data-val="${n.val}"><title>${n.name}: ${n.val}</title></rect>`;
+      html+=`<rect x="${n.x}" y="${n.y}" width="3" height="${n.h}" rx="1.5" fill="${n.color}" opacity="0.8" pointer-events="none"/>`;
       const fontSize=n.h<20?8:10;
-      html+=`<text x="${n.x+12}" y="${n.y+n.h/2+3}" fill="white" font-size="${fontSize}" font-family="Inter,sans-serif" font-weight="600" opacity="0.9">${n.name}</text>`;
+      html+=`<text x="${n.x+12}" y="${n.y+n.h/2+3}" fill="white" font-size="${fontSize}" font-family="Inter,sans-serif" font-weight="600" opacity="0.9" pointer-events="none">${n.name}</text>`;
     }
   }
 
@@ -1284,6 +1311,25 @@ document.querySelectorAll('[data-count]').forEach(el=>{
       }
     });
     path.addEventListener('mouseleave',hideTip);
+  });
+
+  // Sankey links
+  document.querySelectorAll('#sankey-svg .sankey-link').forEach(path=>{
+    path.addEventListener('mousemove',e=>{
+      const from=path.dataset.from, to=path.dataset.to, flow=path.dataset.flow;
+      showTip(e,`<div class="tt-heading">${from} &rarr; ${to}</div><div>Flow weight: <span class="tt-value">${parseInt(flow).toLocaleString()}</span></div>`);
+      path.setAttribute('stroke-opacity','0.6');
+    });
+    path.addEventListener('mouseleave',()=>{hideTip();path.removeAttribute('stroke-opacity')});
+  });
+
+  // Sankey nodes
+  document.querySelectorAll('#sankey-svg .sankey-node').forEach(rect=>{
+    rect.addEventListener('mousemove',e=>{
+      showTip(e,`<div class="tt-heading">${rect.dataset.name}</div><div>Score: <span class="tt-value">${parseInt(rect.dataset.val).toLocaleString()}</span></div>`);
+      rect.setAttribute('opacity','0.4');
+    });
+    rect.addEventListener('mouseleave',()=>{hideTip();rect.setAttribute('opacity','0.2')});
   });
 })();
 </script>

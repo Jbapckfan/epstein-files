@@ -419,6 +419,15 @@ body {
 }
 .cite-tag:hover { background: rgba(96,165,250,0.2); }
 .cite-tag .page { color: var(--cyan); }
+.cite-tag::after, .cite-cell::after { content: ''; }
+.copy-toast {
+  position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(20px);
+  background: rgba(15,17,23,0.92); border: 1px solid rgba(96,165,250,0.3);
+  color: var(--blue); padding: 8px 18px; border-radius: 8px;
+  font: 600 12px 'JetBrains Mono', monospace; backdrop-filter: blur(8px);
+  opacity: 0; transition: all 0.3s; pointer-events: none; z-index: 99999;
+}
+.copy-toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
 .card-expand {
   display: none;
@@ -1808,6 +1817,30 @@ function _updateInteractiveURL() {
     globalSearch.value = search;
     globalSearch.dispatchEvent(new Event('input'));
   }
+})();
+
+// ======= CITATION COPY-TO-CLIPBOARD =======
+(function(){
+  var toast = document.createElement('div');
+  toast.className = 'copy-toast';
+  document.body.appendChild(toast);
+  var timer;
+  function showToast(text) {
+    toast.textContent = 'Copied: ' + text;
+    toast.classList.add('show');
+    clearTimeout(timer);
+    timer = setTimeout(function(){ toast.classList.remove('show'); }, 2000);
+  }
+  document.addEventListener('click', function(e) {
+    var el = e.target.closest('.cite-tag, .cite-cell');
+    if (!el) return;
+    var text = el.textContent.trim();
+    var match = text.match(/EFTA\d+/);
+    if (match) {
+      navigator.clipboard.writeText(match[0]).then(function(){ showToast(match[0]); });
+      e.stopPropagation();
+    }
+  });
 })();
 </script>
 </body>
