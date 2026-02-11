@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Epstein Files Investigation Dashboard — central hub for 196,750 findings across 122,830 documents. Interactive network analysis, hidden connections, concern scoring, and red flag deep dives.">
 <title>Epstein Files — Investigation Dashboard</title>
 <style>
   :root {
@@ -37,6 +38,11 @@
   *:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
   .skip-link { position: absolute; top: -100%; left: 16px; z-index: 100000; padding: 8px 16px; background: var(--teal); color: #000; border-radius: 0 0 6px 6px; font-weight: 600; text-decoration: none; }
   .skip-link:focus { top: 0; }
+  html { scroll-behavior: smooth; }
+
+  .scroll-top-btn { position: fixed; bottom: 24px; right: 24px; z-index: 9999; width: 44px; height: 44px; border-radius: 50%; background: var(--panel); border: 1px solid var(--line); color: var(--muted); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 20px; transition: all 0.3s; opacity: 0; pointer-events: none; transform: translateY(10px); backdrop-filter: blur(8px); }
+  .scroll-top-btn.visible { opacity: 1; pointer-events: auto; transform: translateY(0); }
+  .scroll-top-btn:hover { background: rgba(255,93,122,0.2); border-color: rgba(255,93,122,0.4); color: var(--rose); }
 
   * {
     box-sizing: border-box;
@@ -313,6 +319,7 @@
     .kicker { color: #333; }
     h1, .lede { color: #000; }
     .actions { display: none; }
+    .scroll-top-btn { display: none !important; }
     .card { border-color: #ccc; background: #fff; color: #000; }
     .card p { color: #444; }
     .kpi-box { border-color: #ccc; background: #f9f9f9; }
@@ -462,5 +469,7 @@
   ctx.fillText('findings', cx, cy + 10);
 })();
 </script>
+<button class="scroll-top-btn" id="scrollTopBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to top" aria-label="Back to top">&#9650;</button>
+<script>window.addEventListener('scroll',function(){document.getElementById('scrollTopBtn').classList.toggle('visible',window.scrollY>600)},{passive:true});</script>
 </body>
 </html>
