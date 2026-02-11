@@ -134,6 +134,6 @@ p {
     <a href="concern_analysis.html">Concern Analysis</a>
   </nav>
 </main>
-<script>(function(){var t=localStorage.getItem('epstein-theme');if(!t&&window.matchMedia){t=window.matchMedia('(prefers-color-scheme:light)').matches?'light':'dark';}if(t==='light'){document.body.classList.add('light-theme');document.getElementById('themeToggle').innerHTML='&#9788;';}document.getElementById('themeToggle').addEventListener('click',function(){document.body.classList.toggle('light-theme');var l=document.body.classList.contains('light-theme');localStorage.setItem('epstein-theme',l?'light':'dark');this.innerHTML=l?'&#9788;':'&#9790;';});})();</script>
+<script>(function(){try{var t=localStorage.getItem('epstein-theme')}catch(e){}if(!t&&window.matchMedia){t=window.matchMedia('(prefers-color-scheme:light)').matches?'light':'dark';}if(t==='light'){document.body.classList.add('light-theme');document.getElementById('themeToggle').innerHTML='&#9788;';}document.getElementById('themeToggle').addEventListener('click',function(){document.body.classList.toggle('light-theme');var l=document.body.classList.contains('light-theme');try{localStorage.setItem('epstein-theme',l?'light':'dark')}catch(e){}this.innerHTML=l?'&#9788;':'&#9790;';});})();</script>
 </body>
 </html>

@@ -303,7 +303,7 @@ footer a:hover{text-decoration:underline}
 
 <a href="#main-content" class="skip-link">Skip to main content</a>
 <button class="theme-toggle" id="themeToggle" title="Toggle light/dark theme" aria-label="Toggle light/dark theme">&#9790;</button>
-<script>(function(){var t=localStorage.getItem('epstein-theme');if(!t&&window.matchMedia){t=window.matchMedia('(prefers-color-scheme:light)').matches?'light':'dark';}if(t==='light'){document.body.classList.add('light-theme');document.getElementById('themeToggle').innerHTML='&#9788;';}document.getElementById('themeToggle').addEventListener('click',function(){document.body.classList.toggle('light-theme');var l=document.body.classList.contains('light-theme');localStorage.setItem('epstein-theme',l?'light':'dark');this.innerHTML=l?'&#9788;':'&#9790;';});})();</script>
+<script>(function(){try{var t=localStorage.getItem('epstein-theme')}catch(e){}if(!t&&window.matchMedia){t=window.matchMedia('(prefers-color-scheme:light)').matches?'light':'dark';}if(t==='light'){document.body.classList.add('light-theme');document.getElementById('themeToggle').innerHTML='&#9788;';}document.getElementById('themeToggle').addEventListener('click',function(){document.body.classList.toggle('light-theme');var l=document.body.classList.contains('light-theme');try{localStorage.setItem('epstein-theme',l?'light':'dark')}catch(e){}this.innerHTML=l?'&#9788;':'&#9790;';});})();</script>
 <div class="svg-tooltip" id="svgTooltip"></div>
 
 <div class="container" id="main-content" role="main">

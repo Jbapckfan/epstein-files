@@ -1697,11 +1697,11 @@
   <a href="#main-content" class="skip-link">Skip to main content</a>
   <button class="theme-toggle" id="themeToggle" title="Toggle light/dark theme" aria-label="Toggle light/dark theme">&#9790;</button>
   <script>
-    (function(){var t=localStorage.getItem('epstein-theme');if(!t&&window.matchMedia){t=window.matchMedia('(prefers-color-scheme:light)').matches?'light':'dark';}if(t==='light')document.body.classList.add('light-theme');
+    (function(){try{var t=localStorage.getItem('epstein-theme')}catch(e){}if(!t&&window.matchMedia){t=window.matchMedia('(prefers-color-scheme:light)').matches?'light':'dark';}if(t==='light')document.body.classList.add('light-theme');
     document.getElementById('themeToggle').addEventListener('click',function(){
       document.body.classList.toggle('light-theme');
       var isLight=document.body.classList.contains('light-theme');
-      localStorage.setItem('epstein-theme',isLight?'light':'dark');
+      try{localStorage.setItem('epstein-theme',isLight?'light':'dark')}catch(e){}
       this.innerHTML=isLight?'&#9788;':'&#9790;';
     });
     if(t==='light')document.getElementById('themeToggle').innerHTML='&#9788;';})();
@@ -7093,10 +7093,10 @@
           e.stopPropagation();
           sec.classList.toggle('collapsed-sec');
           btn.textContent = sec.classList.contains('collapsed-sec') ? 'Expand' : 'Collapse';
-          localStorage.setItem('sec-' + sec.id, sec.classList.contains('collapsed-sec') ? '1' : '');
+          try{localStorage.setItem('sec-' + sec.id, sec.classList.contains('collapsed-sec') ? '1' : '')}catch(e){}
         };
         hdr.appendChild(btn);
-        if (localStorage.getItem('sec-' + sec.id) === '1') {
+        if ((function(){try{return localStorage.getItem('sec-' + sec.id)}catch(e){return null}})() === '1') {
           sec.classList.add('collapsed-sec');
           btn.textContent = 'Expand';
         }
