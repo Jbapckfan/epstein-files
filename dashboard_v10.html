@@ -32,6 +32,7 @@
 *:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 .skip-link { position: absolute; top: -100%; left: 16px; z-index: 100000; padding: 8px 16px; background: var(--accent); color: #fff; border-radius: 0 0 6px 6px; font-weight: 600; text-decoration: none; }
 .skip-link:focus { top: 0; }
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 body { background: var(--bg); color: var(--text); font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace; font-size: 14px; line-height: 1.6; }
 .container { max-width: 1400px; margin: 0 auto; padding: 20px; }
 header { text-align: center; padding: 40px 20px; border-bottom: 2px solid var(--accent); margin-bottom: 30px; }
@@ -187,7 +188,7 @@ html { scroll-behavior: smooth; }
 
 <!-- SECTION 1: TOP 30 FINDINGS -->
 <div class="section s-red open">
-<div class="section-header" role="button" tabindex="0" onclick="toggleSection(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleSection(this)}">
+<div class="section-header" role="button" tabindex="0" aria-expanded="true" onclick="toggleSection(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleSection(this)}">
 <h2>TOP 30: WHAT JOURNALISTS ARE MISSING</h2>
 <div><span class="count">30 findings</span> <span class="toggle">&#9660;</span></div>
 </div>
@@ -378,12 +379,13 @@ html { scroll-behavior: smooth; }
 
 <!-- SECTION 2: LENT OUT SYSTEM -->
 <div class="section s-orange">
-<div class="section-header" role="button" tabindex="0" onclick="toggleSection(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleSection(this)}">
+<div class="section-header" role="button" tabindex="0" aria-expanded="true" onclick="toggleSection(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleSection(this)}">
 <h2>THE "LENT OUT" SYSTEM — 16 NAMED INDIVIDUALS</h2>
 <div><span class="count">16 names</span> <span class="toggle">&#9660;</span></div>
 </div>
 <div class="section-content">
 <div class="table-wrap"><table>
+<caption class="sr-only">Named abusers with allegations and sources</caption>
 <tr><th scope="col">Person</th><th scope="col">Allegation</th><th scope="col">Source</th></tr>
 <tr><td><em class="name">Prince Andrew</em></td><td>Maxwell told victim to "make him happy and do the exact same things"</td><td>EFTA02731082</td></tr>
 <tr><td><em class="name">Jes Staley</em></td><td>"Forced [victim] to touch his genitals and then raped [victim]"</td><td>EFTA02731082</td></tr>
@@ -407,7 +409,7 @@ html { scroll-behavior: smooth; }
 
 <!-- SECTION 3: FINANCIAL NETWORK -->
 <div class="section s-yellow">
-<div class="section-header" role="button" tabindex="0" onclick="toggleSection(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleSection(this)}">
+<div class="section-header" role="button" tabindex="0" aria-expanded="true" onclick="toggleSection(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleSection(this)}">
 <h2>FINANCIAL NETWORK — $1B+ IN HIDDEN SCHEMES</h2>
 <div><span class="count">16+ entities</span> <span class="toggle">&#9660;</span></div>
 </div>
@@ -446,7 +448,7 @@ html { scroll-behavior: smooth; }
 
 <!-- SECTION 4: EVIDENCE INVENTORY -->
 <div class="section s-teal">
-<div class="section-header" role="button" tabindex="0" onclick="toggleSection(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleSection(this)}">
+<div class="section-header" role="button" tabindex="0" aria-expanded="true" onclick="toggleSection(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleSection(this)}">
 <h2>EVIDENCE INVENTORY — 60+ DEVICES, DIAMONDS, PASSPORTS</h2>
 <div><span class="count">NEW section</span> <span class="toggle">&#9660;</span></div>
 </div>
@@ -478,7 +480,7 @@ html { scroll-behavior: smooth; }
 
 <!-- SECTION 5: PROSECUTION MEMO ANALYSIS -->
 <div class="section s-blue">
-<div class="section-header" role="button" tabindex="0" onclick="toggleSection(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleSection(this)}">
+<div class="section-header" role="button" tabindex="0" aria-expanded="true" onclick="toggleSection(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleSection(this)}">
 <h2>PROSECUTION MEMO REDACTION ANALYSIS (EFTA02731082)</h2>
 <div><span class="count">24+ victims mapped</span> <span class="toggle">&#9660;</span></div>
 </div>
@@ -487,6 +489,7 @@ html { scroll-behavior: smooth; }
 <div class="finding">
 <h3>Victim Summary (24+ Numbered in Memo)</h3>
 <div class="table-wrap"><table>
+<caption class="sr-only">Victim summary — ages, locations, and key details</caption>
 <tr><th scope="col">#</th><th scope="col">Age</th><th scope="col">Location</th><th scope="col">Key Detail</th></tr>
 <tr><td>1</td><td>~14</td><td>NYC</td><td>Told Epstein she was 14; brought "dozens of girls"; $300/visit</td></tr>
 <tr><td>2</td><td>~14</td><td>Palm Beach</td><td>Recruited ~20-30 girls, most minors</td></tr>
@@ -530,7 +533,7 @@ html { scroll-behavior: smooth; }
 
 <!-- SECTION 6: DEATH INVESTIGATION -->
 <div class="section s-purple">
-<div class="section-header" role="button" tabindex="0" onclick="toggleSection(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleSection(this)}">
+<div class="section-header" role="button" tabindex="0" aria-expanded="true" onclick="toggleSection(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleSection(this)}">
 <h2>DEATH INVESTIGATION — FULL DETAIL</h2>
 <div><span class="count">Updated</span> <span class="toggle">&#9660;</span></div>
 </div>
@@ -564,7 +567,7 @@ html { scroll-behavior: smooth; }
 
 <!-- SECTION 7: INTELLIGENCE -->
 <div class="section s-pink">
-<div class="section-header" role="button" tabindex="0" onclick="toggleSection(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleSection(this)}">
+<div class="section-header" role="button" tabindex="0" aria-expanded="true" onclick="toggleSection(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleSection(this)}">
 <h2>INTELLIGENCE CONNECTIONS</h2>
 <div><span class="count">Updated</span> <span class="toggle">&#9660;</span></div>
 </div>
@@ -600,7 +603,7 @@ html { scroll-behavior: smooth; }
 
 <!-- SECTION 8: POLITICAL CONNECTIONS -->
 <div class="section s-red">
-<div class="section-header" role="button" tabindex="0" onclick="toggleSection(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleSection(this)}">
+<div class="section-header" role="button" tabindex="0" aria-expanded="true" onclick="toggleSection(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleSection(this)}">
 <h2>POLITICAL CONNECTIONS</h2>
 <div><span class="count">Updated</span> <span class="toggle">&#9660;</span></div>
 </div>
@@ -643,7 +646,7 @@ html { scroll-behavior: smooth; }
 
 <!-- SECTION 9: SCIENCE NETWORK -->
 <div class="section s-teal">
-<div class="section-header" role="button" tabindex="0" onclick="toggleSection(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleSection(this)}">
+<div class="section-header" role="button" tabindex="0" aria-expanded="true" onclick="toggleSection(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleSection(this)}">
 <h2>SCIENCE / EUGENICS NETWORK</h2>
 <div><span class="count">Updated</span> <span class="toggle">&#9660;</span></div>
 </div>
@@ -674,7 +677,7 @@ html { scroll-behavior: smooth; }
 
 <!-- SECTION 10: FBI TIPS -->
 <div class="section s-orange">
-<div class="section-header" role="button" tabindex="0" onclick="toggleSection(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleSection(this)}">
+<div class="section-header" role="button" tabindex="0" aria-expanded="true" onclick="toggleSection(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleSection(this)}">
 <h2>FBI TIP COMPILATION (EFTA01660679)</h2>
 <div><span class="count">7 categories</span> <span class="toggle">&#9660;</span></div>
 </div>
@@ -699,7 +702,7 @@ html { scroll-behavior: smooth; }
 
 <!-- SECTION 11: MAXWELL FAMILY -->
 <div class="section s-purple">
-<div class="section-header" role="button" tabindex="0" onclick="toggleSection(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleSection(this)}">
+<div class="section-header" role="button" tabindex="0" aria-expanded="true" onclick="toggleSection(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleSection(this)}">
 <h2>MAXWELL FAMILY — 150+ SHELL COMPANIES</h2>
 <div><span class="count">Updated</span> <span class="toggle">&#9660;</span></div>
 </div>
@@ -727,7 +730,7 @@ html { scroll-behavior: smooth; }
 
 <!-- SECTION 12: CONNECTED DEATHS -->
 <div class="section s-red">
-<div class="section-header" role="button" tabindex="0" onclick="toggleSection(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleSection(this)}">
+<div class="section-header" role="button" tabindex="0" aria-expanded="true" onclick="toggleSection(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleSection(this)}">
 <h2>WITNESS INTIMIDATION & CONNECTED DEATHS</h2>
 <div><span class="count">Updated</span> <span class="toggle">&#9660;</span></div>
 </div>
@@ -762,13 +765,14 @@ html { scroll-behavior: smooth; }
 
 <!-- SECTION 13: KEY DOCUMENTS -->
 <div class="section s-blue">
-<div class="section-header" role="button" tabindex="0" onclick="toggleSection(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleSection(this)}">
+<div class="section-header" role="button" tabindex="0" aria-expanded="true" onclick="toggleSection(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleSection(this)}">
 <h2>KEY DOCUMENTS INDEX</h2>
 <div><span class="count">21 documents</span> <span class="toggle">&#9660;</span></div>
 </div>
 <div class="section-content">
 <div class="table-wrap">
 <table>
+<caption class="sr-only">Key EFTA document references</caption>
 <tr><th scope="col">EFTA Number</th><th scope="col">Description</th></tr>
 <tr><td>EFTA02731082</td><td>SDNY Prosecution Memo / Wexner Proffer (86pp) — THE KEY DOCUMENT</td></tr>
 <tr><td>EFTA02730741</td><td>FBI NTOC Master Investigation Log (255pp)</td></tr>
@@ -809,6 +813,7 @@ html { scroll-behavior: smooth; }
 <script>
 function toggleSection(header) {
   header.parentElement.classList.toggle('open');
+  header.setAttribute('aria-expanded', header.parentElement.classList.contains('open'));
 }
 
 // Search

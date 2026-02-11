@@ -17,6 +17,7 @@
 *:focus-visible { outline: 2px solid var(--red); outline-offset: 2px; }
 .skip-link { position: absolute; top: -100%; left: 16px; z-index: 100000; padding: 8px 16px; background: var(--red); color: #fff; border-radius: 0 0 6px 6px; font-weight: 600; text-decoration: none; }
 .skip-link:focus { top: 0; }
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 
 :root {
   --bg-primary: #0a0a0a;
@@ -632,7 +633,7 @@ html { scroll-behavior: smooth; }
   <!-- SECTION 1: WHAT JOURNALISTS ARE MISSING -->
   <!-- ============================================================ -->
   <div class="section section-red open" id="sec-journalists">
-    <div class="section-header" role="button" tabindex="0" onclick="toggleSection(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleSection(this)}">
+    <div class="section-header" role="button" tabindex="0" aria-expanded="true" onclick="toggleSection(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleSection(this)}">
       <div class="section-header-left">
         <span class="section-chevron">&#9654;</span>
         <span class="section-title">What Journalists Are Missing</span>
@@ -790,7 +791,7 @@ html { scroll-behavior: smooth; }
   <!-- SECTION 2: LENT OUT SYSTEM -->
   <!-- ============================================================ -->
   <div class="section section-orange" id="sec-lentout">
-    <div class="section-header" role="button" tabindex="0" onclick="toggleSection(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleSection(this)}">
+    <div class="section-header" role="button" tabindex="0" aria-expanded="true" onclick="toggleSection(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleSection(this)}">
       <div class="section-header-left">
         <span class="section-chevron">&#9654;</span>
         <span class="section-title">Lent Out System</span>
@@ -803,12 +804,13 @@ html { scroll-behavior: smooth; }
         <p>Victims described being "lent out" to Epstein's powerful friends and associates. This was not incidental but a systematic operation where Epstein provided victims to high-profile individuals, creating a network of complicity and potential blackmail leverage.</p>
       </div>
       <table class="data-table">
+        <caption class="sr-only">Systematic sexual trafficking to powerful associates</caption>
         <thead>
           <tr>
-            <th>Name</th>
-            <th>Role / Position</th>
-            <th>Allegation</th>
-            <th>Source</th>
+            <th scope="col">Name</th>
+            <th scope="col">Role / Position</th>
+            <th scope="col">Allegation</th>
+            <th scope="col">Source</th>
           </tr>
         </thead>
         <tbody>
@@ -899,7 +901,7 @@ html { scroll-behavior: smooth; }
   <!-- SECTION 3: NPA / PLEA DEAL -->
   <!-- ============================================================ -->
   <div class="section section-red" id="sec-npa">
-    <div class="section-header" role="button" tabindex="0" onclick="toggleSection(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleSection(this)}">
+    <div class="section-header" role="button" tabindex="0" aria-expanded="true" onclick="toggleSection(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleSection(this)}">
       <div class="section-header-left">
         <span class="section-chevron">&#9654;</span>
         <span class="section-title">NPA / Plea Deal</span>
@@ -953,7 +955,7 @@ html { scroll-behavior: smooth; }
   <!-- SECTION 4: FINANCIAL NETWORK -->
   <!-- ============================================================ -->
   <div class="section section-green" id="sec-financial">
-    <div class="section-header" role="button" tabindex="0" onclick="toggleSection(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleSection(this)}">
+    <div class="section-header" role="button" tabindex="0" aria-expanded="true" onclick="toggleSection(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleSection(this)}">
       <div class="section-header-left">
         <span class="section-chevron">&#9654;</span>
         <span class="section-title">Financial Network</span>
@@ -1011,7 +1013,7 @@ html { scroll-behavior: smooth; }
   <!-- SECTION 5: SCIENCE / EUGENICS -->
   <!-- ============================================================ -->
   <div class="section section-purple" id="sec-science">
-    <div class="section-header" role="button" tabindex="0" onclick="toggleSection(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleSection(this)}">
+    <div class="section-header" role="button" tabindex="0" aria-expanded="true" onclick="toggleSection(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleSection(this)}">
       <div class="section-header-left">
         <span class="section-chevron">&#9654;</span>
         <span class="section-title">Science / Eugenics</span>
@@ -1060,7 +1062,7 @@ html { scroll-behavior: smooth; }
   <!-- SECTION 6: DEATH INVESTIGATION -->
   <!-- ============================================================ -->
   <div class="section section-red" id="sec-death">
-    <div class="section-header" role="button" tabindex="0" onclick="toggleSection(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleSection(this)}">
+    <div class="section-header" role="button" tabindex="0" aria-expanded="true" onclick="toggleSection(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleSection(this)}">
       <div class="section-header-left">
         <span class="section-chevron">&#9654;</span>
         <span class="section-title">Death Investigation</span>
@@ -1125,7 +1127,7 @@ html { scroll-behavior: smooth; }
   <!-- SECTION 7: WITNESS INTIMIDATION -->
   <!-- ============================================================ -->
   <div class="section section-orange" id="sec-intimidation">
-    <div class="section-header" role="button" tabindex="0" onclick="toggleSection(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleSection(this)}">
+    <div class="section-header" role="button" tabindex="0" aria-expanded="true" onclick="toggleSection(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleSection(this)}">
       <div class="section-header-left">
         <span class="section-chevron">&#9654;</span>
         <span class="section-title">Witness Intimidation</span>
@@ -1186,7 +1188,7 @@ html { scroll-behavior: smooth; }
   <!-- SECTION 8: TRUMP CONNECTIONS -->
   <!-- ============================================================ -->
   <div class="section section-blue" id="sec-trump">
-    <div class="section-header" role="button" tabindex="0" onclick="toggleSection(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleSection(this)}">
+    <div class="section-header" role="button" tabindex="0" aria-expanded="true" onclick="toggleSection(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleSection(this)}">
       <div class="section-header-left">
         <span class="section-chevron">&#9654;</span>
         <span class="section-title">Trump Connections</span>
@@ -1228,7 +1230,7 @@ html { scroll-behavior: smooth; }
   <!-- SECTION 9: CLINTON CONNECTIONS -->
   <!-- ============================================================ -->
   <div class="section section-blue" id="sec-clinton">
-    <div class="section-header" role="button" tabindex="0" onclick="toggleSection(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleSection(this)}">
+    <div class="section-header" role="button" tabindex="0" aria-expanded="true" onclick="toggleSection(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleSection(this)}">
       <div class="section-header-left">
         <span class="section-chevron">&#9654;</span>
         <span class="section-title">Clinton Connections</span>
@@ -1270,7 +1272,7 @@ html { scroll-behavior: smooth; }
   <!-- SECTION 10: MAXWELL FAMILY -->
   <!-- ============================================================ -->
   <div class="section section-purple" id="sec-maxwell">
-    <div class="section-header" role="button" tabindex="0" onclick="toggleSection(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleSection(this)}">
+    <div class="section-header" role="button" tabindex="0" aria-expanded="true" onclick="toggleSection(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleSection(this)}">
       <div class="section-header-left">
         <span class="section-chevron">&#9654;</span>
         <span class="section-title">Maxwell Family</span>
@@ -1307,7 +1309,7 @@ html { scroll-behavior: smooth; }
   <!-- SECTION 11: CONNECTED DEATHS -->
   <!-- ============================================================ -->
   <div class="section section-red" id="sec-deaths">
-    <div class="section-header" role="button" tabindex="0" onclick="toggleSection(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleSection(this)}">
+    <div class="section-header" role="button" tabindex="0" aria-expanded="true" onclick="toggleSection(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleSection(this)}">
       <div class="section-header-left">
         <span class="section-chevron">&#9654;</span>
         <span class="section-title">Connected Deaths</span>
@@ -1316,12 +1318,13 @@ html { scroll-behavior: smooth; }
     </div>
     <div class="section-content">
       <table class="data-table">
+        <caption class="sr-only">Deaths and suspicious circumstances connected to the Epstein case</caption>
         <thead>
           <tr>
-            <th>Name</th>
-            <th>Date</th>
-            <th>Official Cause</th>
-            <th>Connection &amp; Circumstances</th>
+            <th scope="col">Name</th>
+            <th scope="col">Date</th>
+            <th scope="col">Official Cause</th>
+            <th scope="col">Connection &amp; Circumstances</th>
           </tr>
         </thead>
         <tbody>
@@ -1364,7 +1367,7 @@ html { scroll-behavior: smooth; }
   <!-- SECTION 12: KEY DOCUMENTS -->
   <!-- ============================================================ -->
   <div class="section section-gray" id="sec-documents">
-    <div class="section-header" role="button" tabindex="0" onclick="toggleSection(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleSection(this)}">
+    <div class="section-header" role="button" tabindex="0" aria-expanded="true" onclick="toggleSection(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleSection(this)}">
       <div class="section-header-left">
         <span class="section-chevron">&#9654;</span>
         <span class="section-title">Key Documents</span>
@@ -1373,11 +1376,12 @@ html { scroll-behavior: smooth; }
     </div>
     <div class="section-content">
       <table class="data-table">
+        <caption class="sr-only">Key EFTA document references and descriptions</caption>
         <thead>
           <tr>
-            <th>EFTA Reference</th>
-            <th>Pages</th>
-            <th>Description</th>
+            <th scope="col">EFTA Reference</th>
+            <th scope="col">Pages</th>
+            <th scope="col">Description</th>
           </tr>
         </thead>
         <tbody>
@@ -1490,7 +1494,7 @@ html { scroll-behavior: smooth; }
   <!-- SECTION 13: CORPORATE NETWORK -->
   <!-- ============================================================ -->
   <div class="section section-green" id="sec-corporate">
-    <div class="section-header" role="button" tabindex="0" onclick="toggleSection(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleSection(this)}">
+    <div class="section-header" role="button" tabindex="0" aria-expanded="true" onclick="toggleSection(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleSection(this)}">
       <div class="section-header-left">
         <span class="section-chevron">&#9654;</span>
         <span class="section-title">Corporate Network</span>
@@ -1554,6 +1558,7 @@ html { scroll-behavior: smooth; }
 function toggleSection(headerEl) {
   var section = headerEl.closest('.section');
   section.classList.toggle('open');
+  headerEl.setAttribute('aria-expanded', section.classList.contains('open'));
 }
 
 // =====================================================

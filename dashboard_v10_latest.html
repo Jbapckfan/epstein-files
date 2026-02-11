@@ -97,6 +97,7 @@
     }
     .skip-link { position: absolute; top: -100%; left: 16px; z-index: 100000; padding: 8px 16px; background: var(--accent); color: #fff; border-radius: 0 0 6px 6px; font-weight: 600; text-decoration: none; }
     .skip-link:focus { top: 0; }
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 
     html {
       scroll-behavior: smooth;
@@ -1969,6 +1970,7 @@
       <div class="sc-detail">Live issue register for direct-source removals and retryable access failures.</div>
       <div class="inaccessible-wrap">
         <table class="inaccessible-table">
+          <caption class="sr-only">Inaccessible files issue register — sources, types, and access statuses</caption>
           <thead>
             <tr>
               <th scope="col">Source</th>
@@ -6052,10 +6054,12 @@
 
     let _searchHighlight = '';
 
+    function _escHtml(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
     function _hl(text) {
-      if (!_searchHighlight || !text) return text;
+      if (!_searchHighlight || !text) return _escHtml(text);
+      const safe = _escHtml(text);
       const escaped = _searchHighlight.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-      return text.replace(new RegExp('(' + escaped + ')', 'gi'), '<span class="search-highlight">$1</span>');
+      return safe.replace(new RegExp('(' + escaped + ')', 'gi'), '<span class="search-highlight">$1</span>');
     }
 
     function _normSev(s) {

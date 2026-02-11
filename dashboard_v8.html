@@ -17,6 +17,7 @@
 *:focus-visible{outline:2px solid var(--accent3);outline-offset:2px}
 .skip-link{position:absolute;top:-100%;left:16px;z-index:100000;padding:8px 16px;background:var(--accent3);color:#000;border-radius:0 0 6px 6px;font-weight:600;text-decoration:none}
 .skip-link:focus{top:0}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 :root{--bg:#0d0d0d;--bg2:#141414;--bg3:#1a1a1a;--bg4:#222;--text:#e0e0e0;--text2:#999;--accent:#c0392b;--accent2:#e74c3c;--accent3:#f39c12;--accent4:#e67e22;--green:#27ae60;--blue:#2980b9;--border:#333;--sc:#e74c3c;--sh:#e67e22;--sm:#f1c40f;--sl:#3498db}
 body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,-apple-system,sans-serif;line-height:1.6;overflow-x:hidden}
 a{color:var(--accent3);text-decoration:none}a:hover{text-decoration:underline}
@@ -154,7 +155,7 @@ body.light-theme header h1{color:var(--text)}
 
 <!-- ===== SECTION 1: EXECUTIVE SUMMARY ===== -->
 <div class="sec">
-  <div class="sh" role="button" tabindex="0" onclick="tog(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();tog(this)}">
+  <div class="sh" role="button" tabindex="0" aria-expanded="true" onclick="tog(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();tog(this)}">
     <h2><span class="snum">1</span> Executive Summary</h2>
     <span class="tg op">&#9660;</span>
   </div>
@@ -195,7 +196,7 @@ body.light-theme header h1{color:var(--text)}
 
 <!-- ===== SECTION 2: INTELLIGENCE CONNECTION ===== -->
 <div class="sec">
-  <div class="sh" role="button" tabindex="0" onclick="tog(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();tog(this)}">
+  <div class="sh" role="button" tabindex="0" aria-expanded="true" onclick="tog(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();tog(this)}">
     <h2><span class="snum">2</span> Intelligence Connection (Strongest Evidence)</h2>
     <span class="tg">&#9660;</span>
   </div>
@@ -245,7 +246,7 @@ body.light-theme header h1{color:var(--text)}
 
 <!-- ===== SECTION 3: BLACKMAIL/KOMPROMAT ===== -->
 <div class="sec">
-  <div class="sh" role="button" tabindex="0" onclick="tog(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();tog(this)}">
+  <div class="sh" role="button" tabindex="0" aria-expanded="true" onclick="tog(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();tog(this)}">
     <h2><span class="snum">3</span> Blackmail / Kompromat Evidence</h2>
     <span class="tg">&#9660;</span>
   </div>
@@ -297,7 +298,7 @@ body.light-theme header h1{color:var(--text)}
 
 <!-- ===== SECTION 4: VIDEO/SURVEILLANCE ===== -->
 <div class="sec">
-  <div class="sh" role="button" tabindex="0" onclick="tog(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();tog(this)}">
+  <div class="sh" role="button" tabindex="0" aria-expanded="true" onclick="tog(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();tog(this)}">
     <h2><span class="snum">4</span> Video / Surveillance Evidence</h2>
     <span class="tg">&#9660;</span>
   </div>
@@ -343,7 +344,7 @@ body.light-theme header h1{color:var(--text)}
 
 <!-- ===== SECTION 5: WEXNER FINANCIAL PIPELINE ===== -->
 <div class="sec">
-  <div class="sh" role="button" tabindex="0" onclick="tog(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();tog(this)}">
+  <div class="sh" role="button" tabindex="0" aria-expanded="true" onclick="tog(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();tog(this)}">
     <h2><span class="snum">5</span> The Wexner Financial Pipeline (The Smoking Gun)</h2>
     <span class="tg">&#9660;</span>
   </div>
@@ -391,7 +392,7 @@ body.light-theme header h1{color:var(--text)}
 
 <!-- ===== SECTION 6: LENT OUT SYSTEM ===== -->
 <div class="sec">
-  <div class="sh" role="button" tabindex="0" onclick="tog(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();tog(this)}">
+  <div class="sh" role="button" tabindex="0" aria-expanded="true" onclick="tog(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();tog(this)}">
     <h2><span class="snum">6</span> "Lent Out" System -- Named Individuals</h2>
     <span class="tg">&#9660;</span>
   </div>
@@ -436,7 +437,7 @@ body.light-theme header h1{color:var(--text)}
 
 <!-- ===== SECTION 7: RUSSIA CONNECTIONS ===== -->
 <div class="sec">
-  <div class="sh" role="button" tabindex="0" onclick="tog(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();tog(this)}">
+  <div class="sh" role="button" tabindex="0" aria-expanded="true" onclick="tog(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();tog(this)}">
     <h2><span class="snum">7</span> Russia Connections</h2>
     <span class="tg">&#9660;</span>
   </div>
@@ -468,7 +469,7 @@ body.light-theme header h1{color:var(--text)}
 
 <!-- ===== SECTION 8: ISRAEL CONNECTIONS ===== -->
 <div class="sec">
-  <div class="sh" role="button" tabindex="0" onclick="tog(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();tog(this)}">
+  <div class="sh" role="button" tabindex="0" aria-expanded="true" onclick="tog(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();tog(this)}">
     <h2><span class="snum">8</span> Israel Connections</h2>
     <span class="tg">&#9660;</span>
   </div>
@@ -496,7 +497,7 @@ body.light-theme header h1{color:var(--text)}
 
 <!-- ===== SECTION 9: CONTRADICTORY STATEMENTS ===== -->
 <div class="sec">
-  <div class="sh" role="button" tabindex="0" onclick="tog(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();tog(this)}">
+  <div class="sh" role="button" tabindex="0" aria-expanded="true" onclick="tog(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();tog(this)}">
     <h2><span class="snum">9</span> Government Officials -- Contradictory Statements</h2>
     <span class="tg">&#9660;</span>
   </div>
@@ -571,7 +572,7 @@ body.light-theme header h1{color:var(--text)}
 
 <!-- ===== SECTION 10: TRUMP CONNECTIONS ===== -->
 <div class="sec">
-  <div class="sh" role="button" tabindex="0" onclick="tog(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();tog(this)}">
+  <div class="sh" role="button" tabindex="0" aria-expanded="true" onclick="tog(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();tog(this)}">
     <h2><span class="snum">10</span> Trump Connections</h2>
     <span class="tg">&#9660;</span>
   </div>
@@ -617,7 +618,7 @@ body.light-theme header h1{color:var(--text)}
 
 <!-- ===== SECTION 11: CLINTON CONNECTIONS ===== -->
 <div class="sec">
-  <div class="sh" role="button" tabindex="0" onclick="tog(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();tog(this)}">
+  <div class="sh" role="button" tabindex="0" aria-expanded="true" onclick="tog(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();tog(this)}">
     <h2><span class="snum">11</span> Clinton Connections</h2>
     <span class="tg">&#9660;</span>
   </div>
@@ -639,7 +640,7 @@ body.light-theme header h1{color:var(--text)}
 
 <!-- ===== SECTION 12: TECHNOLOGY/AI NETWORK ===== -->
 <div class="sec">
-  <div class="sh" role="button" tabindex="0" onclick="tog(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();tog(this)}">
+  <div class="sh" role="button" tabindex="0" aria-expanded="true" onclick="tog(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();tog(this)}">
     <h2><span class="snum">12</span> Technology / AI Network</h2>
     <span class="tg">&#9660;</span>
   </div>
@@ -703,7 +704,7 @@ body.light-theme header h1{color:var(--text)}
 
 <!-- ===== SECTION 13: DEATH INVESTIGATION ===== -->
 <div class="sec">
-  <div class="sh" role="button" tabindex="0" onclick="tog(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();tog(this)}">
+  <div class="sh" role="button" tabindex="0" aria-expanded="true" onclick="tog(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();tog(this)}">
     <h2><span class="snum">13</span> Death Investigation</h2>
     <span class="tg">&#9660;</span>
   </div>
@@ -745,12 +746,13 @@ body.light-theme header h1{color:var(--text)}
 
 <!-- ===== SECTION 14: DOCUMENT INDEX ===== -->
 <div class="sec">
-  <div class="sh" role="button" tabindex="0" onclick="tog(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();tog(this)}">
+  <div class="sh" role="button" tabindex="0" aria-expanded="true" onclick="tog(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();tog(this)}">
     <h2><span class="snum">14</span> Document Index -- Key Sources Analyzed</h2>
     <span class="tg">&#9660;</span>
   </div>
   <div class="scn">
     <div class="dt-wrap"><table class="dt">
+      <caption class="sr-only">Key EFTA document references with significance ratings</caption>
       <thead><tr><th scope="col">EFTA Number</th><th scope="col">Description</th><th scope="col">Pages</th><th scope="col">Significance</th></tr></thead>
       <tbody>
         <tr><td class="ef">EFTA02731082</td><td>Wexner Proffer -- Origin of Epstein's Wealth</td><td>86</td><td><span class="sb cr">Critical</span></td></tr>
@@ -785,7 +787,7 @@ body.light-theme header h1{color:var(--text)}
 
 <!-- ===== TIMELINE ===== -->
 <div class="sec">
-  <div class="sh" role="button" tabindex="0" onclick="tog(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();tog(this)}">
+  <div class="sh" role="button" tabindex="0" aria-expanded="true" onclick="tog(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();tog(this)}">
     <h2><span class="snum">+</span> Timeline of Key Events</h2>
     <span class="tg">&#9660;</span>
   </div>
@@ -812,7 +814,7 @@ body.light-theme header h1{color:var(--text)}
 
 <!-- ===== NETWORK VISUALIZATION ===== -->
 <div class="sec">
-  <div class="sh" role="button" tabindex="0" onclick="tog(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();tog(this)}">
+  <div class="sh" role="button" tabindex="0" aria-expanded="true" onclick="tog(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();tog(this)}">
     <h2><span class="snum">+</span> Network Visualization</h2>
     <span class="tg">&#9660;</span>
   </div>
@@ -880,7 +882,7 @@ body.light-theme header h1{color:var(--text)}
 </footer>
 
 <script>
-function tog(h){var c=h.nextElementSibling,t=h.querySelector('.tg');c.classList.toggle('op');t.classList.toggle('op')}
+function tog(h){var c=h.nextElementSibling,t=h.querySelector('.tg');c.classList.toggle('op');t.classList.toggle('op');h.setAttribute('aria-expanded',c.classList.contains('op'))}
 function doSearch(){var q=document.getElementById('si').value.toLowerCase();var els=document.querySelectorAll('.fd,.jb,.ti,.dt tbody tr');var v=0,t=els.length;els.forEach(function(e){var tx=e.textContent.toLowerCase();if(!q||tx.indexOf(q)!==-1){e.style.display='';v++}else{e.style.display='none'}});if(q){document.querySelectorAll('.scn').forEach(function(s){var vis=s.querySelectorAll('.fd:not([style*="display: none"]),.jb:not([style*="display: none"]),.ti:not([style*="display: none"]),.dt tbody tr:not([style*="display: none"])');if(vis.length>0){s.classList.add('op');s.previousElementSibling.querySelector('.tg').classList.add('op')}})}document.getElementById('ss').textContent=q?'Showing '+v+' of '+t+' items for "'+q+'"':'Showing all findings'}
 function doFilter(l,btn){document.querySelectorAll('.fb').forEach(function(b){b.classList.remove('ac')});btn.classList.add('ac');var fds=document.querySelectorAll('.fd');fds.forEach(function(f){if(l==='all'){f.style.display=''}else{f.style.display=f.getAttribute('data-s')===l?'':'none'}});var vis=document.querySelectorAll('.fd:not([style*="display: none"])').length;document.getElementById('ss').textContent=l==='all'?'Showing all findings':'Showing '+vis+' of '+fds.length+' ('+l+' severity)'}
 document.addEventListener('keydown',function(e){if(e.key==='Escape'){document.getElementById('si').value='';doSearch()}});
