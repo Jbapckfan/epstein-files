@@ -838,18 +838,35 @@ searchInput.addEventListener('input', function() {
       // Highlight matches in findings
       section.querySelectorAll('.finding p, .finding li, td').forEach(el => {
         if (el.textContent.toLowerCase().includes(query)) {
-          const html = el.innerHTML;
           const regex = new RegExp(`(${query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
-          el.innerHTML = html.replace(regex, '<span class="highlight">$1</span>');
+          highlightTextNodes(el, regex);
         }
       });
     }
   });
 });
 
+function highlightTextNodes(el, regex) {
+  var walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, null, false);
+  var nodes = [];
+  while (walker.nextNode()) nodes.push(walker.currentNode);
+  nodes.forEach(function(node) {
+    if (regex.test(node.nodeValue)) {
+      regex.lastIndex = 0;
+      var span = document.createElement('span');
+      span.innerHTML = node.nodeValue.replace(regex, '<span class="highlight">$1</span>');
+      node.parentNode.replaceChild(span, node);
+    }
+  });
+}
 function clearHighlights() {
   document.querySelectorAll('.highlight').forEach(el => {
     el.outerHTML = el.textContent;
+  });
+  document.querySelectorAll('span:not([class])').forEach(el => {
+    if (el.childNodes.length === 1 && el.childNodes[0].nodeType === 3) {
+      el.outerHTML = el.textContent;
+    }
   });
 }
 

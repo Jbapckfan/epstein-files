@@ -349,7 +349,7 @@
 <noscript><div style="background:#2a0a0a;color:#ff9999;border-bottom:2px solid #ff3b5c;padding:12px 20px;text-align:center;font:14px/1.5 system-ui,sans-serif"><strong>JavaScript Required</strong> — This investigation dashboard requires JavaScript for interactive visualizations, search, and filtering.</div></noscript>
   <a href="#main-content" class="skip-link">Skip to main content</a>
   <button class="theme-toggle" id="themeToggle" title="Toggle light/dark theme">&#9790;</button>
-  <script>(function(){var t=localStorage.getItem('epstein-theme');if(!t&&window.matchMedia){t=window.matchMedia('(prefers-color-scheme:light)').matches?'light':'dark';}if(t==='light'){document.body.classList.add('light-theme');document.getElementById('themeToggle').innerHTML='&#9788;';}document.getElementById('themeToggle').addEventListener('click',function(){document.body.classList.toggle('light-theme');var l=document.body.classList.contains('light-theme');localStorage.setItem('epstein-theme',l?'light':'dark');this.innerHTML=l?'&#9788;':'&#9790;';});})();</script>
+  <script>(function(){var t=localStorage.getItem('epstein-theme');if(!t&&window.matchMedia){t=window.matchMedia('(prefers-color-scheme:light)').matches?'light':'dark';}if(t==='light'){document.body.classList.add('light-theme');document.getElementById('themeToggle').innerHTML='&#9788;';}document.getElementById('themeToggle').addEventListener('click',function(){document.body.classList.toggle('light-theme');var l=document.body.classList.contains('light-theme');localStorage.setItem('epstein-theme',l?'light':'dark');this.innerHTML=l?'&#9788;':'&#9790;';if(typeof drawDonut==='function')drawDonut();});})();</script>
   <main class="shell" id="main-content">
     <p class="kicker">Epstein Files</p>
     <h1>Main Investigation Dashboard</h1>
@@ -444,20 +444,21 @@
     </div>
   </main>
 <script>
-(function() {
-  const canvas = document.getElementById('sevDonut');
+function drawDonut() {
+  var canvas = document.getElementById('sevDonut');
   if (!canvas) return;
-  const ctx = canvas.getContext('2d');
-  const data = [
+  var ctx = canvas.getContext('2d');
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  var data = [
     { value: 35415, color: '#ff5d7a' },
     { value: 66895, color: '#ffb74d' },
     { value: 94440, color: '#4dd0e1' }
   ];
-  const total = data.reduce((s, d) => s + d.value, 0);
-  const cx = 90, cy = 90, r = 72, inner = 44;
-  let angle = -Math.PI / 2;
-  data.forEach(d => {
-    const sweep = (d.value / total) * Math.PI * 2;
+  var total = data.reduce(function(s, d) { return s + d.value; }, 0);
+  var cx = 90, cy = 90, r = 72, inner = 44;
+  var angle = -Math.PI / 2;
+  data.forEach(function(d) {
+    var sweep = (d.value / total) * Math.PI * 2;
     ctx.beginPath();
     ctx.moveTo(cx + Math.cos(angle) * inner, cy + Math.sin(angle) * inner);
     ctx.arc(cx, cy, r, angle, angle + sweep);
@@ -467,7 +468,7 @@
     ctx.fill();
     angle += sweep;
   });
-  const isLight = document.body.classList.contains('light-theme');
+  var isLight = document.body.classList.contains('light-theme');
   ctx.fillStyle = isLight ? '#f4f5f7' : '#080d14';
   ctx.beginPath();
   ctx.arc(cx, cy, inner - 1, 0, Math.PI * 2);
@@ -480,7 +481,8 @@
   ctx.fillStyle = isLight ? '#555770' : '#9db3c9';
   ctx.font = '10px sans-serif';
   ctx.fillText('findings', cx, cy + 10);
-})();
+}
+drawDonut();
 </script>
 <button class="scroll-top-btn" id="scrollTopBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to top" aria-label="Back to top">&#9650;</button>
 <script>window.addEventListener('scroll',function(){document.getElementById('scrollTopBtn').classList.toggle('visible',window.scrollY>600)},{passive:true});</script>
