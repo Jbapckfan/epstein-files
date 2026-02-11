@@ -712,7 +712,7 @@ footer a { color: var(--blue); text-decoration: none; }
   .footer { display: none; }
   .animate { animation: none !important; opacity: 1 !important; }
 }
-@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:0.01ms!important;animation-iteration-count:1!important;transition-duration:0.01ms!important;scroll-behavior:auto!important}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:0.01ms!important;animation-iteration-count:1!important;transition-duration:0.01ms!important;scroll-behavior:auto!important}.animate{opacity:1!important}}
 </style>
 </head>
 <body>
@@ -1708,15 +1708,15 @@ canvas.addEventListener('dblclick', e => {
   }
 });
 
+// ======= LEGEND TOGGLE & RESET =======
+const hiddenGroups = new Set();
+
 function animate() {
   simulate();
   drawNetwork();
   requestAnimationFrame(animate);
 }
 animate();
-
-// ======= LEGEND TOGGLE & RESET =======
-const hiddenGroups = new Set();
 
 function toggleGroup(group, el) {
   if (hiddenGroups.has(group)) {
