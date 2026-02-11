@@ -348,7 +348,7 @@
 <body>
 <noscript><div style="background:#2a0a0a;color:#ff9999;border-bottom:2px solid #ff3b5c;padding:12px 20px;text-align:center;font:14px/1.5 system-ui,sans-serif"><strong>JavaScript Required</strong> — This investigation dashboard requires JavaScript for interactive visualizations, search, and filtering.</div></noscript>
   <a href="#main-content" class="skip-link">Skip to main content</a>
-  <button class="theme-toggle" id="themeToggle" title="Toggle light/dark theme">&#9790;</button>
+  <button class="theme-toggle" id="themeToggle" title="Toggle light/dark theme" aria-label="Toggle light/dark theme">&#9790;</button>
   <script>(function(){var t=localStorage.getItem('epstein-theme');if(!t&&window.matchMedia){t=window.matchMedia('(prefers-color-scheme:light)').matches?'light':'dark';}if(t==='light'){document.body.classList.add('light-theme');document.getElementById('themeToggle').innerHTML='&#9788;';}document.getElementById('themeToggle').addEventListener('click',function(){document.body.classList.toggle('light-theme');var l=document.body.classList.contains('light-theme');localStorage.setItem('epstein-theme',l?'light':'dark');this.innerHTML=l?'&#9788;':'&#9790;';if(typeof drawDonut==='function')drawDonut();});})();</script>
   <main class="shell" id="main-content">
     <p class="kicker">Epstein Files</p>
@@ -405,7 +405,7 @@
       </div>
     </div>
 
-    <section class="grid">
+    <section class="grid" aria-label="Investigation pages">
       <a class="card" href="hidden_connections.html">
         <h2>Hidden Connections</h2>
         <p>Force graph, heatmap, and relationship clusters.</p>
