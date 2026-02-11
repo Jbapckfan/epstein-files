@@ -1719,11 +1719,21 @@ canvas.addEventListener('dblclick', e => {
 // ======= LEGEND TOGGLE & RESET =======
 const hiddenGroups = new Set();
 
+let netAnimRunning = true;
 function animate() {
+  if (!netAnimRunning) return;
   simulate();
   drawNetwork();
   requestAnimationFrame(animate);
 }
+(function(){
+  var obs = new IntersectionObserver(function(entries) {
+    var vis = entries[0].isIntersecting;
+    if (vis && !netAnimRunning) { netAnimRunning = true; animate(); }
+    else if (!vis) { netAnimRunning = false; }
+  }, { threshold: 0 });
+  obs.observe(canvas);
+})();
 animate();
 
 function toggleGroup(group, el) {
