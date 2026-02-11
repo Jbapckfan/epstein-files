@@ -616,6 +616,12 @@ setTimeout(()=>document.querySelectorAll('[data-count]').forEach(el=>startCounte
   const tooltip=document.getElementById('graph-tooltip');
   let W,H,dpr;
   let _nodeSearchQ='';
+  let _graphVisible=true;
+  (new IntersectionObserver(function(entries){
+    var vis=entries[0].isIntersecting;
+    if(vis&&!_graphVisible){_graphVisible=true;requestAnimationFrame(draw);}
+    else if(!vis){_graphVisible=false;}
+  },{threshold:0})).observe(canvas);
 
   function resize(){
     const rect=container.getBoundingClientRect();
@@ -815,7 +821,7 @@ setTimeout(()=>document.querySelectorAll('[data-count]').forEach(el=>startCounte
     }
 
     ctx.restore();
-    requestAnimationFrame(draw);
+    if(_graphVisible) requestAnimationFrame(draw);
   }
 
   // Interaction
