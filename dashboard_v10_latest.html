@@ -1675,6 +1675,20 @@
       .animate { animation: none !important; opacity: 1 !important; }
     }
     @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:0.01ms!important;animation-iteration-count:1!important;transition-duration:0.01ms!important;scroll-behavior:auto!important}}
+    @media print {
+      body { background: #fff !important; color: #000 !important; padding: 0; }
+      .nav, .theme-toggle, .scroll-top-btn, .search-overlay, .nav-search-trigger { display: none !important; }
+      main { max-width: 100%; margin: 0; padding: 20px 0; }
+      .section { page-break-inside: avoid; margin-bottom: 16px; }
+      .section-card, .stat-card, .finding-card { background: #f9f9f9 !important; border: 1px solid #ccc !important; color: #000 !important; box-shadow: none !important; backdrop-filter: none !important; }
+      h1, h2, h3 { color: #000 !important; page-break-after: avoid; }
+      .stat-value, .stat-label, .finding-title, .finding-body, p { color: #000 !important; }
+      .text-secondary, .text-dim { color: #444 !important; }
+      canvas { display: none !important; }
+      a { color: #0066cc !important; text-decoration: underline !important; }
+      .tag-pill, .severity-badge { border: 1px solid #999 !important; background: #eee !important; color: #000 !important; }
+      ::-webkit-scrollbar { display: none; }
+    }
   </style>
 </head>
 
