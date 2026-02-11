@@ -287,6 +287,7 @@ footer a:hover{text-decoration:underline}
   .scroll-top-btn { display: none !important; }
   footer { display: none; }
 }
+.node-search-input:focus{border-color:var(--cyan)!important}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:0.01ms!important;animation-iteration-count:1!important;transition-duration:0.01ms!important;scroll-behavior:auto!important}}
 </style>
 </head>
@@ -294,7 +295,7 @@ footer a:hover{text-decoration:underline}
 <noscript><div style="background:#2a0a0a;color:#ff9999;border-bottom:2px solid #ff3b5c;padding:12px 20px;text-align:center;font:14px/1.5 system-ui,sans-serif"><strong>JavaScript Required</strong> — This page requires JavaScript for the force-directed network graph, heatmap, and interactive visualizations.</div></noscript>
 <div class="bg-grid"></div>
 <div class="bg-gradient"></div>
-<canvas id="bg-particles"></canvas>
+<canvas id="bg-particles" aria-hidden="true"></canvas>
 
 <a href="#main-content" class="skip-link">Skip to main content</a>
 <button class="theme-toggle" id="themeToggle" title="Toggle light/dark theme">&#9790;</button>
@@ -333,7 +334,7 @@ footer a:hover{text-decoration:underline}
   <h2 class="section-title fade-up delay-1">Force-Directed Relationship Map</h2>
   <p class="section-desc fade-up delay-2">Nodes sized by composite document score. Edges weighted by co-occurrence in shared documents. Drag nodes to explore. Click to isolate connections.</p>
   <div style="margin-bottom:10px;display:flex;gap:8px;align-items:center" class="fade-up delay-2">
-    <input type="text" id="nodeSearch" aria-label="Search network nodes" placeholder="Search nodes..." style="padding:8px 14px;background:var(--card);border:1px solid var(--card-border);border-radius:8px;color:var(--text);font-size:13px;width:240px;font-family:inherit;outline:none;transition:border-color 0.2s" onfocus="this.style.borderColor='var(--cyan)'" onblur="this.style.borderColor='var(--card-border)'">
+    <input type="text" id="nodeSearch" aria-label="Search network nodes" placeholder="Search nodes..." style="padding:8px 14px;background:var(--card);border:1px solid var(--card-border);border-radius:8px;color:var(--text);font-size:13px;width:240px;font-family:inherit;outline:none;transition:border-color 0.2s" class="node-search-input">
     <span id="nodeSearchCount" style="font-size:11px;color:var(--text-dim)"></span>
   </div>
   <div class="glass-card fade-up delay-3">
@@ -424,7 +425,7 @@ footer a:hover{text-decoration:underline}
 <footer>
   <p>Hidden Connections Network v11.38 &bull; Updated: February 10, 2026</p>
   <p>Data: 196,750+ findings across 122,830+ FOIA documents &bull; All citations reference EFTA document numbers</p>
-  <p style="margin-top:6px">Built with vanilla JavaScript, Canvas &amp; SVG &bull; <a href="index.html">Home</a> &bull; <a href="https://github.com/Jbapckfan/epstein-files" target="_blank">GitHub</a></p>
+  <p style="margin-top:6px">Built with vanilla JavaScript, Canvas &amp; SVG &bull; <a href="index.html">Home</a> &bull; <a href="https://github.com/Jbapckfan/epstein-files" target="_blank" rel="noopener noreferrer">GitHub</a></p>
 </footer>
 
 <script>
