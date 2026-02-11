@@ -34,6 +34,10 @@
   .theme-toggle:hover { color: var(--rose); border-color: var(--rose); }
   body.light-theme { background: var(--bg) !important; }
 
+  *:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
+  .skip-link { position: absolute; top: -100%; left: 16px; z-index: 100000; padding: 8px 16px; background: var(--teal); color: #000; border-radius: 0 0 6px 6px; font-weight: 600; text-decoration: none; }
+  .skip-link:focus { top: 0; }
+
   * {
     box-sizing: border-box;
   }
@@ -323,9 +327,10 @@
 </style>
 </head>
 <body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
   <button class="theme-toggle" id="themeToggle" title="Toggle light/dark theme">&#9790;</button>
   <script>(function(){var t=localStorage.getItem('epstein-theme');if(t==='light'){document.body.classList.add('light-theme');document.getElementById('themeToggle').innerHTML='&#9788;';}document.getElementById('themeToggle').addEventListener('click',function(){document.body.classList.toggle('light-theme');var l=document.body.classList.contains('light-theme');localStorage.setItem('epstein-theme',l?'light':'dark');this.innerHTML=l?'&#9788;':'&#9790;';});})();</script>
-  <main class="shell">
+  <main class="shell" id="main-content">
     <p class="kicker">Epstein Files</p>
     <h1>Main Investigation Dashboard</h1>
     <p class="lede">

@@ -21,6 +21,9 @@
   --accent7: #ff44aa;
 }
 * { margin: 0; padding: 0; box-sizing: border-box; }
+*:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.skip-link { position: absolute; top: -100%; left: 16px; z-index: 100000; padding: 8px 16px; background: var(--accent); color: #fff; border-radius: 0 0 6px 6px; font-weight: 600; text-decoration: none; }
+.skip-link:focus { top: 0; }
 body { background: var(--bg); color: var(--text); font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace; font-size: 14px; line-height: 1.6; }
 .container { max-width: 1400px; margin: 0 auto; padding: 20px; }
 header { text-align: center; padding: 40px 20px; border-bottom: 2px solid var(--accent); margin-bottom: 30px; }
@@ -120,14 +123,30 @@ body.light-theme tr:hover td { background: rgba(0,0,0,0.02); }
 
 .theme-toggle { position: fixed; top: 12px; right: 12px; z-index: 99999; width: 36px; height: 36px; border-radius: 50%; background: var(--surface); border: 1px solid var(--border); color: var(--text-dim); font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.3s; }
 .theme-toggle:hover { border-color: var(--accent); color: var(--accent); }
+
+@media print {
+  body { background: #fff !important; color: #000 !important; }
+  .theme-toggle, #homeNav, .search-bar { display: none !important; }
+  header { background: #fff !important; border-bottom: 2px solid #333; }
+  header h1 { color: #000; }
+  .section { border-color: #ccc; break-inside: avoid; }
+  .section-content { display: block !important; }
+  .section-header h2 { color: #000; }
+  .finding { background: #f9f9f9; border-left-color: #999; }
+  .finding h3 { color: #333; }
+  .stat-card { background: #f9f9f9; border-color: #ccc; }
+  .stat-card .number { color: #000 !important; }
+  footer { color: #444; }
+}
 </style>
 </head>
 <body>
+<a href="#main-content" class="skip-link">Skip to main content</a>
 <button class="theme-toggle" id="themeToggle" title="Toggle light/dark theme">&#9790;</button>
 <script>(function(){var t=localStorage.getItem('epstein-theme');if(t==='light'){document.body.classList.add('light-theme');document.getElementById('themeToggle').innerHTML='&#9788;';}document.getElementById('themeToggle').addEventListener('click',function(){document.body.classList.toggle('light-theme');var l=document.body.classList.contains('light-theme');localStorage.setItem('epstein-theme',l?'light':'dark');this.innerHTML=l?'&#9788;':'&#9790;';});})();</script>
 <div id="homeNav" style="position:fixed;top:12px;left:12px;z-index:99999;"><a id="homeLink" href="index.html" style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;backdrop-filter:blur(8px);border-radius:8px;text-decoration:none;font:600 13px Inter,-apple-system,sans-serif;transition:all 0.3s;" onmouseover="this.style.color='#ff3b5c';this.style.borderColor='rgba(255,59,92,0.3)'" onmouseout="var l=document.body.classList.contains('light-theme');this.style.color=l?'#555770':'#9aa0b0';this.style.borderColor=l?'rgba(0,0,0,0.1)':'rgba(255,255,255,0.1)'">← Home</a></div>
 <script>(function(){var a=document.getElementById('homeLink');function u(){var l=document.body.classList.contains('light-theme');a.style.background=l?'rgba(244,245,247,0.9)':'rgba(15,17,23,0.85)';a.style.border='1px solid '+(l?'rgba(0,0,0,0.1)':'rgba(255,255,255,0.1)');a.style.color=l?'#555770':'#9aa0b0';}u();new MutationObserver(u).observe(document.body,{attributes:true,attributeFilter:['class']});})()</script>
-<div class="container">
+<div class="container" id="main-content">
 
 <header>
 <h1>EPSTEIN FILES ANALYSIS</h1>

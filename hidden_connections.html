@@ -8,6 +8,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+*:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
+.skip-link{position:absolute;top:-100%;left:16px;z-index:100000;padding:8px 16px;background:var(--cyan);color:#000;border-radius:0 0 6px 6px;font-weight:600;text-decoration:none}
+.skip-link:focus{top:0}
 :root{
   --bg:#08090d;--card:rgba(255,255,255,0.03);--card-border:rgba(255,255,255,0.06);
   --red:#ff3b5c;--purple:#a855f7;--orange:#f59e0b;--blue:#60a5fa;--green:#34d399;
@@ -278,11 +281,12 @@ footer a:hover{text-decoration:underline}
 <div class="bg-gradient"></div>
 <canvas id="bg-particles"></canvas>
 
+<a href="#main-content" class="skip-link">Skip to main content</a>
 <button class="theme-toggle" id="themeToggle" title="Toggle light/dark theme">&#9790;</button>
 <script>(function(){var t=localStorage.getItem('epstein-theme');if(t==='light'){document.body.classList.add('light-theme');document.getElementById('themeToggle').innerHTML='&#9788;';}document.getElementById('themeToggle').addEventListener('click',function(){document.body.classList.toggle('light-theme');var l=document.body.classList.contains('light-theme');localStorage.setItem('epstein-theme',l?'light':'dark');this.innerHTML=l?'&#9788;':'&#9790;';});})();</script>
 <div class="svg-tooltip" id="svgTooltip"></div>
 
-<div class="container">
+<div class="container" id="main-content">
 <!-- Header -->
 <header>
   <div class="top-bar fade-up">
@@ -322,10 +326,10 @@ footer a:hover{text-decoration:underline}
     <div id="force-graph-container">
       <canvas id="force-canvas" role="img" aria-label="Force-directed graph showing hidden connections between persons and institutions in the Epstein network."></canvas>
       <div class="graph-controls">
-        <button class="graph-btn" id="btn-lock" title="Unlock scroll-to-zoom" style="font-size:18px">&#x1f512;</button>
-        <button class="graph-btn" id="btn-zoom-in" title="Zoom in">+</button>
-        <button class="graph-btn" id="btn-zoom-out" title="Zoom out">&minus;</button>
-        <button class="graph-btn" id="btn-reset" title="Reset view">&#8634;</button>
+        <button class="graph-btn" id="btn-lock" title="Unlock scroll-to-zoom" aria-label="Toggle scroll-to-zoom lock" style="font-size:18px">&#x1f512;</button>
+        <button class="graph-btn" id="btn-zoom-in" title="Zoom in" aria-label="Zoom in">+</button>
+        <button class="graph-btn" id="btn-zoom-out" title="Zoom out" aria-label="Zoom out">&minus;</button>
+        <button class="graph-btn" id="btn-reset" title="Reset view" aria-label="Reset view">&#8634;</button>
       </div>
       <div class="graph-legend">
         <div class="legend-item"><div class="legend-dot" style="background:#ff3b5c"></div>Conspirator</div>
