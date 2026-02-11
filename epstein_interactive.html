@@ -721,7 +721,7 @@ footer a { color: var(--blue); text-decoration: none; }
 <script>(function(){var a=document.getElementById('homeLink');function u(){var l=document.body.classList.contains('light-theme');a.style.background=l?'rgba(244,245,247,0.9)':'rgba(15,17,23,0.85)';a.style.border='1px solid '+(l?'rgba(0,0,0,0.1)':'rgba(255,255,255,0.1)');a.style.color=l?'#555770':'#9aa0b0';}u();new MutationObserver(u).observe(document.body,{attributes:true,attributeFilter:['class']});})()</script>
 
 <!-- ===== HERO ===== -->
-<section class="hero" id="main-content">
+<section class="hero" id="main-content" role="main">
 <div class="hero-content">
   <div class="hero-badge animate"><span class="pulse"></span> ACTIVE INVESTIGATION</div>
   <h1 class="animate d1">Epstein Files</h1>
@@ -858,7 +858,7 @@ footer a { color: var(--blue); text-decoration: none; }
   </div>
   <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;">
   <table class="data-table">
-    <tr><th>Name</th><th>Allegation</th><th>Citation</th></tr>
+    <tr><th scope="col">Name</th><th scope="col">Allegation</th><th scope="col">Citation</th></tr>
     <tr><td class="name-cell">Prince Andrew</td><td>Maxwell told victim to "make him happy and do the exact same things"</td><td class="cite-cell">EFTA02731082, p.73</td></tr>
     <tr><td class="name-cell">Jes Staley</td><td>"Forced [victim] to touch his genitals and then raped [victim]"</td><td class="cite-cell">EFTA02731082, p.33</td></tr>
     <tr><td class="name-cell">Leon Black</td><td>"Very violent, tore clothes off, bit vagina, forced sex toys" (DANY)</td><td class="cite-cell">EFTA02731662, p.3; EFTA02731082, p.33</td></tr>
@@ -974,7 +974,7 @@ footer a { color: var(--blue); text-decoration: none; }
   </div>
   <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);overflow:auto;">
   <table class="data-table">
-    <tr><th>#</th><th>Age</th><th>Location</th><th>Key Detail</th><th>Citation</th></tr>
+    <tr><th scope="col">#</th><th scope="col">Age</th><th scope="col">Location</th><th scope="col">Key Detail</th><th scope="col">Citation</th></tr>
     <tr><td>1</td><td>~14</td><td>NYC</td><td>Told Epstein she was 14; brought "dozens of girls"; $300/visit</td><td class="cite-cell">02731082, p.2</td></tr>
     <tr><td>2</td><td>~14</td><td>Palm Beach</td><td>Recruited ~20-30 girls, most minors</td><td class="cite-cell">02731082, p.3</td></tr>
     <tr><td>4</td><td>~13</td><td>Palm Beach</td><td>Maxwell approached at picnic; met Prince Andrew</td><td class="cite-cell">02731082, p.6</td></tr>
@@ -1129,7 +1129,7 @@ footer a { color: var(--blue); text-decoration: none; }
   </div>
   <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);overflow:auto;">
   <table class="data-table">
-    <tr><th>EFTA Number</th><th>Description</th><th>Pages</th><th>Status</th></tr>
+    <tr><th scope="col">EFTA Number</th><th scope="col">Description</th><th scope="col">Pages</th><th scope="col">Status</th></tr>
     <tr><td class="cite-cell">EFTA02731082</td><td>SDNY Prosecution Memo / Wexner Proffer — THE KEY DOCUMENT</td><td>86</td><td style="color:var(--red)">Analyzed</td></tr>
     <tr><td class="cite-cell">EFTA02730741</td><td>FBI NTOC Master Investigation Log</td><td>255</td><td style="color:var(--red)">Analyzed</td></tr>
     <tr><td class="cite-cell">EFTA02731662</td><td>FBI-DANY emails: Leon Black sexual violence investigation</td><td>multi</td><td style="color:var(--yellow)">NEW</td></tr>
