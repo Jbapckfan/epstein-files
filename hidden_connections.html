@@ -1369,6 +1369,43 @@ setTimeout(()=>document.querySelectorAll('[data-count]').forEach(el=>startCounte
     });
     rect.addEventListener('mouseleave',()=>{hideTip();rect.setAttribute('opacity','0.2')});
   });
+
+  // Keyboard accessibility: make SVG interactive elements focusable
+  function showTipAtEl(el,html){
+    var r=el.getBoundingClientRect();
+    tip.innerHTML=html;tip.style.display='block';
+    tip.style.left=Math.min(r.left+r.width/2,window.innerWidth-280)+'px';
+    tip.style.top=(r.bottom+8)+'px';
+  }
+  document.querySelectorAll('#heatmap-svg .hm-cell, #chord-svg .chord-path, #sankey-svg .sankey-link, #sankey-svg .sankey-node').forEach(el=>{
+    el.setAttribute('tabindex','0');
+    el.setAttribute('role','img');
+    var titleEl=el.querySelector('title');
+    var label=titleEl?titleEl.textContent:(el.dataset.from?el.dataset.from+' to '+el.dataset.to:el.dataset.name||'');
+    if(label)el.setAttribute('aria-label',label);
+    el.addEventListener('focus',function(){
+      if(el.classList.contains('hm-cell')){
+        var text=titleEl?titleEl.textContent:'';
+        var parts=text.match(/(.+?) × (.+?): (\d+)/);
+        if(parts){var pct=(parseInt(parts[3])/800*100).toFixed(1);showTipAtEl(el,'<div class="tt-heading">'+parts[1]+' &times; '+parts[2]+'</div><div>Co-occurrences: <span class="tt-value">'+parseInt(parts[3]).toLocaleString()+'</span></div><div class="tt-pct">'+pct+'% of max (800)</div>');}
+      }else if(el.classList.contains('chord-path')){
+        var text=titleEl?titleEl.textContent:'';
+        var parts=text.match(/(.+?) — (.+?): (\d+)/);
+        if(parts){showTipAtEl(el,'<div class="tt-heading">'+parts[1]+' &harr; '+parts[2]+'</div><div>Financial weight: <span class="tt-value">'+parseInt(parts[3]).toLocaleString()+'</span></div>');}
+      }else if(el.classList.contains('sankey-link')){
+        showTipAtEl(el,'<div class="tt-heading">'+el.dataset.from+' &rarr; '+el.dataset.to+'</div><div>Flow weight: <span class="tt-value">'+parseInt(el.dataset.flow).toLocaleString()+'</span></div>');
+        el.setAttribute('stroke-opacity','0.6');
+      }else if(el.classList.contains('sankey-node')){
+        showTipAtEl(el,'<div class="tt-heading">'+el.dataset.name+'</div><div>Score: <span class="tt-value">'+parseInt(el.dataset.val).toLocaleString()+'</span></div>');
+        el.setAttribute('opacity','0.4');
+      }
+    });
+    el.addEventListener('blur',function(){
+      hideTip();
+      if(el.classList.contains('sankey-link'))el.removeAttribute('stroke-opacity');
+      if(el.classList.contains('sankey-node'))el.setAttribute('opacity','0.2');
+    });
+  });
 })();
 </script>
 <button class="scroll-top-btn" id="scrollTopBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to top" aria-label="Back to top">&#9650;</button>
