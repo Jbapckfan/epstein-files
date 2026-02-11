@@ -5945,12 +5945,14 @@
        ANIMATED COUNTER
        ============================================================ */
 
+    var _prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     function animateCounters() {
       document.querySelectorAll('.stat-number[data-target]').forEach(el => {
         if (el.dataset.counted) return;
         el.dataset.counted = '1';
         const target = parseInt(el.dataset.target);
         const suffix = el.dataset.suffix || '';
+        if (_prefersReducedMotion) { el.textContent = target.toLocaleString() + suffix; return; }
         const duration = 2000;
         const start = performance.now();
         function tick(now) {

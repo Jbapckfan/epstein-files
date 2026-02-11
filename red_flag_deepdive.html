@@ -1350,6 +1350,10 @@ function _filterSeg(cat, btn) {
 function animateCountUp(el, target, duration) {
   if (el.dataset.counted) return;
   el.dataset.counted = '1';
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    el.textContent = target >= 1000 ? target.toLocaleString() + '+' : target.toLocaleString();
+    return;
+  }
   var start = 0;
   var startTime = null;
   var isLarge = target >= 1000;
