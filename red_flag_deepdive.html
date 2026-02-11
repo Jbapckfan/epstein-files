@@ -1327,6 +1327,8 @@ function _filterSeg(cat, btn) {
 // NUMBER COUNTER (requestAnimationFrame)
 // ============================================================
 function animateCountUp(el, target, duration) {
+  if (el.dataset.counted) return;
+  el.dataset.counted = '1';
   var start = 0;
   var startTime = null;
   var isLarge = target >= 1000;
@@ -1454,6 +1456,30 @@ setTimeout(function() {
   document.querySelectorAll('.section').forEach(function(s) {
     navObserver.observe(s);
   });
+
+  // Fallback: force-reveal any section already in viewport after animations settle
+  setTimeout(function() {
+    document.querySelectorAll('.section').forEach(function(s) {
+      var rect = s.getBoundingClientRect();
+      if (rect.top < window.innerHeight && rect.bottom > 0 && !s.classList.contains('visible')) {
+        s.classList.add('visible');
+        s.querySelectorAll('.anim-row').forEach(function(row, i) {
+          setTimeout(function() { row.classList.add('row-visible'); }, 50 + i * 20);
+        });
+        setTimeout(function() {
+          s.querySelectorAll('.bar-seg, .threat-fill, .mini-bar-seg, .intel-fill').forEach(function(bar, i) {
+            setTimeout(function() { var w = bar.getAttribute('data-w'); if (w) bar.style.width = w + '%'; }, i * 25);
+          });
+        }, 200);
+        s.querySelectorAll('.bar-score[data-count]').forEach(function(el, i) {
+          setTimeout(function() { animateCountUp(el, parseInt(el.getAttribute('data-count')), 1200); }, 200 + i * 80);
+        });
+        s.querySelectorAll('.score-big[data-count]').forEach(function(el) {
+          setTimeout(function() { animateCountUp(el, parseInt(el.getAttribute('data-count')), 1000); }, 400);
+        });
+      }
+    });
+  }, 1200);
 })();
 
 // Citation copy-to-clipboard

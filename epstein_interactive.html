@@ -701,7 +701,8 @@ footer a { color: var(--blue); text-decoration: none; }
 <body>
 <button class="theme-toggle" id="themeToggle" title="Toggle light/dark theme">&#9790;</button>
 <script>(function(){var t=localStorage.getItem('epstein-theme');if(t==='light'){document.body.classList.add('light-theme');document.getElementById('themeToggle').innerHTML='&#9788;';}document.getElementById('themeToggle').addEventListener('click',function(){document.body.classList.toggle('light-theme');var l=document.body.classList.contains('light-theme');localStorage.setItem('epstein-theme',l?'light':'dark');this.innerHTML=l?'&#9788;':'&#9790;';});})();</script>
-<div id="homeNav" style="position:fixed;top:12px;left:12px;z-index:99999;"><a href="index.html" style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;background:rgba(15,17,23,0.85);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.1);border-radius:8px;color:#9aa0b0;text-decoration:none;font:600 13px Inter,-apple-system,sans-serif;transition:all 0.3s;" onmouseover="this.style.color='#ff3b5c';this.style.borderColor='rgba(255,59,92,0.3)'" onmouseout="this.style.color='#9aa0b0';this.style.borderColor='rgba(255,255,255,0.1)'">← Home</a></div>
+<div id="homeNav" style="position:fixed;top:12px;left:12px;z-index:99999;"><a id="homeLink" href="index.html" style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;backdrop-filter:blur(8px);border-radius:8px;text-decoration:none;font:600 13px Inter,-apple-system,sans-serif;transition:all 0.3s;" onmouseover="this.style.color='#ff3b5c';this.style.borderColor='rgba(255,59,92,0.3)'" onmouseout="var l=document.body.classList.contains('light-theme');this.style.color=l?'#555770':'#9aa0b0';this.style.borderColor=l?'rgba(0,0,0,0.1)':'rgba(255,255,255,0.1)'">← Home</a></div>
+<script>(function(){var a=document.getElementById('homeLink');function u(){var l=document.body.classList.contains('light-theme');a.style.background=l?'rgba(244,245,247,0.9)':'rgba(15,17,23,0.85)';a.style.border='1px solid '+(l?'rgba(0,0,0,0.1)':'rgba(255,255,255,0.1)');a.style.color=l?'#555770':'#9aa0b0';}u();new MutationObserver(u).observe(document.body,{attributes:true,attributeFilter:['class']});})()</script>
 
 <!-- ===== HERO ===== -->
 <section class="hero">
@@ -766,12 +767,12 @@ footer a { color: var(--blue); text-decoration: none; }
     <div class="network-tooltip" id="netTooltip"></div>
     <button class="net-reset-btn" id="netResetBtn" title="Reset zoom and pan (R)">&#8634; Reset View</button>
     <div class="network-legend">
-      <div class="legend-item" data-group="core" onclick="toggleGroup('core',this)"><div class="legend-dot" style="background:var(--red)"></div>Epstein/Maxwell</div>
-      <div class="legend-item" data-group="abuser" onclick="toggleGroup('abuser',this)"><div class="legend-dot" style="background:var(--yellow)"></div>Named Abusers</div>
-      <div class="legend-item" data-group="financial" onclick="toggleGroup('financial',this)"><div class="legend-dot" style="background:var(--blue)"></div>Financial</div>
-      <div class="legend-item" data-group="political" onclick="toggleGroup('political',this)"><div class="legend-dot" style="background:var(--green)"></div>Political</div>
-      <div class="legend-item" data-group="intel" onclick="toggleGroup('intel',this)"><div class="legend-dot" style="background:var(--purple)"></div>Intelligence</div>
-      <div class="legend-item" data-group="science" onclick="toggleGroup('science',this)"><div class="legend-dot" style="background:var(--orange)"></div>Science/Tech</div>
+      <div class="legend-item" tabindex="0" role="button" data-group="core" onclick="toggleGroup('core',this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleGroup('core',this)}"><div class="legend-dot" style="background:var(--red)"></div>Epstein/Maxwell</div>
+      <div class="legend-item" tabindex="0" role="button" data-group="abuser" onclick="toggleGroup('abuser',this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleGroup('abuser',this)}"><div class="legend-dot" style="background:var(--yellow)"></div>Named Abusers</div>
+      <div class="legend-item" tabindex="0" role="button" data-group="financial" onclick="toggleGroup('financial',this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleGroup('financial',this)}"><div class="legend-dot" style="background:var(--blue)"></div>Financial</div>
+      <div class="legend-item" tabindex="0" role="button" data-group="political" onclick="toggleGroup('political',this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleGroup('political',this)}"><div class="legend-dot" style="background:var(--green)"></div>Political</div>
+      <div class="legend-item" tabindex="0" role="button" data-group="intel" onclick="toggleGroup('intel',this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleGroup('intel',this)}"><div class="legend-dot" style="background:var(--purple)"></div>Intelligence</div>
+      <div class="legend-item" tabindex="0" role="button" data-group="science" onclick="toggleGroup('science',this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleGroup('science',this)}"><div class="legend-dot" style="background:var(--orange)"></div>Science/Tech</div>
     </div>
   </div>
 </div>
@@ -1507,11 +1508,13 @@ function simulate() {
 }
 
 function drawNetwork() {
+  const isLight = document.body.classList.contains('light-theme');
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   ctx.save();
   ctx.translate(netOffX, netOffY);
   ctx.scale(netScale, netScale);
   // Draw edges
+  const edgeBase = isLight ? '0,0,0' : '255,255,255';
   edges.forEach(e => {
     const a = nodes.find(n => n.id === e.from);
     const b = nodes.find(n => n.id === e.to);
@@ -1521,11 +1524,12 @@ function drawNetwork() {
     ctx.beginPath();
     ctx.moveTo(a.x, a.y);
     ctx.lineTo(b.x, b.y);
-    ctx.strokeStyle = edgeDimmed ? 'rgba(255,255,255,0.01)' : isHighlighted ? 'rgba(255,255,255,0.2)' : 'rgba(255,255,255,0.04)';
+    ctx.strokeStyle = edgeDimmed ? `rgba(${edgeBase},0.01)` : isHighlighted ? `rgba(${edgeBase},0.25)` : `rgba(${edgeBase},0.06)`;
     ctx.lineWidth = (isHighlighted ? 1.5 : 0.5) / netScale;
     ctx.stroke();
   });
   // Draw nodes
+  const labelBase = isLight ? '0,0,0' : '255,255,255';
   nodes.forEach(n => {
     const isHovered = hoveredNode === n;
     const isConnected = hoveredNode && edges.some(e =>
@@ -1553,7 +1557,7 @@ function drawNetwork() {
     // Label
     const fontSize = Math.max(8, (isHovered ? 12 : 10) / netScale);
     ctx.font = `${isHovered ? '600' : '400'} ${fontSize}px Inter, sans-serif`;
-    ctx.fillStyle = alpha < 1 ? 'rgba(255,255,255,0.15)' : 'rgba(255,255,255,0.8)';
+    ctx.fillStyle = alpha < 1 ? `rgba(${labelBase},0.15)` : `rgba(${labelBase},0.8)`;
     ctx.textAlign = 'center';
     ctx.fillText(n.label, n.x, n.y + n.r + 14);
   });
@@ -1561,7 +1565,7 @@ function drawNetwork() {
 
   // Zoom level indicator
   if (netScale !== 1) {
-    ctx.fillStyle = 'rgba(255,255,255,0.3)';
+    ctx.fillStyle = `rgba(${isLight ? '0,0,0' : '255,255,255'},0.3)`;
     ctx.font = '11px Inter, sans-serif';
     ctx.textAlign = 'right';
     ctx.fillText(Math.round(netScale * 100) + '%', canvas.width - 12, canvas.height - 10);
@@ -1750,24 +1754,31 @@ globalSearch.addEventListener('input', function() {
 });
 
 // ======= COUNTER ANIMATION =======
+function animateCounts(container) {
+  container.querySelectorAll('[data-count]').forEach(el => {
+    if (el.dataset.counted) return;
+    el.dataset.counted = '1';
+    const target = parseInt(el.dataset.count);
+    let current = 0;
+    const step = Math.ceil(target / 40);
+    const timer = setInterval(() => {
+      current = Math.min(current + step, target);
+      el.textContent = current.toLocaleString();
+      if (current >= target) clearInterval(timer);
+    }, 30);
+  });
+}
 const observer = new IntersectionObserver(entries => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
-      entry.target.querySelectorAll('[data-count]').forEach(el => {
-        const target = parseInt(el.dataset.count);
-        let current = 0;
-        const step = Math.ceil(target / 40);
-        const timer = setInterval(() => {
-          current = Math.min(current + step, target);
-          el.textContent = current.toLocaleString();
-          if (current >= target) clearInterval(timer);
-        }, 30);
-      });
+      animateCounts(entry.target);
       observer.unobserve(entry.target);
     }
   });
-}, { threshold: 0.5 });
+}, { threshold: 0.1 });
 document.querySelectorAll('.stats-row').forEach(el => observer.observe(el));
+// Fallback: trigger counters after hero animations complete
+setTimeout(() => document.querySelectorAll('.stats-row').forEach(el => animateCounts(el)), 1200);
 
 // Scroll-based nav highlighting
 const sections = document.querySelectorAll('.section-block');

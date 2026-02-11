@@ -557,7 +557,9 @@ function dist(a,b){return Math.hypot(a.x-b.x,a.y-b.y)}
 // =============================================
 // COUNTER ANIMATION
 // =============================================
-document.querySelectorAll('[data-count]').forEach(el=>{
+function startCounter(el){
+  if(el.dataset.counted) return;
+  el.dataset.counted='1';
   const target=parseInt(el.dataset.count);
   let current=0;
   const dur=2000;
@@ -569,12 +571,16 @@ document.querySelectorAll('[data-count]').forEach(el=>{
     el.textContent=current.toLocaleString();
     if(t<1)requestAnimationFrame(tick);
   }
-  // Start when visible
+  requestAnimationFrame(tick);
+}
+document.querySelectorAll('[data-count]').forEach(el=>{
   const obs=new IntersectionObserver(entries=>{
-    if(entries[0].isIntersecting){requestAnimationFrame(tick);obs.disconnect()}
-  });
+    if(entries[0].isIntersecting){startCounter(el);obs.disconnect()}
+  },{threshold:0.1});
   obs.observe(el);
 });
+// Fallback: trigger counters after fade-up animations complete
+setTimeout(()=>document.querySelectorAll('[data-count]').forEach(el=>startCounter(el)),1500);
 
 // =============================================
 // FORCE-DIRECTED GRAPH (Canvas)
@@ -691,6 +697,8 @@ document.querySelectorAll('[data-count]').forEach(el=>{
     simulate();
     if(Math.random()<0.15)spawnEdgeParticle();
 
+    const _isLight=document.body.classList.contains('light-theme');
+    const _lineBase=_isLight?'0,0,0':'255,255,255';
     ctx.clearRect(0,0,W,H);
     ctx.save();
     ctx.translate(panX,panY);
@@ -705,7 +713,7 @@ document.querySelectorAll('[data-count]').forEach(el=>{
       ctx.beginPath();
       ctx.moveTo(e.source.x,e.source.y);
       ctx.lineTo(e.target.x,e.target.y);
-      ctx.strokeStyle=`rgba(255,255,255,${alpha})`;
+      ctx.strokeStyle=`rgba(${_lineBase},${alpha})`;
       ctx.lineWidth=w/zoom;
       ctx.stroke();
     }
@@ -765,7 +773,7 @@ document.querySelectorAll('[data-count]').forEach(el=>{
       ctx.fillStyle=grad;
       ctx.globalAlpha=alpha;
       ctx.fill();
-      ctx.strokeStyle='rgba(255,255,255,0.2)';
+      ctx.strokeStyle=`rgba(${_lineBase},0.2)`;
       ctx.lineWidth=1/zoom;
       ctx.stroke();
       ctx.globalAlpha=1;
@@ -776,7 +784,7 @@ document.querySelectorAll('[data-count]').forEach(el=>{
         ctx.font=`600 ${fontSize}px Inter,sans-serif`;
         ctx.textAlign='center';
         ctx.textBaseline='top';
-        ctx.fillStyle=dimmed?'rgba(255,255,255,0.15)':'rgba(255,255,255,0.9)';
+        ctx.fillStyle=dimmed?`rgba(${_lineBase},0.15)`:`rgba(${_lineBase},0.9)`;
         const shortName=n.name.split(' ').pop();
         ctx.fillText(shortName,n.x,n.y+n.r+4/zoom);
       }
