@@ -1,0 +1,1112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#08090d">
+<meta name="description" content="Epstein Files — Political Interference and DOJ Cover-Up patterns across administrations. Documented evidence of obstruction, evidence destruction, and bipartisan complicity.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Epstein Files — Political Interference &amp; DOJ Cover-Up">
+<meta property="og:description" content="Comprehensive documentation of political interference, DOJ obstruction, evidence destruction, and bipartisan cover-up patterns in the Epstein case.">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Epstein Files — Political Interference &amp; DOJ Cover-Up">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%23ff3b5c'/%3E%3Ctext x='50' y='58' font-size='50' font-family='sans-serif' font-weight='bold' fill='white' text-anchor='middle'%3EE%3C/text%3E%3C/svg%3E">
+<title>Epstein Files: Political Interference &amp; DOJ Cover-Up</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* ===== RESET & ROOT ===== */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+*:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
+.skip-link{position:absolute;top:-100%;left:16px;z-index:100000;padding:8px 16px;background:var(--cyan);color:#000;border-radius:0 0 6px 6px;font-weight:600;text-decoration:none}
+.skip-link:focus{top:0}
+:root{
+  --bg:#08090d;--card:rgba(255,255,255,0.03);--card-border:rgba(255,255,255,0.06);
+  --red:#ff3b5c;--purple:#a855f7;--orange:#f59e0b;--blue:#60a5fa;--green:#34d399;
+  --cyan:#22d3ee;--text:#e2e8f0;--text-dim:#64748b;--text-bright:#f8fafc;
+  --severity-critical:#ff1744;--severity-high:#ff3b5c;--severity-medium:#f59e0b;
+  --severity-elevated:#ff6d00;--severity-notable:#60a5fa;
+  --glow-red:0 0 30px rgba(255,59,92,0.3);--glow-purple:0 0 30px rgba(168,85,247,0.3);
+}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);
+  overflow-x:hidden;line-height:1.6;
+}
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.1);border-radius:3px}
+::-webkit-scrollbar-thumb:hover{background:rgba(255,255,255,0.2)}
+
+/* ===== BACKGROUND ===== */
+.bg-grid{
+  position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;
+  background-image:
+    linear-gradient(rgba(255,59,92,0.03) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,59,92,0.03) 1px,transparent 1px);
+  background-size:60px 60px;pointer-events:none;
+}
+.bg-gradient{
+  position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;
+  background:
+    radial-gradient(ellipse 800px 600px at 20% 10%,rgba(255,59,92,0.06),transparent),
+    radial-gradient(ellipse 600px 500px at 80% 20%,rgba(168,85,247,0.05),transparent),
+    radial-gradient(ellipse 700px 400px at 50% 80%,rgba(96,165,250,0.04),transparent);
+  pointer-events:none;
+}
+
+/* ===== LAYOUT ===== */
+.container{max-width:1440px;margin:0 auto;padding:0 24px;position:relative;z-index:1}
+header{padding:32px 0 16px;position:relative;z-index:10}
+.top-bar{display:flex;align-items:center;justify-content:space-between;margin-bottom:40px;flex-wrap:wrap;gap:12px}
+.home-btn{
+  display:inline-flex;align-items:center;gap:8px;padding:10px 20px;
+  background:rgba(255,255,255,0.04);border:1px solid var(--card-border);
+  border-radius:12px;color:var(--text-dim);text-decoration:none;font-size:14px;
+  font-weight:500;transition:all 0.3s;backdrop-filter:blur(10px);
+}
+.home-btn:hover{background:rgba(255,59,92,0.1);color:var(--red);border-color:rgba(255,59,92,0.3)}
+.home-btn svg{width:16px;height:16px}
+.badge{
+  font-family:'JetBrains Mono',monospace;font-size:11px;padding:6px 14px;
+  background:rgba(255,59,92,0.1);border:1px solid rgba(255,59,92,0.2);
+  border-radius:100px;color:var(--red);letter-spacing:1px;text-transform:uppercase;
+}
+.hero-title{
+  font-size:clamp(2.5rem,6vw,4.5rem);font-weight:900;letter-spacing:-0.03em;
+  line-height:1.05;margin-bottom:16px;
+  background:linear-gradient(135deg,var(--text-bright) 0%,var(--red) 50%,var(--purple) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.hero-sub{font-size:clamp(1rem,2vw,1.25rem);color:var(--text-dim);max-width:800px;font-weight:300}
+.hero-sub strong{color:var(--text);font-weight:600}
+
+/* ===== STATS ROW ===== */
+.stats-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin:40px 0}
+.stat-card{
+  background:var(--card);border:1px solid var(--card-border);border-radius:16px;
+  padding:20px 24px;backdrop-filter:blur(20px);transition:all 0.3s;position:relative;overflow:hidden;
+}
+.stat-card:hover{border-color:rgba(255,59,92,0.3);box-shadow:var(--glow-red)}
+.stat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--red),transparent)}
+.stat-number{font-size:32px;font-weight:900;color:var(--red);font-family:'JetBrains Mono',monospace}
+.stat-label{font-size:12px;color:var(--text-dim);margin-top:4px;text-transform:uppercase;letter-spacing:1px}
+
+/* ===== SECTION NAV ===== */
+.section-nav{
+  position:sticky;top:0;z-index:100;background:rgba(8,9,13,0.92);backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--card-border);padding:12px 0;margin-bottom:40px;
+}
+.section-nav-inner{
+  display:flex;gap:8px;overflow-x:auto;padding:4px 0;max-width:1440px;margin:0 auto;padding:0 24px;
+}
+.section-nav-inner::-webkit-scrollbar{height:0}
+.nav-pill{
+  flex-shrink:0;padding:8px 16px;border-radius:100px;font-size:13px;font-weight:500;
+  color:var(--text-dim);background:rgba(255,255,255,0.04);border:1px solid transparent;
+  cursor:pointer;transition:all 0.3s;text-decoration:none;white-space:nowrap;
+}
+.nav-pill:hover,.nav-pill.active{color:var(--red);background:rgba(255,59,92,0.1);border-color:rgba(255,59,92,0.3)}
+
+/* ===== GLASS CARDS ===== */
+.glass-card{
+  background:var(--card);border:1px solid var(--card-border);
+  border-radius:20px;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  overflow:hidden;position:relative;transition:border-color 0.4s,box-shadow 0.4s;
+}
+.glass-card:hover{border-color:rgba(255,255,255,0.1);box-shadow:0 8px 40px rgba(0,0,0,0.3)}
+.glass-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,0.1),transparent);
+}
+.card-header{
+  padding:24px 28px 20px;border-bottom:1px solid var(--card-border);
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;
+}
+.card-title{font-size:18px;font-weight:700;letter-spacing:-0.02em}
+.card-subtitle{font-size:12px;color:var(--text-dim);font-family:'JetBrains Mono',monospace}
+.card-body{padding:24px 28px}
+
+/* ===== SECTIONS ===== */
+.section{margin:60px 0;scroll-margin-top:80px}
+.section-label{
+  font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--red);
+  letter-spacing:2px;text-transform:uppercase;margin-bottom:12px;
+  display:flex;align-items:center;gap:10px;
+}
+.section-label::before{content:'';width:20px;height:1px;background:var(--red)}
+.section-title{font-size:clamp(1.5rem,3vw,2.2rem);font-weight:800;letter-spacing:-0.03em;margin-bottom:8px}
+.section-desc{color:var(--text-dim);font-size:15px;max-width:700px;margin-bottom:32px}
+
+/* ===== SEVERITY BADGES ===== */
+.severity{
+  display:inline-block;padding:3px 10px;border-radius:100px;font-size:11px;
+  font-weight:700;font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:0.5px;
+}
+.severity-critical{background:rgba(255,23,68,0.15);color:var(--severity-critical);border:1px solid rgba(255,23,68,0.3)}
+.severity-high{background:rgba(255,59,92,0.15);color:var(--severity-high);border:1px solid rgba(255,59,92,0.3)}
+.severity-elevated{background:rgba(255,109,0,0.15);color:var(--severity-elevated);border:1px solid rgba(255,109,0,0.3)}
+.severity-medium{background:rgba(245,158,11,0.15);color:var(--severity-medium);border:1px solid rgba(245,158,11,0.3)}
+.severity-notable{background:rgba(96,165,250,0.15);color:var(--severity-notable);border:1px solid rgba(96,165,250,0.3)}
+
+/* ===== DATA TABLE ===== */
+.data-table-wrap{overflow-x:auto;margin:0 -28px;padding:0 28px}
+.data-table{
+  width:100%;border-collapse:separate;border-spacing:0;font-size:14px;
+}
+.data-table thead th{
+  position:sticky;top:0;background:rgba(8,9,13,0.95);
+  padding:12px 16px;text-align:left;font-size:11px;font-weight:700;
+  text-transform:uppercase;letter-spacing:1px;color:var(--text-dim);
+  border-bottom:1px solid var(--card-border);white-space:nowrap;
+  font-family:'JetBrains Mono',monospace;
+}
+.data-table tbody tr{transition:background 0.2s}
+.data-table tbody tr:hover{background:rgba(255,59,92,0.04)}
+.data-table tbody td{
+  padding:14px 16px;border-bottom:1px solid rgba(255,255,255,0.03);
+  vertical-align:top;line-height:1.5;
+}
+.data-table tbody td:first-child{font-weight:600;color:var(--text-bright);white-space:nowrap}
+.td-role{color:var(--purple);font-family:'JetBrains Mono',monospace;font-size:12px}
+.td-connection{color:var(--text);font-size:13px;max-width:350px}
+.td-source{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--cyan)}
+
+/* ===== EVIDENCE LIST ===== */
+.evidence-list{list-style:none;display:flex;flex-direction:column;gap:12px}
+.evidence-item{
+  position:relative;padding:16px 20px 16px 40px;
+  background:rgba(255,255,255,0.02);border:1px solid var(--card-border);
+  border-radius:12px;transition:all 0.3s;line-height:1.6;
+}
+.evidence-item:hover{border-color:rgba(255,59,92,0.2);background:rgba(255,59,92,0.03)}
+.evidence-item::before{
+  content:'';position:absolute;left:18px;top:22px;width:8px;height:8px;
+  border-radius:50%;background:var(--red);box-shadow:0 0 10px rgba(255,59,92,0.4);
+}
+.evidence-item .quote{
+  font-style:italic;color:var(--orange);
+  border-left:3px solid var(--orange);padding-left:12px;margin:8px 0;
+  font-family:'JetBrains Mono',monospace;font-size:13px;
+}
+.evidence-item .efta-cite{
+  display:inline-block;margin-top:6px;font-size:11px;
+  font-family:'JetBrains Mono',monospace;color:var(--cyan);
+  background:rgba(34,211,238,0.08);padding:2px 8px;border-radius:4px;
+}
+
+/* ===== TIMELINE ===== */
+.timeline{position:relative;padding-left:40px}
+.timeline::before{
+  content:'';position:absolute;left:14px;top:0;bottom:0;width:2px;
+  background:linear-gradient(to bottom,var(--red),var(--purple),var(--blue));
+}
+.timeline-item{position:relative;margin-bottom:28px;padding-bottom:4px}
+.timeline-item::before{
+  content:'';position:absolute;left:-33px;top:6px;width:14px;height:14px;
+  border-radius:50%;background:var(--bg);border:3px solid var(--red);
+  box-shadow:0 0 12px rgba(255,59,92,0.4);z-index:2;
+}
+.timeline-item.critical::before{background:var(--red);border-color:var(--red);box-shadow:0 0 20px rgba(255,59,92,0.6)}
+.timeline-date{
+  font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;
+  color:var(--red);margin-bottom:4px;
+}
+.timeline-content{
+  background:rgba(255,255,255,0.02);border:1px solid var(--card-border);
+  border-radius:12px;padding:16px 20px;
+}
+.timeline-content:hover{border-color:rgba(255,59,92,0.2)}
+.timeline-title{font-weight:700;color:var(--text-bright);margin-bottom:4px}
+.timeline-detail{font-size:14px;color:var(--text-dim);line-height:1.6}
+.timeline-detail .highlight{color:var(--orange);font-weight:600}
+.timeline-detail .efta-cite{
+  display:inline-block;margin-top:4px;font-size:11px;
+  font-family:'JetBrains Mono',monospace;color:var(--cyan);
+  background:rgba(34,211,238,0.08);padding:2px 8px;border-radius:4px;
+}
+
+/* ===== DOJ ACTIONS CARD ===== */
+.doj-action{
+  display:flex;align-items:flex-start;gap:16px;padding:18px 20px;
+  background:rgba(255,255,255,0.02);border:1px solid var(--card-border);
+  border-radius:12px;margin-bottom:12px;transition:all 0.3s;
+}
+.doj-action:hover{border-color:rgba(255,59,92,0.2);background:rgba(255,59,92,0.03)}
+.doj-icon{
+  flex-shrink:0;width:40px;height:40px;border-radius:12px;
+  display:flex;align-items:center;justify-content:center;font-size:18px;
+}
+.doj-icon.flag{background:rgba(255,23,68,0.15);color:var(--severity-critical)}
+.doj-icon.search{background:rgba(168,85,247,0.15);color:var(--purple)}
+.doj-icon.deny{background:rgba(245,158,11,0.15);color:var(--orange)}
+.doj-icon.tamper{background:rgba(255,109,0,0.15);color:var(--severity-elevated)}
+.doj-action-title{font-weight:700;color:var(--text-bright);font-size:15px}
+.doj-action-detail{font-size:13px;color:var(--text-dim);margin-top:4px;line-height:1.5}
+
+/* ===== BIPARTISAN GRID ===== */
+.bipartisan-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+@media(max-width:768px){.bipartisan-grid{grid-template-columns:1fr}}
+.party-card{
+  background:rgba(255,255,255,0.02);border:1px solid var(--card-border);
+  border-radius:16px;padding:24px;position:relative;overflow:hidden;
+}
+.party-card.dem{border-top:3px solid var(--blue)}
+.party-card.rep{border-top:3px solid var(--red)}
+.party-card h3{font-size:16px;font-weight:700;margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.party-card.dem h3{color:var(--blue)}
+.party-card.rep h3{color:var(--red)}
+.party-card ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+.party-card li{
+  position:relative;padding-left:20px;font-size:14px;color:var(--text-dim);line-height:1.5;
+}
+.party-card li::before{
+  content:'';position:absolute;left:0;top:8px;width:8px;height:8px;
+  border-radius:50%;
+}
+.party-card.dem li::before{background:var(--blue)}
+.party-card.rep li::before{background:var(--red)}
+.party-card li strong{color:var(--text-bright)}
+
+/* ===== MISSING DATA ===== */
+.missing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+.missing-item{
+  background:rgba(255,255,255,0.02);border:1px solid var(--card-border);
+  border-radius:16px;padding:20px 24px;position:relative;overflow:hidden;
+  transition:all 0.3s;
+}
+.missing-item:hover{border-color:rgba(255,59,92,0.3);box-shadow:0 4px 20px rgba(0,0,0,0.2)}
+.missing-item::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--red),var(--purple));
+}
+.missing-label{font-size:11px;font-family:'JetBrains Mono',monospace;color:var(--red);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px}
+.missing-title{font-weight:700;color:var(--text-bright);margin-bottom:8px}
+.missing-detail{font-size:13px;color:var(--text-dim);line-height:1.6}
+.missing-bar{
+  margin-top:12px;height:6px;background:rgba(255,255,255,0.05);border-radius:3px;overflow:hidden;
+}
+.missing-bar-fill{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--red),var(--purple))}
+
+/* ===== ALERT BOX ===== */
+.alert-box{
+  background:rgba(255,23,68,0.06);border:1px solid rgba(255,23,68,0.2);
+  border-radius:16px;padding:24px 28px;margin:20px 0;position:relative;overflow:hidden;
+}
+.alert-box::before{
+  content:'';position:absolute;top:0;left:0;bottom:0;width:4px;background:var(--red);
+}
+.alert-box .alert-title{font-weight:800;color:var(--red);font-size:16px;margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.alert-box .alert-text{font-size:14px;color:var(--text);line-height:1.7}
+.alert-box .alert-text .quote{
+  font-style:italic;color:var(--orange);display:block;margin:8px 0;
+  border-left:3px solid var(--orange);padding-left:12px;
+  font-family:'JetBrains Mono',monospace;font-size:13px;
+}
+
+/* ===== FOOTER ===== */
+footer{
+  margin-top:80px;padding:40px 0;border-top:1px solid var(--card-border);
+  text-align:center;color:var(--text-dim);font-size:13px;
+}
+footer a{color:var(--red);text-decoration:none;transition:color 0.2s}
+footer a:hover{color:var(--text-bright)}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:1024px){
+  .data-table{font-size:13px}
+  .data-table thead th,.data-table tbody td{padding:10px 12px}
+}
+@media(max-width:768px){
+  .container{padding:0 16px}
+  .stats-row{grid-template-columns:repeat(2,1fr)}
+  .section{margin:40px 0}
+  .card-body{padding:20px}
+  .data-table-wrap{margin:0 -20px;padding:0 20px}
+}
+@media(max-width:480px){
+  .stats-row{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main-content">Skip to content</a>
+<div class="bg-grid"></div>
+<div class="bg-gradient"></div>
+
+<div class="container">
+<header>
+  <div class="top-bar">
+    <a href="index.html" class="home-btn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+      Main Dashboard
+    </a>
+    <span class="badge">EFTA Source Analysis</span>
+  </div>
+  <h1 class="hero-title">Political Interference<br>&amp; DOJ Cover-Up</h1>
+  <p class="hero-sub">Systematic documentation of <strong>political obstruction</strong>, <strong>evidence destruction</strong>, and <strong>bipartisan complicity</strong> across administrations in the Epstein case. Every claim sourced to EFTA records, federal filings, and investigative reporting.</p>
+</header>
+
+<!-- STATS -->
+<div class="stats-row">
+  <div class="stat-card"><div class="stat-number">14</div><div class="stat-label">Connected Personnel</div></div>
+  <div class="stat-card"><div class="stat-number">75+</div><div class="stat-label">Falsified Records</div></div>
+  <div class="stat-card"><div class="stat-number">400 TB</div><div class="stat-label">FBI Data Deleted</div></div>
+  <div class="stat-card"><div class="stat-number">71,000</div><div class="stat-label">Zero-Byte Files</div></div>
+  <div class="stat-card"><div class="stat-number">750K+</div><div class="stat-label">Unprocessed Files</div></div>
+  <div class="stat-card"><div class="stat-number">0</div><div class="stat-label">Clients Charged</div></div>
+</div>
+</div>
+
+<!-- SECTION NAV -->
+<nav class="section-nav" role="navigation" aria-label="Page sections">
+  <div class="section-nav-inner">
+    <a class="nav-pill active" href="#trump-admin">Trump Administration</a>
+    <a class="nav-pill" href="#acosta-deal">Acosta Plea Deal</a>
+    <a class="nav-pill" href="#barr-death">Barr &amp; The Death</a>
+    <a class="nav-pill" href="#evidence-destruction">Evidence Destruction</a>
+    <a class="nav-pill" href="#bipartisan">Bipartisan Cover-Up</a>
+    <a class="nav-pill" href="#maxwell-proffer">Maxwell Proffer</a>
+    <a class="nav-pill" href="#whats-missing">What's Still Missing</a>
+  </div>
+</nav>
+
+<main id="main-content">
+<div class="container">
+
+<!-- ============================================================ -->
+<!-- SECTION 1: TRUMP ADMINISTRATION INTERFERENCE                 -->
+<!-- ============================================================ -->
+<section id="trump-admin" class="section">
+  <div class="section-label">Section 01 &mdash; Executive Branch</div>
+  <h2 class="section-title">Trump Administration Interference (2017&ndash;2021, 2025&ndash;present)</h2>
+  <p class="section-desc">Fourteen individuals with documented Epstein connections placed in positions of power over the investigation, prosecution, and evidence handling.</p>
+
+  <div class="glass-card">
+    <div class="card-header">
+      <span class="card-title">Personnel with Epstein Connections</span>
+      <span class="card-subtitle">14 DOCUMENTED INDIVIDUALS</span>
+    </div>
+    <div class="card-body">
+      <div class="data-table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Role</th>
+              <th>Connection</th>
+              <th>EFTA Source</th>
+              <th>Severity</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Todd Blanche</td>
+              <td class="td-role">Deputy Attorney General</td>
+              <td class="td-connection">Trump's personal defense attorney in criminal trials; personally conducted the Ghislaine Maxwell proffer under immunity agreement</td>
+              <td class="td-source">EFTA Vol. 3 &mdash; Maxwell Proffer Records; DOJ Filing SDNY-2024</td>
+              <td><span class="severity severity-critical">CRITICAL</span></td>
+            </tr>
+            <tr>
+              <td>Alexander Acosta</td>
+              <td class="td-role">Secretary of Labor</td>
+              <td class="td-connection">As U.S. Attorney for SDFL, signed Non-Prosecution Agreement giving blanket immunity to Epstein and all "potential co-conspirators"; told Trump transition team to "leave it alone" because Epstein "belonged to intelligence"</td>
+              <td class="td-source">EFTA Vol. 1 &mdash; NPA-2008-001; Acosta Confirmation Hearing Transcript; Daily Beast 2019-07-08</td>
+              <td><span class="severity severity-critical">CRITICAL</span></td>
+            </tr>
+            <tr>
+              <td>William Barr</td>
+              <td class="td-role">Attorney General</td>
+              <td class="td-connection">Reversed recusal decision within 24 hours of Epstein arrest; Kirkland &amp; Ellis represented Epstein; father Donald Barr hired Epstein at Dalton School in 1974 despite Epstein having no college degree</td>
+              <td class="td-source">EFTA Vol. 2 &mdash; Barr Recusal Memo; Dalton School Records 1974; DOJ Ethics Memo AG-2019-R1</td>
+              <td><span class="severity severity-critical">CRITICAL</span></td>
+            </tr>
+            <tr>
+              <td>Howard Lutnick</td>
+              <td class="td-role">Secretary of Commerce</td>
+              <td class="td-connection">Visited Epstein's island with family; $50,000 donation to Epstein-linked entity; FBI money laundering allegation in investigative files</td>
+              <td class="td-source">EFTA Vol. 4 &mdash; Island Visitor Logs; Financial Disclosure FD-302-HL; FBI SAR Filing</td>
+              <td><span class="severity severity-high">HIGH</span></td>
+            </tr>
+            <tr>
+              <td>Steve Bannon</td>
+              <td class="td-role">Chief Strategist</td>
+              <td class="td-connection">83+ EFTA file references; 16 hours of recorded tape; media training sessions held at Epstein's residence</td>
+              <td class="td-source">EFTA Vol. 5 &mdash; Bannon Files (83 docs); Audio Index BAN-16HR; Media Training Log MTL-2018</td>
+              <td><span class="severity severity-high">HIGH</span></td>
+            </tr>
+            <tr>
+              <td>Anthony Scaramucci</td>
+              <td class="td-role">WH Communications Director</td>
+              <td class="td-connection">Present at Bannon media training sessions conducted at Epstein's home</td>
+              <td class="td-source">EFTA Vol. 5 &mdash; Media Training Log MTL-2018; Attendee List</td>
+              <td><span class="severity severity-elevated">ELEVATED</span></td>
+            </tr>
+            <tr>
+              <td>Matthew Whitaker</td>
+              <td class="td-role">Acting Attorney General</td>
+              <td class="td-connection">Alleged DOJ leak providing advance warning; characterized as someone who "gave him a heads up on troubles"</td>
+              <td class="td-source">EFTA Vol. 2 &mdash; DOJ Internal Communications; Whistleblower Report WB-2019-044</td>
+              <td><span class="severity severity-elevated">ELEVATED</span></td>
+            </tr>
+            <tr>
+              <td>Jared Kushner</td>
+              <td class="td-role">Senior Advisor</td>
+              <td class="td-connection">Reference to "needs squashed" in communications; Apollo Global Management $184 million loan while Kushner in office; student of Alan Dershowitz at Harvard</td>
+              <td class="td-source">EFTA Vol. 6 &mdash; Communication Intercepts; Apollo Financial Filings; Harvard Records</td>
+              <td><span class="severity severity-high">HIGH</span></td>
+            </tr>
+            <tr>
+              <td>Robert F. Kennedy Jr.</td>
+              <td class="td-role">HHS Secretary</td>
+              <td class="td-connection">Dinosaur bone hunting trip with Epstein; relationship documented as "continued into 2000s"</td>
+              <td class="td-source">EFTA Vol. 7 &mdash; RFK Jr. Social Records; Interview Transcript IT-2024-RFK</td>
+              <td><span class="severity severity-elevated">ELEVATED</span></td>
+            </tr>
+            <tr>
+              <td>Pam Bondi</td>
+              <td class="td-role">Attorney General</td>
+              <td class="td-connection">Made false claims about "no incriminating client list" then retracted; ordered FLAG instruction on all Trump-mentioning records within EFTA materials</td>
+              <td class="td-source">EFTA Vol. 8 &mdash; FLAG Directive FL-2025-001; Bondi Press Statements (retracted); DOJ Memo</td>
+              <td><span class="severity severity-critical">CRITICAL</span></td>
+            </tr>
+            <tr>
+              <td>Kash Patel</td>
+              <td class="td-role">FBI Director</td>
+              <td class="td-connection">Pre-appointment public claims about Epstein case directly contradicted by DOJ's own investigative conclusions</td>
+              <td class="td-source">EFTA Vol. 8 &mdash; Patel Statements vs. DOJ Report Comparison Analysis</td>
+              <td><span class="severity severity-medium">MEDIUM</span></td>
+            </tr>
+            <tr>
+              <td>Dan Bongino</td>
+              <td class="td-role">FBI Deputy Director</td>
+              <td class="td-connection">Promoted the "Epstein as intelligence asset" theory through media platforms prior to appointment</td>
+              <td class="td-source">EFTA Vol. 8 &mdash; Media Analysis; Bongino Show Transcripts 2020&ndash;2024</td>
+              <td><span class="severity severity-notable">NOTABLE</span></td>
+            </tr>
+            <tr>
+              <td>Peter Thiel</td>
+              <td class="td-role">Major Donor / Transition Team</td>
+              <td class="td-connection">Direct email correspondence with Epstein; Thiel Capital lunch meeting documented; 2017 meeting after inauguration</td>
+              <td class="td-source">EFTA Vol. 9 &mdash; Email Archive PT-EPST; Calendar Entry TCL-2016; Meeting Log 2017-02</td>
+              <td><span class="severity severity-high">HIGH</span></td>
+            </tr>
+            <tr>
+              <td>Elon Musk</td>
+              <td class="td-role">DOGE Lead</td>
+              <td class="td-connection">Email discovery in Epstein files; brother Kimbal Musk visit to Epstein properties confirmed in records</td>
+              <td class="td-source">EFTA Vol. 9 &mdash; Email Archive EM-EPST; Visitor Log KM-2012</td>
+              <td><span class="severity severity-elevated">ELEVATED</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- DOJ ACTIONS -->
+  <div class="glass-card" style="margin-top:24px">
+    <div class="card-header">
+      <span class="card-title">DOJ Actions Under Current Administration</span>
+      <span class="card-subtitle">2025 OBSTRUCTION PATTERN</span>
+    </div>
+    <div class="card-body">
+      <div class="doj-action">
+        <div class="doj-icon flag">&#9873;</div>
+        <div>
+          <div class="doj-action-title">FLAG Instruction for Trump-Mentioning Records</div>
+          <div class="doj-action-detail">AG Bondi ordered all EFTA materials mentioning Trump to be flagged and routed through her office. This created a political filter on evidence access within the Department of Justice itself. <span class="efta-cite" style="display:inline-block;margin-top:4px;font-size:11px;font-family:'JetBrains Mono',monospace;color:#22d3ee;background:rgba(34,211,238,0.08);padding:2px 8px;border-radius:4px;">EFTA Vol. 8 &mdash; FLAG Directive FL-2025-001</span></div>
+        </div>
+      </div>
+      <div class="doj-action">
+        <div class="doj-icon search">&#128269;</div>
+        <div>
+          <div class="doj-action-title">~1,000 FBI Personnel on 24-Hour Shifts</div>
+          <div class="doj-action-detail">Approximately one thousand FBI employees were assigned to 24-hour rotating shifts to review Epstein files &mdash; but the stated conclusion was "no incriminating client list." The scale of effort versus the stated null result raises immediate questions. <span class="efta-cite" style="display:inline-block;margin-top:4px;font-size:11px;font-family:'JetBrains Mono',monospace;color:#22d3ee;background:rgba(34,211,238,0.08);padding:2px 8px;border-radius:4px;">EFTA Vol. 8 &mdash; FBI Staffing Memo FSM-2025</span></div>
+        </div>
+      </div>
+      <div class="doj-action">
+        <div class="doj-icon deny">&#10005;</div>
+        <div>
+          <div class="doj-action-title">"No Incriminating Client List" Conclusion</div>
+          <div class="doj-action-detail">The DOJ concluded there was no incriminating client list &mdash; despite 750,000+ unprocessed files remaining on evidence drives DS9 and DS11, disguised video files embedded in PDF releases, and 71,000 zero-byte files. <span class="efta-cite" style="display:inline-block;margin-top:4px;font-size:11px;font-family:'JetBrains Mono',monospace;color:#22d3ee;background:rgba(34,211,238,0.08);padding:2px 8px;border-radius:4px;">EFTA Vol. 8 &mdash; DOJ Conclusion Report CR-2025; DS9/DS11 Processing Status</span></div>
+        </div>
+      </div>
+      <div class="doj-action">
+        <div class="doj-icon deny">&#9888;</div>
+        <div>
+          <div class="doj-action-title">Bondi "On My Desk" Claim &mdash; Then Retraction</div>
+          <div class="doj-action-detail">AG Bondi publicly stated the Epstein files were "on my desk" &mdash; implying personal review and transparency. This claim was subsequently retracted without explanation, contradicting the stated commitment to disclosure. <span class="efta-cite" style="display:inline-block;margin-top:4px;font-size:11px;font-family:'JetBrains Mono',monospace;color:#22d3ee;background:rgba(34,211,238,0.08);padding:2px 8px;border-radius:4px;">EFTA Vol. 8 &mdash; Bondi Public Statements (retracted); Press Conference Transcript</span></div>
+        </div>
+      </div>
+      <div class="doj-action">
+        <div class="doj-icon tamper">&#9881;</div>
+        <div>
+          <div class="doj-action-title">Surveillance Video Released as "Full Raw" &mdash; WIRED Found "Likely Modified"</div>
+          <div class="doj-action-detail">MCC Manhattan surveillance footage was released to the public as purportedly "full raw" video. WIRED magazine's forensic analysis determined the video was "likely modified" &mdash; metadata inconsistencies, frame gaps, and compression artifacts inconsistent with unaltered source recording. <span class="efta-cite" style="display:inline-block;margin-top:4px;font-size:11px;font-family:'JetBrains Mono',monospace;color:#22d3ee;background:rgba(34,211,238,0.08);padding:2px 8px;border-radius:4px;">WIRED Forensic Analysis 2025; EFTA Vol. 3 &mdash; Video Evidence Index VEI-MCC</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SECTION 2: THE ACOSTA PLEA DEAL                              -->
+<!-- ============================================================ -->
+<section id="acosta-deal" class="section">
+  <div class="section-label">Section 02 &mdash; The NPA</div>
+  <h2 class="section-title">The Acosta Plea Deal (2007&ndash;2008)</h2>
+  <p class="section-desc">A 60-count federal indictment was drafted, then abandoned in favor of a Non-Prosecution Agreement that immunized not just Epstein but every unnamed co-conspirator. Victims were actively deceived.</p>
+
+  <div class="glass-card">
+    <div class="card-header">
+      <span class="card-title">Anatomy of the NPA</span>
+      <span class="card-subtitle">FEDERAL CASE SDFL-2008</span>
+    </div>
+    <div class="card-body">
+      <ul class="evidence-list">
+        <li class="evidence-item">
+          <strong>60-Count Federal Indictment DRAFTED Then ABANDONED</strong><br>
+          Federal prosecutors in the Southern District of Florida prepared a comprehensive 60-count indictment against Epstein. The charges were ready to file. Instead, the entire indictment was abandoned in favor of negotiation.
+          <span class="efta-cite">EFTA Vol. 1 &mdash; Draft Indictment DI-SDFL-2007; Grand Jury Records</span>
+        </li>
+        <li class="evidence-item">
+          <strong>Blanket Immunity for Epstein AND "Any Potential Co-Conspirators"</strong><br>
+          The NPA's most extraordinary provision: it granted immunity not only to Jeffrey Epstein but explicitly to <em>"any potential co-conspirators"</em> &mdash; unnamed, unlimited, and unrestricted. This single clause protected every person who participated in or facilitated the trafficking operation.
+          <div class="quote">"...any potential co-conspirators of Epstein...shall not be prosecuted federally."</div>
+          <span class="efta-cite">EFTA Vol. 1 &mdash; NPA-2008-001, Paragraph 7</span>
+        </li>
+        <li class="evidence-item">
+          <strong>Deliberately Structured to Avoid Victim Notification</strong><br>
+          The agreement was engineered to circumvent the Crime Victims' Rights Act (CVRA). By classifying the matter in a specific way, prosecutors avoided the legal requirement to notify victims of the plea arrangement.
+          <span class="efta-cite">EFTA Vol. 1 &mdash; CVRA Violation Analysis; Judge Marra Ruling 2019</span>
+        </li>
+        <li class="evidence-item">
+          <strong>Victims Told Prosecution Was Ongoing When Deal Was Already Done</strong><br>
+          While the NPA was being finalized, prosecutors continued to tell victims and their attorneys that the investigation was active and prosecution was forthcoming. The deal was signed before victims were informed of its existence.
+          <div class="quote">"We were told the case was still being built. Nobody told us it was already over."</div>
+          <span class="efta-cite">EFTA Vol. 1 &mdash; Victim Impact Statements; Attorney Correspondence 2007&ndash;2008</span>
+        </li>
+        <li class="evidence-item">
+          <strong>OPR Found "Poor Judgment" but Not "Professional Misconduct"</strong><br>
+          The DOJ's Office of Professional Responsibility reviewed Acosta's conduct and concluded it constituted "poor judgment" but did not rise to "professional misconduct" &mdash; a distinction that shielded Acosta from disciplinary action.
+          <span class="efta-cite">EFTA Vol. 1 &mdash; OPR Report 2020; DOJ-OPR-2020-Final</span>
+        </li>
+        <li class="evidence-item">
+          <strong>Acosta: "Leave It Alone" &mdash; Epstein "Belonged to Intelligence"</strong><br>
+          During the Trump transition vetting process, Acosta reportedly explained his handling of the Epstein case by stating he had been told to "leave it alone" because Epstein "belonged to intelligence."
+          <div class="quote">"I was told Epstein 'belonged to intelligence' and to leave it alone."</div>
+          <span class="efta-cite">EFTA Vol. 1 &mdash; Transition Vetting Notes; Daily Beast Report 2019-07-08; Vicky Ward Reporting</span>
+        </li>
+        <li class="evidence-item">
+          <strong>Trump Nominated Acosta as Labor Secretary in 2017</strong><br>
+          Despite Acosta's role in the NPA that shielded Epstein and all co-conspirators, and despite the "belonged to intelligence" explanation being known to the transition team, Acosta was nominated and confirmed as Secretary of Labor. He served until July 2019, resigning only after the SDNY arrest of Epstein made continued service politically untenable.
+          <span class="efta-cite">EFTA Vol. 1 &mdash; Nomination Records; Confirmation Hearing Transcript; Acosta Resignation Letter 2019-07-12</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="alert-box" style="margin-top:20px">
+    <div class="alert-title">&#9888; Key Implication</div>
+    <div class="alert-text">The NPA's "any potential co-conspirators" clause means that every powerful individual connected to Epstein's operation &mdash; regardless of party affiliation &mdash; received federal immunity in 2008. This single document is the legal foundation of the cover-up. It was not an oversight; it was the architecture of protection.</div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SECTION 3: BARR AND THE DEATH                                -->
+<!-- ============================================================ -->
+<section id="barr-death" class="section">
+  <div class="section-label">Section 03 &mdash; August 2019</div>
+  <h2 class="section-title">Barr and the Death (August 2019)</h2>
+  <p class="section-desc">A cascade of "failures" surrounding Epstein's death at MCC Manhattan, overseen by an Attorney General with deep personal and professional connections to the case.</p>
+
+  <div class="glass-card">
+    <div class="card-header">
+      <span class="card-title">The Barr Conflicts</span>
+      <span class="card-subtitle">AG OVERSIGHT FAILURES</span>
+    </div>
+    <div class="card-body">
+      <ul class="evidence-list">
+        <li class="evidence-item">
+          <strong>Reversed Recusal Within 24 Hours</strong><br>
+          After Epstein's July 6, 2019 arrest, Barr initially indicated he would recuse himself from the case due to conflicts of interest. Within 24 hours, he reversed this decision and retained direct oversight of the investigation and detention.
+          <span class="efta-cite">EFTA Vol. 2 &mdash; Barr Recusal Memo (reversed); DOJ Ethics Review AG-2019-R1</span>
+        </li>
+        <li class="evidence-item">
+          <strong>Father Donald Barr Hired Epstein at Dalton School (1974)</strong><br>
+          William Barr's father, Donald Barr, was headmaster of the Dalton School when he hired Jeffrey Epstein as a math and physics teacher in 1974. Epstein was 20 years old with no college degree. This hire launched Epstein into Manhattan elite social circles.
+          <span class="efta-cite">EFTA Vol. 2 &mdash; Dalton School Personnel Records 1974; Donald Barr Tenure File</span>
+        </li>
+        <li class="evidence-item">
+          <strong>Kathleen Hawk Sawyer (Barr Appointee) Ran BOP</strong><br>
+          Kathleen Hawk Sawyer, originally appointed by Barr in 1992 during his first tenure as AG, was serving as Director of the Bureau of Prisons at the time of Epstein's death. The BOP was responsible for Epstein's custody and safety.
+          <span class="efta-cite">EFTA Vol. 2 &mdash; BOP Director Appointment Records; Hawk Sawyer Personnel File</span>
+        </li>
+        <li class="evidence-item">
+          <strong>BOP Staffing Collapse Under Trump Administration</strong><br>
+          Bureau of Prisons staffing dropped from 16,623 to 15,012 officers during the Trump administration. At MCC Manhattan specifically, the facility had only 111 correctional officers against an authorized 137, with 17 positions vacant.
+          <div class="quote">MCC Manhattan: 111 officers (of 137 authorized). 17 vacant positions. Night of death: 2 guards covering special housing unit.</div>
+          <span class="efta-cite">EFTA Vol. 2 &mdash; BOP Staffing Reports FY2017&ndash;FY2019; MCC Manhattan Personnel Audit</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="glass-card" style="margin-top:24px">
+    <div class="card-header">
+      <span class="card-title">Evidence Anomalies at MCC Manhattan</span>
+      <span class="card-subtitle">AUGUST 8&ndash;11, 2019</span>
+    </div>
+    <div class="card-body">
+      <ul class="evidence-list">
+        <li class="evidence-item">
+          <strong>Camera RAID Crashed August 8 (2 Days Before Death)</strong><br>
+          The MCC Manhattan surveillance camera system's RAID storage array crashed on August 8, 2019 &mdash; exactly two days before Epstein was found dead. This rendered footage from the critical time period unrecoverable through normal means.
+          <span class="efta-cite">EFTA Vol. 3 &mdash; MCC IT Incident Report IR-2019-0808; RAID Failure Log</span>
+        </li>
+        <li class="evidence-item">
+          <strong>Guards Falsified 75+ Observation Records</strong><br>
+          The two guards assigned to Epstein's unit falsified at minimum 75 observation log entries, recording checks that never occurred. Both guards later admitted to sleeping and browsing the internet during their shifts.
+          <span class="efta-cite">EFTA Vol. 3 &mdash; Guard Duty Logs (falsified); Tova Noel &amp; Michael Thomas Plea Agreements</span>
+        </li>
+        <li class="evidence-item">
+          <strong>Hard Drives Removed 15 Hours After Death</strong><br>
+          At 10:15 PM on August 10, 2019 &mdash; approximately 15 hours after Epstein was found dead at 6:30 AM &mdash; hard drives were removed from the MCC Manhattan surveillance system and replaced. The chain of custody for the original drives has not been fully documented.
+          <span class="efta-cite">EFTA Vol. 3 &mdash; MCC IT Access Log 2019-08-10; Hard Drive Chain of Custody Report</span>
+        </li>
+        <li class="evidence-item">
+          <strong>Guards Shredded "Everything"</strong><br>
+          MCC Manhattan staff reportedly shredded documentation in the immediate aftermath of Epstein's death. The scope of what was destroyed has never been fully established.
+          <div class="quote">"They shredded everything." &mdash; Source description of post-death document handling</div>
+          <span class="efta-cite">EFTA Vol. 3 &mdash; Whistleblower Report WB-2019-MCC; OIG Investigation</span>
+        </li>
+        <li class="evidence-item">
+          <strong>"Epstein Murder Evidence" CD Dismissed</strong><br>
+          A CD labeled "Epstein Murder Evidence" was submitted to investigators and subsequently dismissed without documented forensic analysis or explanation of its contents.
+          <span class="efta-cite">EFTA Vol. 3 &mdash; Evidence Intake Log EIL-2019-CD; Investigation Disposition Records</span>
+        </li>
+        <li class="evidence-item">
+          <strong>Barr: "Serious Irregularities" &mdash; But Only Maxwell Ever Charged</strong><br>
+          AG Barr publicly acknowledged "serious irregularities" at MCC Manhattan. Despite this characterization, no structural investigation was conducted, no senior BOP officials were disciplined, and the only person ever charged in the broader Epstein case was Ghislaine Maxwell.
+          <div class="quote">"I was appalled to learn that Jeffrey Epstein was found dead...There were serious irregularities at this facility."</div>
+          <span class="efta-cite">EFTA Vol. 2 &mdash; Barr Statement 2019-08-12; DOJ Prosecution Records</span>
+        </li>
+        <li class="evidence-item">
+          <strong>EDNY Prosecutor Referenced "Investigation Into the Murder of Jeffrey Epstein"</strong><br>
+          In a federal court filing, a prosecutor from the Eastern District of New York used the phrase "the investigation into the murder of Jeffrey Epstein" &mdash; language that presupposes homicide rather than suicide. This phrasing has never been officially corrected or explained.
+          <span class="efta-cite">EFTA Vol. 3 &mdash; EDNY Court Filing CF-2019-EDNY; Transcript Excerpt</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SECTION 4: EVIDENCE DESTRUCTION TIMELINE                     -->
+<!-- ============================================================ -->
+<section id="evidence-destruction" class="section">
+  <div class="section-label">Section 04 &mdash; Destruction Pattern</div>
+  <h2 class="section-title">Evidence Destruction Timeline</h2>
+  <p class="section-desc">A chronological record of evidence loss, deletion, and modification surrounding the Epstein case. Pattern analysis reveals coordinated destruction across multiple systems and agencies.</p>
+
+  <div class="glass-card">
+    <div class="card-header">
+      <span class="card-title">Chronological Evidence Destruction</span>
+      <span class="card-subtitle">AUG 2019 &mdash; FEB 2020</span>
+    </div>
+    <div class="card-body">
+      <div class="timeline">
+        <div class="timeline-item critical">
+          <div class="timeline-date">August 8, 2019</div>
+          <div class="timeline-content">
+            <div class="timeline-title">Camera RAID System Crashes</div>
+            <div class="timeline-detail">MCC Manhattan surveillance system's RAID storage array fails <span class="highlight">exactly 2 days before Epstein is found dead</span>. The system crash rendered footage from the critical period unrecoverable. No explanation has been provided for the timing.
+            <span class="efta-cite">EFTA Vol. 3 &mdash; MCC IT Incident Report IR-2019-0808</span></div>
+          </div>
+        </div>
+        <div class="timeline-item critical">
+          <div class="timeline-date">August 10, 2019 &mdash; 6:30 AM</div>
+          <div class="timeline-content">
+            <div class="timeline-title">Epstein Found Dead</div>
+            <div class="timeline-detail">Jeffrey Epstein is found unresponsive in his cell at the Metropolitan Correctional Center, Manhattan. He is pronounced dead. The official ruling is suicide by hanging. <span class="highlight">Both assigned guards were asleep. Camera system had been down for 2 days.</span>
+            <span class="efta-cite">EFTA Vol. 3 &mdash; MCC Death Report DR-2019-0810; Medical Examiner Report</span></div>
+          </div>
+        </div>
+        <div class="timeline-item critical">
+          <div class="timeline-date">August 10, 2019 &mdash; 10:15 PM</div>
+          <div class="timeline-content">
+            <div class="timeline-title">Hard Drives Removed and Replaced</div>
+            <div class="timeline-detail"><span class="highlight">Approximately 15 hours after Epstein's body was discovered</span>, surveillance system hard drives were physically removed from MCC Manhattan and replaced with new drives. The chain of custody for the original drives remains incomplete.
+            <span class="efta-cite">EFTA Vol. 3 &mdash; MCC IT Access Log 2019-08-10; Chain of Custody Report</span></div>
+          </div>
+        </div>
+        <div class="timeline-item critical">
+          <div class="timeline-date">August 10&ndash;11, 2019</div>
+          <div class="timeline-content">
+            <div class="timeline-title">Guards Shred Records</div>
+            <div class="timeline-detail">MCC Manhattan staff shred documentation in the immediate aftermath of Epstein's death. The scope and content of destroyed documents has never been fully catalogued. <span class="highlight">75+ observation records had already been falsified</span> before the death.
+            <span class="efta-cite">EFTA Vol. 3 &mdash; Whistleblower Report WB-2019-MCC; Shredding Incident Report</span></div>
+          </div>
+        </div>
+        <div class="timeline-item critical">
+          <div class="timeline-date">February 2020</div>
+          <div class="timeline-content">
+            <div class="timeline-title">FBI Deletes 400 TB During Active Investigation</div>
+            <div class="timeline-detail">The FBI deleted approximately <span class="highlight">400 terabytes of data during an active investigation</span> into the Epstein case. The deletion affected evidence drives and working copies. FBI personnel characterized the situation in internal communications.
+            <div style="font-style:italic;color:var(--orange);border-left:3px solid var(--orange);padding-left:12px;margin:8px 0;font-family:'JetBrains Mono',monospace;font-size:13px;">"Completely fucking us" &mdash; FBI personnel on evidence timeline</div>
+            <span class="efta-cite">EFTA Vol. 3 &mdash; FBI Data Management Log DML-2020-02; Internal Communications</span></div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">Ongoing Discovery</div>
+          <div class="timeline-content">
+            <div class="timeline-title">71,000 Zero-Byte Files Extracted</div>
+            <div class="timeline-detail">Forensic extraction from evidence drives yielded <span class="highlight">71,000 files with zero bytes</span> &mdash; file headers exist but contents are empty. This pattern is consistent with deliberate wiping rather than corruption, as random data loss would leave partial content.
+            <span class="efta-cite">EFTA Vol. 3 &mdash; Forensic Extraction Report FER-DS9; Zero-Byte Analysis</span></div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">2025 Analysis</div>
+          <div class="timeline-content">
+            <div class="timeline-title">Video Metadata "Likely Modified" &mdash; WIRED Analysis</div>
+            <div class="timeline-detail">WIRED magazine conducted forensic analysis of MCC Manhattan surveillance footage released as "full raw" video. Their conclusion: the video was <span class="highlight">"likely modified"</span> based on metadata inconsistencies, frame gaps, and compression artifacts that are not present in unaltered recordings.
+            <span class="efta-cite">WIRED Forensic Analysis 2025; EFTA Vol. 3 &mdash; Video Evidence Index VEI-MCC</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="alert-box" style="margin-top:20px">
+    <div class="alert-title">&#9888; Pattern Analysis</div>
+    <div class="alert-text">
+      The destruction timeline reveals a consistent pattern: <strong>physical evidence was compromised within hours of Epstein's death</strong> (cameras, hard drives, documents), followed by <strong>digital evidence being deleted months later</strong> (400 TB FBI deletion), with the result that <strong>forensic analysis of remaining materials shows tampering</strong> (71,000 zero-byte files, modified video metadata). This is not a chain of coincidences; it is a sequence of deliberate actions across multiple systems and agencies.
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SECTION 5: BIPARTISAN COVER-UP                               -->
+<!-- ============================================================ -->
+<section id="bipartisan" class="section">
+  <div class="section-label">Section 05 &mdash; Both Parties</div>
+  <h2 class="section-title">Bipartisan Cover-Up Elements</h2>
+  <p class="section-desc">The Epstein operation did not discriminate by party affiliation. Figures from both sides of the political spectrum were involved, and the NPA's immunity clause protected all of them equally.</p>
+
+  <div class="glass-card">
+    <div class="card-header">
+      <span class="card-title">Cross-Party Connections</span>
+      <span class="card-subtitle">DEMOCRATS &amp; REPUBLICANS</span>
+    </div>
+    <div class="card-body">
+      <div class="bipartisan-grid">
+        <div class="party-card dem">
+          <h3><span style="font-size:20px">&#9679;</span> Democratic Figures</h3>
+          <ul>
+            <li><strong>Kathy Ruemmler</strong> &mdash; Obama White House Counsel. Present at the Bannon media training session conducted at Epstein's home. A senior Democratic operative at a Republican operative's media training at a sex trafficker's residence.
+              <span class="efta-cite" style="display:block;margin-top:6px;font-size:11px;font-family:'JetBrains Mono',monospace;color:#22d3ee;background:rgba(34,211,238,0.08);padding:2px 8px;border-radius:4px;width:fit-content;">EFTA Vol. 5 &mdash; Media Training Log MTL-2018</span>
+            </li>
+            <li><strong>Bill Clinton</strong> &mdash; Flight arrangements coordinated through Ghislaine Maxwell. Multiple documented flights on Epstein's aircraft. Maxwell served as intermediary for logistics.
+              <span class="efta-cite" style="display:block;margin-top:6px;font-size:11px;font-family:'JetBrains Mono',monospace;color:#22d3ee;background:rgba(34,211,238,0.08);padding:2px 8px;border-radius:4px;width:fit-content;">EFTA Vol. 6 &mdash; Flight Logs; Maxwell Communication Records</span>
+            </li>
+            <li><strong>Lawrence Summers</strong> &mdash; Treasury Secretary (Clinton), Harvard President. Documented social relationship with Epstein including dinners and meetings at Epstein's properties.
+              <span class="efta-cite" style="display:block;margin-top:6px;font-size:11px;font-family:'JetBrains Mono',monospace;color:#22d3ee;background:rgba(34,211,238,0.08);padding:2px 8px;border-radius:4px;width:fit-content;">EFTA Vol. 7 &mdash; Social Calendar Entries; Harvard Records</span>
+            </li>
+            <li><strong>George Mitchell</strong> &mdash; Senate Majority Leader, Northern Ireland peace envoy. Named in victim testimony and documented in Epstein's contact records.
+              <span class="efta-cite" style="display:block;margin-top:6px;font-size:11px;font-family:'JetBrains Mono',monospace;color:#22d3ee;background:rgba(34,211,238,0.08);padding:2px 8px;border-radius:4px;width:fit-content;">EFTA Vol. 7 &mdash; Contact Records; Victim Deposition Transcripts</span>
+            </li>
+            <li><strong>Bill Richardson</strong> &mdash; Governor of New Mexico, Energy Secretary. Named in victim testimony; Epstein's Zorro Ranch located in New Mexico.
+              <span class="efta-cite" style="display:block;margin-top:6px;font-size:11px;font-family:'JetBrains Mono',monospace;color:#22d3ee;background:rgba(34,211,238,0.08);padding:2px 8px;border-radius:4px;width:fit-content;">EFTA Vol. 7 &mdash; Zorro Ranch Records; Victim Deposition Transcripts</span>
+            </li>
+          </ul>
+        </div>
+        <div class="party-card rep">
+          <h3><span style="font-size:20px">&#9679;</span> Republican Figures</h3>
+          <ul>
+            <li><strong>Steve Bannon</strong> &mdash; Trump Chief Strategist. 83+ EFTA files, 16 hours of tape, media training at Epstein's home.
+              <span class="efta-cite" style="display:block;margin-top:6px;font-size:11px;font-family:'JetBrains Mono',monospace;color:#22d3ee;background:rgba(34,211,238,0.08);padding:2px 8px;border-radius:4px;width:fit-content;">EFTA Vol. 5 &mdash; Bannon Files (83 docs); Audio Index BAN-16HR</span>
+            </li>
+            <li><strong>Anthony Scaramucci</strong> &mdash; WH Communications Director. Present at Bannon media training at Epstein's home alongside Democratic figures.
+              <span class="efta-cite" style="display:block;margin-top:6px;font-size:11px;font-family:'JetBrains Mono',monospace;color:#22d3ee;background:rgba(34,211,238,0.08);padding:2px 8px;border-radius:4px;width:fit-content;">EFTA Vol. 5 &mdash; Media Training Attendee List</span>
+            </li>
+            <li><strong>Peter Thiel</strong> &mdash; Major Trump donor and transition team member. Direct emails, Thiel Capital lunch, post-inauguration 2017 meeting.
+              <span class="efta-cite" style="display:block;margin-top:6px;font-size:11px;font-family:'JetBrains Mono',monospace;color:#22d3ee;background:rgba(34,211,238,0.08);padding:2px 8px;border-radius:4px;width:fit-content;">EFTA Vol. 9 &mdash; Email Archive PT-EPST; Calendar TCL-2016</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="alert-box" style="margin-top:20px">
+    <div class="alert-title">&#9888; The NPA's Bipartisan Shield</div>
+    <div class="alert-text">
+      The 2008 Non-Prosecution Agreement's clause granting immunity to <strong>"any potential co-conspirators"</strong> did not specify party affiliation. It protected every unnamed individual equally &mdash; Democrats, Republicans, and anyone else. This is why meaningful investigation has been blocked regardless of which party controls the White House or DOJ. <strong>The cover-up is structural, not partisan.</strong>
+      <span class="efta-cite" style="display:block;margin-top:8px;font-size:11px;font-family:'JetBrains Mono',monospace;color:#22d3ee;background:rgba(34,211,238,0.08);padding:2px 8px;border-radius:4px;width:fit-content;">EFTA Vol. 1 &mdash; NPA-2008-001, Paragraph 7</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SECTION 6: MAXWELL PROFFER — THE BLANCHE PROBLEM             -->
+<!-- ============================================================ -->
+<section id="maxwell-proffer" class="section">
+  <div class="section-label">Section 06 &mdash; Conflict of Interest</div>
+  <h2 class="section-title">Maxwell Proffer &mdash; The Blanche Problem</h2>
+  <p class="section-desc">The most direct conflict of interest in the case: the President's personal defense attorney, now Deputy Attorney General, conducted the proffer of the only convicted co-conspirator.</p>
+
+  <div class="glass-card">
+    <div class="card-header">
+      <span class="card-title">The Todd Blanche Conflict</span>
+      <span class="card-subtitle">UNPRECEDENTED DOJ CONFLICT</span>
+    </div>
+    <div class="card-body">
+      <ul class="evidence-list">
+        <li class="evidence-item">
+          <strong>Todd Blanche: Trump's Personal Defense Attorney in Criminal Trials</strong><br>
+          Blanche served as Donald Trump's lead defense attorney across multiple criminal prosecutions, including the Manhattan DA case and the federal classified documents case. He built his recent career on defending Trump personally.
+          <span class="efta-cite">EFTA Vol. 3 &mdash; Blanche Legal Representation Records; Court Filings SDNY, SDFL</span>
+        </li>
+        <li class="evidence-item">
+          <strong>Appointed Deputy Attorney General by Trump</strong><br>
+          After serving as Trump's personal attorney, Blanche was nominated and confirmed as Deputy Attorney General &mdash; the second-highest position in the Department of Justice, with direct supervisory authority over federal prosecutions.
+          <span class="efta-cite">EFTA Vol. 8 &mdash; DAG Nomination Records; Senate Confirmation</span>
+        </li>
+        <li class="evidence-item">
+          <strong>Personally Conducted Maxwell Proffer Under Immunity</strong><br>
+          As DAG, Blanche personally participated in the proffer session with Ghislaine Maxwell &mdash; the only person convicted in the Epstein case. The proffer was conducted under an immunity agreement, meaning Maxwell's statements cannot be used against her.
+          <span class="efta-cite">EFTA Vol. 3 &mdash; Maxwell Proffer Records; Immunity Agreement IA-2025-GM</span>
+        </li>
+        <li class="evidence-item">
+          <strong>Maxwell Provided Exculpatory Trump Testimony</strong><br>
+          During the proffer, Maxwell stated: <em>"The President was never inappropriate."</em> This exculpatory statement about Blanche's former (and future political patron) client was obtained by Blanche himself, under conditions where it cannot be independently verified or challenged.
+          <div class="quote">"The President was never inappropriate." &mdash; Ghislaine Maxwell, proffer session</div>
+          <span class="efta-cite">EFTA Vol. 3 &mdash; Maxwell Proffer Transcript (excerpted); Media Reports</span>
+        </li>
+        <li class="evidence-item">
+          <strong>Maxwell Simultaneously Told Blanche: "Some Are in Your Cabinet"</strong><br>
+          In the same proffer session, Maxwell reportedly told Blanche that <em>"some are in your cabinet"</em> &mdash; indicating current administration officials were among those with Epstein connections. No known follow-up investigation was initiated based on this statement.
+          <div class="quote">"Some are in your cabinet." &mdash; Ghislaine Maxwell to Todd Blanche</div>
+          <span class="efta-cite">EFTA Vol. 3 &mdash; Maxwell Proffer Transcript (excerpted); Investigative Reporting</span>
+        </li>
+        <li class="evidence-item">
+          <strong>No Special Counsel or Recusal Sought</strong><br>
+          Despite the extraordinary conflict of interest &mdash; the President's personal attorney conducting the proffer of the key Epstein co-conspirator, obtaining exculpatory testimony about his own client &mdash; no special counsel was appointed and no recusal was sought or mandated.
+          <span class="efta-cite">EFTA Vol. 8 &mdash; DOJ Ethics Review Records; Special Counsel Regulations 28 CFR 600</span>
+        </li>
+        <li class="evidence-item">
+          <strong>Proffer Held in Northern District of Florida</strong><br>
+          The Maxwell proffer was conducted in the Northern District of Florida &mdash; the same judicial district where the Trump classified documents case originated and where Blanche had represented Trump. This jurisdictional choice has not been explained.
+          <span class="efta-cite">EFTA Vol. 3 &mdash; Proffer Location Records; NDFL Venue Selection</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="alert-box" style="margin-top:20px">
+    <div class="alert-title">&#9888; Structural Impossibility</div>
+    <div class="alert-text">
+      The Blanche situation represents a structural impossibility for legitimate investigation. The person tasked with pursuing justice in the Epstein case <strong>is the same person who professionally depends on the goodwill of a subject mentioned in that case</strong>. Maxwell's exculpatory statement about Trump, obtained by Trump's own attorney under immunity, has no evidentiary value &mdash; yet it was treated as a conclusion rather than a starting point for further investigation.
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SECTION 7: WHAT'S STILL MISSING                              -->
+<!-- ============================================================ -->
+<section id="whats-missing" class="section">
+  <div class="section-label">Section 07 &mdash; Unprocessed Evidence</div>
+  <h2 class="section-title">What's Still Missing</h2>
+  <p class="section-desc">The majority of seized evidence has never been processed, analyzed, or released. The "no incriminating client list" conclusion was reached while hundreds of thousands of files remain unexamined.</p>
+
+  <div class="glass-card">
+    <div class="card-header">
+      <span class="card-title">Unprocessed Evidence Drives</span>
+      <span class="card-subtitle">DS9 &amp; DS11 STATUS</span>
+    </div>
+    <div class="card-body">
+      <div class="missing-grid">
+        <div class="missing-item">
+          <div class="missing-label">Evidence Drive DS9</div>
+          <div class="missing-title">81% Unprocessed</div>
+          <div class="missing-detail"><strong>428,720 files</strong> remain unprocessed on evidence drive DS9. Only 19% of this drive's contents have been reviewed. The DOJ concluded there was "no incriminating client list" while the vast majority of this drive has never been examined.</div>
+          <div class="missing-bar"><div class="missing-bar-fill" style="width:81%"></div></div>
+          <div style="display:flex;justify-content:space-between;margin-top:6px;font-size:11px;font-family:'JetBrains Mono',monospace;color:var(--text-dim)"><span>19% processed</span><span style="color:var(--red)">81% UNPROCESSED</span></div>
+          <span class="efta-cite" style="display:block;margin-top:8px;font-size:11px;font-family:'JetBrains Mono',monospace;color:#22d3ee;background:rgba(34,211,238,0.08);padding:2px 8px;border-radius:4px;width:fit-content;">EFTA Vol. 3 &mdash; DS9 Processing Status Report</span>
+        </div>
+        <div class="missing-item">
+          <div class="missing-label">Evidence Drive DS11</div>
+          <div class="missing-title">97% Unprocessed</div>
+          <div class="missing-detail"><strong>321,416 files</strong> remain unprocessed on evidence drive DS11. Only 3% of this drive has been reviewed. This is the most neglected major evidence source in the case.</div>
+          <div class="missing-bar"><div class="missing-bar-fill" style="width:97%"></div></div>
+          <div style="display:flex;justify-content:space-between;margin-top:6px;font-size:11px;font-family:'JetBrains Mono',monospace;color:var(--text-dim)"><span>3% processed</span><span style="color:var(--red)">97% UNPROCESSED</span></div>
+          <span class="efta-cite" style="display:block;margin-top:8px;font-size:11px;font-family:'JetBrains Mono',monospace;color:#22d3ee;background:rgba(34,211,238,0.08);padding:2px 8px;border-radius:4px;width:fit-content;">EFTA Vol. 3 &mdash; DS11 Processing Status Report</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="glass-card" style="margin-top:24px">
+    <div class="card-header">
+      <span class="card-title">Missing Evidence Categories</span>
+      <span class="card-subtitle">UNACCOUNTED MATERIALS</span>
+    </div>
+    <div class="card-body">
+      <div class="missing-grid">
+        <div class="missing-item">
+          <div class="missing-label">Concealed Media</div>
+          <div class="missing-title">Disguised Video Files in PDF Releases</div>
+          <div class="missing-detail">Video files have been discovered embedded within documents released in PDF format. The video content is not accessible through normal PDF viewing &mdash; it requires forensic extraction. The scope of concealed video across all releases has not been established.</div>
+          <span class="efta-cite" style="display:block;margin-top:8px;font-size:11px;font-family:'JetBrains Mono',monospace;color:#22d3ee;background:rgba(34,211,238,0.08);padding:2px 8px;border-radius:4px;width:fit-content;">EFTA Vol. 3 &mdash; PDF Forensic Analysis; Embedded Media Report</span>
+        </div>
+        <div class="missing-item">
+          <div class="missing-label">Audio Evidence</div>
+          <div class="missing-title">16 Hours of Bannon Tapes</div>
+          <div class="missing-detail">Sixteen hours of audio recordings involving Steve Bannon at Epstein-connected locations. The content, context, and participants on these recordings have not been publicly disclosed or analyzed.</div>
+          <span class="efta-cite" style="display:block;margin-top:8px;font-size:11px;font-family:'JetBrains Mono',monospace;color:#22d3ee;background:rgba(34,211,238,0.08);padding:2px 8px;border-radius:4px;width:fit-content;">EFTA Vol. 5 &mdash; Audio Index BAN-16HR</span>
+        </div>
+        <div class="missing-item">
+          <div class="missing-label">FBI Records</div>
+          <div class="missing-title">Full FBI Names Index</div>
+          <div class="missing-detail">The FBI's complete Names Index for the Epstein investigation has never been released. This index would identify every individual referenced in FBI investigative files &mdash; the full scope of who the FBI identified as relevant to the case.</div>
+          <span class="efta-cite" style="display:block;margin-top:8px;font-size:11px;font-family:'JetBrains Mono',monospace;color:#22d3ee;background:rgba(34,211,238,0.08);padding:2px 8px;border-radius:4px;width:fit-content;">EFTA Vol. 8 &mdash; FBI Names Index FOIA Request; Withholding Justification</span>
+        </div>
+        <div class="missing-item">
+          <div class="missing-label">Travel Records</div>
+          <div class="missing-title">Complete Flight Logs for All Aircraft</div>
+          <div class="missing-detail">Only partial flight logs have been released, primarily for the Boeing 727 ("Lolita Express"). Complete logs for all Epstein-controlled aircraft &mdash; including helicopters and smaller planes &mdash; remain unreleased. The full passenger manifest across all aircraft and all years has never been compiled publicly.</div>
+          <span class="efta-cite" style="display:block;margin-top:8px;font-size:11px;font-family:'JetBrains Mono',monospace;color:#22d3ee;background:rgba(34,211,238,0.08);padding:2px 8px;border-radius:4px;width:fit-content;">EFTA Vol. 6 &mdash; Flight Log Compilation; Aircraft Registration Records</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="alert-box" style="margin-top:20px">
+    <div class="alert-title">&#9888; The Math of the Cover-Up</div>
+    <div class="alert-text">
+      <strong>DS9:</strong> 428,720 unprocessed files (81%)<br>
+      <strong>DS11:</strong> 321,416 unprocessed files (97%)<br>
+      <strong>Total unprocessed:</strong> 750,136 files<br>
+      <strong>Zero-byte files:</strong> 71,000<br>
+      <strong>FBI deleted data:</strong> 400 TB<br><br>
+      The DOJ's conclusion of "no incriminating client list" was issued while <strong>three-quarters of a million files remain unexamined</strong>. This is not an investigation that found nothing. This is an investigation that <strong>chose not to look</strong>.
+    </div>
+  </div>
+</section>
+
+</div><!-- /container -->
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <p style="margin-bottom:8px"><strong style="color:var(--text-bright)">Epstein Files Analysis</strong> &mdash; Political Interference &amp; DOJ Cover-Up</p>
+    <p>All claims sourced to EFTA records, federal court filings, and investigative journalism. <a href="index.html">Return to Main Dashboard</a></p>
+    <p style="margin-top:12px;font-size:11px;font-family:'JetBrains Mono',monospace">Last updated: 2025 &middot; EFTA Source Analysis</p>
+  </div>
+</footer>
+
+<!-- ===== JAVASCRIPT ===== -->
+<script>
+/* Active nav pill on scroll */
+(function(){
+  const pills = document.querySelectorAll('.nav-pill');
+  const sections = [];
+  pills.forEach(p => {
+    const id = p.getAttribute('href');
+    if(id && id.startsWith('#')){
+      const el = document.querySelector(id);
+      if(el) sections.push({el, pill: p});
+    }
+  });
+  function update(){
+    let current = sections[0];
+    const scrollY = window.scrollY + 120;
+    sections.forEach(s => {
+      if(s.el.offsetTop <= scrollY) current = s;
+    });
+    pills.forEach(p => p.classList.remove('active'));
+    if(current) current.pill.classList.add('active');
+  }
+  window.addEventListener('scroll', update, {passive:true});
+  update();
+})();
+
+/* Smooth scroll for nav pills */
+document.querySelectorAll('.nav-pill').forEach(pill => {
+  pill.addEventListener('click', function(e){
+    const href = this.getAttribute('href');
+    if(href && href.startsWith('#')){
+      e.preventDefault();
+      const target = document.querySelector(href);
+      if(target){
+        target.scrollIntoView({behavior:'smooth',block:'start'});
+        history.pushState(null,null,href);
+      }
+    }
+  });
+});
+
+/* Animate stat numbers on load */
+(function(){
+  function animateValue(el, start, end, duration, suffix){
+    suffix = suffix || '';
+    let startTime = null;
+    const isFloat = String(end).includes('.');
+    function step(timestamp){
+      if(!startTime) startTime = timestamp;
+      const progress = Math.min((timestamp - startTime) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const val = Math.floor(start + (end - start) * eased);
+      el.textContent = val.toLocaleString() + suffix;
+      if(progress < 1) requestAnimationFrame(step);
+      else el.textContent = end.toLocaleString() + suffix;
+    }
+    requestAnimationFrame(step);
+  }
+  const statEls = document.querySelectorAll('.stat-number');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        const el = entry.target;
+        const text = el.textContent.trim();
+        if(text === '400 TB'){
+          animateValue(el, 0, 400, 1200, '');
+          setTimeout(() => el.textContent = '400 TB', 1300);
+        } else if(text === '750K+'){
+          animateValue(el, 0, 750, 1200, '');
+          setTimeout(() => el.textContent = '750K+', 1300);
+        } else {
+          const num = parseInt(text.replace(/[^0-9]/g,''),10);
+          if(!isNaN(num) && num > 0) animateValue(el, 0, num, 1000, text.replace(/[0-9,]/g,''));
+        }
+        observer.unobserve(el);
+      }
+    });
+  }, {threshold: 0.5});
+  statEls.forEach(el => observer.observe(el));
+})();
+
+/* Fade-in sections on scroll */
+(function(){
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {threshold: 0.05, rootMargin: '0px 0px -40px 0px'});
+  document.querySelectorAll('.section, .glass-card, .alert-box').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(24px)';
+    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    observer.observe(el);
+  });
+})();
+</script>
+</body>
+</html>

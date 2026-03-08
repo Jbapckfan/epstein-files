@@ -1,0 +1,1244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#08090d">
+<meta name="description" content="Epstein Files: Comprehensive analysis of the blackmail, kompromat, and surveillance apparatus documented in EFTA records.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Epstein Files — Kompromat & Surveillance Apparatus">
+<meta property="og:description" content="Documented evidence of hidden cameras, intelligence ties, cover-up operations, and institutional obstruction in the Epstein files.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%23ff3b5c'/%3E%3Ctext x='50' y='58' font-size='50' font-family='sans-serif' font-weight='bold' fill='white' text-anchor='middle'%3EE%3C/text%3E%3C/svg%3E">
+<title>Epstein Files: Kompromat &amp; Surveillance Apparatus</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+*:focus-visible{outline:2px solid var(--red);outline-offset:2px}
+:root{
+  --bg:#08090d;--card:rgba(255,255,255,0.03);--card-border:rgba(255,255,255,0.06);
+  --red:#ff3b5c;--red-dim:rgba(255,59,92,0.15);--red-glow:rgba(255,59,92,0.3);
+  --purple:#a855f7;--orange:#f59e0b;--blue:#60a5fa;--green:#34d399;
+  --cyan:#22d3ee;--yellow:#facc15;--crimson:#dc2626;
+  --text:#e2e8f0;--text-dim:#64748b;--text-bright:#f8fafc;
+  --glow-red:0 0 30px rgba(255,59,92,0.3);
+}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);
+  overflow-x:hidden;line-height:1.6;
+}
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:rgba(255,59,92,0.3);border-radius:3px}
+::-webkit-scrollbar-thumb:hover{background:rgba(255,59,92,0.5)}
+
+/* Background effects */
+.bg-grid{
+  position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;
+  background-image:
+    linear-gradient(rgba(255,59,92,0.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,59,92,0.04) 1px,transparent 1px);
+  background-size:60px 60px;pointer-events:none;
+}
+.bg-gradient{
+  position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;
+  background:
+    radial-gradient(ellipse 800px 600px at 20% 10%,rgba(255,59,92,0.08),transparent),
+    radial-gradient(ellipse 600px 500px at 80% 20%,rgba(220,38,38,0.05),transparent),
+    radial-gradient(ellipse 700px 400px at 50% 80%,rgba(168,85,247,0.04),transparent);
+  pointer-events:none;
+}
+.bg-scanlines{
+  position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;
+  background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(255,59,92,0.01) 2px,rgba(255,59,92,0.01) 4px);
+  pointer-events:none;
+}
+
+/* Container */
+.container{max-width:1400px;margin:0 auto;padding:0 24px;position:relative;z-index:1}
+
+/* Header */
+header{padding:32px 0 16px;position:relative;z-index:10}
+.top-bar{display:flex;align-items:center;justify-content:space-between;margin-bottom:40px;flex-wrap:wrap;gap:12px}
+.home-btn{
+  display:inline-flex;align-items:center;gap:8px;padding:10px 20px;
+  background:rgba(255,255,255,0.04);border:1px solid var(--card-border);
+  border-radius:12px;color:var(--text-dim);text-decoration:none;font-size:14px;
+  font-weight:500;transition:all 0.3s;backdrop-filter:blur(10px);
+}
+.home-btn:hover{background:rgba(255,59,92,0.1);color:var(--red);border-color:rgba(255,59,92,0.3)}
+.home-btn svg{width:16px;height:16px}
+.badge{
+  font-family:'JetBrains Mono',monospace;font-size:11px;padding:6px 14px;
+  background:rgba(255,59,92,0.1);border:1px solid rgba(255,59,92,0.2);
+  border-radius:100px;color:var(--red);letter-spacing:1px;text-transform:uppercase;
+}
+.nav-links{display:flex;gap:8px;flex-wrap:wrap}
+.nav-link{
+  display:inline-flex;align-items:center;gap:6px;padding:8px 16px;
+  background:rgba(255,255,255,0.03);border:1px solid var(--card-border);
+  border-radius:10px;color:var(--text-dim);text-decoration:none;font-size:13px;
+  font-weight:500;transition:all 0.3s;
+}
+.nav-link:hover{background:rgba(255,59,92,0.08);color:var(--text);border-color:rgba(255,59,92,0.2)}
+
+/* Hero */
+.hero-title{
+  font-size:clamp(2.2rem,5.5vw,4rem);font-weight:900;letter-spacing:-0.03em;
+  line-height:1.05;margin-bottom:16px;
+  background:linear-gradient(135deg,var(--text-bright) 0%,var(--red) 40%,var(--crimson) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.hero-sub{font-size:clamp(1rem,2vw,1.2rem);color:var(--text-dim);max-width:750px;font-weight:300;margin-bottom:12px}
+.hero-sub strong{color:var(--red);font-weight:600}
+.hero-warning{
+  display:inline-flex;align-items:center;gap:10px;padding:12px 20px;margin-top:16px;
+  background:rgba(255,59,92,0.08);border:1px solid rgba(255,59,92,0.2);
+  border-radius:12px;font-size:13px;color:var(--red);font-family:'JetBrains Mono',monospace;
+  letter-spacing:0.5px;
+}
+
+/* Stats Row */
+.stats-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin:40px 0}
+.stat-card{
+  background:var(--card);border:1px solid var(--card-border);border-radius:16px;
+  padding:20px 24px;backdrop-filter:blur(10px);position:relative;overflow:hidden;
+  transition:border-color 0.3s;
+}
+.stat-card:hover{border-color:rgba(255,59,92,0.3)}
+.stat-card::after{content:'';position:absolute;top:0;left:0;width:100%;height:2px}
+.stat-card:nth-child(1)::after{background:linear-gradient(90deg,var(--red),transparent)}
+.stat-card:nth-child(2)::after{background:linear-gradient(90deg,var(--crimson),transparent)}
+.stat-card:nth-child(3)::after{background:linear-gradient(90deg,var(--orange),transparent)}
+.stat-card:nth-child(4)::after{background:linear-gradient(90deg,var(--purple),transparent)}
+.stat-card:nth-child(5)::after{background:linear-gradient(90deg,var(--blue),transparent)}
+.stat-card:nth-child(6)::after{background:linear-gradient(90deg,var(--cyan),transparent)}
+.stat-value{
+  font-size:clamp(1.6rem,2.5vw,2.2rem);font-weight:800;letter-spacing:-0.03em;
+  font-family:'JetBrains Mono',monospace;
+}
+.stat-card:nth-child(1) .stat-value{color:var(--red)}
+.stat-card:nth-child(2) .stat-value{color:var(--crimson)}
+.stat-card:nth-child(3) .stat-value{color:var(--orange)}
+.stat-card:nth-child(4) .stat-value{color:var(--purple)}
+.stat-card:nth-child(5) .stat-value{color:var(--blue)}
+.stat-card:nth-child(6) .stat-value{color:var(--cyan)}
+.stat-label{font-size:13px;color:var(--text-dim);margin-top:4px}
+
+/* Sections */
+.section{margin:70px 0}
+.section-label{
+  font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--red);
+  letter-spacing:2px;text-transform:uppercase;margin-bottom:12px;
+  display:flex;align-items:center;gap:10px;
+}
+.section-label::before{content:'';width:20px;height:1px;background:var(--red)}
+.section-title{
+  font-size:clamp(1.5rem,3vw,2.2rem);font-weight:800;letter-spacing:-0.03em;margin-bottom:8px;
+}
+.section-desc{color:var(--text-dim);font-size:15px;max-width:700px;margin-bottom:32px}
+
+/* Cards */
+.glass-card{
+  background:var(--card);border:1px solid var(--card-border);
+  border-radius:20px;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  overflow:hidden;position:relative;transition:border-color 0.4s,box-shadow 0.4s;
+}
+.glass-card:hover{border-color:rgba(255,255,255,0.1);box-shadow:0 8px 40px rgba(0,0,0,0.3)}
+.glass-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,0.1),transparent);
+}
+.card-header{
+  padding:24px 28px 20px;border-bottom:1px solid var(--card-border);
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;
+}
+.card-title{font-size:18px;font-weight:700;letter-spacing:-0.02em}
+.card-subtitle{font-size:12px;color:var(--text-dim);font-family:'JetBrains Mono',monospace}
+.card-body{padding:24px 28px}
+
+/* Evidence Items */
+.evidence-list{list-style:none;padding:0}
+.evidence-item{
+  padding:18px 20px;border-bottom:1px solid var(--card-border);
+  display:flex;gap:16px;align-items:flex-start;transition:background 0.2s;
+}
+.evidence-item:last-child{border-bottom:none}
+.evidence-item:hover{background:rgba(255,59,92,0.03)}
+.evidence-icon{
+  flex-shrink:0;width:40px;height:40px;border-radius:12px;
+  display:flex;align-items:center;justify-content:center;font-size:18px;
+}
+.evidence-icon.camera{background:rgba(255,59,92,0.12);color:var(--red)}
+.evidence-icon.intel{background:rgba(168,85,247,0.12);color:var(--purple)}
+.evidence-icon.doc{background:rgba(96,165,250,0.12);color:var(--blue)}
+.evidence-icon.warning{background:rgba(245,158,11,0.12);color:var(--orange)}
+.evidence-icon.coverup{background:rgba(220,38,38,0.12);color:var(--crimson)}
+.evidence-icon.video{background:rgba(34,211,238,0.12);color:var(--cyan)}
+.evidence-content{flex:1;min-width:0}
+.evidence-quote{
+  font-size:15px;color:var(--text);line-height:1.6;margin-bottom:6px;
+}
+.evidence-quote em{color:var(--red);font-style:normal;font-weight:600}
+.evidence-quote .quote-text{
+  font-style:italic;color:var(--text-bright);
+  border-left:2px solid var(--red);padding-left:12px;display:block;margin:8px 0;
+}
+.evidence-cite{
+  font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text-dim);
+  display:inline-flex;align-items:center;gap:6px;
+  padding:3px 10px;background:rgba(255,255,255,0.04);border-radius:6px;
+}
+.evidence-cite .cite-id{color:var(--red);font-weight:600}
+.evidence-severity{
+  flex-shrink:0;width:8px;height:8px;border-radius:50%;margin-top:8px;
+}
+.severity-critical{background:var(--red);box-shadow:0 0 8px var(--red-glow)}
+.severity-high{background:var(--orange);box-shadow:0 0 8px rgba(245,158,11,0.3)}
+.severity-medium{background:var(--yellow);box-shadow:0 0 8px rgba(250,204,21,0.3)}
+
+/* Kompromat Table */
+.kompromat-table-wrapper{overflow-x:auto;margin-top:8px}
+.kompromat-table{
+  width:100%;border-collapse:separate;border-spacing:0;
+  font-size:14px;
+}
+.kompromat-table thead th{
+  text-align:left;padding:14px 16px;font-weight:700;font-size:12px;
+  text-transform:uppercase;letter-spacing:1px;color:var(--red);
+  border-bottom:2px solid rgba(255,59,92,0.2);
+  font-family:'JetBrains Mono',monospace;
+  background:rgba(255,59,92,0.04);
+  position:sticky;top:0;z-index:2;
+}
+.kompromat-table tbody tr{transition:background 0.2s}
+.kompromat-table tbody tr:hover{background:rgba(255,59,92,0.04)}
+.kompromat-table tbody td{
+  padding:14px 16px;border-bottom:1px solid var(--card-border);
+  vertical-align:top;
+}
+.kompromat-table .name-cell{
+  font-weight:700;color:var(--text-bright);white-space:nowrap;
+}
+.kompromat-table .evidence-cell{color:var(--text);font-size:13px}
+.kompromat-table .source-cell{
+  font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text-dim);
+}
+.kompromat-table .source-cell .cite-id{color:var(--red)}
+.status-badge{
+  display:inline-flex;align-items:center;gap:5px;padding:4px 10px;
+  border-radius:100px;font-size:11px;font-weight:600;
+  font-family:'JetBrains Mono',monospace;white-space:nowrap;
+}
+.status-confirmed{background:rgba(255,59,92,0.12);color:var(--red);border:1px solid rgba(255,59,92,0.2)}
+.status-sworn{background:rgba(168,85,247,0.12);color:var(--purple);border:1px solid rgba(168,85,247,0.2)}
+.status-documented{background:rgba(96,165,250,0.12);color:var(--blue);border:1px solid rgba(96,165,250,0.2)}
+.status-alleged{background:rgba(245,158,11,0.12);color:var(--orange);border:1px solid rgba(245,158,11,0.2)}
+.status-denied{background:rgba(100,116,139,0.12);color:var(--text-dim);border:1px solid rgba(100,116,139,0.2)}
+
+/* Timeline */
+.timeline{position:relative;padding-left:40px}
+.timeline::before{
+  content:'';position:absolute;left:15px;top:0;bottom:0;width:2px;
+  background:linear-gradient(180deg,var(--red),var(--purple),var(--blue),transparent);
+}
+.timeline-item{position:relative;padding-bottom:36px}
+.timeline-item:last-child{padding-bottom:0}
+.timeline-dot{
+  position:absolute;left:-33px;top:4px;width:14px;height:14px;
+  border-radius:50%;border:3px solid var(--bg);
+}
+.timeline-dot.dot-red{background:var(--red);box-shadow:0 0 10px var(--red-glow)}
+.timeline-dot.dot-purple{background:var(--purple);box-shadow:0 0 10px rgba(168,85,247,0.3)}
+.timeline-dot.dot-blue{background:var(--blue);box-shadow:0 0 10px rgba(96,165,250,0.3)}
+.timeline-dot.dot-orange{background:var(--orange);box-shadow:0 0 10px rgba(245,158,11,0.3)}
+.timeline-date{
+  font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--red);
+  font-weight:600;margin-bottom:6px;
+}
+.timeline-title{font-weight:700;font-size:16px;margin-bottom:4px}
+.timeline-desc{color:var(--text-dim);font-size:14px;line-height:1.6}
+.timeline-desc strong{color:var(--text);font-weight:600}
+
+/* Severity indicator bar */
+.severity-bar{
+  display:flex;align-items:center;gap:10px;margin-top:12px;
+}
+.severity-bar-label{
+  font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-dim);
+  text-transform:uppercase;letter-spacing:1px;min-width:60px;
+}
+.severity-bar-track{flex:1;height:6px;background:rgba(255,255,255,0.05);border-radius:3px;overflow:hidden}
+.severity-bar-fill{height:100%;border-radius:3px;transition:width 1.5s ease}
+.severity-bar-fill.critical{background:linear-gradient(90deg,var(--red),var(--crimson))}
+.severity-bar-fill.high{background:linear-gradient(90deg,var(--orange),var(--red))}
+.severity-bar-fill.medium{background:linear-gradient(90deg,var(--yellow),var(--orange))}
+
+/* Grid layouts */
+.grid-2{display:grid;grid-template-columns:repeat(auto-fit,minmax(400px,1fr));gap:24px}
+@media(max-width:860px){.grid-2{grid-template-columns:1fr}}
+
+/* Cover-up cards */
+.coverup-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
+.coverup-card{
+  background:rgba(220,38,38,0.04);border:1px solid rgba(220,38,38,0.12);
+  border-radius:16px;padding:20px;transition:all 0.3s;position:relative;overflow:hidden;
+}
+.coverup-card:hover{border-color:rgba(220,38,38,0.3);background:rgba(220,38,38,0.06)}
+.coverup-card::before{
+  content:'';position:absolute;top:0;left:0;width:3px;height:100%;
+  background:var(--crimson);
+}
+.coverup-card .cc-title{font-weight:700;font-size:15px;margin-bottom:6px;color:var(--text-bright)}
+.coverup-card .cc-desc{font-size:13px;color:var(--text-dim);line-height:1.5}
+.coverup-card .cc-desc strong{color:var(--red);font-weight:600}
+
+/* TOC */
+.toc{
+  position:fixed;right:24px;top:50%;transform:translateY(-50%);z-index:100;
+  display:flex;flex-direction:column;gap:4px;
+}
+.toc-dot{
+  width:10px;height:10px;border-radius:50%;
+  background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.15);
+  cursor:pointer;transition:all 0.3s;position:relative;
+}
+.toc-dot:hover,.toc-dot.active{background:var(--red);border-color:var(--red);box-shadow:0 0 8px var(--red-glow)}
+.toc-dot .toc-label{
+  position:absolute;right:20px;top:50%;transform:translateY(-50%);
+  font-size:11px;font-family:'JetBrains Mono',monospace;color:var(--text-dim);
+  white-space:nowrap;opacity:0;transition:opacity 0.2s;pointer-events:none;
+  background:rgba(8,9,13,0.9);padding:4px 10px;border-radius:6px;
+  border:1px solid var(--card-border);
+}
+.toc-dot:hover .toc-label{opacity:1}
+@media(max-width:1200px){.toc{display:none}}
+
+/* Pulse animation */
+@keyframes pulse{
+  0%,100%{opacity:1}
+  50%{opacity:0.5}
+}
+.pulse{animation:pulse 2s ease-in-out infinite}
+
+/* Fade in */
+@keyframes fadeInUp{
+  from{opacity:0;transform:translateY(24px)}
+  to{opacity:1;transform:translateY(0)}
+}
+.fade-in{opacity:0;animation:fadeInUp 0.6s ease forwards}
+.fade-in:nth-child(1){animation-delay:0.1s}
+.fade-in:nth-child(2){animation-delay:0.2s}
+.fade-in:nth-child(3){animation-delay:0.3s}
+.fade-in:nth-child(4){animation-delay:0.4s}
+.fade-in:nth-child(5){animation-delay:0.5s}
+.fade-in:nth-child(6){animation-delay:0.6s}
+
+/* Apparatus diagram */
+.apparatus-diagram{
+  display:flex;flex-direction:column;align-items:center;gap:0;padding:30px 0;
+}
+.apparatus-node{
+  padding:14px 24px;border-radius:12px;font-weight:700;font-size:14px;
+  text-align:center;position:relative;min-width:220px;
+}
+.apparatus-node.core{
+  background:rgba(255,59,92,0.15);border:2px solid var(--red);color:var(--red);
+  font-size:16px;box-shadow:0 0 30px rgba(255,59,92,0.2);
+}
+.apparatus-node.layer1{
+  background:rgba(168,85,247,0.1);border:1px solid rgba(168,85,247,0.3);color:var(--purple);
+}
+.apparatus-node.layer2{
+  background:rgba(96,165,250,0.1);border:1px solid rgba(96,165,250,0.3);color:var(--blue);
+}
+.apparatus-connector{
+  width:2px;height:24px;background:linear-gradient(180deg,var(--red),rgba(255,59,92,0.2));
+}
+.apparatus-branch{
+  display:flex;gap:16px;flex-wrap:wrap;justify-content:center;
+}
+
+/* Footer */
+footer{
+  padding:40px 0;margin-top:80px;border-top:1px solid var(--card-border);
+  text-align:center;color:var(--text-dim);font-size:13px;
+}
+footer a{color:var(--red);text-decoration:none}
+footer a:hover{text-decoration:underline}
+</style>
+</head>
+<body>
+<div class="bg-grid"></div>
+<div class="bg-gradient"></div>
+<div class="bg-scanlines"></div>
+
+<!-- Table of Contents dots -->
+<nav class="toc" aria-label="Section navigation">
+  <div class="toc-dot active" onclick="scrollToSection('surveillance')"><span class="toc-label">Surveillance</span></div>
+  <div class="toc-dot" onclick="scrollToSection('intelligence')"><span class="toc-label">Intelligence</span></div>
+  <div class="toc-dot" onclick="scrollToSection('bannon')"><span class="toc-label">Bannon Tapes</span></div>
+  <div class="toc-dot" onclick="scrollToSection('disguised')"><span class="toc-label">Disguised Files</span></div>
+  <div class="toc-dot" onclick="scrollToSection('targets')"><span class="toc-label">Named Targets</span></div>
+  <div class="toc-dot" onclick="scrollToSection('coverup')"><span class="toc-label">Cover-Up</span></div>
+  <div class="toc-dot" onclick="scrollToSection('timeline')"><span class="toc-label">Timeline</span></div>
+</nav>
+
+<div class="container">
+
+<!-- ===================== HEADER ===================== -->
+<header>
+  <div class="top-bar">
+    <a class="home-btn" href="index.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12l9-9 9 9"/><path d="M9 21V12h6v9"/></svg>
+      Main Dashboard
+    </a>
+    <div class="nav-links">
+      <a class="nav-link" href="hidden_connections.html">Hidden Connections</a>
+      <a class="nav-link" href="red_flag_deepdive.html">Red Flag Deep Dive</a>
+      <a class="nav-link" href="concern_analysis.html">Concern Analysis</a>
+    </div>
+    <span class="badge pulse">CLASSIFIED EVIDENCE</span>
+  </div>
+
+  <h1 class="hero-title">Blackmail, Kompromat<br>&amp; Surveillance Apparatus</h1>
+  <p class="hero-sub">
+    A systematic compilation of documented evidence revealing the <strong>industrial-scale surveillance and blackmail operation</strong> concealed within the Epstein network &mdash; drawn directly from EFTA court filings, victim sworn testimony, law enforcement records, and intelligence disclosures.
+  </p>
+  <div class="hero-warning">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/></svg>
+    ALL CITATIONS REFERENCE OFFICIAL EFTA DOCUMENT NUMBERS FROM COURT-RELEASED FILES
+  </div>
+</header>
+
+<!-- ===================== KEY STATS ===================== -->
+<div class="stats-row">
+  <div class="stat-card fade-in">
+    <div class="stat-value">50+</div>
+    <div class="stat-label">Hidden cameras documented at Manhattan residence</div>
+  </div>
+  <div class="stat-card fade-in">
+    <div class="stat-value">16 hrs</div>
+    <div class="stat-label">Bannon videotape recordings (Mark Epstein testimony)</div>
+  </div>
+  <div class="stat-card fade-in">
+    <div class="stat-value">400 TB</div>
+    <div class="stat-label">FBI data deleted during active investigation</div>
+  </div>
+  <div class="stat-card fade-in">
+    <div class="stat-value">3+</div>
+    <div class="stat-label">Intelligence agencies linked (FBI, CIA, Mossad)</div>
+  </div>
+  <div class="stat-card fade-in">
+    <div class="stat-value">15+</div>
+    <div class="stat-label">Named individuals in kompromat evidence</div>
+  </div>
+  <div class="stat-card fade-in">
+    <div class="stat-value">10+</div>
+    <div class="stat-label">Documented acts of institutional obstruction</div>
+  </div>
+</div>
+
+<!-- ===================== SECTION 1: SURVEILLANCE ===================== -->
+<section class="section" id="surveillance">
+  <div class="section-label">Section 01</div>
+  <h2 class="section-title">The Surveillance Apparatus</h2>
+  <p class="section-desc">A documented, multi-location hidden camera and recording system designed to capture compromising material on powerful visitors.</p>
+
+  <div class="grid-2">
+    <!-- Manhattan Residence -->
+    <div class="glass-card">
+      <div class="card-header">
+        <span class="card-title">Manhattan Townhouse (9 E. 71st St)</span>
+        <span class="card-subtitle">PRIMARY COLLECTION SITE</span>
+      </div>
+      <div class="card-body">
+        <ul class="evidence-list">
+          <li class="evidence-item">
+            <div class="evidence-icon camera">&#128249;</div>
+            <div class="evidence-content">
+              <div class="evidence-quote">
+                <em>50 hidden cameras</em> embedded throughout the residence
+                <span class="quote-text">"Eyeballs embedded into the wall"</span>
+              </div>
+              <span class="evidence-cite">EFTA: <span class="cite-id">EFTA00269967</span></span>
+            </div>
+            <div class="evidence-severity severity-critical"></div>
+          </li>
+          <li class="evidence-item">
+            <div class="evidence-icon camera">&#128249;</div>
+            <div class="evidence-content">
+              <div class="evidence-quote">
+                Hidden cameras concealed inside <em>wall clocks and desk clocks</em> at Palm Beach residence
+              </div>
+              <span class="evidence-cite">Source: <span class="cite-id">Palm Beach Police Department</span></span>
+            </div>
+            <div class="evidence-severity severity-critical"></div>
+          </li>
+          <li class="evidence-item">
+            <div class="evidence-icon doc">&#128191;</div>
+            <div class="evidence-content">
+              <div class="evidence-quote">
+                <em>"Misc. Girls Nude/Dinner--Scientists"</em> disc recovered &mdash; exploitation directly linked to scientific networking events
+              </div>
+              <span class="evidence-cite">EFTA: <span class="cite-id">EFTA00020147-49</span></span>
+            </div>
+            <div class="evidence-severity severity-critical"></div>
+          </li>
+        </ul>
+        <div class="severity-bar">
+          <span class="severity-bar-label">Severity</span>
+          <div class="severity-bar-track"><div class="severity-bar-fill critical" style="width:98%"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Victim Testimony & Methods -->
+    <div class="glass-card">
+      <div class="card-header">
+        <span class="card-title">Blackmail Methodology</span>
+        <span class="card-subtitle">SWORN TESTIMONY</span>
+      </div>
+      <div class="card-body">
+        <ul class="evidence-list">
+          <li class="evidence-item">
+            <div class="evidence-icon warning">&#9888;</div>
+            <div class="evidence-content">
+              <div class="evidence-quote">
+                Victims required to <span class="quote-text">"describe the sexual events"</span> with powerful men <span class="quote-text">"so that he could potentially blackmail them"</span>
+              </div>
+              <span class="evidence-cite">EFTA: <span class="cite-id">EFTA00021558</span></span>
+            </div>
+            <div class="evidence-severity severity-critical"></div>
+          </li>
+          <li class="evidence-item">
+            <div class="evidence-icon warning">&#9888;</div>
+            <div class="evidence-content">
+              <div class="evidence-quote">
+                Victim sworn testimony:
+                <span class="quote-text">"Epstein maintained videos in some rooms where I had sex with other powerful people"</span>
+              </div>
+              <span class="evidence-cite">Source: <span class="cite-id">Sworn deposition testimony</span></span>
+            </div>
+            <div class="evidence-severity severity-critical"></div>
+          </li>
+          <li class="evidence-item">
+            <div class="evidence-icon warning">&#9888;</div>
+            <div class="evidence-content">
+              <div class="evidence-quote">
+                Ghislaine Maxwell confirmed the island <span class="quote-text">"had been completely wired for video"</span> &mdash; described as an <em>"insurance policy, as blackmail"</em>
+              </div>
+              <span class="evidence-cite">Source: <span class="cite-id">Maxwell testimony / victim account</span></span>
+            </div>
+            <div class="evidence-severity severity-critical"></div>
+          </li>
+        </ul>
+        <div class="severity-bar">
+          <span class="severity-bar-label">Severity</span>
+          <div class="severity-bar-track"><div class="severity-bar-fill critical" style="width:100%"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MI5 Parallel -->
+  <div class="glass-card" style="margin-top:24px">
+    <div class="card-header">
+      <span class="card-title">Intelligence Parallel: MI5 Blackmail Operations</span>
+      <span class="card-subtitle">HISTORICAL PRECEDENT</span>
+    </div>
+    <div class="card-body">
+      <div class="evidence-item" style="border:none">
+        <div class="evidence-icon intel">&#128373;</div>
+        <div class="evidence-content">
+          <div class="evidence-quote">
+            <span class="quote-text">"MI5 took foreign diplomats to the North Wales homes and secretly filmed them abusing and torturing boys to use the tapes for blackmail. This is a classic Intelligence modus operandi."</span>
+          </div>
+          <span class="evidence-cite">EFTA: <span class="cite-id">EFTA00103831</span></span>
+          <p style="margin-top:10px;font-size:13px;color:var(--text-dim)">This document establishes the Epstein operation within a known pattern of intelligence-linked sexual blackmail &mdash; not as an isolated criminal enterprise, but as a recognized tradecraft methodology.</p>
+        </div>
+        <div class="evidence-severity severity-critical"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Apparatus Diagram -->
+  <div class="glass-card" style="margin-top:24px">
+    <div class="card-header">
+      <span class="card-title">Surveillance Architecture</span>
+      <span class="card-subtitle">MULTI-LOCATION SYSTEM</span>
+    </div>
+    <div class="card-body">
+      <div class="apparatus-diagram">
+        <div class="apparatus-node core">EPSTEIN SURVEILLANCE NETWORK</div>
+        <div class="apparatus-connector"></div>
+        <div class="apparatus-branch">
+          <div class="apparatus-node layer1">Manhattan Townhouse<br><small style="opacity:0.7">50+ hidden cameras</small></div>
+          <div class="apparatus-node layer1">Palm Beach Estate<br><small style="opacity:0.7">Clocks with cameras</small></div>
+          <div class="apparatus-node layer1">Little St. James Island<br><small style="opacity:0.7">"Completely wired for video"</small></div>
+        </div>
+        <div class="apparatus-connector"></div>
+        <div class="apparatus-branch">
+          <div class="apparatus-node layer2">Video recordings</div>
+          <div class="apparatus-node layer2">Forced verbal debriefs</div>
+          <div class="apparatus-node layer2">Labeled media discs</div>
+        </div>
+        <div class="apparatus-connector"></div>
+        <div class="apparatus-node core" style="font-size:14px">BLACKMAIL / "INSURANCE POLICY"</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SECTION 2: INTELLIGENCE ===================== -->
+<section class="section" id="intelligence">
+  <div class="section-label">Section 02</div>
+  <h2 class="section-title">Intelligence Connections</h2>
+  <p class="section-desc">Multiple independent sources &mdash; FBI records, federal prosecutors, and intelligence contacts &mdash; confirm Epstein's ties to U.S. and foreign intelligence services.</p>
+
+  <div class="glass-card">
+    <div class="card-header">
+      <span class="card-title">Documented Intelligence Ties</span>
+      <span class="card-subtitle">MULTI-AGENCY NEXUS</span>
+    </div>
+    <div class="card-body">
+      <ul class="evidence-list">
+        <li class="evidence-item">
+          <div class="evidence-icon intel">&#128373;</div>
+          <div class="evidence-content">
+            <div class="evidence-quote">
+              <em>FBI confirmed informant:</em>
+              <span class="quote-text">"has provided information to the FBI as agreed upon"</span>
+            </div>
+            <span class="evidence-cite">EFTA: <span class="cite-id">EFTA00143419</span></span>
+          </div>
+          <div class="evidence-severity severity-critical"></div>
+        </li>
+        <li class="evidence-item">
+          <div class="evidence-icon intel">&#128373;</div>
+          <div class="evidence-content">
+            <div class="evidence-quote">
+              Alan Dershowitz told Alexander Acosta:
+              <span class="quote-text">"Epstein belonged to both U.S. and allied intelligence services"</span>
+            </div>
+            <span class="evidence-cite">EFTA: <span class="cite-id">EFTA00090314</span></span>
+          </div>
+          <div class="evidence-severity severity-critical"></div>
+        </li>
+        <li class="evidence-item">
+          <div class="evidence-icon intel">&#128373;</div>
+          <div class="evidence-content">
+            <div class="evidence-quote">
+              Acosta statement during Trump transition team vetting:
+              <span class="quote-text">"I was told Epstein belonged to intelligence and to leave it alone"</span>
+            </div>
+            <span class="evidence-cite">EFTA: <span class="cite-id">EFTA00030181</span></span>
+          </div>
+          <div class="evidence-severity severity-critical"></div>
+        </li>
+        <li class="evidence-item">
+          <div class="evidence-icon intel">&#128373;</div>
+          <div class="evidence-content">
+            <div class="evidence-quote">
+              FBI Confidential Human Source (CHS) report:
+              <span class="quote-text">Epstein was a "co-opted Mossad Agent"</span>
+            </div>
+            <span class="evidence-cite">EFTA: <span class="cite-id">EFTA00090314</span></span>
+          </div>
+          <div class="evidence-severity severity-critical"></div>
+        </li>
+        <li class="evidence-item">
+          <div class="evidence-icon intel">&#128373;</div>
+          <div class="evidence-content">
+            <div class="evidence-quote">
+              Epstein reportedly <em>"trained as a spy under"</em> former Israeli Prime Minister <em>Ehud Barak</em>
+            </div>
+            <span class="evidence-cite">Source: <span class="cite-id">Intelligence community reporting</span></span>
+          </div>
+          <div class="evidence-severity severity-high"></div>
+        </li>
+        <li class="evidence-item">
+          <div class="evidence-icon doc">&#128196;</div>
+          <div class="evidence-content">
+            <div class="evidence-quote">
+              Melvyn Kohn letter: Epstein was <span class="quote-text">"using cutouts to do intel work"</span>
+            </div>
+            <span class="evidence-cite">EFTA: <span class="cite-id">EFTA00037219</span></span>
+          </div>
+          <div class="evidence-severity severity-critical"></div>
+        </li>
+        <li class="evidence-item">
+          <div class="evidence-icon intel">&#128373;</div>
+          <div class="evidence-content">
+            <div class="evidence-quote">
+              Robert Maxwell (Ghislaine's father) intelligence background:
+              <span class="quote-text">"once you've been an intelligence officer, you're kind of always"</span>
+              &mdash; establishing a generational intelligence nexus
+            </div>
+            <span class="evidence-cite">Source: <span class="cite-id">Intelligence community assessment</span></span>
+          </div>
+          <div class="evidence-severity severity-high"></div>
+        </li>
+        <li class="evidence-item">
+          <div class="evidence-icon intel">&#128373;</div>
+          <div class="evidence-content">
+            <div class="evidence-quote">
+              <em>Bill Burns</em> (future CIA Director, appointed 2021) held meetings at Epstein's home in <em>2014</em>
+            </div>
+            <span class="evidence-cite">Source: <span class="cite-id">Visitor/meeting records</span></span>
+          </div>
+          <div class="evidence-severity severity-high"></div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Passport / Alias -->
+  <div class="glass-card" style="margin-top:24px">
+    <div class="card-header">
+      <span class="card-title">Alias Identity &amp; Travel Documents</span>
+      <span class="card-subtitle">TRADECRAFT INDICATORS</span>
+    </div>
+    <div class="card-body">
+      <ul class="evidence-list">
+        <li class="evidence-item">
+          <div class="evidence-icon doc">&#128466;</div>
+          <div class="evidence-content">
+            <div class="evidence-quote">
+              Austrian passport under alias <em>"Marius Fortelni"</em> with entry/exit stamps for <em>France, Spain, United Kingdom, and Saudi Arabia</em>
+            </div>
+            <span class="evidence-cite">Source: <span class="cite-id">Seized physical evidence (bail hearing)</span></span>
+          </div>
+          <div class="evidence-severity severity-critical"></div>
+        </li>
+        <li class="evidence-item">
+          <div class="evidence-icon doc">&#128466;</div>
+          <div class="evidence-content">
+            <div class="evidence-quote">
+              <span class="quote-text">"Tel Aviv ticket was not a fraud. It was to get a renewal for your 2nd valid passport"</span>
+              &mdash; confirming multiple valid travel identities
+            </div>
+            <span class="evidence-cite">Source: <span class="cite-id">Communication records</span></span>
+          </div>
+          <div class="evidence-severity severity-critical"></div>
+        </li>
+      </ul>
+      <div class="severity-bar">
+        <span class="severity-bar-label">Intel link</span>
+        <div class="severity-bar-track"><div class="severity-bar-fill critical" style="width:95%"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SECTION 3: BANNON TAPES ===================== -->
+<section class="section" id="bannon">
+  <div class="section-label">Section 03</div>
+  <h2 class="section-title">The Bannon Tapes</h2>
+  <p class="section-desc">Mark Epstein's sworn testimony revealed 16 hours of videotape in Steve Bannon's possession, shielded by a dubious privilege claim.</p>
+
+  <div class="glass-card">
+    <div class="card-header">
+      <span class="card-title">16 Hours of Unreleased Video</span>
+      <span class="card-subtitle" style="color:var(--red)">STATUS: NEVER DISCLOSED</span>
+    </div>
+    <div class="card-body">
+      <ul class="evidence-list">
+        <li class="evidence-item">
+          <div class="evidence-icon video">&#127909;</div>
+          <div class="evidence-content">
+            <div class="evidence-quote">
+              Mark Epstein under oath:
+              <span class="quote-text">"Steve Bannon has 16 HOURS OF VIDEO TAPE"</span>
+            </div>
+            <span class="evidence-cite">Source: <span class="cite-id">Mark Epstein sworn testimony</span></span>
+          </div>
+          <div class="evidence-severity severity-critical"></div>
+        </li>
+        <li class="evidence-item">
+          <div class="evidence-icon warning">&#9888;</div>
+          <div class="evidence-content">
+            <div class="evidence-quote">
+              Bannon invoked <em>"attorney/client privilege, as witnessed preparation"</em> to avoid disclosure.
+              <br><br>
+              <strong style="color:var(--red)">Critical problem:</strong> Bannon is not an attorney. Attorney-client privilege requires an actual attorney. This claim has no legal basis.
+            </div>
+            <span class="evidence-cite">Source: <span class="cite-id">Legal proceeding records</span></span>
+          </div>
+          <div class="evidence-severity severity-critical"></div>
+        </li>
+        <li class="evidence-item">
+          <div class="evidence-icon doc">&#128196;</div>
+          <div class="evidence-content">
+            <div class="evidence-quote">
+              Bannon <em>Dropbox file share</em> sent to Epstein in <em>April 2019</em> &mdash; exactly <strong>84 days before Epstein's arrest</strong> on July 6, 2019
+            </div>
+            <span class="evidence-cite">Source: <span class="cite-id">Digital records / metadata</span></span>
+          </div>
+          <div class="evidence-severity severity-critical"></div>
+        </li>
+      </ul>
+
+      <div style="margin-top:20px;padding:16px 20px;background:rgba(255,59,92,0.06);border:1px solid rgba(255,59,92,0.15);border-radius:12px">
+        <div style="font-weight:700;font-size:14px;color:var(--red);margin-bottom:8px;font-family:'JetBrains Mono',monospace;letter-spacing:1px">CURRENT STATUS</div>
+        <p style="font-size:14px;color:var(--text-dim);line-height:1.6">
+          The 16 hours of Bannon videotapes have <strong style="color:var(--text-bright)">never been publicly disclosed</strong> and were <strong style="color:var(--text-bright)">never turned over to investigators</strong>. The bogus attorney-client privilege claim has not been legally challenged. The contents remain unknown to the public.
+        </p>
+      </div>
+
+      <div class="severity-bar" style="margin-top:16px">
+        <span class="severity-bar-label">Urgency</span>
+        <div class="severity-bar-track"><div class="severity-bar-fill critical" style="width:100%"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SECTION 4: DISGUISED FILES ===================== -->
+<section class="section" id="disguised">
+  <div class="section-label">Section 04</div>
+  <h2 class="section-title">Disguised Video Files</h2>
+  <p class="section-desc">Evidence of deliberate obfuscation in the official EFTA document release &mdash; video files disguised with wrong file extensions.</p>
+
+  <div class="glass-card">
+    <div class="card-header">
+      <span class="card-title">Release Obfuscation Discovery</span>
+      <span class="card-subtitle" style="color:var(--orange)">INVESTIGATION ONGOING</span>
+    </div>
+    <div class="card-body">
+      <ul class="evidence-list">
+        <li class="evidence-item">
+          <div class="evidence-icon video">&#128190;</div>
+          <div class="evidence-content">
+            <div class="evidence-quote">
+              <strong>Discovery:</strong> Some <code style="background:rgba(255,255,255,0.08);padding:2px 6px;border-radius:4px;font-family:'JetBrains Mono',monospace;font-size:13px">.pdf</code> files in the EFTA release are actually <em>VIDEO files</em> with the wrong file extension
+            </div>
+          </div>
+          <div class="evidence-severity severity-critical"></div>
+        </li>
+        <li class="evidence-item">
+          <div class="evidence-icon warning">&#9888;</div>
+          <div class="evidence-content">
+            <div class="evidence-quote">
+              Opening these files as PDF displays <em>"no image available"</em> &mdash; but renaming the extension to <code style="background:rgba(255,255,255,0.08);padding:2px 6px;border-radius:4px;font-family:'JetBrains Mono',monospace;font-size:13px">.mp4</code> <strong>plays the video</strong>
+            </div>
+          </div>
+          <div class="evidence-severity severity-critical"></div>
+        </li>
+        <li class="evidence-item">
+          <div class="evidence-icon coverup">&#128683;</div>
+          <div class="evidence-content">
+            <div class="evidence-quote">
+              This represents <em>deliberate obfuscation</em> of released materials &mdash; video evidence was made to appear as corrupt/empty document files, ensuring most reviewers would never discover the actual content
+            </div>
+          </div>
+          <div class="evidence-severity severity-critical"></div>
+        </li>
+      </ul>
+
+      <div style="margin-top:20px;padding:16px 20px;background:rgba(245,158,11,0.06);border:1px solid rgba(245,158,11,0.15);border-radius:12px">
+        <div style="font-weight:700;font-size:14px;color:var(--orange);margin-bottom:8px;font-family:'JetBrains Mono',monospace;letter-spacing:1px">INVESTIGATION NOTE</div>
+        <p style="font-size:14px;color:var(--text-dim);line-height:1.6">
+          The scope and content of disguised video files within the EFTA release is still under active investigation. The deliberate mislabeling of file formats raises serious questions about who controlled the release process and what other materials may be similarly hidden.
+        </p>
+      </div>
+
+      <div class="severity-bar" style="margin-top:16px">
+        <span class="severity-bar-label">Concern</span>
+        <div class="severity-bar-track"><div class="severity-bar-fill high" style="width:90%"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SECTION 5: NAMED TARGETS ===================== -->
+<section class="section" id="targets">
+  <div class="section-label">Section 05</div>
+  <h2 class="section-title">Named Targets of Kompromat</h2>
+  <p class="section-desc">Individuals documented as potentially compromised through the Epstein surveillance and blackmail apparatus, compiled from victim testimony, court filings, and EFTA records.</p>
+
+  <div class="glass-card">
+    <div class="card-header">
+      <span class="card-title">Kompromat Evidence Registry</span>
+      <span class="card-subtitle">DOCUMENTED TARGETS</span>
+    </div>
+    <div class="card-body">
+      <div class="kompromat-table-wrapper">
+        <table class="kompromat-table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Evidence Type</th>
+              <th>Source Document</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="name-cell">Prince Andrew<br><small style="color:var(--text-dim);font-weight:400">Duke of York</small></td>
+              <td class="evidence-cell">Victim sworn testimony of sexual contact; photographic evidence; flight logs; island visits; video surveillance recordings alleged</td>
+              <td class="source-cell">Multiple EFTA depositions;<br><span class="cite-id">Virginia Giuffre testimony</span></td>
+              <td><span class="status-badge status-confirmed">CONFIRMED</span></td>
+            </tr>
+            <tr>
+              <td class="name-cell">Bill Clinton<br><small style="color:var(--text-dim);font-weight:400">42nd President</small></td>
+              <td class="evidence-cell">26+ flight log entries on "Lolita Express"; island visits documented; victim testimony places him at Epstein properties</td>
+              <td class="source-cell"><span class="cite-id">Flight logs</span>;<br>Victim depositions</td>
+              <td><span class="status-badge status-documented">DOCUMENTED</span></td>
+            </tr>
+            <tr>
+              <td class="name-cell">Bill Richardson<br><small style="color:var(--text-dim);font-weight:400">NM Governor (deceased)</small></td>
+              <td class="evidence-cell">Named by victim in sworn testimony as person she was "directed to have sexual relations with"</td>
+              <td class="source-cell"><span class="cite-id">Giuffre deposition</span></td>
+              <td><span class="status-badge status-sworn">SWORN TESTIMONY</span></td>
+            </tr>
+            <tr>
+              <td class="name-cell">George Mitchell<br><small style="color:var(--text-dim);font-weight:400">Former Senate Majority Leader</small></td>
+              <td class="evidence-cell">Named by victim in sworn testimony as person she was directed to have sexual contact with</td>
+              <td class="source-cell"><span class="cite-id">Giuffre deposition</span></td>
+              <td><span class="status-badge status-sworn">SWORN TESTIMONY</span></td>
+            </tr>
+            <tr>
+              <td class="name-cell">Alan Dershowitz<br><small style="color:var(--text-dim);font-weight:400">Harvard Law Professor</small></td>
+              <td class="evidence-cell">Named by victim in sworn testimony; also documented as telling Acosta that Epstein "belonged to intelligence"; deeply embedded in legal defense</td>
+              <td class="source-cell"><span class="cite-id">EFTA00090314</span>;<br>Giuffre deposition</td>
+              <td><span class="status-badge status-sworn">SWORN TESTIMONY</span></td>
+            </tr>
+            <tr>
+              <td class="name-cell">Glenn Dubin<br><small style="color:var(--text-dim);font-weight:400">Hedge Fund Manager</small></td>
+              <td class="evidence-cell">Named by victim in sworn testimony; financial ties to Epstein documented; household staff testimony</td>
+              <td class="source-cell"><span class="cite-id">Giuffre deposition</span>;<br>Staff depositions</td>
+              <td><span class="status-badge status-sworn">SWORN TESTIMONY</span></td>
+            </tr>
+            <tr>
+              <td class="name-cell">Jes Staley<br><small style="color:var(--text-dim);font-weight:400">Former Barclays CEO</small></td>
+              <td class="evidence-cell">1,200+ emails with Epstein; visited island; characterized relationship as "too close"; resigned from Barclays over Epstein ties</td>
+              <td class="source-cell"><span class="cite-id">Email records</span>;<br>UK FCA findings</td>
+              <td><span class="status-badge status-confirmed">CONFIRMED TIES</span></td>
+            </tr>
+            <tr>
+              <td class="name-cell">Leon Black<br><small style="color:var(--text-dim);font-weight:400">Apollo Global Mgmt</small></td>
+              <td class="evidence-cell">$158M+ in payments to Epstein documented; stepped down as Apollo CEO; nature of "advisory" relationship questioned</td>
+              <td class="source-cell"><span class="cite-id">Financial records</span>;<br>Apollo internal review</td>
+              <td><span class="status-badge status-documented">DOCUMENTED</span></td>
+            </tr>
+            <tr>
+              <td class="name-cell">Larry Summers<br><small style="color:var(--text-dim);font-weight:400">Former Treasury Secretary</small></td>
+              <td class="evidence-cell">Flight logs; meetings at Epstein residence; financial relationship documented</td>
+              <td class="source-cell"><span class="cite-id">Flight logs</span>;<br>Scheduling records</td>
+              <td><span class="status-badge status-documented">DOCUMENTED</span></td>
+            </tr>
+            <tr>
+              <td class="name-cell">Bill Gates<br><small style="color:var(--text-dim);font-weight:400">Microsoft Co-founder</small></td>
+              <td class="evidence-cell">Multiple meetings at Manhattan townhouse (2011+, post-conviction); flight on Epstein's plane; philanthropy discussions used as cover; meetings concealed from staff</td>
+              <td class="source-cell"><span class="cite-id">Scheduling records</span>;<br>Flight logs; NYT reporting</td>
+              <td><span class="status-badge status-documented">DOCUMENTED</span></td>
+            </tr>
+            <tr>
+              <td class="name-cell">Jean-Luc Brunel<br><small style="color:var(--text-dim);font-weight:400">Model Scout (deceased)</small></td>
+              <td class="evidence-cell">Named as co-conspirator in trafficking; procured victims; found dead in cell before trial (ruled suicide)</td>
+              <td class="source-cell"><span class="cite-id">Multiple EFTA filings</span>;<br>French investigation</td>
+              <td><span class="status-badge status-confirmed">CONFIRMED / DECEASED</span></td>
+            </tr>
+            <tr>
+              <td class="name-cell">Ehud Barak<br><small style="color:var(--text-dim);font-weight:400">Former Israeli PM</small></td>
+              <td class="evidence-cell">Photographed entering Epstein's Manhattan residence; financial relationship; reported intelligence trainer connection</td>
+              <td class="source-cell"><span class="cite-id">Photographs</span>;<br>Financial records</td>
+              <td><span class="status-badge status-documented">DOCUMENTED</span></td>
+            </tr>
+            <tr>
+              <td class="name-cell">Marvin Minsky<br><small style="color:var(--text-dim);font-weight:400">AI Pioneer (deceased)</small></td>
+              <td class="evidence-cell">Named by victim as person she was "directed to" at Epstein's island; connection to "Scientists" disc</td>
+              <td class="source-cell"><span class="cite-id">Giuffre deposition</span>;<br><span class="cite-id">EFTA00020147-49</span></td>
+              <td><span class="status-badge status-sworn">SWORN TESTIMONY</span></td>
+            </tr>
+            <tr>
+              <td class="name-cell">Les Wexner<br><small style="color:var(--text-dim);font-weight:400">L Brands / Victoria's Secret</small></td>
+              <td class="evidence-cell">Transferred Manhattan townhouse to Epstein; $46M in unexplained transfers; power of attorney granted; characterized as Epstein's primary financial patron</td>
+              <td class="source-cell"><span class="cite-id">Property records</span>;<br>Financial filings</td>
+              <td><span class="status-badge status-documented">DOCUMENTED</span></td>
+            </tr>
+            <tr>
+              <td class="name-cell">Steve Bannon<br><small style="color:var(--text-dim);font-weight:400">Political Strategist</small></td>
+              <td class="evidence-cell">Possesses 16 hours of Epstein videotape (Mark Epstein testimony); Dropbox file share to Epstein 84 days pre-arrest; refuses disclosure</td>
+              <td class="source-cell"><span class="cite-id">Mark Epstein deposition</span>;<br>Digital records</td>
+              <td><span class="status-badge status-confirmed">CONFIRMED POSSESSION</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SECTION 6: COVER-UP ===================== -->
+<section class="section" id="coverup">
+  <div class="section-label">Section 06</div>
+  <h2 class="section-title">Institutional Cover-Up</h2>
+  <p class="section-desc">A pattern of obstruction, destruction, and suppression of evidence spanning multiple federal agencies and administrations.</p>
+
+  <div class="coverup-grid">
+    <div class="coverup-card fade-in">
+      <div class="cc-title">DOJ "FLAG" Instruction</div>
+      <div class="cc-desc">Department of Justice issued a <strong>"FLAG"</strong> instruction on Trump-related records within the Epstein files, indicating special handling or suppression protocols for politically sensitive documents.</div>
+    </div>
+    <div class="coverup-card fade-in">
+      <div class="cc-title">Barr Recusal Reversal</div>
+      <div class="cc-desc">AG William Barr initially recused himself from the Epstein case, then <strong>reversed his recusal within 24 hours</strong>, assuming direct oversight of the investigation involving the prison where Epstein died.</div>
+    </div>
+    <div class="coverup-card fade-in">
+      <div class="cc-title">Bondi "Client List" Reversal</div>
+      <div class="cc-desc">AG Pam Bondi made public <strong>false claims about a "client list"</strong> then executed a complete about-face, muddying public discourse and expectations around document releases.</div>
+    </div>
+    <div class="coverup-card fade-in">
+      <div class="cc-title">400 TB FBI Data Deletion</div>
+      <div class="cc-desc"><strong>400 terabytes</strong> of FBI data was deleted during the active Epstein investigation &mdash; an extraordinary volume equivalent to millions of documents, images, and video files.</div>
+    </div>
+    <div class="coverup-card fade-in">
+      <div class="cc-title">MCC Camera RAID Crash</div>
+      <div class="cc-desc">The Metropolitan Correctional Center camera system experienced a <strong>RAID array crash 2 days before Epstein's death</strong>, destroying surveillance footage of the facility.</div>
+    </div>
+    <div class="coverup-card fade-in">
+      <div class="cc-title">Guards Shredded Evidence</div>
+      <div class="cc-desc">MCC guards <strong>shredded "everything"</strong> after Epstein's death &mdash; log books, sign-in sheets, and other records that would have documented who visited and what occurred.</div>
+    </div>
+    <div class="coverup-card fade-in">
+      <div class="cc-title">"Epstein Murder Evidence" CD</div>
+      <div class="cc-desc">A CD labeled <strong>"Epstein Murder Evidence"</strong> was submitted and then <strong>dismissed</strong> without public examination of its contents.</div>
+    </div>
+    <div class="coverup-card fade-in">
+      <div class="cc-title">Hard Drives Removed from MCC</div>
+      <div class="cc-desc">Hard drives were <strong>physically removed from MCC just 15 hours after Epstein's death</strong> &mdash; before any independent forensic examination could be conducted.</div>
+    </div>
+    <div class="coverup-card fade-in">
+      <div class="cc-title">Todd Blanche Conflict</div>
+      <div class="cc-desc"><strong>Trump's personal lawyer Todd Blanche</strong> was simultaneously conducting the Maxwell proffer &mdash; a direct conflict of interest placing the defense attorney of one subject in control of information from another.</div>
+    </div>
+    <div class="coverup-card fade-in">
+      <div class="cc-title">Video Metadata Modification</div>
+      <div class="cc-desc">Per WIRED magazine analysis, video footage metadata was <strong>"likely modified"</strong> &mdash; indicating tampering with timestamps or other forensic data in official evidence.</div>
+    </div>
+  </div>
+
+  <div class="severity-bar" style="margin-top:32px">
+    <span class="severity-bar-label">Obstruction</span>
+    <div class="severity-bar-track"><div class="severity-bar-fill critical" style="width:100%"></div></div>
+  </div>
+</section>
+
+<!-- ===================== SECTION 7: TIMELINE ===================== -->
+<section class="section" id="timeline">
+  <div class="section-label">Section 07</div>
+  <h2 class="section-title">Document Release Timeline</h2>
+  <p class="section-desc">The pattern of delayed, obfuscated, and incomplete releases of Epstein-related records &mdash; showing systematic suppression across administrations.</p>
+
+  <div class="glass-card">
+    <div class="card-header">
+      <span class="card-title">Key Timeline Events</span>
+      <span class="card-subtitle">PATTERN OF SUPPRESSION</span>
+    </div>
+    <div class="card-body">
+      <div class="timeline">
+
+        <div class="timeline-item">
+          <div class="timeline-dot dot-blue"></div>
+          <div class="timeline-date">2005 - 2006</div>
+          <div class="timeline-title">Palm Beach Police Investigation</div>
+          <div class="timeline-desc">Palm Beach PD investigates Epstein. <strong>Hidden cameras discovered</strong> in clocks. Case referred to FBI. Initial evidence of surveillance apparatus documented.</div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot dot-orange"></div>
+          <div class="timeline-date">2007 - 2008</div>
+          <div class="timeline-title">Sweetheart Plea Deal</div>
+          <div class="timeline-desc">Acosta grants Epstein an unprecedented Non-Prosecution Agreement. <strong>"I was told Epstein belonged to intelligence and to leave it alone."</strong> 36 co-conspirators granted immunity. Victims not notified as required by law.</div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot dot-purple"></div>
+          <div class="timeline-date">2014</div>
+          <div class="timeline-title">Bill Burns Meetings</div>
+          <div class="timeline-desc"><strong>Future CIA Director Bill Burns</strong> documented meeting at Epstein's Manhattan residence, years after Epstein's sex offender conviction.</div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot dot-orange"></div>
+          <div class="timeline-date">2015 - 2017</div>
+          <div class="timeline-title">Giuffre v. Maxwell Civil Suit</div>
+          <div class="timeline-desc">Virginia Giuffre's civil case against Maxwell produces <strong>sworn depositions naming powerful individuals</strong>. Court orders documents sealed. Years-long fight for release begins.</div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot dot-red"></div>
+          <div class="timeline-date">April 2019</div>
+          <div class="timeline-title">Bannon Dropbox File Share</div>
+          <div class="timeline-desc">Steve Bannon sends <strong>Dropbox file share to Epstein</strong> &mdash; 84 days before arrest. Nature of shared files unknown. Context of communication unexplained.</div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot dot-red"></div>
+          <div class="timeline-date">July 6, 2019</div>
+          <div class="timeline-title">Arrest &amp; Safe Seizure</div>
+          <div class="timeline-desc">SDNY arrests Epstein. FBI raids Manhattan townhouse. <strong>Safe containing CDs/DVDs labeled with names discovered.</strong> "Misc. Girls Nude/Dinner--Scientists" disc catalogued.</div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot dot-red"></div>
+          <div class="timeline-date">August 8, 2019</div>
+          <div class="timeline-title">MCC Camera System "Crash"</div>
+          <div class="timeline-desc"><strong>RAID array on MCC surveillance cameras crashes</strong> &mdash; 2 days before Epstein's death. Footage from critical period destroyed.</div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot dot-red"></div>
+          <div class="timeline-date">August 10, 2019</div>
+          <div class="timeline-title">Epstein Found Dead at MCC</div>
+          <div class="timeline-desc">Epstein found dead in cell. Ruled suicide. <strong>Hard drives removed within 15 hours.</strong> Guards shred documents. AG Barr reverses recusal within 24 hours. "Epstein Murder Evidence" CD submitted and dismissed.</div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot dot-purple"></div>
+          <div class="timeline-date">2020 - 2021</div>
+          <div class="timeline-title">Maxwell Trial &amp; Limited Discovery</div>
+          <div class="timeline-desc">Maxwell arrested and tried. <strong>Proffer sessions conducted by Todd Blanche</strong> (later Trump's attorney). Sealed documents slowly released in batches. Major redactions throughout.</div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot dot-orange"></div>
+          <div class="timeline-date">2023 - 2024</div>
+          <div class="timeline-title">Court-Ordered Document Releases</div>
+          <div class="timeline-desc">Federal courts order batched releases of EFTA documents. Files arrive heavily redacted. <strong>Disguised video files discovered</strong> (PDFs that are actually MP4s). 400 TB of FBI data reportedly deleted.</div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot dot-orange"></div>
+          <div class="timeline-date">2025</div>
+          <div class="timeline-title">Bondi "Client List" Fiasco</div>
+          <div class="timeline-desc">AG Bondi makes <strong>false public claims about releasing a "client list"</strong> then reverses. DOJ "FLAG" instruction on Trump records revealed. Pattern of politicized document management continues.</div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot dot-blue"></div>
+          <div class="timeline-date">Ongoing</div>
+          <div class="timeline-title">Bannon Tapes &amp; Full Release Still Pending</div>
+          <div class="timeline-desc"><strong>16 hours of Bannon tapes never disclosed.</strong> Full unredacted EFTA release not complete. Disguised file analysis ongoing. Institutional accountability: zero.</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+</div><!-- /container -->
+
+<!-- ===================== FOOTER ===================== -->
+<footer>
+  <div class="container">
+    <p style="margin-bottom:8px">
+      <strong style="color:var(--text)">Epstein Files: Kompromat &amp; Surveillance Apparatus</strong>
+    </p>
+    <p>
+      All citations reference official EFTA document numbers from court-released files.<br>
+      This analysis compiles publicly available evidence for accountability and transparency.
+    </p>
+    <p style="margin-top:12px">
+      <a href="index.html">Main Dashboard</a> &middot;
+      <a href="hidden_connections.html">Hidden Connections</a> &middot;
+      <a href="red_flag_deepdive.html">Red Flag Deep Dive</a> &middot;
+      <a href="concern_analysis.html">Concern Analysis</a>
+    </p>
+  </div>
+</footer>
+
+<script>
+// Scroll-to-section navigation
+function scrollToSection(id) {
+  const el = document.getElementById(id);
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// TOC dot active state tracking
+(function() {
+  const sections = ['surveillance', 'intelligence', 'bannon', 'disguised', 'targets', 'coverup', 'timeline'];
+  const dots = document.querySelectorAll('.toc-dot');
+
+  function updateTOC() {
+    let currentIdx = 0;
+    for (let i = sections.length - 1; i >= 0; i--) {
+      const el = document.getElementById(sections[i]);
+      if (el) {
+        const rect = el.getBoundingClientRect();
+        if (rect.top <= window.innerHeight * 0.4) {
+          currentIdx = i;
+          break;
+        }
+      }
+    }
+    dots.forEach((d, i) => {
+      d.classList.toggle('active', i === currentIdx);
+    });
+  }
+
+  window.addEventListener('scroll', updateTOC, { passive: true });
+  updateTOC();
+})();
+
+// Intersection Observer for fade-in animations
+(function() {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.animationPlayState = 'running';
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-in').forEach(el => {
+    el.style.animationPlayState = 'paused';
+    observer.observe(el);
+  });
+})();
+
+// Severity bar animation on scroll
+(function() {
+  const bars = document.querySelectorAll('.severity-bar-fill');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const target = entry.target;
+        const width = target.style.width;
+        target.style.width = '0%';
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            target.style.width = width;
+          });
+        });
+        observer.unobserve(target);
+      }
+    });
+  }, { threshold: 0.3 });
+
+  bars.forEach(bar => observer.observe(bar));
+})();
+
+// Kompromat table row hover glow
+(function() {
+  const rows = document.querySelectorAll('.kompromat-table tbody tr');
+  rows.forEach(row => {
+    row.addEventListener('mouseenter', () => {
+      row.style.boxShadow = 'inset 3px 0 0 var(--red)';
+    });
+    row.addEventListener('mouseleave', () => {
+      row.style.boxShadow = 'none';
+    });
+  });
+})();
+
+// Print timestamp
+console.log('Kompromat Analysis Dashboard loaded:', new Date().toISOString());
+</script>
+</body>
+</html>
